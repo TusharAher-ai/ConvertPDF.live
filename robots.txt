@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Allow: /blog/
+
+# Disallow query strings and hash fragments
+Disallow: /*?*
+Disallow: /*.php$
+
+# Specific bot rules for faster crawling
+User-agent: Googlebot
+Allow: /
+Allow: /blog/
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Allow: /blog/
+Crawl-delay: 1
+
+Sitemap: https://convertpdf.live/sitemap.xml
