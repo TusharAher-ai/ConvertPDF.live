@@ -1,6 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5"
+<html lang="en" style="background:#f0f2f5">
 <head>
+<style id="cpdf-master">
+/* ── FLICKER PREVENTION — must be first ── */
+html{background:#f0f2f5;color-scheme:light}
+body{background:#f0f2f5;color:#1a1a2e}
+/* Disable all auto animations until user interacts — prevents tab-switch replay */
+html:not(.cpdf-ready) *{animation-play-state:paused!important}
+html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
+/* Prevent compositor repaint on background */
+body{will-change:auto;contain:style layout}
+</style>
+<script id="cpdf-init">
+(function(){
+  var d=document.documentElement;
+  d.style.background='#f0f2f5';
+  d.className='light';
+  // Re-enable animations on first real user interaction
+  function enableAnim(){
+    d.classList.add('cpdf-ready');
+    document.removeEventListener('mousemove',enableAnim,{passive:true});
+    document.removeEventListener('touchstart',enableAnim,{passive:true});
+    document.removeEventListener('keydown',enableAnim,{passive:true});
+  }
+  document.addEventListener('mousemove',enableAnim,{passive:true});
+  document.addEventListener('touchstart',enableAnim,{passive:true});
+  document.addEventListener('keydown',enableAnim,{passive:true});
+  // Also enable after 1.5s regardless (fallback for non-interactive pages)
+  setTimeout(function(){enableAnim();},1500);
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
 <script>
@@ -9,8 +38,6 @@
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-
-
 <style>html,body{background:#f0f2f5}/* shared-patch-css */
 
 /* ══ SQUARE DZ STATE ══ */
@@ -66,53 +93,58 @@
 .read-blog-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 .read-blog-btn .rbtn-icon{font-size:.9rem}
 
+
+/* ── FREE/OCR BADGE ── */
+.free-now-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;letter-spacing:.04em;
+  background:linear-gradient(90deg,rgba(16,112,64,.18),rgba(16,180,80,.10));
+  color:#107040;border:1.5px solid rgba(16,112,64,.35);
+  border-radius:20px;padding:3px 10px;margin-left:6px;vertical-align:middle;
+  animation:freeBadgePop .4s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+}
+@keyframes freeBadgePop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.ocr-free-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-family:var(--fm,'Space Mono',monospace);font-size:.56rem;font-weight:700;letter-spacing:.04em;
+  background:rgba(16,112,64,.14);color:#107040;border:1px solid rgba(16,112,64,.3);
+  border-radius:10px;padding:2px 8px;margin-left:4px;white-space:nowrap;
+}
+
+/* PRO = FREE NOW */
+.pro-lock-overlay{display:none!important;pointer-events:none!important}
+.pro-badge-tag .use-free-lbl{display:none!important}
 </style>
 
+<meta name="theme-color" content="#f0f2f5"/>
+<meta name="color-scheme" content="light"/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Delete Pages from PDF Free | ConvertPDF.Live</title>
-<meta name="description" content="Delete or remove specific pages from a PDF free online — visual thumbnail picker, select all, invert selection. Best free iLovePDF, SmallPDF and Sejda alternative."/>
-<meta name="keywords" content="delete pdf pages, remove pages from pdf, pdf page remover, delete page from pdf, pdf page deleter, remove pdf pages online, pdf page delete tool, convertpdf, delete pages ilovepdf, remove pages smallpdf, delete pdf pages sejda, ilovepdf, ilovepdf alternative, ilovepdf free, i love pdf, ilove pdf, smallpdf, smallpdf alternative, smallpdf free, small pdf, sejda, sejda alternative, sejda pdf, adobe acrobat alternative, adobe acrobat free alternative, pdf24 alternative, pdf24, pdfcandy, pdf candy alternative, foxit pdf alternative, nitro pdf alternative, online2pdf alternative, pdf editor, edit pdf"/>
+<title>Delete Pages from PDF Free Online | ConvertPDF.Live</title>
+<meta name="description" content="Delete pages from PDF free online — remove unwanted PDF pages instantly. Browser-based, no upload, no sign-up. Download clean PDF with selected pages removed."/>
+<meta name="keywords" content="delete pages from pdf free, remove pdf pages online, pdf page remover free, delete page from pdf no upload, remove pages from pdf free tool, pdf page delete online"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/pdf-delete-pages.html"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://convertpdf.live/pdf-delete-pages.html"/>
-<meta property="og:title" content="Delete Pages from PDF Free | ConvertPDF.Live"/>
-<meta property="og:description" content="Delete or remove specific pages from a PDF free online — visual thumbnail picker, select all, invert selection. Browser-based, no upload, instant download."/>
+<meta property="og:title" content="Delete Pages from PDF Free Online | ConvertPDF.Live"/>
+<meta property="og:description" content="Delete pages from PDF free online — remove unwanted PDF pages instantly. Browser-based, no upload, no sign-up. Download clean PDF with selected pages removed."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta property="og:image" content="https://convertpdf.live/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@ConvertPDFLive"/>
-<meta name="twitter:title" content="Delete Pages from PDF Free | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Delete or remove specific pages from a PDF free online — visual thumbnail picker, select all, invert selection. Browser-based, no upload, instant download."/>
-<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PDF Page Remover", "url": "https://convertpdf.live/pdf-delete-pages.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Delete specific pages from a PDF file free online, no upload needed.. Free alternative to iLovePDF, SmallPDF and Sejda."}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://convertpdf.live/"}, {"@type": "ListItem", "position": 2, "name": "PDF Page Remover", "item": "https://convertpdf.live/pdf-delete-pages.html"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is Delete PDF Pages really free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, 100% free. No account needed, no watermarks, no limits on file size imposed by us."}}, {"@type": "Question", "name": "Do my files get uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "Never. All processing happens 100% inside your browser using JavaScript. Your files never leave your device."}}, {"@type": "Question", "name": "Which browsers are supported?", "acceptedAnswer": {"@type": "Answer", "text": "Any modern browser \u2014 Chrome, Firefox, Edge, Safari on desktop and mobile."}}, {"@type": "Question", "name": "Is there a file size limit?", "acceptedAnswer": {"@type": "Answer", "text": "No server-imposed limit. Processing depends on your device's memory and browser. Most PDFs under 200 MB work perfectly."}}, {"@type": "Question", "name": "How is this better than  or ?", "acceptedAnswer": {"@type": "Answer", "text": "ConvertPDF.Live processes files entirely in your browser \u2014 nothing is uploaded, so your files stay private."}}]}</script>
-
-
-
-
-
-<link rel="canonical" href="https://convertpdf.live/pdf-delete-pages.html"/>
-
-<meta property="og:url" content="https://convertpdf.live/pdf-delete-pages.html"/>
-
-
-
-<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
-
-
-
-
-
-
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Delete Pages from PDF Free Online | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Delete pages from PDF free online — remove unwanted PDF pages instantly. Browser-based, no upload, no sign-up. Download clean PDF with selected pages removed."/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Delete PDF Pages", "url": "https://convertpdf.live/pdf-delete-pages.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Delete or remove specific pages from a PDF — select pages to delete and download the cleaned PDF. Free, no upload, 100% browser-based. Better than iLovePDF delete pages."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertpdf.live/"},{"@type":"ListItem","position":2,"name":"Delete PDF Pages","item":"https://convertpdf.live/pdf-delete-pages.html"}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
 <style>/* ═══════════════════════════════ TOKENS ═══════════════════════ */
 :root{
   --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
@@ -122,7 +154,7 @@
   --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 
 /* ═══════════════════════════════ GOOGLE LOGIN ══════════════════ */
@@ -212,7 +244,7 @@ body.light .tool-page-back{color:#1a1a2e}
 }
 
 /* ── Tool body ── */
-.tool-page-body{padding:32px 36px 28px;transition:background .3s}
+.tool-page-body{padding:32px 36px 28px;}
 
 /* Upload zone inside tool page */
 .tool-page-body .dz-wrap{margin-bottom:20px}
@@ -345,7 +377,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 .tab-panel{display:none}.tab-panel.active{display:block}
 
 /* Side panel */
-.side-panel{width:300px;min-width:300px;background:var(--surf);border-left:2px solid var(--bdr);position:sticky;top:calc(var(--hdr-h) + var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));overflow-y:auto;display:flex;flex-direction:column;transition:width .35s,opacity .3s,background .3s}
+.side-panel{width:300px;min-width:300px;background:var(--surf);border-left:2px solid var(--bdr);position:sticky;top:calc(var(--hdr-h) + var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));overflow-y:auto;display:flex;flex-direction:column;transition:width .35s,opacity .3s}
 .side-panel.collapsed{width:0;min-width:0;overflow:hidden;opacity:0}
 @media(max-width:900px){.side-panel{position:fixed;right:0;top:calc(var(--hdr-h)+var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));z-index:150;width:280px}.side-panel.collapsed{width:0;opacity:0}}
 .panel-hdr{padding:12px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;background:var(--surf2);flex-shrink:0;transition:background .3s}
@@ -555,7 +587,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 .tool-grp:last-child{border-right:none;padding-right:0;margin-right:0}
 .editor-btn{background:transparent;border:1px solid transparent;color:var(--txt);border-radius:5px;padding:5px 9px;cursor:pointer;font-size:.78rem;transition:all .15s;white-space:nowrap}
 .editor-btn:hover{background:var(--bdr)}.editor-btn.active{background:var(--acc);color:#0a0a0f;border-color:var(--acc)}
-.font-sel{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:.75rem;padding:4px 6px;cursor:pointer;transition:background .3s,color .3s}
+.font-sel{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:.75rem;padding:4px 6px;cursor:pointer;}
 .color-pick{width:30px;height:26px;border-radius:5px;border:1px solid var(--bdr);padding:1px;cursor:pointer;background:var(--surf2)}
 .page-nav{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--surf2);border-top:1px solid var(--bdr);flex-wrap:wrap;transition:background .3s}
 .page-nav-info{font-family:var(--fm);font-size:.65rem;color:var(--mut)}
@@ -974,7 +1006,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 /* ═══════════════════════════════ FORM / BUTTONS / ETC ═════════ */
 .fg{margin-bottom:12px}
 label.lbl{display:block;font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:5px}
-input[type=text],input[type=number],input[type=password],select,textarea{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.9rem;padding:8px 12px;outline:none;transition:border-color .2s,background .3s,color .3s}
+input[type=text],input[type=number],input[type=password],select,textarea{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.9rem;padding:8px 12px;outline:none;transition:border-color .2s,color .3s}
 input:focus,select:focus,textarea:focus{border-color:var(--acc)}
 input[type=range]{width:100%;accent-color:var(--acc);background:transparent;padding:0}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -1120,9 +1152,12 @@ body.light .nav-link:hover,body.light .nav-item:hover>.nav-link{
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 </style>
-
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ConvertPDF.Live", "url": "https://convertpdf.live/", "logo": "https://convertpdf.live/logo.png", "sameAs": ["https://convertpdf.live/"]}</script>
 </head>
 <body class="light">
+<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
+  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
+</header>
 
 
 <main>
@@ -1233,7 +1268,7 @@ body.light .nav-link:hover,body.light .nav-item:hover>.nav-link{
        ondragover="event.preventDefault();this.classList.add('over')"
        ondragleave="this.classList.remove('over')"
        ondrop="delDzDrop(event)">
-    <input type="file" accept=".pdf" id="del-file-input" onchange="delLoadFile(this.files[0])" aria-label="Upload file">
+    <input type="file" accept=".pdf" id="del-file-input" onchange="delLoadFile(this.files[0])">
     <span class="del-dz-icon">&#128465;&#65039;</span>
     <div class="del-dz-title">Drop your PDF here</div>
     <div class="del-dz-sub">or click to browse</div>
@@ -1648,12 +1683,7 @@ async function delProcess(){
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script>
 // ════ THEME ═══════════════════════════════════════════════════
-function toggleTheme(){
-  isDark=!isDark;
-  document.body.classList.toggle('light',!isDark);
-  const dark=document.getElementById('lbl-dark');
-  const light=document.getElementById('lbl-light');
-  if(dark){dark.style.opacity=isDark?'1':'0.35';dark.style.fontWeight=isDark?'800':'500';}
+function toggleTheme(){}
   if(light){light.style.opacity=isDark?'0.35':'1';light.style.fontWeight=isDark?'500':'800';}
 }
 
@@ -2837,12 +2867,12 @@ async function downloadWarped(){
 
 // ════ CONVERT POPUP ════════════════════════════════════════════
 const CONV_DEFS={
-  'p2w':{icon:'📝',name:'PDF → Word',fmt:'.docx',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Extract text and export as a real <strong>.docx</strong> file that opens directly in Microsoft Word.</p><div class="dz-wrap"><div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Select page thumbnails to mark them for deletion.</span></div><div class="dz"><input type="file" id="f-p2w" accept="application/pdf" onchange="handleFile(this,'p2w')"/ aria-label="Upload file"><div class="dz-icon">📄</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2w" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToWord()" style="width:100%">Convert &amp; Download .docx</button><div id="prog-p2w" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2w"></div></div><div class="prog-lbl" id="pl-p2w"></div></div><div id="out-p2w" class="out"></div>`},
-  'p2e':{icon:'📊',name:'PDF → Excel',fmt:'.xlsx',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Extract text rows and export as a real <strong>.xlsx</strong> file. Each PDF page becomes one sheet in Excel.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2e" accept="application/pdf" onchange="handleFile(this,'p2e')"/ aria-label="Upload file"><div class="dz-icon">📊</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2e" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToExcel()" style="width:100%">Convert &amp; Download .xlsx</button><div id="prog-p2e" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2e"></div></div><div class="prog-lbl" id="pl-p2e"></div></div><div id="out-p2e" class="out"></div>`},
-  'p2p':{icon:'📑',name:'PDF → PowerPoint',fmt:'.pptx',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a slide in a real <strong>.pptx</strong> file that opens in PowerPoint or Google Slides.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2p" accept="application/pdf" onchange="handleFile(this,'p2p')"/ aria-label="Upload file"><div class="dz-icon">📑</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2p" class="fib" style="display:none"></div><div class="slide-strip" id="slide-strip"><div class="slide-grid" id="slide-thumbs"></div></div><button class="btn btn-p" onclick="pdfToPPT()" style="width:100%">Convert &amp; Download .pptx</button><div id="prog-p2p" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2p"></div></div><div class="prog-lbl" id="pl-p2p"></div></div><div id="out-p2p" class="out"></div>`},
+  'p2w':{icon:'📝',name:'PDF → Word',fmt:'.docx',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Extract text and export as a real <strong>.docx</strong> file that opens directly in Microsoft Word.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2w" accept="application/pdf" onchange="handleFile(this,'p2w')"/><div class="dz-icon">📄</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2w" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToWord()" style="width:100%">Convert &amp; Download .docx</button><div id="prog-p2w" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2w"></div></div><div class="prog-lbl" id="pl-p2w"></div></div><div id="out-p2w" class="out"></div>`},
+  'p2e':{icon:'📊',name:'PDF → Excel',fmt:'.xlsx',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Extract text rows and export as a real <strong>.xlsx</strong> file. Each PDF page becomes one sheet in Excel.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2e" accept="application/pdf" onchange="handleFile(this,'p2e')"/><div class="dz-icon">📊</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2e" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToExcel()" style="width:100%">Convert &amp; Download .xlsx</button><div id="prog-p2e" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2e"></div></div><div class="prog-lbl" id="pl-p2e"></div></div><div id="out-p2e" class="out"></div>`},
+  'p2p':{icon:'📑',name:'PDF → PowerPoint',fmt:'.pptx',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a slide in a real <strong>.pptx</strong> file that opens in PowerPoint or Google Slides.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2p" accept="application/pdf" onchange="handleFile(this,'p2p')"/><div class="dz-icon">📑</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2p" class="fib" style="display:none"></div><div class="slide-strip" id="slide-strip"><div class="slide-grid" id="slide-thumbs"></div></div><button class="btn btn-p" onclick="pdfToPPT()" style="width:100%">Convert &amp; Download .pptx</button><div id="prog-p2p" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2p"></div></div><div class="prog-lbl" id="pl-p2p"></div></div><div id="out-p2p" class="out"></div>`},
   'w2pdf':{icon:'📝',name:'Text → PDF',fmt:'.pdf',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Type or paste your content and download it as a formatted <strong>.pdf</strong> instantly.</p><div class="fg"><label class="lbl">Your text content</label><textarea id="w2pdf-text" rows="7" placeholder="Type or paste here..." style="min-height:140px"></textarea></div><div class="form-row"><div class="fg"><label class="lbl">Title</label><input type="text" id="w2pdf-title" placeholder="Document title"/></div><div class="fg"><label class="lbl">Font Size</label><select id="w2pdf-fontsize"><option value="12">12pt</option><option value="14" selected>14pt</option><option value="16">16pt</option></select></div></div><button class="btn btn-p" onclick="textToPDF()" style="width:100%">Generate &amp; Download .pdf</button><div id="out-w2pdf" class="out"></div>`},
-  'img2pdf':{icon:'🖼️',name:'Image → PDF',fmt:'.pdf',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Convert JPG, PNG or WebP images into a single <strong>.pdf</strong>. Each image = one page.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-img2pdf" accept="image/*" multiple onchange="handleImgFiles(this)"/ aria-label="Upload file"><div class="dz-icon">🖼️</div><div class="dz-title">Drop images here</div><div class="dz-sub">JPG, PNG, WebP · multiple OK</div></div></div><div id="img2pdf-list" style="font-size:.74rem;color:var(--mut);white-space:pre-line;margin-bottom:10px;max-height:80px;overflow-y:auto"></div><div class="form-row"><div class="fg"><label class="lbl">Page Size</label><select id="img2pdf-size"><option value="fit">Fit to image</option><option value="a4">A4</option><option value="letter">Letter</option></select></div><div class="fg"><label class="lbl">Orientation</label><select id="img2pdf-orient"><option value="auto">Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div></div><button class="btn btn-p" onclick="imagesToPDF()" style="width:100%">Convert &amp; Download .pdf</button><div id="prog-img2pdf" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-img2pdf"></div></div><div class="prog-lbl" id="pl-img2pdf"></div></div><div id="out-img2pdf" class="out"></div>`},
-  'p2img':{icon:'🎨',name:'PDF → Images',fmt:'.jpg',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a high-quality <strong>.jpg</strong> image. Download as ZIP or individual files.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2img" accept="application/pdf" onchange="handleFile(this,'p2img')"/ aria-label="Upload file"><div class="dz-icon">🎨</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2img" class="fib" style="display:none"></div><div class="form-row" style="margin-top:10px"><div class="fg"><label class="lbl">Quality</label><select id="p2img-scale"><option value="1">1× Normal</option><option value="1.5" selected>1.5× Good</option><option value="2">2× High</option></select></div><div class="fg"><label class="lbl">Download As</label><select id="p2img-dl"><option value="zip">ZIP of .jpg files</option><option value="single">Individual .jpg files</option></select></div></div><button class="btn btn-p" onclick="pdfToImages()" style="width:100%">Convert &amp; Download .jpg</button><div id="prog-p2img" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2img"></div></div><div class="prog-lbl" id="pl-p2img"></div></div><div id="out-p2img" class="out"></div><div id="p2img-thumbs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px"></div>`}
+  'img2pdf':{icon:'🖼️',name:'Image → PDF',fmt:'.pdf',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Convert JPG, PNG or WebP images into a single <strong>.pdf</strong>. Each image = one page.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-img2pdf" accept="image/*" multiple onchange="handleImgFiles(this)"/><div class="dz-icon">🖼️</div><div class="dz-title">Drop images here</div><div class="dz-sub">JPG, PNG, WebP · multiple OK</div></div></div><div id="img2pdf-list" style="font-size:.74rem;color:var(--mut);white-space:pre-line;margin-bottom:10px;max-height:80px;overflow-y:auto"></div><div class="form-row"><div class="fg"><label class="lbl">Page Size</label><select id="img2pdf-size"><option value="fit">Fit to image</option><option value="a4">A4</option><option value="letter">Letter</option></select></div><div class="fg"><label class="lbl">Orientation</label><select id="img2pdf-orient"><option value="auto">Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div></div><button class="btn btn-p" onclick="imagesToPDF()" style="width:100%">Convert &amp; Download .pdf</button><div id="prog-img2pdf" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-img2pdf"></div></div><div class="prog-lbl" id="pl-img2pdf"></div></div><div id="out-img2pdf" class="out"></div>`},
+  'p2img':{icon:'🎨',name:'PDF → Images',fmt:'.jpg',body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a high-quality <strong>.jpg</strong> image. Download as ZIP or individual files.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2img" accept="application/pdf" onchange="handleFile(this,'p2img')"/><div class="dz-icon">🎨</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2img" class="fib" style="display:none"></div><div class="form-row" style="margin-top:10px"><div class="fg"><label class="lbl">Quality</label><select id="p2img-scale"><option value="1">1× Normal</option><option value="1.5" selected>1.5× Good</option><option value="2">2× High</option></select></div><div class="fg"><label class="lbl">Download As</label><select id="p2img-dl"><option value="zip">ZIP of .jpg files</option><option value="single">Individual .jpg files</option></select></div></div><button class="btn btn-p" onclick="pdfToImages()" style="width:100%">Convert &amp; Download .jpg</button><div id="prog-p2img" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2img"></div></div><div class="prog-lbl" id="pl-p2img"></div></div><div id="out-p2img" class="out"></div><div id="p2img-thumbs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px"></div>`}
 };
 
 function openConvPopup(id){const def=CONV_DEFS[id];if(!def)return;document.getElementById('cpop-icon').textContent=def.icon;document.getElementById('cpop-name').textContent=def.name;document.getElementById('cpop-fmt').textContent=def.fmt;document.getElementById('cpop-body').innerHTML=def.body;document.getElementById('conv-overlay').style.display='flex';document.body.style.overflow='hidden';}
@@ -2952,31 +2982,11 @@ const PRO_FEATURE_NAMES={
 };
 
 function checkProFeature(featureId, radioEl, radioVal, callback){
-  // If already unlocked this session, run immediately
-  if(proUnlocked.has(featureId)){
-    if(radioEl&&radioVal) _doSelectRadio(radioEl,radioVal);
-    if(callback) callback();
-    return;
-  }
-  // Store pending action
-  adwatchPendingCallback=callback||null;
-  adwatchRadioEl=radioEl||null;
-  adwatchRadioVal=radioVal||null;
-  // Populate and show overlay
-  const name=PRO_FEATURE_NAMES[featureId]||'This Feature';
-  document.getElementById('adwatchTitle').textContent='Unlock: '+name;
-  document.getElementById('adwatchSubtitle').textContent=
-    'Watch a short ad to use '+name+' for free — no account needed. Feature stays unlocked for this session.';
-  document.getElementById('adwatchIcon').textContent='⭐';
-  document.getElementById('adwatchFeatureId').value=featureId;
-  // Reset to action state
-  document.getElementById('adwatchActions').style.display='flex';
-  document.getElementById('adwatchFrame').classList.remove('playing');
-  document.getElementById('adwatchDoneMsg').style.display='none';
-  document.getElementById('adwatchSkipBtn').classList.remove('visible');
-  document.getElementById('adwatchCountdown').textContent='Ad: 15s';
-  document.getElementById('adwatchOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
+  // All Pro features are FREE — unlock immediately
+  proUnlocked.add(featureId);
+  if(radioEl&&radioVal) _doSelectRadio(radioEl,radioVal);
+  if(callback) callback();
+  toast('✅ Feature available — 100% Free!');
 }
 
 function startAdWatch(){
@@ -3123,7 +3133,7 @@ const TOOL_PAGES={
   💡 <strong>How it works:</strong> Text is extracted from each PDF page and structured into a Word document. Best results with text-based PDFs (not scanned images).
 </div>
 <div class="dz-wrap"><div class="dz">
-  <input type="file" id="f-p2w-page" accept="application/pdf" onchange="handleP2WFile(this)"/ aria-label="Upload file">
+  <input type="file" id="f-p2w-page" accept="application/pdf" onchange="handleP2WFile(this)"/>
   <div class="dz-icon">📄</div>
   <div class="dz-title">Drop your PDF here</div>
   <div class="dz-sub">or click to browse · Max ~50MB</div>
@@ -3138,24 +3148,24 @@ const TOOL_PAGES={
 </div>
 <div id="out-p2w-page" class="out" style="margin-top:14px"></div>`},
   'pdf-to-excel':{icon:'📊',title:'PDF to Excel Converter',desc:'Extract tables and data from PDF files into a real Microsoft Excel (.xlsx) spreadsheet. Each page becomes a sheet.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Upload your PDF and download a real <strong>.xlsx</strong> file — each page becomes a sheet.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2e-tp" accept="application/pdf" onchange="handleFile(this,'p2e')"/ aria-label="Upload file"><div class="dz-icon">📊</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2e" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToExcel()" style="width:100%">Convert to Excel (.xlsx)</button><div id="prog-p2e" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2e"></div></div><div class="prog-lbl" id="pl-p2e"></div></div><div id="out-p2e" class="out"></div>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Upload your PDF and download a real <strong>.xlsx</strong> file — each page becomes a sheet.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2e-tp" accept="application/pdf" onchange="handleFile(this,'p2e')"/><div class="dz-icon">📊</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2e" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToExcel()" style="width:100%">Convert to Excel (.xlsx)</button><div id="prog-p2e" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2e"></div></div><div class="prog-lbl" id="pl-p2e"></div></div><div id="out-p2e" class="out"></div>`},
   'pdf-to-powerpoint':{icon:'📑',title:'PDF to PowerPoint Converter',desc:'Convert each page of a PDF into a PowerPoint slide. Download a real .pptx file that opens in PowerPoint or Google Slides.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a slide in a real <strong>.pptx</strong> file.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2p-tp" accept="application/pdf" onchange="handleFile(this,'p2p')"/ aria-label="Upload file"><div class="dz-icon">📑</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2p" class="fib" style="display:none"></div><div class="slide-strip" id="slide-strip"><div class="slide-grid" id="slide-thumbs"></div></div><button class="btn btn-p" onclick="pdfToPPT()" style="width:100%">Convert to PowerPoint (.pptx)</button><div id="prog-p2p" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2p"></div></div><div class="prog-lbl" id="pl-p2p"></div></div><div id="out-p2p" class="out"></div>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a slide in a real <strong>.pptx</strong> file.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2p-tp" accept="application/pdf" onchange="handleFile(this,'p2p')"/><div class="dz-icon">📑</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2p" class="fib" style="display:none"></div><div class="slide-strip" id="slide-strip"><div class="slide-grid" id="slide-thumbs"></div></div><button class="btn btn-p" onclick="pdfToPPT()" style="width:100%">Convert to PowerPoint (.pptx)</button><div id="prog-p2p" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2p"></div></div><div class="prog-lbl" id="pl-p2p"></div></div><div id="out-p2p" class="out"></div>`},
   'pdf-to-text':{icon:'📄',title:'PDF to Text Extractor',desc:'Extract all plain text from a PDF file. Useful for searching, copy-pasting, or converting PDF content to .txt format.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Extract all readable text from your PDF as a plain <strong>.txt</strong> file.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2txt" accept="application/pdf" onchange="handleFile(this,'p2txt')"/ aria-label="Upload file"><div class="dz-icon">📄</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2txt" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToText()" style="width:100%">Extract Text (.txt)</button><div id="prog-p2txt" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2txt"></div></div><div class="prog-lbl" id="pl-p2txt"></div></div><div id="out-p2txt" class="out"></div><textarea id="p2txt-output" rows="10" style="margin-top:12px;display:none;font-size:.78rem;font-family:var(--fm)" readonly placeholder="Extracted text will appear here…"></textarea>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Extract all readable text from your PDF as a plain <strong>.txt</strong> file.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2txt" accept="application/pdf" onchange="handleFile(this,'p2txt')"/><div class="dz-icon">📄</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2txt" class="fib" style="display:none"></div><button class="btn btn-p" onclick="pdfToText()" style="width:100%">Extract Text (.txt)</button><div id="prog-p2txt" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2txt"></div></div><div class="prog-lbl" id="pl-p2txt"></div></div><div id="out-p2txt" class="out"></div><textarea id="p2txt-output" rows="10" style="margin-top:12px;display:none;font-size:.78rem;font-family:var(--fm)" readonly placeholder="Extracted text will appear here…"></textarea>`},
   'pdf-to-images':{icon:'🎨',title:'PDF to Images Converter',desc:'Convert every PDF page into a high-quality JPG image. Download all pages as a ZIP file or individually.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a high-quality <strong>.jpg</strong> image.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2img" accept="application/pdf" onchange="handleFile(this,'p2img')"/ aria-label="Upload file"><div class="dz-icon">🎨</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-p2img" class="fib" style="display:none"></div><div class="form-row" style="margin-top:10px"><div class="fg"><label class="lbl">Quality</label><select id="p2img-scale"><option value="1">1× Normal</option><option value="1.5" selected>1.5× Good</option><option value="2">2× High</option></select></div><div class="fg"><label class="lbl">Download As</label><select id="p2img-dl"><option value="zip">ZIP of .jpg files</option><option value="single">Individual .jpg files</option></select></div></div><button class="btn btn-p" onclick="pdfToImages()" style="width:100%">Convert &amp; Download .jpg</button><div id="prog-p2img" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2img"></div></div><div class="prog-lbl" id="pl-p2img"></div></div><div id="out-p2img" class="out"></div><div id="p2img-thumbs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px"></div>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Each page is rendered as a high-quality <strong>.jpg</strong> image.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-p2img" accept="application/pdf" onchange="handleFile(this,'p2img')"/><div class="dz-icon">🎨</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-p2img" class="fib" style="display:none"></div><div class="form-row" style="margin-top:10px"><div class="fg"><label class="lbl">Quality</label><select id="p2img-scale"><option value="1">1× Normal</option><option value="1.5" selected>1.5× Good</option><option value="2">2× High</option></select></div><div class="fg"><label class="lbl">Download As</label><select id="p2img-dl"><option value="zip">ZIP of .jpg files</option><option value="single">Individual .jpg files</option></select></div></div><button class="btn btn-p" onclick="pdfToImages()" style="width:100%">Convert &amp; Download .jpg</button><div id="prog-p2img" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-p2img"></div></div><div class="prog-lbl" id="pl-p2img"></div></div><div id="out-p2img" class="out"></div><div id="p2img-thumbs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-top:12px"></div>`},
   'word-to-pdf':{icon:'📝',title:'Word to PDF Converter',desc:'Convert Microsoft Word (.docx) documents to PDF format online. Free, instant, no software needed.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Upload a <strong>.docx</strong> file and download it as a formatted PDF. Text, headings and paragraphs are preserved.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-w2pdf-tp" accept=".docx,.doc" onchange="handleWordFile(this)"/ aria-label="Upload file"><div class="dz-icon">📝</div><div class="dz-title">Drop .docx here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-w2pdf-tp" class="fib" style="display:none"></div><button class="btn btn-p" onclick="wordToPDF()" style="width:100%">Convert to PDF</button><div id="prog-w2pdf-tp" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-w2pdf-tp"></div></div><div class="prog-lbl" id="pl-w2pdf-tp"></div></div><div id="out-w2pdf-tp" class="out"></div>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Upload a <strong>.docx</strong> file and download it as a formatted PDF. Text, headings and paragraphs are preserved.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-w2pdf-tp" accept=".docx,.doc" onchange="handleWordFile(this)"/><div class="dz-icon">📝</div><div class="dz-title">Drop .docx here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-w2pdf-tp" class="fib" style="display:none"></div><button class="btn btn-p" onclick="wordToPDF()" style="width:100%">Convert to PDF</button><div id="prog-w2pdf-tp" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-w2pdf-tp"></div></div><div class="prog-lbl" id="pl-w2pdf-tp"></div></div><div id="out-w2pdf-tp" class="out"></div>`},
   'excel-to-pdf':{icon:'📊',title:'Excel to PDF Converter',desc:'Convert Excel spreadsheets (.xlsx) into clean PDF documents. Each sheet is printed as a page.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Upload an <strong>.xlsx</strong> file and download a formatted PDF — each sheet becomes a table in the PDF.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-e2pdf-tp" accept=".xlsx,.xls,.csv" onchange="handleExcelFile(this)"/ aria-label="Upload file"><div class="dz-icon">📊</div><div class="dz-title">Drop .xlsx here</div><div class="dz-sub">or click to browse · private &amp; secure</div></div></div><div id="fi-e2pdf-tp" class="fib" style="display:none"></div><button class="btn btn-p" onclick="excelToPDF()" style="width:100%">Convert to PDF</button><div id="prog-e2pdf-tp" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-e2pdf-tp"></div></div><div class="prog-lbl" id="pl-e2pdf-tp"></div></div><div id="out-e2pdf-tp" class="out"></div>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Upload an <strong>.xlsx</strong> file and download a formatted PDF — each sheet becomes a table in the PDF.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-e2pdf-tp" accept=".xlsx,.xls,.csv" onchange="handleExcelFile(this)"/><div class="dz-icon">📊</div><div class="dz-title">Drop .xlsx here</div><div class="dz-sub">or click to browse</div></div></div><div id="fi-e2pdf-tp" class="fib" style="display:none"></div><button class="btn btn-p" onclick="excelToPDF()" style="width:100%">Convert to PDF</button><div id="prog-e2pdf-tp" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-e2pdf-tp"></div></div><div class="prog-lbl" id="pl-e2pdf-tp"></div></div><div id="out-e2pdf-tp" class="out"></div>`},
   'powerpoint-to-pdf':{icon:'📑',title:'PowerPoint to PDF Converter',desc:'Convert .pptx presentations into a PDF document. Each slide becomes a page. Text and images are extracted and rendered.',
     body:`
 <div style="margin-bottom:16px;padding:12px 16px;background:rgba(64,192,240,.07);border:1px solid rgba(64,192,240,.2);border-radius:10px;font-size:.8rem;color:var(--acc2)">
   💡 <strong>Supported:</strong> .pptx files (PowerPoint 2007+). Large files with many images may take longer — the converter processes all slides and embeds images into the PDF.
 </div>
 <div class="dz-wrap"><div class="dz">
-  <input type="file" id="f-ppt2pdf-tp" accept=".pptx,.ppt" onchange="handlePPTFile(this)"/ aria-label="Upload file">
+  <input type="file" id="f-ppt2pdf-tp" accept=".pptx,.ppt" onchange="handlePPTFile(this)"/>
   <div class="dz-icon">📑</div>
   <div class="dz-title">Drop .pptx file here</div>
   <div class="dz-sub">or click to browse · All file sizes supported</div>
@@ -3174,7 +3184,7 @@ const TOOL_PAGES={
   'text-to-pdf':{icon:'📄',title:'Text to PDF Converter',desc:'Type or paste any text and instantly download it as a formatted PDF file. Add a title and choose font size.',
     body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Type or paste your content and download it as a formatted <strong>.pdf</strong> instantly.</p><div class="fg"><label class="lbl">Your text content</label><textarea id="w2pdf-text" rows="7" placeholder="Type or paste here…" style="min-height:140px"></textarea></div><div class="form-row"><div class="fg"><label class="lbl">Title</label><input type="text" id="w2pdf-title" placeholder="Document title"/></div><div class="fg"><label class="lbl">Font Size</label><select id="w2pdf-fontsize"><option value="12">12pt</option><option value="14" selected>14pt</option><option value="16">16pt</option></select></div></div><button class="btn btn-p" onclick="textToPDF()" style="width:100%">Generate &amp; Download .pdf</button><div id="out-w2pdf" class="out"></div>`},
   'image-to-pdf':{icon:'🖼️',title:'Image to PDF Converter',desc:'Convert JPG, PNG, or WebP images into a single PDF file. Each image becomes one page.',
-    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Convert JPG, PNG or WebP images into a single <strong>.pdf</strong>. Each image = one page.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-img2pdf" accept="image/*" multiple onchange="handleImgFiles(this)"/ aria-label="Upload file"><div class="dz-icon">🖼️</div><div class="dz-title">Drop images here</div><div class="dz-sub">JPG, PNG, WebP · multiple OK</div></div></div><div id="img2pdf-list" style="font-size:.74rem;color:var(--mut);white-space:pre-line;margin-bottom:10px;max-height:80px;overflow-y:auto"></div><div class="form-row"><div class="fg"><label class="lbl">Page Size</label><select id="img2pdf-size"><option value="fit">Fit to image</option><option value="a4">A4</option><option value="letter">Letter</option></select></div><div class="fg"><label class="lbl">Orientation</label><select id="img2pdf-orient"><option value="auto">Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div></div><button class="btn btn-p" onclick="imagesToPDF()" style="width:100%">Convert &amp; Download .pdf</button><div id="prog-img2pdf" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-img2pdf"></div></div><div class="prog-lbl" id="pl-img2pdf"></div></div><div id="out-img2pdf" class="out"></div>`},
+    body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Convert JPG, PNG or WebP images into a single <strong>.pdf</strong>. Each image = one page.</p><div class="dz-wrap"><div class="dz"><input type="file" id="f-img2pdf" accept="image/*" multiple onchange="handleImgFiles(this)"/><div class="dz-icon">🖼️</div><div class="dz-title">Drop images here</div><div class="dz-sub">JPG, PNG, WebP · multiple OK</div></div></div><div id="img2pdf-list" style="font-size:.74rem;color:var(--mut);white-space:pre-line;margin-bottom:10px;max-height:80px;overflow-y:auto"></div><div class="form-row"><div class="fg"><label class="lbl">Page Size</label><select id="img2pdf-size"><option value="fit">Fit to image</option><option value="a4">A4</option><option value="letter">Letter</option></select></div><div class="fg"><label class="lbl">Orientation</label><select id="img2pdf-orient"><option value="auto">Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></div></div><button class="btn btn-p" onclick="imagesToPDF()" style="width:100%">Convert &amp; Download .pdf</button><div id="prog-img2pdf" class="prog"><div class="prog-bar"><div class="prog-fill" id="pf-img2pdf"></div></div><div class="prog-lbl" id="pl-img2pdf"></div></div><div id="out-img2pdf" class="out"></div>`},
   'html-to-word':{icon:'🌐',title:'HTML to Word Converter',desc:'Paste HTML code and convert it to a Microsoft Word (.docx) file. Headings, bold, and paragraphs are preserved.',
     body:`<p style="font-size:.78rem;color:var(--mut);margin-bottom:14px">Paste <strong>HTML code</strong> to download as a <strong>.docx</strong> Word document. Basic formatting is preserved.</p><div class="fg"><label class="lbl">HTML Source Code</label><textarea id="html2word-src" rows="8" placeholder="&lt;h1&gt;Title&lt;/h1&gt;&#10;&lt;p&gt;Body text here…&lt;/p&gt;" style="font-family:var(--fm);font-size:.78rem"></textarea></div><button class="btn btn-p" onclick="htmlToWord()" style="width:100%">Convert to Word (.docx)</button><div id="out-html2word" class="out"></div>`},
   'html-to-excel':{icon:'🌐',title:'HTML to Excel Converter',desc:'Paste HTML containing tables and convert them into Excel (.xlsx) spreadsheets automatically.',
@@ -5750,7 +5760,7 @@ document.addEventListener('DOMContentLoaded', function(){
           // Create a styled add card
           var addCard = document.createElement('label');
           addCard.className = 'file-card-add';
-          addCard.innerHTML = '<input type="file" accept="application/pdf" multiple onchange="addMoreMerge(this)"/ aria-label="Upload file"><span style="font-size:1.4rem">➕</span><span>Add PDF</span>';
+          addCard.innerHTML = '<input type="file" accept="application/pdf" multiple onchange="addMoreMerge(this)"/><span style="font-size:1.4rem">➕</span><span>Add PDF</span>';
           row.appendChild(addCard);
           addBtn.style.display='none'; // hide original btn
         }
@@ -5839,1134 +5849,5 @@ document.addEventListener('click',function(e){var m=document.getElementById('sug
     if(/merge|split|convert|compress|rotate|watermark|sign|protect|unlock|extract|download|process|crop|resize|rearrange|generate|add|apply|number/i.test(t))watch();
   },true);
 })();
-</script>
-<script>
-/* ═══════════════════════════════════════════════════════════════
-   ConvertPDF.Live — Unified Enhancement Layer  v2.0
-   Injected into every tool page. Adds:
-     • Polished upload zone with live file-chip & preview
-     • Animated loading modal with progress ring
-     • Step-flow indicator (Upload → Options → Process → Download)
-     • Tooltip system
-     • Options panel reveal after upload
-     • Toast notifications
-     • Smooth scroll-to-result
-     • Quick-action copy/clear buttons
-     • Full responsiveness patches
-   ═══════════════════════════════════════════════════════════════ */
-(function () {
-  'use strict';
-
-  /* ── 1. INJECT ENHANCEMENT CSS ── */
-  const css = `
-/* ═══ ENHANCEMENT LAYER — ConvertPDF.Live v2.0 ═══ */
-
-/* ── Custom Scrollbar ── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--acc); }
-
-/* ══ STEP FLOW INDICATOR ══ */
-.cpdf-steps {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin-bottom: 24px;
-  padding: 14px 20px;
-  background: var(--surf2);
-  border: 1px solid var(--bdr);
-  border-radius: 12px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.cpdf-steps::-webkit-scrollbar { display: none; }
-.cpdf-step {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  opacity: .4;
-  transition: opacity .3s, transform .2s;
-}
-.cpdf-step.active { opacity: 1; }
-.cpdf-step.done { opacity: .7; }
-.cpdf-step-num {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: var(--surf);
-  border: 2px solid var(--bdr);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--fm); font-size: .62rem; font-weight: 700;
-  color: var(--mut);
-  transition: all .3s;
-  flex-shrink: 0;
-}
-.cpdf-step.active .cpdf-step-num {
-  background: var(--acc);
-  border-color: var(--acc);
-  color: #0a0a14;
-  box-shadow: 0 0 0 4px rgba(176,120,0,.18);
-}
-.cpdf-step.done .cpdf-step-num {
-  background: var(--ok);
-  border-color: var(--ok);
-  color: #fff;
-}
-.cpdf-step-lbl {
-  font-family: var(--fd);
-  font-size: .72rem;
-  font-weight: 700;
-  color: var(--txt);
-  white-space: nowrap;
-}
-.cpdf-step-arr {
-  width: 28px; height: 1px;
-  background: var(--bdr);
-  margin: 0 8px;
-  flex-shrink: 0;
-  position: relative;
-}
-.cpdf-step-arr::after {
-  content: '';
-  position: absolute;
-  right: -1px; top: -3px;
-  border: 3px solid transparent;
-  border-left-color: var(--bdr);
-}
-@media (max-width: 480px) {
-  .cpdf-steps { padding: 10px 14px; gap: 0; }
-  .cpdf-step-lbl { font-size: .65rem; }
-  .cpdf-step-arr { width: 16px; margin: 0 4px; }
-}
-
-/* ══ UPLOAD ZONE — ENHANCED ══ */
-.dz {
-  transition: all .3s cubic-bezier(.34,1.1,.64,1) !important;
-  position: relative;
-  overflow: hidden;
-}
-.dz::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at 50% 120%, rgba(176,120,0,.06), transparent 70%);
-  opacity: 0;
-  transition: opacity .3s;
-  pointer-events: none;
-}
-.dz:hover::before, .dz.drag-over::before { opacity: 1; }
-.dz.drag-over {
-  border-color: var(--acc) !important;
-  background: rgba(176,120,0,.06) !important;
-  transform: scale(1.02) !important;
-  box-shadow: 0 0 0 4px rgba(176,120,0,.12), 0 8px 32px rgba(176,120,0,.15) !important;
-}
-.dz.dz-success {
-  border-color: var(--ok) !important;
-  border-style: solid !important;
-  background: rgba(16,112,64,.04) !important;
-  animation: dzSuccessPulse .5s ease;
-}
-@keyframes dzSuccessPulse {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.025); }
-  100% { transform: scale(1); }
-}
-.dz-icon { transition: transform .3s cubic-bezier(.34,1.56,.64,1) !important; }
-.dz:hover .dz-icon { transform: scale(1.15) translateY(-2px) !important; }
-
-/* Upload hint pulse animation */
-@keyframes hintPulse {
-  0%,100% { opacity: .7; }
-  50% { opacity: 1; }
-}
-.dz-hint { animation: hintPulse 2.5s ease infinite; }
-
-/* ══ FILE CHIP (shown after upload, inside DZ) ══ */
-.cpdf-file-chip {
-  display: none;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  background: var(--surf);
-  border: 1.5px solid rgba(16,112,64,.3);
-  border-radius: 10px;
-  margin-bottom: 14px;
-  animation: chipIn .3s cubic-bezier(.34,1.3,.64,1);
-}
-.cpdf-file-chip.show { display: flex; }
-@keyframes chipIn {
-  from { opacity: 0; transform: translateY(-6px) scale(.97); }
-  to   { opacity: 1; transform: none; }
-}
-.cpdf-chip-icon { font-size: 1.5rem; flex-shrink: 0; }
-.cpdf-chip-info { flex: 1; min-width: 0; }
-.cpdf-chip-name {
-  font-family: var(--fd); font-weight: 700; font-size: .84rem;
-  color: var(--txt); white-space: nowrap; overflow: hidden;
-  text-overflow: ellipsis;
-}
-.cpdf-chip-meta {
-  font-family: var(--fm); font-size: .62rem; color: var(--ok);
-  display: flex; gap: 10px; margin-top: 2px;
-}
-.cpdf-chip-clear {
-  background: transparent;
-  border: 1px solid var(--bdr);
-  border-radius: 6px;
-  padding: 4px 9px;
-  cursor: pointer;
-  font-size: .7rem;
-  color: var(--mut);
-  font-family: var(--fm);
-  transition: all .15s;
-  flex-shrink: 0;
-}
-.cpdf-chip-clear:hover { border-color: var(--acc3); color: var(--acc3); }
-
-/* Mini page count badge on chip */
-.cpdf-chip-pages {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  background: rgba(176,120,0,.12);
-  color: var(--acc);
-  border: 1px solid rgba(176,120,0,.25);
-  border-radius: 20px;
-  font-family: var(--fm);
-  font-size: .58rem;
-  padding: 1px 7px;
-}
-
-/* ══ OPTIONS PANEL — slides in after upload ══ */
-.cpdf-options-panel {
-  display: none;
-  border: 1.5px solid var(--bdr);
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  animation: optsPanelIn .35s cubic-bezier(.22,.68,0,1.15);
-}
-.cpdf-options-panel.show { display: block; }
-@keyframes optsPanelIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: none; }
-}
-.cpdf-opts-hdr {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  background: var(--surf2);
-  border-bottom: 1px solid var(--bdr);
-  cursor: pointer;
-  user-select: none;
-}
-.cpdf-opts-hdr-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--fd);
-  font-weight: 700;
-  font-size: .82rem;
-  color: var(--txt);
-}
-.cpdf-opts-hdr-icon { font-size: 1rem; }
-.cpdf-opts-toggle {
-  font-size: .7rem;
-  color: var(--mut);
-  transition: transform .25s;
-}
-.cpdf-opts-hdr.collapsed .cpdf-opts-toggle { transform: rotate(-90deg); }
-.cpdf-opts-body {
-  padding: 16px;
-  background: var(--surf);
-}
-.cpdf-opts-body.hidden { display: none; }
-
-/* Option group label */
-.cpdf-opt-group-lbl {
-  font-family: var(--fm);
-  font-size: .6rem;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--acc);
-  margin-bottom: 8px;
-  margin-top: 14px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid var(--bdr);
-}
-.cpdf-opt-group-lbl:first-child { margin-top: 0; }
-
-/* Tooltip system */
-[data-tooltip] { position: relative; cursor: help; }
-[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: calc(100% + 6px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--txt);
-  color: var(--surf);
-  font-family: var(--fm);
-  font-size: .65rem;
-  padding: 5px 10px;
-  border-radius: 6px;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .18s, transform .18s;
-  transform: translateX(-50%) translateY(4px);
-  z-index: 9000;
-  max-width: 220px;
-  white-space: normal;
-  text-align: center;
-  line-height: 1.4;
-  box-shadow: 0 4px 14px rgba(0,0,0,.25);
-}
-[data-tooltip]:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* ══ LOADING MODAL ══ */
-.cpdf-loading-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,10,20,.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 9800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s;
-}
-.cpdf-loading-modal.show {
-  opacity: 1;
-  pointer-events: all;
-}
-.cpdf-loading-card {
-  background: var(--surf);
-  border: 2px solid var(--bdr);
-  border-radius: 20px;
-  padding: 36px 40px;
-  text-align: center;
-  width: min(380px, 90vw);
-  box-shadow: 0 24px 80px rgba(0,0,0,.45);
-  animation: loadCardIn .3s cubic-bezier(.22,.68,0,1.15);
-}
-@keyframes loadCardIn {
-  from { opacity: 0; transform: scale(.92) translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-/* SVG progress ring */
-.cpdf-ring-wrap {
-  position: relative;
-  width: 88px; height: 88px;
-  margin: 0 auto 20px;
-}
-.cpdf-ring-svg {
-  width: 88px; height: 88px;
-  transform: rotate(-90deg);
-}
-.cpdf-ring-track {
-  fill: none;
-  stroke: var(--surf2);
-  stroke-width: 6;
-}
-.cpdf-ring-fill {
-  fill: none;
-  stroke: url(#cpdfRingGrad);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-dasharray: 226;
-  stroke-dashoffset: 226;
-  transition: stroke-dashoffset .4s cubic-bezier(.4,0,.2,1);
-}
-.cpdf-ring-pct {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--fd);
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--txt);
-}
-.cpdf-loading-title {
-  font-family: var(--fd);
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: var(--txt);
-  margin-bottom: 6px;
-}
-.cpdf-loading-msg {
-  font-family: var(--fm);
-  font-size: .7rem;
-  color: var(--mut);
-  min-height: 18px;
-  transition: opacity .2s;
-  line-height: 1.5;
-}
-/* thin animated bar below card */
-.cpdf-loading-bar {
-  height: 3px;
-  background: var(--surf2);
-  border-radius: 0 0 18px 18px;
-  overflow: hidden;
-  margin: 20px -40px -36px;
-}
-.cpdf-loading-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--acc), var(--acc2), var(--acc3));
-  background-size: 200% 100%;
-  border-radius: 3px;
-  transition: width .35s;
-  animation: barShimmer 1.5s linear infinite;
-}
-@keyframes barShimmer {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
-}
-
-/* ══ RESULT SECTION — enhanced ══ */
-.result-box, .split-result, [id^="out-"] {
-  animation: resultIn .4s cubic-bezier(.22,.68,0,1.15);
-}
-@keyframes resultIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* Enhanced download button pulse */
-.btn-primary.dl-pulse {
-  animation: dlPulse 1.8s ease infinite;
-}
-@keyframes dlPulse {
-  0%,100% { box-shadow: 0 3px 16px rgba(176,120,0,.3); }
-  50%      { box-shadow: 0 6px 28px rgba(176,120,0,.6), 0 0 0 6px rgba(176,120,0,.1); }
-}
-
-/* ══ TOAST NOTIFICATIONS ══ */
-.cpdf-toast-stack {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9900;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-  pointer-events: none;
-}
-.cpdf-toast {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--txt);
-  color: var(--surf);
-  font-family: var(--fm);
-  font-size: .72rem;
-  padding: 10px 18px;
-  border-radius: 30px;
-  white-space: nowrap;
-  box-shadow: 0 8px 24px rgba(0,0,0,.35);
-  pointer-events: none;
-  animation: toastIn .3s cubic-bezier(.34,1.3,.64,1);
-  border-left: 3px solid var(--acc);
-}
-.cpdf-toast.ok   { border-left-color: var(--ok); }
-.cpdf-toast.err  { border-left-color: var(--acc3); }
-.cpdf-toast.info { border-left-color: var(--acc2); }
-@keyframes toastIn {
-  from { opacity: 0; transform: translateY(12px) scale(.93); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes toastOut {
-  to { opacity: 0; transform: translateY(8px) scale(.95); }
-}
-
-/* ══ PROGRESS BAR — enhanced everywhere ══ */
-.progress-bar-bg, .u-prog-track, .prog-bar, .split-prog-track {
-  position: relative;
-  overflow: hidden;
-}
-.progress-bar-fill, .u-prog-fill, .prog-fill, .split-prog-fill {
-  background: linear-gradient(90deg, var(--acc), var(--acc2)) !important;
-  background-size: 200% 100% !important;
-  animation: progShimmer 1.8s linear infinite;
-  position: relative;
-}
-@keyframes progShimmer {
-  0%   { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
-
-/* ══ FORM FIELD ENHANCEMENTS ══ */
-input[type=text]:focus,
-input[type=number]:focus,
-input[type=password]:focus,
-select:focus,
-textarea:focus {
-  box-shadow: 0 0 0 3px rgba(176,120,0,.15) !important;
-  border-color: var(--acc) !important;
-}
-label.lbl, .cpdf-opt-group-lbl {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-label.lbl .tip-icon {
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--surf2);
-  border: 1px solid var(--bdr);
-  font-size: .55rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--mut);
-  cursor: help;
-  flex-shrink: 0;
-}
-
-/* ══ BUTTON ENHANCEMENTS ══ */
-.btn {
-  position: relative;
-  overflow: hidden;
-}
-.btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,.15), transparent 60%);
-  opacity: 0;
-  transition: opacity .2s;
-  pointer-events: none;
-  border-radius: inherit;
-}
-.btn:hover::after { opacity: 1; }
-.btn-primary:active { transform: scale(.97) !important; }
-
-/* Quick action button row */
-.cpdf-quick-actions {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-.cpdf-qa-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1.5px solid var(--bdr);
-  background: var(--surf);
-  font-family: var(--fm);
-  font-size: .65rem;
-  color: var(--mut);
-  cursor: pointer;
-  transition: all .18s;
-  white-space: nowrap;
-}
-.cpdf-qa-btn:hover {
-  border-color: var(--acc);
-  color: var(--acc);
-  background: rgba(176,120,0,.06);
-  transform: translateY(-1px);
-}
-.cpdf-qa-btn .qa-icon { font-size: .8rem; }
-
-/* ══ TRUST BAR — enhanced ══ */
-.trust-bar, .tool-trust-bar {
-  display: flex;
-  gap: 0;
-  flex-wrap: wrap;
-  padding: 14px 28px;
-  border-top: 1px solid var(--bdr);
-  background: var(--surf2);
-  align-items: center;
-}
-.trust-bar .ttb-item, .tool-trust-bar .ttb-item {
-  transition: color .18s;
-}
-.trust-bar .ttb-item:hover, .tool-trust-bar .ttb-item:hover {
-  color: var(--acc);
-}
-
-/* ══ FAQ SECTION ══ */
-.faq-item {
-  transition: border-color .2s, box-shadow .2s;
-}
-.faq-item.open {
-  box-shadow: 0 2px 12px rgba(176,120,0,.1);
-}
-.faq-q { transition: color .18s; }
-.faq-a {
-  animation: faqExpand .2s ease;
-}
-@keyframes faqExpand {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* ══ RESPONSIVE PATCHES ══ */
-@media (max-width: 640px) {
-  main, .tool-standalone {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-  }
-  .tool-hdr, .tool-body, .tool-page-body {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-  .btn-row { flex-direction: column; }
-  .btn-row .btn { width: 100%; justify-content: center; }
-  .form-row { grid-template-columns: 1fr !important; }
-  .trust-bar, .tool-trust-bar { padding: 12px 16px; }
-  .ttb-sep { display: none; }
-  .ttb-item { padding: 2px 0 2px 0; width: 50%; }
-}
-@media (max-width: 400px) {
-  .tool-title, .tool-page-title { font-size: 1.3rem !important; }
-  .dz { padding: 24px 14px !important; }
-}
-
-/* ══ DARK MODE REFINEMENTS ══ */
-body.dark .cpdf-loading-card {
-  background: var(--surf);
-  border-color: var(--bdr);
-  box-shadow: 0 24px 80px rgba(0,0,0,.7);
-}
-body.dark .cpdf-toast { background: var(--surf2); }
-
-/* ══ SCROLL TO RESULT HIGHLIGHT ══ */
-.cpdf-result-highlight {
-  outline: 2px solid var(--acc);
-  outline-offset: 4px;
-  border-radius: 12px;
-  animation: highlightFade 2s ease forwards;
-}
-@keyframes highlightFade {
-  0% { outline-color: var(--acc); }
-  100% { outline-color: transparent; }
-}
-
-/* ══ DRAG LIST ENHANCEMENTS ══ */
-.drag-item {
-  transition: all .18s, transform .15s !important;
-}
-.drag-item:hover { border-color: var(--acc) !important; }
-.drag-item.dragging {
-  background: rgba(176,120,0,.06) !important;
-  border-color: var(--acc) !important;
-  box-shadow: 0 8px 24px rgba(176,120,0,.2) !important;
-}
-
-/* ══ PAGE THUMB ENHANCEMENTS ══ */
-.page-thumb, .thumb-card {
-  transition: all .2s cubic-bezier(.22,.68,0,1.15) !important;
-}
-.page-thumb:hover, .thumb-card:hover {
-  border-color: var(--acc) !important;
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 6px 20px rgba(176,120,0,.2) !important;
-}
-
-/* ══ BACK LINK — consistent across pages ══ */
-.back-link, .tool-back-link, .tool-page-back {
-  transition: all .22s cubic-bezier(.34,1.3,.64,1) !important;
-}
-
-/* ══ PRESET CARD ENHANCEMENTS (compress) ══ */
-.preset-card {
-  transition: all .2s cubic-bezier(.22,.68,0,1.15) !important;
-}
-.preset-card:hover { transform: translateY(-2px) !important; }
-
-/* ══ MODE TABS ══ */
-.mode-tab, .mtype-tab {
-  transition: all .2s !important;
-}
-
-/* ══ SIZE COMPARISON ══ */
-.size-cmp-item {
-  transition: transform .2s, box-shadow .2s !important;
-}
-.size-cmp-item:hover { transform: translateY(-2px) !important; box-shadow: 0 4px 14px var(--shadow) !important; }
-
-/* ══ SLIDE-IN CONTENT AFTER FILE LOAD ══ */
-.cpdf-post-upload {
-  animation: postUploadIn .35s cubic-bezier(.22,.68,0,1.15);
-}
-@keyframes postUploadIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: none; }
-}
-
-/* ══ INLINE HINT CALLOUTS ══ */
-.cpdf-hint {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 9px 14px;
-  background: rgba(0,96,160,.07);
-  border: 1px solid rgba(0,96,160,.2);
-  border-radius: 9px;
-  font-size: .78rem;
-  color: var(--acc2);
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-.cpdf-hint-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
-
-/* ══ COPY TEXT BUTTON ══ */
-.cpdf-copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border-radius: 6px;
-  border: 1.5px solid var(--bdr);
-  background: var(--surf2);
-  font-family: var(--fm);
-  font-size: .65rem;
-  color: var(--mut);
-  cursor: pointer;
-  transition: all .15s;
-}
-.cpdf-copy-btn:hover { border-color: var(--acc); color: var(--acc); }
-.cpdf-copy-btn.copied { border-color: var(--ok); color: var(--ok); }
-`;
-
-  const styleEl = document.createElement('style');
-  styleEl.textContent = css;
-  document.head.appendChild(styleEl);
-
-  /* ── SVG Gradient Defs for Ring ── */
-  const svgDefs = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svgDefs.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
-  svgDefs.innerHTML = `<defs>
-    <linearGradient id="cpdfRingGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="var(--acc)"/>
-      <stop offset="50%" stop-color="var(--acc2)"/>
-      <stop offset="100%" stop-color="var(--acc3)"/>
-    </linearGradient>
-  </defs>`;
-  document.body.appendChild(svgDefs);
-
-  /* ── 2. LOADING MODAL ── */
-  const modal = document.createElement('div');
-  modal.id = 'cpdf-loading-modal';
-  modal.className = 'cpdf-loading-modal';
-  modal.innerHTML = `
-    <div class="cpdf-loading-card">
-      <div class="cpdf-ring-wrap">
-        <svg class="cpdf-ring-svg" viewBox="0 0 88 88">
-          <circle class="cpdf-ring-track" cx="44" cy="44" r="36"/>
-          <circle class="cpdf-ring-fill" id="cpdf-ring-fill" cx="44" cy="44" r="36"/>
-        </svg>
-        <div class="cpdf-ring-pct" id="cpdf-ring-pct">0%</div>
-      </div>
-      <div class="cpdf-loading-title" id="cpdf-loading-title">Processing…</div>
-      <div class="cpdf-loading-msg" id="cpdf-loading-msg">Please wait</div>
-      <div class="cpdf-loading-bar">
-        <div class="cpdf-loading-bar-fill" id="cpdf-loading-bar-fill" style="width:0%"></div>
-      </div>
-    </div>`;
-  document.body.appendChild(modal);
-
-  /* ── 3. TOAST STACK ── */
-  const toastStack = document.createElement('div');
-  toastStack.className = 'cpdf-toast-stack';
-  toastStack.id = 'cpdf-toast-stack';
-  document.body.appendChild(toastStack);
-
-  /* ── 4. PUBLIC API ── */
-  const CIRC = 2 * Math.PI * 36; // 226.19...
-
-  window.CpdfUI = {
-    /* Loading modal */
-    showLoading(title = 'Processing…', msg = 'Please wait') {
-      document.getElementById('cpdf-loading-title').textContent = title;
-      document.getElementById('cpdf-loading-msg').textContent = msg;
-      this.setProgress(0, msg);
-      modal.classList.add('show');
-    },
-    hideLoading() {
-      this.setProgress(100);
-      setTimeout(() => modal.classList.remove('show'), 400);
-    },
-    setProgress(pct, msg) {
-      pct = Math.max(0, Math.min(100, pct));
-      const fill = document.getElementById('cpdf-ring-fill');
-      const pctEl = document.getElementById('cpdf-ring-pct');
-      const barFill = document.getElementById('cpdf-loading-bar-fill');
-      const msgEl = document.getElementById('cpdf-loading-msg');
-      if (fill) fill.style.strokeDashoffset = CIRC - (pct / 100) * CIRC;
-      if (pctEl) pctEl.textContent = Math.round(pct) + '%';
-      if (barFill) barFill.style.width = pct + '%';
-      if (msg !== undefined && msgEl) msgEl.textContent = msg;
-    },
-    updateMsg(msg) {
-      const el = document.getElementById('cpdf-loading-msg');
-      if (el) el.textContent = msg;
-    },
-
-    /* Toast */
-    toast(msg, type = 'ok', duration = 2800) {
-      const el = document.createElement('div');
-      el.className = 'cpdf-toast ' + type;
-      const icons = { ok: '✓', err: '✕', info: 'ℹ' };
-      el.innerHTML = `<span>${icons[type] || '✓'}</span><span>${msg}</span>`;
-      toastStack.appendChild(el);
-      setTimeout(() => {
-        el.style.animation = 'toastOut .3s ease forwards';
-        setTimeout(() => el.remove(), 300);
-      }, duration);
-    },
-
-    /* Step flow */
-    createSteps(containerId, steps, activeIndex = 0) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      const html = steps.map((s, i) => {
-        const cls = i < activeIndex ? 'done' : i === activeIndex ? 'active' : '';
-        const num = i < activeIndex ? '✓' : (i + 1);
-        return `
-          <div class="cpdf-step ${cls}" id="cpdf-step-${containerId}-${i}">
-            <div class="cpdf-step-num">${num}</div>
-            <div class="cpdf-step-lbl">${s}</div>
-          </div>
-          ${i < steps.length - 1 ? '<div class="cpdf-step-arr"></div>' : ''}
-        `;
-      }).join('');
-      container.innerHTML = html;
-    },
-    setStep(containerId, activeIndex) {
-      const steps = document.querySelectorAll(`[id^="cpdf-step-${containerId}-"]`);
-      steps.forEach((el, i) => {
-        el.className = 'cpdf-step' + (i < activeIndex ? ' done' : i === activeIndex ? ' active' : '');
-        const num = el.querySelector('.cpdf-step-num');
-        if (num) num.textContent = i < activeIndex ? '✓' : (i + 1);
-      });
-    },
-
-    /* File chip */
-    showFileChip(chipId, name, size, pages) {
-      const chip = document.getElementById(chipId);
-      if (!chip) return;
-      const nameEl = chip.querySelector('.cpdf-chip-name');
-      const metaEl = chip.querySelector('.cpdf-chip-meta');
-      if (nameEl) nameEl.textContent = name;
-      if (metaEl) {
-        metaEl.innerHTML = `<span>${size}</span>` +
-          (pages ? `<span class="cpdf-chip-pages">📄 ${pages} pages</span>` : '');
-      }
-      chip.classList.add('show');
-    },
-    hideFileChip(chipId) {
-      const chip = document.getElementById(chipId);
-      if (chip) chip.classList.remove('show');
-    },
-
-    /* Scroll to result */
-    scrollToResult(el, offset = 80) {
-      if (!el) return;
-      el.classList.add('cpdf-result-highlight');
-      setTimeout(() => el.classList.remove('cpdf-result-highlight'), 2200);
-      const y = el.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
-    },
-
-    /* Copy text utility */
-    copyText(text) {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text)
-          .then(() => this.toast('Copied to clipboard', 'ok'))
-          .catch(() => this.toast('Copy failed', 'err'));
-      } else {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.cssText = 'position:fixed;left:-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-        this.toast('Copied to clipboard', 'ok');
-      }
-    },
-
-    /* Upload zone success flash */
-    flashDZ(dzEl) {
-      if (!dzEl) return;
-      dzEl.classList.add('dz-success');
-      setTimeout(() => dzEl.classList.remove('dz-success'), 800);
-    },
-
-    /* Format bytes */
-    fmtSize(b) {
-      if (b >= 1073741824) return (b / 1073741824).toFixed(2) + ' GB';
-      if (b >= 1048576) return (b / 1048576).toFixed(2) + ' MB';
-      return (b / 1024).toFixed(1) + ' KB';
-    }
-  };
-
-  /* ── 5. INTERCEPT existing setProgress / hideProgress / toast calls ── */
-  // Wrap the page's existing setProgress to also update our modal
-  const _origSetProgress = window.setProgress;
-  window.setProgress = function(pct, lbl) {
-    if (_origSetProgress) _origSetProgress(pct, lbl);
-    if (modal.classList.contains('show')) {
-      window.CpdfUI.setProgress(pct, lbl);
-    }
-  };
-
-  /* ── 6. INTERCEPT existing toast() if not already defined ── */
-  if (!window.toast) {
-    window.toast = function(msg, ok = true) {
-      window.CpdfUI.toast(msg, ok === false || ok === 'error' ? 'err' : 'ok');
-    };
-  }
-
-  /* ── 7. DRAG-OVER class consistency patch ── */
-  document.addEventListener('dragover', function(e) {
-    const dz = e.target.closest('.dz');
-    if (dz) {
-      e.preventDefault();
-      dz.classList.add('drag-over');
-    }
-  });
-  document.addEventListener('dragleave', function(e) {
-    const dz = e.target.closest('.dz');
-    if (dz && !dz.contains(e.relatedTarget)) {
-      dz.classList.remove('drag-over');
-    }
-  });
-  document.addEventListener('drop', function(e) {
-    document.querySelectorAll('.dz.drag-over').forEach(dz => dz.classList.remove('drag-over'));
-  });
-
-  /* ── 8. COPY BUTTON auto-bind for text previews ── */
-  document.addEventListener('click', function(e) {
-    const btn = e.target.closest('.cpdf-copy-btn');
-    if (!btn) return;
-    const target = btn.dataset.target;
-    const el = target ? document.getElementById(target) : null;
-    const text = el ? (el.value || el.textContent) : btn.dataset.text || '';
-    if (text) {
-      window.CpdfUI.copyText(text);
-      btn.classList.add('copied');
-      const orig = btn.innerHTML;
-      btn.innerHTML = '✓ Copied';
-      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
-    }
-  });
-
-  /* ── 9. AUTO-ENHANCE download buttons in result boxes ── */
-  const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) {
-      m.addedNodes.forEach(function(node) {
-        if (node.nodeType !== 1) return;
-        // Pulse download buttons
-        const dlBtns = node.querySelectorAll ? node.querySelectorAll('.btn-primary') : [];
-        dlBtns.forEach(btn => {
-          if (/download|save/i.test(btn.textContent)) {
-            btn.classList.add('dl-pulse');
-          }
-        });
-        // Scroll to result
-        if (node.matches && (
-          node.matches('.result-box') ||
-          node.matches('[id^="out-"]') ||
-          node.matches('.split-result')
-        )) {
-          setTimeout(() => window.CpdfUI.scrollToResult(node), 150);
-        }
-      });
-    });
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  /* ── 10. RESULT-BOX SHOW observer (existing pages use style display:block) ── */
-  const styleObserver = new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) {
-      if (m.type === 'attributes' && m.attributeName === 'style') {
-        const el = m.target;
-        const isResult = el.matches && (
-          el.matches('.result-box') ||
-          el.matches('[id^="out-"]') ||
-          el.id === 'resultBox'
-        );
-        if (isResult) {
-          const style = el.getAttribute('style') || '';
-          const cls = el.className || '';
-          if (style.includes('block') || cls.includes('show')) {
-            setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
-            const dlBtns = el.querySelectorAll('.btn-primary');
-            dlBtns.forEach(b => {
-              if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
-            });
-          }
-        }
-      }
-    });
-  });
-
-  // Observe all result boxes present at load and future ones
-  function observeResultBoxes() {
-    document.querySelectorAll('.result-box, [id^="out-"], #resultBox').forEach(el => {
-      styleObserver.observe(el, { attributes: true });
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', observeResultBoxes);
-  } else {
-    setTimeout(observeResultBoxes, 300);
-  }
-
-  /* ── 11. INJECT STEP FLOWS into each tool page ── */
-  function injectStepFlow() {
-    // Find the tool body
-    const body = document.querySelector('.tool-body, .tool-page-body, #toolBody, .tp');
-    if (!body || body.querySelector('.cpdf-steps')) return;
-
-    const steps = ['Upload', 'Options', 'Process', 'Download'];
-    const stepsWrap = document.createElement('div');
-    stepsWrap.className = 'cpdf-steps';
-    stepsWrap.id = 'cpdf-steps-main';
-    stepsWrap.innerHTML = steps.map((s, i) => `
-      <div class="cpdf-step ${i === 0 ? 'active' : ''}" id="cpdf-step-main-${i}">
-        <div class="cpdf-step-num">${i + 1}</div>
-        <div class="cpdf-step-lbl">${s}</div>
-      </div>
-      ${i < steps.length - 1 ? '<div class="cpdf-step-arr"></div>' : ''}
-    `).join('');
-
-    // Insert before the first child of tool body
-    body.insertBefore(stepsWrap, body.firstChild);
-
-    // Watch for file input changes to advance steps
-    body.addEventListener('change', function(e) {
-      if (e.target.type === 'file' && e.target.files && e.target.files.length) {
-        window.CpdfUI.setStep('main', 1);
-      }
-    }, true);
-  }
-
-  /* ── 12. INJECT COPY BUTTON into text preview areas ── */
-  function injectCopyButtons() {
-    const textPreviews = document.querySelectorAll('pre.text-preview, textarea[readonly]');
-    textPreviews.forEach(el => {
-      if (el.dataset.cpdfCopy) return;
-      el.dataset.cpdfCopy = '1';
-      const wrap = document.createElement('div');
-      wrap.style.cssText = 'display:flex;justify-content:flex-end;margin-bottom:4px;';
-      const btn = document.createElement('button');
-      btn.className = 'cpdf-copy-btn';
-      btn.dataset.target = el.id || '';
-      btn.innerHTML = '📋 Copy All';
-      if (!el.id) {
-        btn.addEventListener('click', () => {
-          window.CpdfUI.copyText(el.value || el.textContent);
-          btn.classList.add('copied');
-          btn.innerHTML = '✓ Copied';
-          setTimeout(() => { btn.innerHTML = '📋 Copy All'; btn.classList.remove('copied'); }, 2000);
-        });
-      }
-      if (el.parentNode) {
-        el.parentNode.insertBefore(wrap, el);
-        wrap.appendChild(btn);
-      }
-    });
-  }
-
-  /* ── 13. ENHANCE file-info bars ── */
-  function enhanceFileInfo() {
-    document.querySelectorAll('.file-info:not([data-cpdf-enhanced])').forEach(el => {
-      el.dataset.cpdfEnhanced = '1';
-      // Add subtle left border on success
-      el.style.borderLeft = '3px solid var(--ok)';
-    });
-  }
-
-  /* ── 14. DOWNLOAD BUTTON PULSE fix (for show/hide via class) ── */
-  const classObserver = new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) {
-      if (m.type === 'attributes' && m.attributeName === 'class') {
-        const el = m.target;
-        if (el.classList.contains('show') && (el.classList.contains('result-box') || el.id === 'resultBox')) {
-          setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
-          el.querySelectorAll('.btn-primary').forEach(b => {
-            if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
-          });
-        }
-      }
-    });
-  });
-  document.querySelectorAll('.result-box, #resultBox').forEach(el => {
-    classObserver.observe(el, { attributes: true });
-  });
-
-  /* ── Run on DOM ready ── */
-  function onReady() {
-    injectStepFlow();
-    injectCopyButtons();
-    enhanceFileInfo();
-
-    // Hook existing file input onchange to advance steps and flash DZ
-    document.querySelectorAll('input[type=file]').forEach(inp => {
-      inp.addEventListener('change', function() {
-        if (this.files && this.files.length) {
-          const dz = this.closest('.dz');
-          if (dz) window.CpdfUI.flashDZ(dz);
-          window.CpdfUI.setStep('main', 1);
-          window.CpdfUI.toast('File loaded — configure options below', 'ok');
-        }
-      });
-    });
-
-    // Hook process buttons to show loading modal
-    document.querySelectorAll('.btn-primary:not([data-cpdf-hooked])').forEach(btn => {
-      if (/convert|compress|merge|split|rotate|process|generate|apply|extract|protect|unlock|sign|watermark|rearrange|delete|crop|resize|add|save/i.test(btn.textContent)) {
-        btn.dataset.cpdfHooked = '1';
-        const origClick = btn.onclick;
-        btn.addEventListener('click', function() {
-          // Only show modal if there's a file
-          const hasFile = document.querySelector('input[type=file]') &&
-            Array.from(document.querySelectorAll('input[type=file]')).some(i => i.files && i.files.length);
-          if (hasFile && !btn.disabled) {
-            window.CpdfUI.showLoading('Processing PDF…', 'Starting up…');
-            window.CpdfUI.setStep('main', 2);
-          }
-        }, true); // capture = true so it fires before existing handlers
-      }
-    });
-  }
-
-  // Intercept hideProgress to hide modal
-  const _origHideProgress = window.hideProgress;
-  window.hideProgress = function() {
-    if (_origHideProgress) _origHideProgress();
-    window.CpdfUI.hideLoading();
-    window.CpdfUI.setStep('main', 3);
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', onReady);
-  } else {
-    setTimeout(onReady, 50);
-  }
-
-})();
-
 </script>
 <script src="./header.js"></script>

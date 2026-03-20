@@ -1,6 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5"
+<html lang="en" style="background:#f0f2f5">
 <head>
+<style id="cpdf-master">
+/* ── FLICKER PREVENTION — must be first ── */
+html{background:#f0f2f5;color-scheme:light}
+body{background:#f0f2f5;color:#1a1a2e}
+/* Disable all auto animations until user interacts — prevents tab-switch replay */
+html:not(.cpdf-ready) *{animation-play-state:paused!important}
+html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
+/* Prevent compositor repaint on background */
+body{will-change:auto;contain:style layout}
+</style>
+<script id="cpdf-init">
+(function(){
+  var d=document.documentElement;
+  d.style.background='#f0f2f5';
+  d.className='light';
+  // Re-enable animations on first real user interaction
+  function enableAnim(){
+    d.classList.add('cpdf-ready');
+    document.removeEventListener('mousemove',enableAnim,{passive:true});
+    document.removeEventListener('touchstart',enableAnim,{passive:true});
+    document.removeEventListener('keydown',enableAnim,{passive:true});
+  }
+  document.addEventListener('mousemove',enableAnim,{passive:true});
+  document.addEventListener('touchstart',enableAnim,{passive:true});
+  document.addEventListener('keydown',enableAnim,{passive:true});
+  // Also enable after 1.5s regardless (fallback for non-interactive pages)
+  setTimeout(function(){enableAnim();},1500);
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
 <script>
@@ -9,9 +38,35 @@
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
+<style>html,body{background:#f0f2f5}
+/* ── FREE/OCR BADGE ── */
+.free-now-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;letter-spacing:.04em;
+  background:linear-gradient(90deg,rgba(16,112,64,.18),rgba(16,180,80,.10));
+  color:#107040;border:1.5px solid rgba(16,112,64,.35);
+  border-radius:20px;padding:3px 10px;margin-left:6px;vertical-align:middle;
+  animation:freeBadgePop .4s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+}
+@keyframes freeBadgePop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.ocr-free-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-family:var(--fm,'Space Mono',monospace);font-size:.56rem;font-weight:700;letter-spacing:.04em;
+  background:rgba(16,112,64,.14);color:#107040;border:1px solid rgba(16,112,64,.3);
+  border-radius:10px;padding:2px 8px;margin-left:4px;white-space:nowrap;
+}
 
-<style>html,body{background:#f0f2f5}</style>
+/* PRO = FREE NOW */
+.pro-lock-overlay{display:none!important;pointer-events:none!important}
+.pro-badge-tag .use-free-lbl{display:none!important}
+</style>
 
+<meta name="theme-color" content="#f0f2f5"/>
+<meta name="color-scheme" content="light"/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Feedback &amp; Contact | ConvertPDF.Live</title>
@@ -34,7 +89,7 @@
 <meta name="twitter:description" content="Merge multiple PDF files into one instantly — free, drag and drop, no upload to server. Combine PDFs in any order. Better than iLovePDF merge, SmallPDF merge, and Sejda PDF merge. 100% browser-based."/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Merge PDF Files", "url": "https://convertpdf.live/pdf-merge.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Merge multiple PDF files into one instantly — free, drag and drop, no upload to server. Combine PDFs in any order. Better than iLovePDF merge, SmallPDF merge, and Sejda PDF merge. 100% browser-based."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertpdf.live/"},{"@type":"ListItem","position":2,"name":"Merge PDF Files","item":"https://convertpdf.live/pdf-merge.html"}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
 <style>/* ═══════════════════════════════ TOKENS ═══════════════════════ */
 :root{
   --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
@@ -44,7 +99,7 @@
   --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 
 /* ═══════════════════════════════ GOOGLE LOGIN ══════════════════ */
@@ -134,7 +189,7 @@ body.light .tool-page-back{color:#1a1a2e}
 }
 
 /* ── Tool body ── */
-.tool-page-body{padding:32px 36px 28px;transition:background .3s}
+.tool-page-body{padding:32px 36px 28px;}
 
 /* Upload zone inside tool page */
 .tool-page-body .dz-wrap{margin-bottom:20px}
@@ -267,7 +322,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 .tab-panel{display:none}.tab-panel.active{display:block}
 
 /* Side panel */
-.side-panel{width:300px;min-width:300px;background:var(--surf);border-left:2px solid var(--bdr);position:sticky;top:calc(var(--hdr-h) + var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));overflow-y:auto;display:flex;flex-direction:column;transition:width .35s,opacity .3s,background .3s}
+.side-panel{width:300px;min-width:300px;background:var(--surf);border-left:2px solid var(--bdr);position:sticky;top:calc(var(--hdr-h) + var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));overflow-y:auto;display:flex;flex-direction:column;transition:width .35s,opacity .3s}
 .side-panel.collapsed{width:0;min-width:0;overflow:hidden;opacity:0}
 @media(max-width:900px){.side-panel{position:fixed;right:0;top:calc(var(--hdr-h)+var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));z-index:150;width:280px}.side-panel.collapsed{width:0;opacity:0}}
 .panel-hdr{padding:12px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;background:var(--surf2);flex-shrink:0;transition:background .3s}
@@ -488,7 +543,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 .tool-grp:last-child{border-right:none;padding-right:0;margin-right:0}
 .editor-btn{background:transparent;border:1px solid transparent;color:var(--txt);border-radius:5px;padding:5px 9px;cursor:pointer;font-size:.78rem;transition:all .15s;white-space:nowrap}
 .editor-btn:hover{background:var(--bdr)}.editor-btn.active{background:var(--acc);color:#0a0a0f;border-color:var(--acc)}
-.font-sel{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:.75rem;padding:4px 6px;cursor:pointer;transition:background .3s,color .3s}
+.font-sel{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:.75rem;padding:4px 6px;cursor:pointer;}
 .color-pick{width:30px;height:26px;border-radius:5px;border:1px solid var(--bdr);padding:1px;cursor:pointer;background:var(--surf2)}
 .page-nav{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--surf2);border-top:1px solid var(--bdr);flex-wrap:wrap;transition:background .3s}
 .page-nav-info{font-family:var(--fm);font-size:.65rem;color:var(--mut)}
@@ -907,7 +962,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 /* ═══════════════════════════════ FORM / BUTTONS / ETC ═════════ */
 .fg{margin-bottom:12px}
 label.lbl{display:block;font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:5px}
-input[type=text],input[type=number],input[type=password],select,textarea{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.9rem;padding:8px 12px;outline:none;transition:border-color .2s,background .3s,color .3s}
+input[type=text],input[type=number],input[type=password],select,textarea{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.9rem;padding:8px 12px;outline:none;transition:border-color .2s,color .3s}
 input:focus,select:focus,textarea:focus{border-color:var(--acc)}
 input[type=range]{width:100%;accent-color:var(--acc);background:transparent;padding:0}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -1074,6 +1129,9 @@ body.light .nav-link:hover,body.light .nav-item:hover>.nav-link{
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ConvertPDF.Live", "url": "https://convertpdf.live/", "logo": "https://convertpdf.live/logo.png", "sameAs": ["https://convertpdf.live/"]}</script>
 </head>
 <body class="light">
+<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
+  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
+</header>
 
 
 <main>

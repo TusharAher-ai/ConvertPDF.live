@@ -128,15 +128,8 @@ body.light .u-nav-link.u-active {
 }
 .u-dd-right > .u-nav-dd { left: auto; right: 0; }
 .u-nav-dd.open { display: block; }
-body.dark .u-nav-dd {
-  background: #16162a;
-  border-color: #2e2e4e;
-  box-shadow: 0 16px 50px rgba(0,0,0,.55);
-}
-body.light .u-nav-dd {
-  background: #fff;
-  border-color: #c4c6d8;
-}
+/* dark mode removed */
+.u-nav-dd { background: #fff; border-color: #c4c6d8; }
 
 .u-ndd-title {
   font-family: var(--fm, 'Space Mono', monospace);
@@ -207,57 +200,7 @@ body.light .u-ndd-item.u-active { background: rgba(200,136,10,.12); color: #c888
   gap: 10px;
   flex-shrink: 0;
 }
-.u-theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 10px;
-  border-radius: 20px;
-  border: 1.5px solid var(--bdr, #c4c6d8);
-  background: transparent;
-  cursor: pointer;
-  transition: background .2s, border-color .2s;
-}
-.u-theme-toggle:hover {
-  background: var(--surf2, #e8eaf0);
-  border-color: var(--acc, #b07800);
-}
-.u-toggle-track {
-  width: 42px;
-  height: 24px;
-  border-radius: 12px;
-  background: var(--surf2, #e8eaf0);
-  border: 2px solid var(--bdr, #c4c6d8);
-  position: relative;
-  transition: background .3s, border-color .3s;
-  flex-shrink: 0;
-  pointer-events: none;
-}
-body.light .u-toggle-track {
-  background: var(--acc, #b07800);
-  border-color: var(--acc, #b07800);
-}
-.u-toggle-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #fff;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform .3s;
-  box-shadow: 0 1px 4px rgba(0,0,0,.3);
-  pointer-events: none;
-}
-body.light .u-toggle-thumb { transform: translateX(18px); }
-.u-toggle-lbl {
-  font-family: var(--fm, 'Space Mono', monospace);
-  font-size: .68rem;
-  font-weight: 600;
-  color: var(--txt, #1a1a2e);
-  white-space: nowrap;
-  pointer-events: none;
-}
+
 
 /* Mobile hamburger */
 .u-hamburger {
@@ -500,10 +443,7 @@ body.light .u-toggle-thumb { transform: translateX(18px); }
 
     <!-- RIGHT CONTROLS -->
     <div class="u-hdr-controls">
-      <button class="u-theme-toggle" id="u-theme-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
-        <span class="u-toggle-track"><span class="u-toggle-thumb"></span></span>
-        <span class="u-toggle-lbl" id="u-theme-lbl">☀️ Light</span>
-      </button>
+
       <button class="u-hamburger" id="u-hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -558,39 +498,21 @@ body.light .u-toggle-thumb { transform: translateX(18px); }
 
   /* ── 4. INJECT HEADER INTO DOM ── */
   // Insert before the first child of body (or as first element)
-  document.body.insertAdjacentHTML('afterbegin', html);
-
-  /* ── 5. THEME SYSTEM ── */
-  // Read saved theme or default to light
-  var savedTheme = (function() {
-    try { return localStorage.getItem('cpdf-theme') || 'light'; } catch(e) { return 'light'; }
-  })();
-
-  function applyTheme(theme) {
-    document.body.classList.remove('light', 'dark');
-    document.body.classList.add(theme);
-    var lbl = document.getElementById('u-theme-lbl');
-    if (lbl) lbl.textContent = theme === 'dark' ? '🌙 Dark' : '☀️ Light';
-    try { localStorage.setItem('cpdf-theme', theme); } catch(e) {}
+  // Replace the static placeholder header (prevents layout shift/flicker)
+  var existing = document.getElementById('unified-header');
+  if (existing) {
+    // Replace placeholder with full header - no layout shift
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html.trim();
+    var newHeader = tmp.querySelector('#unified-header') || tmp.firstElementChild;
+    if (newHeader) existing.parentNode.replaceChild(newHeader, existing);
+  } else {
+    document.body.insertAdjacentHTML('afterbegin', html);
   }
 
-  // Apply on load
-  applyTheme(savedTheme);
-
-  // Toggle on click — only attach once
-  var themeBtn = document.getElementById('u-theme-btn');
-  if (themeBtn) {
-    themeBtn.addEventListener('click', function() {
-      var isDark = document.body.classList.contains('dark');
-      applyTheme(isDark ? 'light' : 'dark');
-    });
-  }
-
-  // Override any existing page-level toggleTheme so it syncs with ours
-  window.toggleTheme = function() {
-    var isDark = document.body.classList.contains('dark');
-    applyTheme(isDark ? 'light' : 'dark');
-  };
+  /* ── 5. THEME SYSTEM — always light, zero DOM changes ── */
+  function applyTheme() {}
+  window.toggleTheme = function() {};
 
   /* ── 6. DESKTOP DROPDOWN NAV ── */
   var timers = {};
