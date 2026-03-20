@@ -1,6 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#f0f2f5">
 <head>
+<style id="cpdf-master">
+/* ── FLICKER PREVENTION — must be first ── */
+html{background:#f0f2f5;color-scheme:light}
+body{background:#f0f2f5;color:#1a1a2e}
+/* Disable all auto animations until user interacts — prevents tab-switch replay */
+html:not(.cpdf-ready) *{animation-play-state:paused!important}
+html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
+/* Prevent compositor repaint on background */
+body{will-change:auto;contain:style layout}
+</style>
+<script id="cpdf-init">
+(function(){
+  var d=document.documentElement;
+  d.style.background='#f0f2f5';
+  d.className='light';
+  // Re-enable animations on first real user interaction
+  function enableAnim(){
+    d.classList.add('cpdf-ready');
+    document.removeEventListener('mousemove',enableAnim,{passive:true});
+    document.removeEventListener('touchstart',enableAnim,{passive:true});
+    document.removeEventListener('keydown',enableAnim,{passive:true});
+  }
+  document.addEventListener('mousemove',enableAnim,{passive:true});
+  document.addEventListener('touchstart',enableAnim,{passive:true});
+  document.addEventListener('keydown',enableAnim,{passive:true});
+  // Also enable after 1.5s regardless (fallback for non-interactive pages)
+  setTimeout(function(){enableAnim();},1500);
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
 <script>
@@ -9,43 +38,37 @@
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-
+<meta name="theme-color" content="#f0f2f5"/>
+<meta name="color-scheme" content="light"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>How to Merge PDF Files Free | ConvertPDF.Live Blog</title>
-<meta name="description" content="Merge PDF files online free — combine multiple PDFs instantly. No upload, drag to reorder, download. Step-by. Free iLovePDF and SmallPDF alternative."/>
-<meta name="keywords" content="merge pdf free, combine pdf online, merge pdf files, pdf merger online free, how to merge pdf no upload, join pdf files free, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
+<title>How to Merge PDF Files Free Online — Combine PDFs in Seconds | ConvertPDF.Live</title>
+<meta name="description" content="Learn how to merge PDF files online for free — no upload, drag to reorder, download instantly. Complete guide to combining PDFs with tips and FAQs."/>
+<meta name="keywords" content="how to merge pdf files, merge pdf free online, combine pdf files free, how to combine pdf files, pdf merger online free, join pdf files free no upload, merge multiple pdfs into one free, how to merge pdfs on mac windows free, best free pdf merger 2025, combine pdf no signup, merge pdf without software, ilovepdf merge alternative free, smallpdf merge pdf free alternative, sejda merge pdf free, free pdf merger no upload like ilovepdf smallpdf"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/merge-pdf.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://convertpdf.live/blog/merge-pdf.html"/>
-<meta property="og:title" content="How to Merge PDF Files Free | ConvertPDF.Live Blog"/>
-<meta property="og:description" content="Learn how to merge PDF files online for free — no upload, no sign-up, drag and drop. Combine multiple PDFs into one instantly. Step-by-step guide, tips, and FAQs."/>
+<meta property="og:title" content="How to Merge PDF Files Free Online — Combine PDFs in Seconds | ConvertPDF.Live"/>
+<meta property="og:description" content="Learn how to merge PDF files online for free — no upload, drag to reorder, download instantly. Complete guide to combining PDFs with tips and FAQs."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="How to Merge PDF Files Free | ConvertPDF.Live Blog"/>
-<meta name="twitter:description" content="Learn how to merge PDF files online for free — no upload, no sign-up, drag and drop. Combine multiple PDFs into one instantly. Step-by-step guide, tips, and FAQs."/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org",
-  "@type":"Article",
-  "headline":"How to Merge PDF Files Free Online — Combine PDFs in Seconds",
-  "description":"Learn how to merge PDF files online for free — no upload, no sign-up, drag and drop. Combine multiple PDFs into one instantly. Step-by-step guide, tips, and FAQs.",
-  "url":"https://convertpdf.live/blog/merge-pdf.html",
-  "publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"},
-  "author":{"@type":"Organization","name":"ConvertPDF.Live"},
-  "datePublished":"2026-03-20",
-  "dateModified":"2026-03-20",
-  "mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/merge-pdf.html"}
-}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
+<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
+<meta name="twitter:title" content="How to Merge PDF Files Free Online — Combine PDFs in Seconds | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Learn how to merge PDF files online for free — no upload, drag to reorder, download instantly. Complete guide to combining PDFs with tips and FAQs."/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Merge PDF Files Free Online — Combine PDFs in Seconds","description":"Learn how to merge PDF files online for free — no upload, drag to reorder, download instantly. Complete guide to combining PDFs with tips and FAQs.","url":"https://convertpdf.live/blog/merge-pdf.html","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/","logo":{"@type":"ImageObject","url":"https://convertpdf.live/logo.png"}},"author":{"@type":"Organization","name":"ConvertPDF.Live"},"datePublished":"2026-03-20","dateModified":"2026-03-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/merge-pdf.html"},"inLanguage":"en-US"}</script>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
 <style>
 
 :root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg)}
+html,body{background:#f0f2f5}
 body{color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.7;min-height:100vh}
-body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
+/* dark mode removed */
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -172,9 +195,12 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 .b-back-blog{display:inline-flex;align-items:center;gap:7px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;margin-bottom:20px;transition:all .2s;box-shadow:0 2px 10px rgba(176,120,0,.25)}
 .b-back-blog:hover{transform:translateX(-2px);box-shadow:0 4px 16px rgba(176,120,0,.4);text-decoration:none}
 </style>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I merge PDF files for free?","acceptedAnswer":{"@type":"Answer","text":"Go to ConvertPDF.Live Merge PDF tool, upload your PDF files, drag to reorder, then click Merge and Download. Completely free, no upload to server."}},{"@type":"Question","name":"Is there a limit on how many PDFs I can merge?","acceptedAnswer":{"@type":"Answer","text":"No hard limit. You can merge as many PDFs as your browser's memory allows. Most devices handle 10-20 PDFs easily."}},{"@type":"Question","name":"Do my PDF files get sent to the internet?","acceptedAnswer":{"@type":"Answer","text":"No. All merging is done locally in your browser using pdf-lib.js. Your files stay on your device."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Merge PDF Files Free Online","description":"Combine multiple PDF files into one using ConvertPDF.Live — free, no upload.","totalTime":"PT1M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"step":[{"@type":"HowToStep","name":"Open Merge PDF tool","text":"Go to ConvertPDF.Live and open the Merge PDF tool."},{"@type":"HowToStep","name":"Upload your PDFs","text":"Drag and drop multiple PDF files. Reorder by dragging."},{"@type":"HowToStep","name":"Merge","text":"Click Merge PDFs. All files are combined in your browser."},{"@type":"HowToStep","name":"Download","text":"Download the merged PDF file."}]}</script>
 </head>
-<body>
+<body class="light">
 <div class="b-reading-bar" id="b-reading-bar"></div>
 
 <header class="b-header">
@@ -274,6 +300,21 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     </section>
 
 
+    
+    <section class="b-section" id="alternatives">
+      <h2 class="b-h2">Free PDF Merger Alternatives Compared</h2>
+      <p class="b-p">PDF merging is one of the most-searched PDF tasks online. Here is how the major free tools compare.</p>
+      <h3 class="b-h3">iLovePDF Merge PDF</h3>
+      <p class="b-p">iLovePDF's merge tool is popular and works well, but files are uploaded to their servers and the free tier has task limits. <strong>ConvertPDF.Live merges PDFs locally in your browser with no upload and no limit.</strong></p>
+      <h3 class="b-h3">SmallPDF Merge PDF</h3>
+      <p class="b-p">SmallPDF limits free merges and requires an account. The output may include a SmallPDF watermark on the free tier. <strong>ConvertPDF.Live never adds a watermark to merged PDFs.</strong></p>
+      <h3 class="b-h3">Sejda Merge PDF</h3>
+      <p class="b-p">Sejda allows merging but with a 50MB total file size limit on the free tier. <strong>ConvertPDF.Live has no file size cap for merging.</strong></p>
+      <div style="margin-top:18px">
+        <a href="../ilovepdf-alternative.html" style="font-family:var(--fm);font-size:.75rem;color:var(--acc2)">→ Full comparison: ConvertPDF.Live vs iLovePDF vs SmallPDF vs Sejda</a>
+      </div>
+    </section>
+
     <!-- CTA Block -->
     <div class="b-cta-block">
       <div class="b-cta-block-title">Ready to try it yourself?</div>
@@ -322,17 +363,9 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     });
   });
   // Dark mode sync with parent site preference
-  try{
-    var dm=localStorage.getItem('theme')||localStorage.getItem('cpdf-theme');
-    if(dm==='dark')document.body.classList.add('dark');
-  }catch(e){}
+  // Always light mode
 })();
 </script>
 
-
-<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
-Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
-PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
-</div>
 </body>
 </html>

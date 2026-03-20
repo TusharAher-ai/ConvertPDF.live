@@ -1,6 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#f0f2f5">
 <head>
+<style id="cpdf-master">
+/* ── FLICKER PREVENTION — must be first ── */
+html{background:#f0f2f5;color-scheme:light}
+body{background:#f0f2f5;color:#1a1a2e}
+/* Disable all auto animations until user interacts — prevents tab-switch replay */
+html:not(.cpdf-ready) *{animation-play-state:paused!important}
+html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
+/* Prevent compositor repaint on background */
+body{will-change:auto;contain:style layout}
+</style>
+<script id="cpdf-init">
+(function(){
+  var d=document.documentElement;
+  d.style.background='#f0f2f5';
+  d.className='light';
+  // Re-enable animations on first real user interaction
+  function enableAnim(){
+    d.classList.add('cpdf-ready');
+    document.removeEventListener('mousemove',enableAnim,{passive:true});
+    document.removeEventListener('touchstart',enableAnim,{passive:true});
+    document.removeEventListener('keydown',enableAnim,{passive:true});
+  }
+  document.addEventListener('mousemove',enableAnim,{passive:true});
+  document.addEventListener('touchstart',enableAnim,{passive:true});
+  document.addEventListener('keydown',enableAnim,{passive:true});
+  // Also enable after 1.5s regardless (fallback for non-interactive pages)
+  setTimeout(function(){enableAnim();},1500);
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
 <script>
@@ -9,43 +38,37 @@
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-
+<meta name="theme-color" content="#f0f2f5"/>
+<meta name="color-scheme" content="light"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>How to Split PDF Files Online Free | ConvertPDF.Live</title>
-<meta name="description" content="Split PDF files online for free — extract specific pages, split in half, or separate into two PDFs. No uploa. Free iLovePDF and SmallPDF alternative."/>
-<meta name="keywords" content="split pdf online free, how to split a pdf, extract pages from pdf, pdf splitter free, split pdf in half, separate pdf pages no upload, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
+<title>How to Split PDF Online Free — Extract Pages, Split by Range | ConvertPDF.Live</title>
+<meta name="description" content="Step-by-step guide to split PDF files online for free — extract specific pages, split by range, or split every page. No upload, no software needed."/>
+<meta name="keywords" content="how to split pdf, split pdf free online, extract pages from pdf free, pdf splitter online free, how to split pdf into pages, split pdf by range free, how to remove pages from pdf free, pdf page extractor no upload 2025, split pdf without software, divide pdf into multiple files free, ilovepdf split pdf free alternative, smallpdf split pdf alternative, best free pdf splitter alternative to ilovepdf"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/split-pdf.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://convertpdf.live/blog/split-pdf.html"/>
-<meta property="og:title" content="How to Split PDF Files Online Free | ConvertPDF.Live"/>
-<meta property="og:description" content="Split PDF files online for free — extract specific pages, split in half, or separate into two PDFs. No upload, no sign-up. Step-by-step guide, tips and FAQs."/>
+<meta property="og:title" content="How to Split PDF Online Free — Extract Pages, Split by Range | ConvertPDF.Live"/>
+<meta property="og:description" content="Step-by-step guide to split PDF files online for free — extract specific pages, split by range, or split every page. No upload, no software needed."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="How to Split PDF Files Online Free | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Split PDF files online for free — extract specific pages, split in half, or separate into two PDFs. No upload, no sign-up. Step-by-step guide, tips and FAQs."/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org",
-  "@type":"Article",
-  "headline":"How to Split a PDF Online Free — Extract Pages, Split in Half",
-  "description":"Split PDF files online for free — extract specific pages, split in half, or separate into two PDFs. No upload, no sign-up. Step-by-step guide, tips and FAQs.",
-  "url":"https://convertpdf.live/blog/split-pdf.html",
-  "publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"},
-  "author":{"@type":"Organization","name":"ConvertPDF.Live"},
-  "datePublished":"2026-03-20",
-  "dateModified":"2026-03-20",
-  "mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/split-pdf.html"}
-}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
+<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
+<meta name="twitter:title" content="How to Split PDF Online Free — Extract Pages, Split by Range | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Step-by-step guide to split PDF files online for free — extract specific pages, split by range, or split every page. No upload, no software needed."/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Split PDF Online Free — Extract Pages, Split by Range","description":"Step-by-step guide to split PDF files online for free — extract specific pages, split by range, or split every page. No upload, no software needed.","url":"https://convertpdf.live/blog/split-pdf.html","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/","logo":{"@type":"ImageObject","url":"https://convertpdf.live/logo.png"}},"author":{"@type":"Organization","name":"ConvertPDF.Live"},"datePublished":"2026-03-20","dateModified":"2026-03-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/split-pdf.html"},"inLanguage":"en-US"}</script>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
 <style>
 
 :root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg)}
+html,body{background:#f0f2f5}
 body{color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.7;min-height:100vh}
-body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
+/* dark mode removed */
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -171,10 +194,34 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 /* ── Back to Blog button ── */
 .b-back-blog{display:inline-flex;align-items:center;gap:7px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;margin-bottom:20px;transition:all .2s;box-shadow:0 2px 10px rgba(176,120,0,.25)}
 .b-back-blog:hover{transform:translateX(-2px);box-shadow:0 4px 16px rgba(176,120,0,.4);text-decoration:none}
-</style>
 
+/* ── OCR PRO FREE BADGE ── */
+. <span class="ocr-pro-free-badge">⭐ Pro Feature — Free</span>ocr-pro-free-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:linear-gradient(90deg,rgba(16,112,64,.15),rgba(16,180,80,.08));
+  color:#107040;border:1.5px solid rgba(16,112,64,.35);
+  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;
+  letter-spacing:.04em;border-radius:20px;padding:3px 10px;
+  white-space:nowrap;vertical-align:middle;margin-left:6px;
+}
+.ocr-pro-callout{
+  display:flex;align-items:flex-start;gap:12px;
+  background:linear-gradient(135deg,rgba(16,112,64,.08),rgba(0,96,160,.06));
+  border:1.5px solid rgba(16,112,64,.3);border-radius:12px;
+  padding:14px 16px;margin:16px 0;
+}
+.ocr-pro-callout-icon{font-size:1.6rem;flex-shrink:0}
+.ocr-pro-callout-body{}
+.ocr-pro-callout-title{font-family:var(--fd,'Syne',sans-serif);font-weight:800;font-size:.88rem;color:#107040;margin-bottom:4px}
+.ocr-pro-callout-desc{font-size:.82rem;color:var(--mut,#4a4a6a);line-height:1.55}
+
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I split a PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Open the Split PDF tool on ConvertPDF.Live, upload your PDF, choose your split method (by range, every N pages, or individual pages), then download."}},{"@type":"Question","name":"Can I extract specific pages from a PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Split PDF tool lets you specify exactly which pages to extract. Enter the page range and download the result."}},{"@type":"Question","name":"Is the PDF split tool really free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free. No subscription, no watermark on the output, no file upload to any server."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Split a PDF Free Online","description":"Split a PDF by page range or extract individual pages using ConvertPDF.Live.","totalTime":"PT1M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"step":[{"@type":"HowToStep","name":"Open Split PDF tool","text":"Go to ConvertPDF.Live and open the Split PDF tool."},{"@type":"HowToStep","name":"Upload your PDF","text":"Drag and drop the PDF to split."},{"@type":"HowToStep","name":"Set split options","text":"Choose to split by range, every N pages, or extract individual pages."},{"@type":"HowToStep","name":"Download","text":"Download the split PDF files or ZIP archive."}]}</script>
 </head>
-<body>
+<body class="light">
 <div class="b-reading-bar" id="b-reading-bar"></div>
 
 <header class="b-header">
@@ -275,6 +322,19 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     </section>
 
 
+    
+    <section class="b-section" id="alternatives">
+      <h2 class="b-h2">Best Free PDF Splitter — How We Compare</h2>
+      <p class="b-p">When comparing PDF splitter tools, the key differences come down to limits, privacy, and cost.</p>
+      <h3 class="b-h3">iLovePDF Split vs ConvertPDF.Live</h3>
+      <p class="b-p">iLovePDF uploads files to split them on their servers. Free users face task limits. <strong>ConvertPDF.Live splits PDFs in your browser — no upload, unlimited use.</strong></p>
+      <h3 class="b-h3">SmallPDF Split vs ConvertPDF.Live</h3>
+      <p class="b-p">SmallPDF requires an account for splitting and limits free users to 2 tasks/hour. <strong>ConvertPDF.Live requires no account and has no hourly limit.</strong></p>
+      <div style="margin-top:18px">
+        <a href="../ilovepdf-alternative.html" style="font-family:var(--fm);font-size:.75rem;color:var(--acc2)">→ Full comparison: ConvertPDF.Live vs iLovePDF vs SmallPDF vs Sejda</a>
+      </div>
+    </section>
+
     <!-- CTA Block -->
     <div class="b-cta-block">
       <div class="b-cta-block-title">Ready to try it yourself?</div>
@@ -323,17 +383,9 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     });
   });
   // Dark mode sync with parent site preference
-  try{
-    var dm=localStorage.getItem('theme')||localStorage.getItem('cpdf-theme');
-    if(dm==='dark')document.body.classList.add('dark');
-  }catch(e){}
+  // Always light mode
 })();
 </script>
 
-
-<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
-Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
-PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
-</div>
 </body>
 </html>

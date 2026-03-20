@@ -1,6 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background:#f0f2f5">
 <head>
+<style id="cpdf-master">
+/* ── FLICKER PREVENTION — must be first ── */
+html{background:#f0f2f5;color-scheme:light}
+body{background:#f0f2f5;color:#1a1a2e}
+/* Disable all auto animations until user interacts — prevents tab-switch replay */
+html:not(.cpdf-ready) *{animation-play-state:paused!important}
+html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
+/* Prevent compositor repaint on background */
+body{will-change:auto;contain:style layout}
+</style>
+<script id="cpdf-init">
+(function(){
+  var d=document.documentElement;
+  d.style.background='#f0f2f5';
+  d.className='light';
+  // Re-enable animations on first real user interaction
+  function enableAnim(){
+    d.classList.add('cpdf-ready');
+    document.removeEventListener('mousemove',enableAnim,{passive:true});
+    document.removeEventListener('touchstart',enableAnim,{passive:true});
+    document.removeEventListener('keydown',enableAnim,{passive:true});
+  }
+  document.addEventListener('mousemove',enableAnim,{passive:true});
+  document.addEventListener('touchstart',enableAnim,{passive:true});
+  document.addEventListener('keydown',enableAnim,{passive:true});
+  // Also enable after 1.5s regardless (fallback for non-interactive pages)
+  setTimeout(function(){enableAnim();},1500);
+})();
+</script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
 <script>
@@ -9,43 +38,37 @@
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-
+<meta name="theme-color" content="#f0f2f5"/>
+<meta name="color-scheme" content="light"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>PDF to Word: Complete Guide | ConvertPDF.Live Blog</title>
-<meta name="description" content="Convert PDF to Word (.docx) free online — no upload, no software. Browser-based with OCR support. Step-by-st. Free iLovePDF and SmallPDF alternative."/>
-<meta name="keywords" content="how to convert pdf to word, pdf to word converter free, pdf to docx online, convert pdf to word without software, free pdf to word no upload, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
+<title>How to Convert PDF to Word Free Online (No Upload, No Software) | ConvertPDF.Live</title>
+<meta name="description" content="Learn how to convert PDF to Word (.docx) free online in seconds — no file upload, no software, no sign-up. Includes OCR for scanned PDFs. Step-by-step guide, expert tips, and FAQs."/>
+<meta name="keywords" content="how to convert pdf to word, pdf to word free online, convert pdf to word without software, pdf to docx free, convert pdf to editable word free, how to change pdf to word, free pdf to word converter online, pdf to word no upload, convert scanned pdf to word free, best free pdf to word converter 2025, convert pdf to word free no watermark, pdf to doc online free, turn pdf into word document free, ilovepdf pdf to word alternative, smallpdf pdf to word alternative, sejda pdf to word free alternative, free pdf to word converter no upload alternative to ilovepdf"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/pdf-to-word.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://convertpdf.live/blog/pdf-to-word.html"/>
-<meta property="og:title" content="PDF to Word: Complete Guide | ConvertPDF.Live Blog"/>
-<meta property="og:description" content="Learn how to convert PDF to Word (.docx) online for free — no upload, no software, no sign-up. Works in your browser using PDF.js and JSZip. Step-by-step guide, tips, and FAQs."/>
+<meta property="og:title" content="How to Convert PDF to Word Free Online (No Upload, No Software) | ConvertPDF.Live"/>
+<meta property="og:description" content="Learn how to convert PDF to Word (.docx) free online in seconds — no file upload, no software, no sign-up. Includes OCR for scanned PDFs. Step-by-step guide, expert tips, and FAQs."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="PDF to Word: Complete Guide | ConvertPDF.Live Blog"/>
-<meta name="twitter:description" content="Learn how to convert PDF to Word (.docx) online for free — no upload, no software, no sign-up. Works in your browser using PDF.js and JSZip. Step-by-step guide, tips, and FAQs."/>
-<script type="application/ld+json">{
-  "@context":"https://schema.org",
-  "@type":"Article",
-  "headline":"How to Convert PDF to Word for Free (No Upload Required)",
-  "description":"Learn how to convert PDF to Word (.docx) online for free — no upload, no software, no sign-up. Works in your browser using PDF.js and JSZip. Step-by-step guide, tips, and FAQs.",
-  "url":"https://convertpdf.live/blog/pdf-to-word.html",
-  "publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"},
-  "author":{"@type":"Organization","name":"ConvertPDF.Live"},
-  "datePublished":"2026-03-20",
-  "dateModified":"2026-03-20",
-  "mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/pdf-to-word.html"}
-}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
+<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
+<meta name="twitter:title" content="How to Convert PDF to Word Free Online (No Upload, No Software) | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Learn how to convert PDF to Word (.docx) free online in seconds — no file upload, no software, no sign-up. Includes OCR for scanned PDFs. Step-by-step guide, expert tips, and FAQs."/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Convert PDF to Word Free Online (No Upload, No Software)","description":"Learn how to convert PDF to Word (.docx) free online in seconds — no file upload, no software, no sign-up. Includes OCR for scanned PDFs. Step-by-step guide, expert tips, and FAQs.","url":"https://convertpdf.live/blog/pdf-to-word.html","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/","logo":{"@type":"ImageObject","url":"https://convertpdf.live/logo.png"}},"author":{"@type":"Organization","name":"ConvertPDF.Live"},"datePublished":"2026-03-20","dateModified":"2026-03-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/pdf-to-word.html"},"inLanguage":"en-US"}</script>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
 <style>
 
 :root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg)}
+html,body{background:#f0f2f5}
 body{color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.7;min-height:100vh}
-body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
+/* dark mode removed */
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -171,10 +194,34 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 /* ── Back to Blog button ── */
 .b-back-blog{display:inline-flex;align-items:center;gap:7px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;margin-bottom:20px;transition:all .2s;box-shadow:0 2px 10px rgba(176,120,0,.25)}
 .b-back-blog:hover{transform:translateX(-2px);box-shadow:0 4px 16px rgba(176,120,0,.4);text-decoration:none}
-</style>
 
+/* ── OCR PRO FREE BADGE ── */
+.ocr-pro-free-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:linear-gradient(90deg,rgba(16,112,64,.15),rgba(16,180,80,.08));
+  color:#107040;border:1.5px solid rgba(16,112,64,.35);
+  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;
+  letter-spacing:.04em;border-radius:20px;padding:3px 10px;
+  white-space:nowrap;vertical-align:middle;margin-left:6px;
+}
+.ocr-pro-callout{
+  display:flex;align-items:flex-start;gap:12px;
+  background:linear-gradient(135deg,rgba(16,112,64,.08),rgba(0,96,160,.06));
+  border:1.5px solid rgba(16,112,64,.3);border-radius:12px;
+  padding:14px 16px;margin:16px 0;
+}
+.ocr-pro-callout-icon{font-size:1.6rem;flex-shrink:0}
+.ocr-pro-callout-body{}
+.ocr-pro-callout-title{font-family:var(--fd,'Syne',sans-serif);font-weight:800;font-size:.88rem;color:#107040;margin-bottom:4px}
+.ocr-pro-callout-desc{font-size:.82rem;color:var(--mut,#4a4a6a);line-height:1.55}
+
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert a PDF to Word for free?","acceptedAnswer":{"@type":"Answer","text":"Open ConvertPDF.Live, go to the PDF to Word tool, upload your PDF, and click Convert. Your file never leaves your browser — it's 100% free and no sign-up is needed."}},{"@type":"Question","name":"Can I convert a scanned PDF to Word for free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enable the OCR toggle on the PDF to Word tool. It uses Tesseract.js to recognise text in scanned images. This is a Pro feature available completely free on ConvertPDF.Live."}},{"@type":"Question","name":"Does the PDF get uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing is done in your browser using JavaScript. Your PDF never leaves your device."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Convert PDF to Word Free Online","description":"Convert a PDF file to an editable Word document (.docx) for free using ConvertPDF.Live — no upload, no software.","totalTime":"PT1M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"step":[{"@type":"HowToStep","name":"Open PDF to Word tool","text":"Go to ConvertPDF.Live and open the PDF to Word converter."},{"@type":"HowToStep","name":"Upload your PDF","text":"Drag and drop your PDF into the upload area. The file stays in your browser."},{"@type":"HowToStep","name":"Enable OCR if scanned","text":"If your PDF is a scanned document, toggle on the OCR switch for text recognition."},{"@type":"HowToStep","name":"Convert","text":"Click Convert to Word. The tool extracts text and rebuilds the Word structure."},{"@type":"HowToStep","name":"Download","text":"Click Download .doc and open in Microsoft Word or Google Docs."}]}</script>
 </head>
-<body>
+<body class="light">
 <div class="b-reading-bar" id="b-reading-bar"></div>
 
 <header class="b-header">
@@ -291,6 +338,21 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     </section>
 
 
+    
+    <section class="b-section" id="alternatives">
+      <h2 class="b-h2">ConvertPDF.Live vs Other PDF to Word Converters</h2>
+      <p class="b-p">Searching for a free PDF to Word converter often leads to the same popular names — iLovePDF, SmallPDF, and Sejda. They all work. But there are real differences worth knowing before you use them for sensitive documents.</p>
+      <h3 class="b-h3">iLovePDF PDF to Word</h3>
+      <p class="b-p">iLovePDF's PDF to Word tool uploads your file to their servers for conversion. On the free plan, there are daily limits on how many files you can convert. OCR for scanned PDFs requires a paid subscription. <strong>ConvertPDF.Live converts PDF to Word entirely in your browser — no upload, no limit, OCR free.</strong></p>
+      <h3 class="b-h3">SmallPDF PDF to Word</h3>
+      <p class="b-p">SmallPDF requires an account for most conversions and adds a watermark to files processed on the free tier. Free users are limited to 2 conversions per hour. <strong>ConvertPDF.Live has no account requirement, no watermark, and no hourly limit.</strong></p>
+      <h3 class="b-h3">Sejda PDF to Word</h3>
+      <p class="b-p">Sejda allows 3 tasks per hour on the free tier with a 50MB file size limit. Files are uploaded to their servers. <strong>ConvertPDF.Live processes files locally with no size cap and no task limit.</strong></p>
+      <div style="margin-top:18px">
+        <a href="../ilovepdf-alternative.html" style="font-family:var(--fm);font-size:.75rem;color:var(--acc2)">→ See full comparison: ConvertPDF.Live vs iLovePDF vs SmallPDF vs Sejda</a>
+      </div>
+    </section>
+
     <!-- CTA Block -->
     <div class="b-cta-block">
       <div class="b-cta-block-title">Ready to try it yourself?</div>
@@ -339,17 +401,9 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     });
   });
   // Dark mode sync with parent site preference
-  try{
-    var dm=localStorage.getItem('theme')||localStorage.getItem('cpdf-theme');
-    if(dm==='dark')document.body.classList.add('dark');
-  }catch(e){}
+  // Always light mode
 })();
 </script>
 
-
-<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
-Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
-PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
-</div>
 </body>
 </html>
