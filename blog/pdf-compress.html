@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5">
+<html lang="en">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,37 +22,43 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>How to Compress PDF Online Free — Reduce PDF File Size | ConvertPDF.Live</title>
-<meta name="description" content="Learn how to compress PDF files online for free — reduce PDF size without losing quality. Browser-based, no upload. Tips on getting the best compression results."/>
-<meta name="keywords" content="how to compress pdf, compress pdf free online, reduce pdf file size free, pdf compressor online free, how to make pdf smaller free, shrink pdf size free, pdf size reducer 2025, compress pdf no upload, reduce pdf mb free, how to compress pdf without losing quality, best free pdf compressor online, ilovepdf compress alternative free, smallpdf compress alternative, free pdf compressor no upload alternative to smallpdf ilovepdf"/>
+<title>Compress PDF File Size: Full Guide | ConvertPDF.Live</title>
+<meta name="description" content="Learn how to compress PDF files online for free — reduce PDF size by up to 80% without losing quality. No up. Free iLovePDF and SmallPDF alternative."/>
+<meta name="keywords" content="compress pdf free, reduce pdf size online, pdf compressor, how to compress pdf, shrink pdf file size no upload, pdf size reducer free, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/pdf-compress.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://convertpdf.live/blog/pdf-compress.html"/>
-<meta property="og:title" content="How to Compress PDF Online Free — Reduce PDF File Size | ConvertPDF.Live"/>
-<meta property="og:description" content="Learn how to compress PDF files online for free — reduce PDF size without losing quality. Browser-based, no upload. Tips on getting the best compression results."/>
+<meta property="og:title" content="Compress PDF File Size: Full Guide | ConvertPDF.Live"/>
+<meta property="og:description" content="Learn how to compress PDF files online for free — reduce PDF size by up to 80% without losing quality. No upload required. Step-by-step guide, tips, and FAQs."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
-<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
-<meta name="twitter:title" content="How to Compress PDF Online Free — Reduce PDF File Size | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Learn how to compress PDF files online for free — reduce PDF size without losing quality. Browser-based, no upload. Tips on getting the best compression results."/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Compress PDF Online Free — Reduce PDF File Size","description":"Learn how to compress PDF files online for free — reduce PDF size without losing quality. Browser-based, no upload. Tips on getting the best compression results.","url":"https://convertpdf.live/blog/pdf-compress.html","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/","logo":{"@type":"ImageObject","url":"https://convertpdf.live/logo.png"}},"author":{"@type":"Organization","name":"ConvertPDF.Live"},"datePublished":"2026-03-20","dateModified":"2026-03-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/pdf-compress.html"},"inLanguage":"en-US"}</script>
-<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<meta name="twitter:title" content="Compress PDF File Size: Full Guide | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Learn how to compress PDF files online for free — reduce PDF size by up to 80% without losing quality. No upload required. Step-by-step guide, tips, and FAQs."/>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Compress a PDF Online Free — Reduce File Size Without Losing Quality",
+  "description":"Learn how to compress PDF files online for free — reduce PDF size by up to 80% without losing quality. No upload required. Step-by-step guide, tips, and FAQs.",
+  "url":"https://convertpdf.live/blog/pdf-compress.html",
+  "publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"},
+  "author":{"@type":"Organization","name":"ConvertPDF.Live"},
+  "datePublished":"2026-03-20",
+  "dateModified":"2026-03-20",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/pdf-compress.html"}
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 
 :root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#f0f2f5}
+html,body{background:var(--bg)}
 body{color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.7;min-height:100vh}
-/* dark mode removed */
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -194,33 +184,10 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 /* ── Back to Blog button ── */
 .b-back-blog{display:inline-flex;align-items:center;gap:7px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;margin-bottom:20px;transition:all .2s;box-shadow:0 2px 10px rgba(176,120,0,.25)}
 .b-back-blog:hover{transform:translateX(-2px);box-shadow:0 4px 16px rgba(176,120,0,.4);text-decoration:none}
-
-/* ── OCR PRO FREE BADGE ── */
-. <span class="ocr-pro-free-badge">⭐ Pro Feature — Free</span>ocr-pro-free-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:linear-gradient(90deg,rgba(16,112,64,.15),rgba(16,180,80,.08));
-  color:#107040;border:1.5px solid rgba(16,112,64,.35);
-  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;
-  letter-spacing:.04em;border-radius:20px;padding:3px 10px;
-  white-space:nowrap;vertical-align:middle;margin-left:6px;
-}
-.ocr-pro-callout{
-  display:flex;align-items:flex-start;gap:12px;
-  background:linear-gradient(135deg,rgba(16,112,64,.08),rgba(0,96,160,.06));
-  border:1.5px solid rgba(16,112,64,.3);border-radius:12px;
-  padding:14px 16px;margin:16px 0;
-}
-.ocr-pro-callout-icon{font-size:1.6rem;flex-shrink:0}
-.ocr-pro-callout-body{}
-.ocr-pro-callout-title{font-family:var(--fd,'Syne',sans-serif);font-weight:800;font-size:.88rem;color:#107040;margin-bottom:4px}
-.ocr-pro-callout-desc{font-size:.82rem;color:var(--mut,#4a4a6a);line-height:1.55}
-
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I compress a PDF for free?","acceptedAnswer":{"@type":"Answer","text":"Use the Compress PDF tool on ConvertPDF.Live. Upload your PDF, choose a compression level, and download the smaller file. 100% free, no upload to server."}},{"@type":"Question","name":"How much can I reduce a PDF file size?","acceptedAnswer":{"@type":"Answer","text":"Results vary by content. PDFs with many images can be reduced by 60-80%. Text-only PDFs see smaller reductions as text is already compact."}},{"@type":"Question","name":"Will compressing a PDF reduce the quality?","acceptedAnswer":{"@type":"Answer","text":"Text quality is preserved. Image quality depends on the compression level you select. The 'Low' setting gives the most reduction with some image quality loss."}}]}</script>
+
 </head>
-<body class="light">
+<body>
 <div class="b-reading-bar" id="b-reading-bar"></div>
 
 <header class="b-header">
@@ -322,19 +289,6 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     </section>
 
 
-    
-    <section class="b-section" id="alternatives">
-      <h2 class="b-h2">Best Free PDF Compressor — Comparison</h2>
-      <p class="b-p">PDF compression is one of the most common tasks on tools like iLovePDF and SmallPDF. Here is how ConvertPDF.Live compares.</p>
-      <h3 class="b-h3">iLovePDF Compress vs ConvertPDF.Live</h3>
-      <p class="b-p">iLovePDF compresses PDFs server-side, which means your file is uploaded. The free tier has daily limits. <strong>ConvertPDF.Live compresses PDFs in your browser with no upload and no limits.</strong></p>
-      <h3 class="b-h3">SmallPDF Compress vs ConvertPDF.Live</h3>
-      <p class="b-p">SmallPDF is well-known for compression quality. However it requires a paid account for full access and adds a watermark on the free tier. <strong>ConvertPDF.Live is entirely free with no watermark.</strong></p>
-      <div style="margin-top:18px">
-        <a href="../ilovepdf-alternative.html" style="font-family:var(--fm);font-size:.75rem;color:var(--acc2)">→ Full comparison: ConvertPDF.Live vs iLovePDF vs SmallPDF vs Sejda</a>
-      </div>
-    </section>
-
     <!-- CTA Block -->
     <div class="b-cta-block">
       <div class="b-cta-block-title">Ready to try it yourself?</div>
@@ -383,9 +337,17 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     });
   });
   // Dark mode sync with parent site preference
-  // Always light mode
+  try{
+    var dm=localStorage.getItem('theme')||localStorage.getItem('cpdf-theme');
+    if(dm==='dark')document.body.classList.add('dark');
+  }catch(e){}
 })();
 </script>
 
+
+<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
+Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
+PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
+</div>
 </body>
 </html>

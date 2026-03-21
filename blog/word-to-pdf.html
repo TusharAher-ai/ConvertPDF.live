@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5">
+<html lang="en">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,37 +22,43 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>How to Convert Word to PDF Free Online — DOCX to PDF Guide | ConvertPDF.Live</title>
-<meta name="description" content="Convert Word to PDF free online — drag and drop your .docx or .doc and download a perfect PDF in seconds. No upload to server, no software, no sign-up."/>
-<meta name="keywords" content="how to convert word to pdf, word to pdf free online, docx to pdf free, convert word document to pdf, how to save word as pdf free, word to pdf no upload, doc to pdf converter online free, microsoft word to pdf free 2025, convert word to pdf without software, best free word to pdf converter online"/>
+<title>Word to PDF: Complete Guide | ConvertPDF.Live Blog</title>
+<meta name="description" content="Convert Word (.docx) to PDF free online — no upload, no sign-up, instant. Headings, bold, italic and lists p. Free iLovePDF and SmallPDF alternative."/>
+<meta name="keywords" content="word to pdf converter free, convert docx to pdf online, word to pdf no upload, how to convert word to pdf free, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/word-to-pdf.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://convertpdf.live/blog/word-to-pdf.html"/>
-<meta property="og:title" content="How to Convert Word to PDF Free Online — DOCX to PDF Guide | ConvertPDF.Live"/>
-<meta property="og:description" content="Convert Word to PDF free online — drag and drop your .docx or .doc and download a perfect PDF in seconds. No upload to server, no software, no sign-up."/>
+<meta property="og:title" content="Word to PDF: Complete Guide | ConvertPDF.Live Blog"/>
+<meta property="og:description" content="Convert Word (.docx) to PDF free online — no upload, no sign-up, instant. Headings, bold, italic and lists preserved. Step-by-step guide and FAQs."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
-<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
-<meta name="twitter:title" content="How to Convert Word to PDF Free Online — DOCX to PDF Guide | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Convert Word to PDF free online — drag and drop your .docx or .doc and download a perfect PDF in seconds. No upload to server, no software, no sign-up."/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Convert Word to PDF Free Online — DOCX to PDF Guide","description":"Convert Word to PDF free online — drag and drop your .docx or .doc and download a perfect PDF in seconds. No upload to server, no software, no sign-up.","url":"https://convertpdf.live/blog/word-to-pdf.html","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/","logo":{"@type":"ImageObject","url":"https://convertpdf.live/logo.png"}},"author":{"@type":"Organization","name":"ConvertPDF.Live"},"datePublished":"2026-03-20","dateModified":"2026-03-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/word-to-pdf.html"},"inLanguage":"en-US"}</script>
-<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<meta name="twitter:title" content="Word to PDF: Complete Guide | ConvertPDF.Live Blog"/>
+<meta name="twitter:description" content="Convert Word (.docx) to PDF free online — no upload, no sign-up, instant. Headings, bold, italic and lists preserved. Step-by-step guide and FAQs."/>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Convert Word to PDF Free Online — Instant Browser Conversion",
+  "description":"Convert Word (.docx) to PDF free online — no upload, no sign-up, instant. Headings, bold, italic and lists preserved. Step-by-step guide and FAQs.",
+  "url":"https://convertpdf.live/blog/word-to-pdf.html",
+  "publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"},
+  "author":{"@type":"Organization","name":"ConvertPDF.Live"},
+  "datePublished":"2026-03-20",
+  "dateModified":"2026-03-20",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/word-to-pdf.html"}
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 
 :root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#f0f2f5}
+html,body{background:var(--bg)}
 body{color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.7;min-height:100vh}
-/* dark mode removed */
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -195,11 +185,9 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 .b-back-blog{display:inline-flex;align-items:center;gap:7px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;margin-bottom:20px;transition:all .2s;box-shadow:0 2px 10px rgba(176,120,0,.25)}
 .b-back-blog:hover{transform:translateX(-2px);box-shadow:0 4px 16px rgba(176,120,0,.4);text-decoration:none}
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this tool completely free?","acceptedAnswer":{"@type":"Answer","text":"Yes. ConvertPDF.Live is 100% free — no subscription, no paid tier, no watermark on output files."}},{"@type":"Question","name":"Do my files get uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser. Your files never leave your device."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No sign-up or account needed. Just open the tool and use it instantly."}}]}</script>
+
 </head>
-<body class="light">
+<body>
 <div class="b-reading-bar" id="b-reading-bar"></div>
 
 <header class="b-header">
@@ -323,9 +311,17 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     });
   });
   // Dark mode sync with parent site preference
-  // Always light mode
+  try{
+    var dm=localStorage.getItem('theme')||localStorage.getItem('cpdf-theme');
+    if(dm==='dark')document.body.classList.add('dark');
+  }catch(e){}
 })();
 </script>
 
+
+<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
+Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
+PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
+</div>
 </body>
 </html>

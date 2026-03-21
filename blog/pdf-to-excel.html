@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5">
+<html lang="en">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,37 +22,43 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>How to Convert PDF to Excel Free Online — Extract Tables Instantly | ConvertPDF.Live</title>
-<meta name="description" content="Step-by-step guide to convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading files. Works in browser, no sign-up required."/>
-<meta name="keywords" content="how to convert pdf to excel, pdf to excel free online, extract tables from pdf, pdf to xlsx free, how to get pdf data into excel, convert pdf table to excel free, pdf to spreadsheet no upload, pdf to excel converter free 2025, how to convert pdf invoice to excel, extract data from pdf to excel free, pdf to excel without software, turn pdf into excel free, ilovepdf pdf to excel alternative, smallpdf pdf to excel alternative free, free pdf to excel no upload like ilovepdf"/>
+<title>PDF to Excel: How to Extract Data | ConvertPDF.Live</title>
+<meta name="description" content="Convert PDF to Excel (.xlsx) free online — extract tables without uploading. Step-by-step guide, tips and FA. Free iLovePDF and SmallPDF alternative."/>
+<meta name="keywords" content="convert pdf to excel free, pdf to excel online, extract tables from pdf, pdf to xlsx, pdf to spreadsheet free no upload, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/pdf-to-excel.html"/>
 <meta property="og:type" content="article"/>
 <meta property="og:url" content="https://convertpdf.live/blog/pdf-to-excel.html"/>
-<meta property="og:title" content="How to Convert PDF to Excel Free Online — Extract Tables Instantly | ConvertPDF.Live"/>
-<meta property="og:description" content="Step-by-step guide to convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading files. Works in browser, no sign-up required."/>
+<meta property="og:title" content="PDF to Excel: How to Extract Data | ConvertPDF.Live"/>
+<meta property="og:description" content="Convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading. Step-by-step guide, use cases, tips and FAQs for PDF to Excel conversion."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
-<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
-<meta name="twitter:title" content="How to Convert PDF to Excel Free Online — Extract Tables Instantly | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Step-by-step guide to convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading files. Works in browser, no sign-up required."/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Convert PDF to Excel Free Online — Extract Tables Instantly","description":"Step-by-step guide to convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading files. Works in browser, no sign-up required.","url":"https://convertpdf.live/blog/pdf-to-excel.html","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/","logo":{"@type":"ImageObject","url":"https://convertpdf.live/logo.png"}},"author":{"@type":"Organization","name":"ConvertPDF.Live"},"datePublished":"2026-03-20","dateModified":"2026-03-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/pdf-to-excel.html"},"inLanguage":"en-US"}</script>
-<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<meta name="twitter:title" content="PDF to Excel: How to Extract Data | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading. Step-by-step guide, use cases, tips and FAQs for PDF to Excel conversion."/>
+<script type="application/ld+json">{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"How to Convert PDF to Excel Online Free — Extract Tables Instantly",
+  "description":"Convert PDF to Excel (.xlsx) free online — extract tables from PDF to spreadsheet without uploading. Step-by-step guide, use cases, tips and FAQs for PDF to Excel conversion.",
+  "url":"https://convertpdf.live/blog/pdf-to-excel.html",
+  "publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"},
+  "author":{"@type":"Organization","name":"ConvertPDF.Live"},
+  "datePublished":"2026-03-20",
+  "dateModified":"2026-03-20",
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://convertpdf.live/blog/pdf-to-excel.html"}
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 
 :root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#f0f2f5}
+html,body{background:var(--bg)}
 body{color:var(--txt);font-family:var(--fb);font-size:15px;line-height:1.7;min-height:100vh}
-/* dark mode removed */
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 
@@ -194,33 +184,10 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
 /* ── Back to Blog button ── */
 .b-back-blog{display:inline-flex;align-items:center;gap:7px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;margin-bottom:20px;transition:all .2s;box-shadow:0 2px 10px rgba(176,120,0,.25)}
 .b-back-blog:hover{transform:translateX(-2px);box-shadow:0 4px 16px rgba(176,120,0,.4);text-decoration:none}
-
-/* ── OCR PRO FREE BADGE ── */
-. <span class="ocr-pro-free-badge">⭐ Pro Feature — Free</span>ocr-pro-free-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:linear-gradient(90deg,rgba(16,112,64,.15),rgba(16,180,80,.08));
-  color:#107040;border:1.5px solid rgba(16,112,64,.35);
-  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;
-  letter-spacing:.04em;border-radius:20px;padding:3px 10px;
-  white-space:nowrap;vertical-align:middle;margin-left:6px;
-}
-.ocr-pro-callout{
-  display:flex;align-items:flex-start;gap:12px;
-  background:linear-gradient(135deg,rgba(16,112,64,.08),rgba(0,96,160,.06));
-  border:1.5px solid rgba(16,112,64,.3);border-radius:12px;
-  padding:14px 16px;margin:16px 0;
-}
-.ocr-pro-callout-icon{font-size:1.6rem;flex-shrink:0}
-.ocr-pro-callout-body{}
-.ocr-pro-callout-title{font-family:var(--fd,'Syne',sans-serif);font-weight:800;font-size:.88rem;color:#107040;margin-bottom:4px}
-.ocr-pro-callout-desc{font-size:.82rem;color:var(--mut,#4a4a6a);line-height:1.55}
-
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert a PDF to Excel for free?","acceptedAnswer":{"@type":"Answer","text":"Visit ConvertPDF.Live, open the PDF to Excel tool, upload your PDF and click Convert. Tables are extracted to .xlsx format entirely in your browser — free, no upload."}},{"@type":"Question","name":"Can I extract tables from a scanned PDF to Excel?","acceptedAnswer":{"@type":"Answer","text":"Yes, by enabling OCR on the PDF to Text tool first to extract the text, then copying into Excel. The OCR feature is free on ConvertPDF.Live."}},{"@type":"Question","name":"Is there a page limit for PDF to Excel conversion?","acceptedAnswer":{"@type":"Answer","text":"No page limits. Processing happens in your browser, so the only constraint is your device's RAM."}}]}</script>
+
 </head>
-<body class="light">
+<body>
 <div class="b-reading-bar" id="b-reading-bar"></div>
 
 <header class="b-header">
@@ -325,19 +292,6 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     </section>
 
 
-    
-    <section class="b-section" id="alternatives">
-      <h2 class="b-h2">Comparing Free PDF to Excel Converters</h2>
-      <p class="b-p">iLovePDF, SmallPDF, and Sejda all offer PDF to Excel conversion. Here is how they differ from ConvertPDF.Live.</p>
-      <h3 class="b-h3">iLovePDF vs ConvertPDF.Live — PDF to Excel</h3>
-      <p class="b-p">iLovePDF uploads your spreadsheet PDFs to their servers. Table extraction accuracy is similar, but iLovePDF charges for advanced features. <strong>ConvertPDF.Live extracts tables entirely in your browser, free, with no upload.</strong></p>
-      <h3 class="b-h3">SmallPDF vs ConvertPDF.Live — PDF to Excel</h3>
-      <p class="b-p">SmallPDF's free tier is heavily limited for conversion tasks — you will hit the 2-task/hour wall quickly if processing multiple files. <strong>ConvertPDF.Live has no task limits at all.</strong></p>
-      <div style="margin-top:18px">
-        <a href="../ilovepdf-alternative.html" style="font-family:var(--fm);font-size:.75rem;color:var(--acc2)">→ Full comparison: ConvertPDF.Live vs iLovePDF vs SmallPDF vs Sejda</a>
-      </div>
-    </section>
-
     <!-- CTA Block -->
     <div class="b-cta-block">
       <div class="b-cta-block-title">Ready to try it yourself?</div>
@@ -386,9 +340,17 @@ a{color:var(--acc2);text-decoration:none}a:hover{text-decoration:underline}
     });
   });
   // Dark mode sync with parent site preference
-  // Always light mode
+  try{
+    var dm=localStorage.getItem('theme')||localStorage.getItem('cpdf-theme');
+    if(dm==='dark')document.body.classList.add('dark');
+  }catch(e){}
 })();
 </script>
 
+
+<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
+Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
+PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
+</div>
 </body>
 </html>

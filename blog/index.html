@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5">
+<html lang="en">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,48 +22,23 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<style>html,body{background:#f0f2f5}
-/* ── OCR PRO FREE BADGE ── */
-. <span class="ocr-pro-free-badge">⭐ Pro Feature — Free</span>ocr-pro-free-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:linear-gradient(90deg,rgba(16,112,64,.15),rgba(16,180,80,.08));
-  color:#107040;border:1.5px solid rgba(16,112,64,.35);
-  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;
-  letter-spacing:.04em;border-radius:20px;padding:3px 10px;
-  white-space:nowrap;vertical-align:middle;margin-left:6px;
-}
-.ocr-pro-callout{
-  display:flex;align-items:flex-start;gap:12px;
-  background:linear-gradient(135deg,rgba(16,112,64,.08),rgba(0,96,160,.06));
-  border:1.5px solid rgba(16,112,64,.3);border-radius:12px;
-  padding:14px 16px;margin:16px 0;
-}
-.ocr-pro-callout-icon{font-size:1.6rem;flex-shrink:0}
-.ocr-pro-callout-body{}
-.ocr-pro-callout-title{font-family:var(--fd,'Syne',sans-serif);font-weight:800;font-size:.88rem;color:#107040;margin-bottom:4px}
-.ocr-pro-callout-desc{font-size:.82rem;color:var(--mut,#4a4a6a);line-height:1.55}
 
-</style>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Free PDF Guides & How-To Tutorials — Convert, Merge, Edit PDF | ConvertPDF.Live</title>
-<meta name="description" content="Free step-by-step PDF guides and tutorials — learn how to convert PDF to Word, Excel, PowerPoint, merge PDF, split PDF, compress, edit, sign, and more. 25 expert guides, no software needed, 100% free."/>
-<meta name="keywords" content="free pdf guides, pdf tutorials, how to convert pdf to word, how to merge pdf free, how to split pdf, how to compress pdf free, pdf how to guides, pdf tips 2025, free pdf help online, convert pdf tutorial, pdf editing guide, ilovepdf guide, pdf tools tutorials, how to edit pdf free, how to sign pdf free, how to unlock pdf, how to rotate pdf, step by step pdf guide"/>
+<title>PDF Tools Blog & Guides | ConvertPDF.Live</title>
+<meta name="description" content="Free PDF tools blog — guides on how to merge, split, compress, convert and edit PDFs online for free. Browse. Free iLovePDF and SmallPDF alternative."/>
+<meta name="keywords" content="pdf guides, pdf tutorials, how to convert pdf, pdf tips, free pdf help, pdf how-to, pdf merge guide, pdf edit tutorial, ConvertPDF.Live blog, ilovepdf, ilovepdf alternative, smallpdf, smallpdf alternative, sejda, sejda alternative, adobe acrobat alternative, pdf24 alternative, pdf editor, edit pdf, pdf tools free, pdf converter free, free pdf editor online"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/blog/index.html"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://convertpdf.live/blog/"/>
-<meta property="og:title" content="Free PDF Guides &amp; Tutorials | ConvertPDF.Live Blog"/>
+<meta property="og:title" content="PDF Tools Blog & Guides | ConvertPDF.Live"/>
 <meta property="og:description" content="Step-by-step PDF tutorials &#8212; convert, merge, split, compress, edit PDFs online. 25 free guides, no signup needed."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"ConvertPDF.Live &#8212; PDF Guides & Tutorials","url":"https://convertpdf.live/blog/","description":"Free step-by-step PDF tutorials covering every PDF task.","publisher":{"@type":"Organization","name":"ConvertPDF.Live","url":"https://convertpdf.live/"}}</script>
-<link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 /* ═══ TOKENS ═══ */
 :root{
@@ -89,8 +48,8 @@ body{will-change:auto;contain:style layout}
   --hdr-h:58px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
-/* dark mode removed */
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -144,9 +103,8 @@ body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;li
 .blog-footer-links a:hover{color:var(--acc)}
 .blog-footer-copy{font-family:var(--fm);font-size:.58rem;color:var(--mut)}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this tool completely free?","acceptedAnswer":{"@type":"Answer","text":"Yes. ConvertPDF.Live is 100% free — no subscription, no paid tier, no watermark on output files."}},{"@type":"Question","name":"Do my files get uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser. Your files never leave your device."}},{"@type":"Question","name":"Do I need to create an account?","acceptedAnswer":{"@type":"Answer","text":"No sign-up or account needed. Just open the tool and use it instantly."}}]}</script>
 </head>
-<body class="light">
+<body>
 
 <!-- HEADER -->
 <header class="site-header">
@@ -360,8 +318,16 @@ body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;li
 
 <script>
 // Dark mode sync with parent site preference
-// Always light mode
+try{
+  var dm=localStorage.getItem('cpdf-theme')||localStorage.getItem('theme');
+  if(dm==='dark')document.body.classList.add('dark');
+}catch(e){}
 </script>
 
+
+<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
+Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
+PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. No upload required.
+</div>
 </body>
 </html>
