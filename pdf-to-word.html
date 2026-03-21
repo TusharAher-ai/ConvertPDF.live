@@ -64,19 +64,20 @@ body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f
 ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--acc)}
 
 /* layout */
-main{max-width:860px;margin:0 auto;padding:32px 18px 100px}
+main{max-width:860px;margin:0 auto;padding:16px 18px 100px}
 
 /* top nav */
-.top-nav-row{display:flex;align-items:center;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.top-nav-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
 .back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap}
 .back-link:hover{transform:translateX(-3px) scale(1.03)}
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 
 /* hero */
-.page-hero{text-align:center;padding:0 0 28px}
-.hero-icon{font-size:2.8rem;display:block;margin-bottom:10px;filter:drop-shadow(0 4px 12px rgba(176,120,0,.22))}
-.page-hero h1{font-family:var(--fd);font-weight:800;font-size:clamp(1.55rem,4vw,2.3rem);letter-spacing:-.04em;color:var(--txt);margin-bottom:10px;line-height:1.1}
+.page-hero{text-align:center;padding:0 0 16px}
+.page-hero-title{display:inline-flex;align-items:center;gap:10px;justify-content:center;margin-bottom:8px}
+.hero-icon{font-size:2rem;display:block;filter:drop-shadow(0 4px 12px rgba(176,120,0,.22));flex-shrink:0}
+.page-hero h1{font-family:var(--fd);font-weight:800;font-size:clamp(1.55rem,4vw,2.3rem);letter-spacing:-.04em;color:var(--txt);margin-bottom:0;line-height:1.1}
 .page-hero h1 em{font-style:normal;color:var(--acc)}
 .page-hero p{color:var(--mut);font-size:.92rem;max-width:530px;margin:0 auto 16px;line-height:1.7}
 .hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
@@ -322,8 +323,10 @@ main{max-width:860px;margin:0 auto;padding:32px 18px 100px}
 
   <!-- hero -->
   <div class="page-hero">
-    <span class="hero-icon">📝</span>
-    <h1>PDF to <em>Word</em></h1>
+    <div class="page-hero-title">
+      <span class="hero-icon">📝</span>
+      <h1>PDF to <em>Word</em></h1>
+    </div>
     <p>Convert PDF to editable Word document with high accuracy. Preserves paragraphs, headings and structure. OCR for scanned PDFs.</p>
     <div class="hero-badges">
       <span class="badge badge-g">Free Forever</span>
