@@ -1,33 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" style="background:#f0f2f5">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,11 +22,7 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Page Not Found — ConvertPDF.Live</title>
@@ -58,16 +38,23 @@ p{color:#6b6b8a;margin-bottom:24px;line-height:1.6}
 a{display:inline-block;background:#b07800;color:#fff;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:700;font-size:.9rem}
 a:hover{background:#8a5c00}
 </style>
+<style>
+/* ── DARK / LIGHT MODE ── */
+
+html,body{background:var(--bg);transition:background .3s,color .3s}
+body{color:var(--txt)}
+
+body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;--mut:#4a4a6a}
+</style>
+<link rel="stylesheet" href="./shared.css"/>
+<link rel="stylesheet" href="./design-system.css" data-ds="1"/>
 </head>
 <body class="light">
-<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
-  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
-</header>
 <div class="wrap">
   <div class="icon">📄</div>
   <h1>Page Not Found</h1>
   <p>This page doesn't exist or has moved.<br/>Redirecting you to the dashboard in 3 seconds…</p>
-  <a href="https://convertpdf.live/">← Back to PDF Tools</a>
+  <a href="https://convertpdf.live/">&#8592; Back to Tools to PDF Tools</a>
 </div>
 
 <!-- ─── SUGGEST FEATURE MODAL ─── -->

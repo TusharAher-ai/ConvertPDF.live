@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5">
+<html lang="en"
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,58 +22,30 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<style>html,body{background:#f0f2f5}
-/* ── FREE/OCR BADGE ── */
-.free-now-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;letter-spacing:.04em;
-  background:linear-gradient(90deg,rgba(16,112,64,.18),rgba(16,180,80,.10));
-  color:#107040;border:1.5px solid rgba(16,112,64,.35);
-  border-radius:20px;padding:3px 10px;margin-left:6px;vertical-align:middle;
-  animation:freeBadgePop .4s cubic-bezier(.34,1.56,.64,1);
-  white-space:nowrap;
-}
-@keyframes freeBadgePop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-.ocr-free-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  font-family:var(--fm,'Space Mono',monospace);font-size:.56rem;font-weight:700;letter-spacing:.04em;
-  background:rgba(16,112,64,.14);color:#107040;border:1px solid rgba(16,112,64,.3);
-  border-radius:10px;padding:2px 8px;margin-left:4px;white-space:nowrap;
-}
 
-/* PRO = FREE NOW */
-.pro-lock-overlay{display:none!important;pointer-events:none!important}
-.pro-badge-tag .use-free-lbl{display:none!important}
-</style>
-
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Free PDF Tools Online — Convert, Merge, Edit, Compress PDF | ConvertPDF.Live</title>
-<meta name="description" content="Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, OCR, sign and more. 100% free, browser-based, no file upload, no sign-up required. Best free alternative to iLovePDF, SmallPDF, Sejda, Adobe Acrobat."/>
-<meta name="keywords" content="free pdf tools online, pdf converter online free, merge pdf free, split pdf online free, compress pdf free, convert pdf to word free, pdf to excel free, pdf editor free online, rotate pdf, watermark pdf, unlock pdf, sign pdf free, ocr pdf free, ilovepdf alternative free, smallpdf alternative, sejda free alternative, adobe acrobat free alternative, online pdf tools no upload, browser pdf tool no signup, convertpdf.live, privacy pdf tools, pdf tools no watermark added, free forever pdf, pdf editor free online, pdf converter online free, free pdf editor no download, online pdf converter, best free pdf editor 2025, pdf editor like adobe acrobat free, free online pdf converter tool, pdf converter free no signup"/>
+<title>Free PDF Tools — Convert, Edit, Merge PDF Online | ConvertPDF.Live</title>
+<meta name="description" content="Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, and more. 100% free, browser-based, no upload, no sign-up. Best free alternative to iLovePDF, SmallPDF, Sejda and Adobe Acrobat online."/>
+<meta name="keywords" content="free pdf tools, pdf converter online, convert pdf, merge pdf, split pdf, compress pdf, edit pdf, pdf to word, pdf to excel, rotate pdf, watermark pdf, unlock pdf, sign pdf, pdf editor free, ilovepdf alternative, smallpdf alternative, sejda alternative, adobe acrobat alternative, pdf24 alternative, free pdf editor, online pdf tools no upload, browser pdf tool, convertpdf, convertpdf.live, no signup pdf tool, privacy pdf converter, pdf tools free forever, convertpdf, convertpdf.live, ConvertPDF.Live, free pdf tools online, pdf tools no upload, browser based pdf, pdf privacy, no watermark pdf, free forever pdf tools, ilovepdf, ilovepdf alternative, ilovepdf free, i love pdf, ilove pdf, smallpdf, smallpdf alternative, smallpdf free, small pdf, sejda, sejda alternative, sejda pdf, adobe acrobat alternative, adobe acrobat free alternative, pdf24 alternative, pdf24, pdfcandy, pdf candy alternative, foxit pdf alternative, nitro pdf alternative, online2pdf alternative, pdf editor, edit pdf, pdf editor free, free pdf editor, online pdf editor, pdf editing tool, pdf editor online free, edit pdf online, pdf editor no sign up, pdf tools, free pdf tools, pdf converter, pdf converter free, pdf converter online, convert pdf free, pdf tools online, pdf utility, pdf software free, pdf tools no upload, pdf converter no upload, edit pdf without uploading, pdf editor no sign up, pdf tools browser based, pdf converter private, secure pdf editor, offline pdf tools, pdf editor no account, free pdf tools online, all pdf tools free, pdf toolbox free"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://convertpdf.live/"/>
-<meta property="og:title" content="Free PDF Tools Online — Convert, Merge, Edit, Compress PDF | ConvertPDF.Live"/>
-<meta property="og:description" content="Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, OCR, sign and more. 100% free, browser-based, no file upload, no sign-up required. Best free alternative to iLovePDF, SmallPDF, Sejda, Adobe Acrobat."/>
+<meta property="og:title" content="Free PDF Tools — Convert, Edit, Merge PDF Online | ConvertPDF.Live"/>
+<meta property="og:description" content="Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, and more. 100% free, browser-based, no upload, no sign-up. Best free alternative to iLovePDF, SmallPDF, Sejda and Adobe Acrobat online."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta property="og:image" content="https://convertpdf.live/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:site" content="@ConvertPDFLive"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Free PDF Tools Online — Convert, Merge, Edit, Compress PDF | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, OCR, sign and more. 100% free, browser-based, no file upload, no sign-up required. Best free alternative to iLovePDF, SmallPDF, Sejda, Adobe Acrobat."/>
+<meta name="twitter:title" content="Free PDF Tools — Convert, Edit, Merge PDF Online | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, and more. 100% free, browser-based, no upload, no sign-up. Best free alternative to iLovePDF, SmallPDF, Sejda and Adobe Acrobat online."/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ConvertPDF.Live — Free PDF Tools", "url": "https://convertpdf.live/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free online PDF tools — merge PDF, split PDF, compress PDF, convert PDF to Word, Excel, PowerPoint, edit PDF, rotate, watermark, and more. 100% free, browser-based, no upload, no sign-up. Best free alternative to iLovePDF, SmallPDF, Sejda and Adobe Acrobat online."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertpdf.live/"},{"@type":"ListItem","position":2,"name":"Free PDF Tools","item":"https://convertpdf.live//"}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>/* ═══════════════════════════════ TOKENS ═══════════════════════ */
 :root{
   --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
@@ -99,7 +55,7 @@ body{will-change:auto;contain:style layout}
   --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 
 /* ═══════════════════════════════ GOOGLE LOGIN ══════════════════ */
@@ -189,7 +145,7 @@ body.light .tool-page-back{color:#1a1a2e}
 }
 
 /* ── Tool body ── */
-.tool-page-body{padding:32px 36px 28px;}
+.tool-page-body{padding:32px 36px 28px;transition:background .3s}
 
 /* Upload zone inside tool page */
 .tool-page-body .dz-wrap{margin-bottom:20px}
@@ -322,7 +278,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 .tab-panel{display:none}.tab-panel.active{display:block}
 
 /* Side panel */
-.side-panel{width:300px;min-width:300px;background:var(--surf);border-left:2px solid var(--bdr);position:sticky;top:calc(var(--hdr-h) + var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));overflow-y:auto;display:flex;flex-direction:column;transition:width .35s,opacity .3s}
+.side-panel{width:300px;min-width:300px;background:var(--surf);border-left:2px solid var(--bdr);position:sticky;top:calc(var(--hdr-h) + var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));overflow-y:auto;display:flex;flex-direction:column;transition:width .35s,opacity .3s,background .3s}
 .side-panel.collapsed{width:0;min-width:0;overflow:hidden;opacity:0}
 @media(max-width:900px){.side-panel{position:fixed;right:0;top:calc(var(--hdr-h)+var(--tabs-h));height:calc(100vh - var(--hdr-h) - var(--tabs-h));z-index:150;width:280px}.side-panel.collapsed{width:0;opacity:0}}
 .panel-hdr{padding:12px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;background:var(--surf2);flex-shrink:0;transition:background .3s}
@@ -543,7 +499,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 .tool-grp:last-child{border-right:none;padding-right:0;margin-right:0}
 .editor-btn{background:transparent;border:1px solid transparent;color:var(--txt);border-radius:5px;padding:5px 9px;cursor:pointer;font-size:.78rem;transition:all .15s;white-space:nowrap}
 .editor-btn:hover{background:var(--bdr)}.editor-btn.active{background:var(--acc);color:#0a0a0f;border-color:var(--acc)}
-.font-sel{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:.75rem;padding:4px 6px;cursor:pointer;}
+.font-sel{background:var(--surf2);border:1px solid var(--bdr);border-radius:5px;color:var(--txt);font-size:.75rem;padding:4px 6px;cursor:pointer;transition:background .3s,color .3s}
 .color-pick{width:30px;height:26px;border-radius:5px;border:1px solid var(--bdr);padding:1px;cursor:pointer;background:var(--surf2)}
 .page-nav{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--surf2);border-top:1px solid var(--bdr);flex-wrap:wrap;transition:background .3s}
 .page-nav-info{font-family:var(--fm);font-size:.65rem;color:var(--mut)}
@@ -962,7 +918,7 @@ body.light .tb.active::before{box-shadow:0 4px 20px rgba(176,120,0,.35)}
 /* ═══════════════════════════════ FORM / BUTTONS / ETC ═════════ */
 .fg{margin-bottom:12px}
 label.lbl{display:block;font-family:var(--fm);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:5px}
-input[type=text],input[type=number],input[type=password],select,textarea{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.9rem;padding:8px 12px;outline:none;transition:border-color .2s,color .3s}
+input[type=text],input[type=number],input[type=password],select,textarea{width:100%;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:var(--r);color:var(--txt);font-family:var(--fb);font-size:.9rem;padding:8px 12px;outline:none;transition:border-color .2s,background .3s,color .3s}
 input:focus,select:focus,textarea:focus{border-color:var(--acc)}
 input[type=range]{width:100%;accent-color:var(--acc);background:transparent;padding:0}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -1086,13 +1042,16 @@ body.light .nav-link:hover,body.light .nav-item:hover>.nav-link{
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "ConvertPDF.Live", "url": "https://convertpdf.live/", "potentialAction": {"@type": "SearchAction", "target": "https://convertpdf.live/?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ConvertPDF.Live", "url": "https://convertpdf.live/", "logo": "https://convertpdf.live/logo.png", "sameAs": ["https://convertpdf.live/"]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is ConvertPDF.Live completely free?","acceptedAnswer":{"@type":"Answer","text":"Yes. All tools on ConvertPDF.Live are 100% free forever — no subscription, no hidden fees, no watermark on output."}},{"@type":"Question","name":"Do you upload my files to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All PDF processing happens entirely in your browser using JavaScript. Your files never leave your device."}},{"@type":"Question","name":"Is OCR free on ConvertPDF.Live?","acceptedAnswer":{"@type":"Answer","text":"Yes. OCR (Optical Character Recognition) for scanned PDFs is completely free using Tesseract.js — no account or payment needed."}},{"@type":"Question","name":"What is the best free alternative to iLovePDF?","acceptedAnswer":{"@type":"Answer","text":"ConvertPDF.Live is a top free alternative to iLovePDF with all the same tools — merge, split, compress, convert, edit — plus the advantage that files never leave your browser."}},{"@type":"Question","name":"Can I use ConvertPDF.Live without signing up?","acceptedAnswer":{"@type":"Answer","text":"Yes. No account, no sign-up, no email required. Just open the tool and use it."}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"ConvertPDF.Live","url":"https://convertpdf.live/","potentialAction":{"@type":"SearchAction","target":"https://convertpdf.live/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<style>
+/* ── DARK / LIGHT MODE ── */
+:root{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10)}
+html,body{background:var(--bg);transition:background .3s,color .3s}
+body{color:var(--txt)}
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa;--shadow:rgba(0,0,0,.35)}
+body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;--mut:#4a4a6a}
+</style>
 </head>
 <body class="light">
-<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
-  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
-</header>
 
 <main>
 <div class="dash-hero">
@@ -1143,7 +1102,7 @@ body.light .nav-link:hover,body.light .nav-item:hover>.nav-link{
   <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--bdr)">
     <a href="./terms.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">📄 Terms</a>
     <span style="color:var(--bdr);font-size:.7rem">|</span>
-    <a href="./ilovepdf-alternative.html">iLovePDF Alternative</a> · <a href="./privacy-policy.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">🔒 Privacy Policy</a>
+    <a href="./privacy-policy.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">🔒 Privacy Policy</a>
     <span style="color:var(--bdr)">|</span>
     <a href="./feedback.html#contact" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">✉️ Contact Us</a>
     <span style="color:var(--bdr)">|</span>

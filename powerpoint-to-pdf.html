@@ -1,33 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" style="background:#f0f2f5">
+<html lang="en">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
+/* Apply saved theme immediately to prevent flash */
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,38 +22,29 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<style>html,body{background:#f0f2f5}.tool-page-hdr{padding:14px 24px 12px;background:linear-gradient(145deg,var(--surf) 0%,var(--surf2) 100%);position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}.tool-page-hdr::after{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(176,120,0,.10),transparent 65%);pointer-events:none}.tool-page-icon-wrap{font-size:1.45rem;margin-bottom:5px;display:block}.tool-page-title{font-family:var(--fd);font-weight:800;font-size:clamp(1.0rem,2.5vw,1.3rem);letter-spacing:-.03em;color:var(--txt);margin-bottom:4px}.tool-page-desc{color:var(--mut);font-size:.78rem;line-height:1.5;max-width:560px}.tool-page-badges{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap}.tp-badge{font-family:var(--fm);font-size:.50rem;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px}.tp-badge-g{background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)}.tp-badge-y{background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)}.tp-badge-b{background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)}@media(max-width:600px){.tool-page-hdr{padding:10px 14px}}
+
+
+<style>
+html,body{background:#f0f2f5}.tool-page-hdr{padding:14px 24px 12px;background:linear-gradient(145deg,var(--surf) 0%,var(--surf2) 100%);position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}.tool-page-hdr::after{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(176,120,0,.10),transparent 65%);pointer-events:none}.tool-page-icon-wrap{font-size:1.45rem;margin-bottom:5px;display:block}.tool-page-title{font-family:var(--fd);font-weight:800;font-size:clamp(1.0rem,2.5vw,1.3rem);letter-spacing:-.03em;color:var(--txt);margin-bottom:4px}.tool-page-desc{color:var(--mut);font-size:.78rem;line-height:1.5;max-width:560px}.tool-page-badges{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap}.tp-badge{font-family:var(--fm);font-size:.50rem;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:20px}.tp-badge-g{background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)}.tp-badge-y{background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)}.tp-badge-b{background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)}@media(max-width:600px){.tool-page-hdr{padding:10px 14px}}
 /* shared-patch-css */
 
 /* ══ SQUARE DZ STATE ══ */
 .dz{transition:all .3s cubic-bezier(.34,1.1,.64,1)}
-.dz.dz-has-file{
-  width:120px!important;height:120px!important;
-  min-height:unset!important;padding:10px!important;
-  border-color:var(--ok)!important;background:rgba(16,112,64,.06)!important;
-  border-style:solid!important;border-radius:16px!important;
-  gap:4px!important;flex-shrink:0
+.dz.dz-has-file{ width:120px!important;height:120px!important; min-height:unset!important;padding:10px!important; border-color:var(--ok)!important;background:rgba(16,112,64,.06)!important; border-style:solid!important;border-radius:16px!important; gap:4px!important;flex-shrink:0
 }
 .dz.dz-has-file .dz-icon{font-size:1.6rem!important}
 .dz.dz-has-file .dz-title{font-size:.62rem!important;font-weight:700;color:var(--ok)!important}
 .dz.dz-has-file .dz-sub,.dz.dz-has-file .dz-hint{display:none!important}
 /* file chip below square dz */
-.dz-file-chip{
-  display:none;align-items:center;gap:8px;
-  background:var(--surf2);border:1px solid var(--bdr);
-  border-radius:10px;padding:8px 12px;margin-top:8px;
-  max-width:320px;animation:chipIn .25s ease
+.dz-file-chip{ display:none;align-items:center;gap:8px; background:var(--surf2);border:1px solid var(--bdr); border-radius:10px;padding:8px 12px;margin-top:8px; max-width:320px;animation:chipIn .25s ease
 }
 .dz-file-chip.show{display:flex}
 @keyframes chipIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .dfc-icon{font-size:1.2rem}
 .dfc-info{flex:1;min-width:0}
-.dfc-name{font-family:var(--fd);font-weight:700;font-size:.78rem;color:var(--txt);
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dfc-name{font-family:var(--fd);font-weight:700;font-size:.78rem;color:var(--txt); overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dfc-meta{font-family:var(--fm);font-size:.6rem;color:var(--mut)}
-.dfc-remove{background:transparent;border:1px solid var(--bdr);border-radius:6px;
-  padding:3px 8px;cursor:pointer;font-size:.7rem;color:var(--mut);
-  transition:all .15s;flex-shrink:0}
+.dfc-remove{background:transparent;border:1px solid var(--bdr);border-radius:6px; padding:3px 8px;cursor:pointer;font-size:.7rem;color:var(--mut); transition:all .15s;flex-shrink:0}
 .dfc-remove:hover{border-color:var(--acc3);color:var(--acc3)}
 /* dz-wrap layout when file present */
 .dz-wrap.dz-active{display:flex!important;flex-direction:row;align-items:flex-start;gap:12px;flex-wrap:wrap}
@@ -78,80 +53,93 @@ body{will-change:auto;contain:style layout}
 .u-prog{margin:12px 0;display:none}
 .u-prog.show{display:block}
 .u-prog-track{height:8px;background:var(--surf2);border-radius:6px;overflow:hidden;border:1px solid var(--bdr)}
-.u-prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));
-  border-radius:6px;transition:width .25s;width:0}
-.u-prog-lbl{font-family:var(--fm);font-size:.63rem;color:var(--mut);margin-top:4px;
-  display:flex;align-items:center;gap:6px}
-.u-prog-spinner{width:10px;height:10px;border:1.5px solid var(--bdr);
-  border-top-color:var(--acc);border-radius:50%;
-  animation:spin .65s linear infinite;flex-shrink:0}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-
-/* ── READ BLOG BUTTON ── */
+.u-prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2)); border-radius:6px;transition:width .25s;width:0}
+.u-prog-lbl{font-family:var(--fm);font-size:.63rem;color:var(--mut);margin-top:4px; display:flex;align-items:center;gap:6px}
+.u-prog-spinner{width:10px;height:10px;border:1.5px solid var(--bdr); border-top-color:var(--acc);border-radius:50%; animation:spin .65s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}} /* ── READ BLOG BUTTON ── */
 .read-blog-wrap{text-align:center;padding:18px 18px 8px;background:var(--surf);border-top:1px solid var(--bdr)}
 .read-blog-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:9px 22px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em}
 .read-blog-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 .read-blog-btn .rbtn-icon{font-size:.9rem}
-
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YH8HV6BTX9');</script>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
+
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>PowerPoint to PDF Free Online — Convert PPTX to PDF | ConvertPDF.Live</title>
-<meta name="description" content="Convert PowerPoint to PDF free online — pptx to pdf, ppt to pdf in browser. No upload, no sign-up. Presentation slides to PDF instantly."/>
-<meta name="keywords" content="powerpoint to pdf free, convert pptx to pdf online, ppt to pdf free, presentation to pdf free, powerpoint to pdf no upload, slides to pdf free converter"/>
+<title>PowerPoint to PDF Free Online | ConvertPDF.Live</title>
+<meta name="description" content="Convert PowerPoint (.pptx) to PDF free online — upload slide images or a .pptx file. Browser-based, no upload. Best free iLovePDF, SmallPDF and Sejda alternative."/>
+<meta name="keywords" content="powerpoint to pdf, pptx to pdf, ppt to pdf, convert powerpoint to pdf free, slides to pdf, presentation to pdf, pptx pdf converter free, convertpdf, pptx to pdf ilovepdf, powerpoint pdf smallpdf, ilovepdf, ilovepdf alternative, ilovepdf free, i love pdf, ilove pdf, smallpdf, smallpdf alternative, smallpdf free, small pdf, sejda, sejda alternative, sejda pdf, adobe acrobat alternative, adobe acrobat free alternative, pdf24 alternative, pdf24, pdfcandy, pdf candy alternative, foxit pdf alternative, nitro pdf alternative, online2pdf alternative, pdf editor, pdf converter"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/powerpoint-to-pdf.html"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://convertpdf.live/powerpoint-to-pdf.html"/>
-<meta property="og:title" content="PowerPoint to PDF Free Online — Convert PPTX to PDF | ConvertPDF.Live"/>
-<meta property="og:description" content="Convert PowerPoint to PDF free online — pptx to pdf, ppt to pdf in browser. No upload, no sign-up. Presentation slides to PDF instantly."/>
+<meta property="og:title" content="PowerPoint to PDF Free Online | ConvertPDF.Live"/>
+<meta property="og:description" content="Convert PowerPoint (.pptx) to PDF free online — upload slide images or a .pptx file. Browser-based, no upload to server, no sign-up required, instant."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
 <meta property="og:image" content="https://convertpdf.live/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="PowerPoint to PDF Free Online — Convert PPTX to PDF | ConvertPDF.Live"/>
-<meta name="twitter:description" content="Convert PowerPoint to PDF free online — pptx to pdf, ppt to pdf in browser. No upload, no sign-up. Presentation slides to PDF instantly."/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PowerPoint to PDF Converter Free Online — PPTX to PDF | ConvertPDF.Live","url":"https://convertpdf.live/powerpoint-to-pdf.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<meta name="twitter:site" content="@ConvertPDFLive"/>
+<meta name="twitter:title" content="PowerPoint to PDF Free Online | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Convert PowerPoint (.pptx) to PDF free online — upload slide images or a .pptx file. Browser-based, no upload to server, no sign-up required, instant."/>
+<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PowerPoint to PDF Converter", "url": "https://convertpdf.live/powerpoint-to-pdf.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert PowerPoint PPTX presentations to PDF free online, no upload.. Free alternative to iLovePDF, SmallPDF and Sejda."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://convertpdf.live/"}, {"@type": "ListItem", "position": 2, "name": "PowerPoint to PDF Converter", "item": "https://convertpdf.live/powerpoint-to-pdf.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What's the best way to convert PowerPoint to PDF?", "acceptedAnswer": {"@type": "Answer", "text": "For the best visual quality, export your slides as PNG or JPEG images from PowerPoint (File \u2192 Export \u2192 Save as PNG/JPEG), then upload those images here. This creates a pixel-perfect PDF."}}, {"@type": "Question", "name": "Can I convert directly from .pptx?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 use the PPTX mode to extract slide titles and body text from .pptx files. Note that this text-only mode does not reproduce images, shapes, animations or visual formatting from the original presentation."}}, {"@type": "Question", "name": "Does my file get uploaded?", "acceptedAnswer": {"@type": "Answer", "text": "Never. All processing happens in your browser. Your files never leave your device."}}, {"@type": "Question", "name": "How do I export slides as images from PowerPoint?", "acceptedAnswer": {"@type": "Answer", "text": "In PowerPoint: File \u2192 Export \u2192 Change File Type \u2192 PNG or JPEG. Or: File \u2192 Save As \u2192 choose PNG or JPEG format."}}, {"@type": "Question", "name": "Can I reorder slides?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 in Slide Images mode, drag and drop the slide thumbnails to rearrange them before converting."}}]}</script>
+
+
+
+
+
+<link rel="canonical" href="https://convertpdf.live/powerpoint-to-pdf.html"/>
+
+<meta property="og:url" content="https://convertpdf.live/powerpoint-to-pdf.html"/>
+
+
+
+<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
+
+
+
+
+
+
+<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--hdr-h:58px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
-/* dark removed */
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
 @keyframes ddFadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 body.light .ndd-item{color:#1a1400}
-@media(max-width:800px){.site-nav{display:none}}
+
 body.light .toggle-track{background:var(--acc);border-color:var(--acc)}
 body.light .toggle-thumb{transform:translateX(18px)}
 .tool-standalone{max-width:860px;margin:0 auto;padding:28px 18px 80px}
 .tool-back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);border-radius:50px;padding:10px 22px;font-family:var(--fd);font-size:.84rem;font-weight:900;color:#ffffff!important;text-decoration:none;margin-bottom:28px;transition:all .22s;box-shadow:0 4px 18px rgba(240,192,64,.3)}
-.tool-back-link:hover{transform:translateX(-4px) scale(1.03);box-shadow:0 6px 24px rgba(240,192,64,.5)}
-
-
-
-
-
-
-
-
-
-
-
-.tool-page-content-card{background:var(--surf);border:2px solid var(--bdr);border-radius:0 0 20px 20px;border-top:none;box-shadow:0 8px 40px var(--shadow);overflow:hidden;transition:background .3s,border-color .3s}
+.tool-back-link:hover{transform:translateX(-4px) scale(1.03);box-shadow:0 6px 24px rgba(240,192,64,.5)} .tool-page-content-card{background:var(--surf);border:2px solid var(--bdr);border-radius:0 0 20px 20px;border-top:none;box-shadow:0 8px 40px var(--shadow);overflow:hidden;transition:background .3s,border-color .3s}
 .tool-page-content-card::before{content:'';display:block;height:3px;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--acc3));opacity:.55}
-.tool-page-body{padding:32px 36px 28px;}
+.tool-page-body{padding:32px 36px 28px;transition:background .3s}
 }
 .dz-wrap{margin-bottom:20px}
 .dz{width:100%;min-height:140px;border:2.5px dashed var(--bdr);border-radius:14px;cursor:pointer;transition:all .25s;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surf2);text-align:center;padding:20px}
@@ -208,6 +196,9 @@ body.light .toggle-thumb{transform:translateX(18px)}
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 </style>
+
+<link rel="stylesheet" href="./shared.css"/>
+<link rel="stylesheet" href="./design-system.css" data-ds="1"/>
 </head>
 <style>
 .fg{margin-bottom:14px}
@@ -244,14 +235,11 @@ select:focus{border-color:var(--acc)}
 </style>
 </head>
 <body class="light">
-<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
-  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
-</header>
 
 <main>
 <div class="tool-standalone">
   <div class="top-nav-row">
-  <a href="./index.html" class="tool-back-link"><span style="font-size:1.1rem">←</span> Back to Dashboard</a>
+  <a href="./index.html" class="back-link">&#8592; Back to Tools</a>
   <a href="./blog/powerpoint-to-pdf.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
 </div>
   <div class="tool-page-hdr">
@@ -287,8 +275,8 @@ select:focus{border-color:var(--acc)}
         </div>
 
         <div class="dz-wrap">
-          <div class="dz" id="dropZoneImg">
-            <input type="file" id="fileInputImg" accept="image/jpeg,image/png,image/webp" multiple onchange="handleSlideImages(this.files)"/>
+          <div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Each PowerPoint slide is rendered as a PDF page.</span></div><div class="dz" id="dropZoneImg">
+            <input type="file" id="fileInputImg" accept="image/jpeg,image/png,image/webp" multiple onchange="handleSlideImages(this.files)"/ aria-label="Upload file">
             <div class="dz-icon">📑</div>
             <div class="dz-title">Drop slide images here</div>
             <div class="dz-sub">JPG, PNG, WebP — one file per slide</div>
@@ -301,7 +289,7 @@ select:focus{border-color:var(--acc)}
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <label class="btn-secondary" style="cursor:pointer">
               ➕ Add More
-              <input type="file" accept="image/jpeg,image/png,image/webp" multiple onchange="handleSlideImages(this.files)" style="display:none"/>
+              <input type="file" accept="image/jpeg,image/png,image/webp" multiple onchange="handleSlideImages(this.files)" style="display:none"/ aria-label="Upload file">
             </label>
             <button class="btn-secondary" onclick="clearSlides()">🗑️ Clear All</button>
           </div>
@@ -345,10 +333,10 @@ select:focus{border-color:var(--acc)}
 
         <div class="dz-wrap">
           <div class="dz" id="dropZonePptx">
-            <input type="file" id="fileInputPptx" accept=".pptx" onchange="handlePptxFile(this.files[0])"/>
+            <input type="file" id="fileInputPptx" accept=".pptx" onchange="handlePptxFile(this.files[0])"/ aria-label="Upload file">
             <div class="dz-icon">📑</div>
             <div class="dz-title">Drop your .pptx file here</div>
-            <div class="dz-sub">or click to browse</div>
+            <div class="dz-sub">or click to browse · private &amp; secure</div>
             <div class="dz-hint">PowerPoint 2007+ (.pptx only)</div>
           </div>
         </div>
@@ -420,9 +408,6 @@ select:focus{border-color:var(--acc)}
     <div class="faq-a" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer"><div itemprop="text">16:9 (widescreen), 4:3 (standard), auto-detect from image size, or fit to the image's own dimensions.</div></div>
   </div>
 </section>
-<div style="background:var(--surf);border-top:2px solid var(--acc);padding:18px 24px;text-align:center;margin-top:0">
-  <div style="max-width:700px;margin:0 auto">
-    <div style="font-family:var(--fd);font-weight:800;font-size:.95rem;color:var(--txt);margin-bottom:6px">💡 Want a new feature or have a suggestion?</div>
     <div style="font-size:.82rem;color:var(--mut);margin-bottom:12px;line-height:1.6">We're always improving ConvertPDF.Live. If you need a tool that's not here, want to report a bug, or have ideas — we'd love to hear from you!</div>
     <a href="./feedback.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#1a1a2e;font-family:var(--fd);font-weight:800;font-size:.84rem;padding:11px 24px;border-radius:50px;text-decoration:none;transition:all .2s;box-shadow:0 3px 12px rgba(176,120,0,.3)">💡 Suggest Feature</a>
   </div>
@@ -430,26 +415,6 @@ select:focus{border-color:var(--acc)}
 
 
 </main>
-<footer class="site-footer">
-  <div class="footer-links">
-    <a href="./powerpoint-to-pdf.html">PowerPoint to PDF</a>
-    <a href="./pdf-to-powerpoint.html">PDF to PowerPoint</a>
-    <a href="./word-to-pdf.html">Word to PDF</a>
-    <a href="./excel-to-pdf.html">Excel to PDF</a>
-    <a href="./pdf-merge.html">Merge PDF</a>
-    <a href="./pdf-compress.html">Compress PDF</a>
-  </div>
-  <div style="display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--bdr)">
-    <a href="./terms.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">📄 Terms</a>
-    <span style="color:var(--bdr)">|</span>
-    <a href="./privacy-policy.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">🔒 Privacy Policy</a>
-    <span style="color:var(--bdr)">|</span>
-    <a href="./feedback.html#contact" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">✉️ Contact Us</a>
-    <span style="color:var(--bdr)">|</span>
-    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">🌐 convertpdf.live</span>
-  </div>
-  <div class="footer-copy" style="margin-top:10px">© 2025 ConvertPDF.Live — Free PDF Tools · All processing done in your browser · No upload · Privacy first</div>
-</footer>
 <script>
 (function(){
   var timers={};
@@ -463,7 +428,12 @@ select:focus{border-color:var(--acc)}
   document.addEventListener('click',function(e){if(!e.target.closest('.nav-item'))document.querySelectorAll('.nav-dd.dd-open').forEach(function(d){d.classList.remove('dd-open');});});
 })();
 var isDark=false;
-function toggleTheme(){}
+function toggleTheme(){
+  isDark=!isDark;
+  document.body.classList.toggle('light',!isDark);
+  document.body.classList.toggle('dark',isDark);
+  document.getElementById('theme-lbl').textContent=isDark?'🌙 Dark':'☀️ Light';
+}
 function fmtSize(b){return b>1048576?(b/1048576).toFixed(2)+' MB':(b/1024).toFixed(1)+' KB';}
 function baseName(n){return n.replace(/\.[^.]+$/,'');}
 function setProgress(pct,label){
@@ -804,6 +774,1135 @@ setupDragDrop('dropZoneImg', function(files) { handleSlideImages(files); });
 setupDragDrop('dropZonePptx', function(files) { if (files.length) handlePptxFile(files[0]); });
 </script>
 
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   ConvertPDF.Live — Unified Enhancement Layer  v2.0
+   Injected into every tool page. Adds:
+     • Polished upload zone with live file-chip & preview
+     • Animated loading modal with progress ring
+     • Step-flow indicator (Upload → Options → Process → Download)
+     • Tooltip system
+     • Options panel reveal after upload
+     • Toast notifications
+     • Smooth scroll-to-result
+     • Quick-action copy/clear buttons
+     • Full responsiveness patches
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* ── 1. INJECT ENHANCEMENT CSS ── */
+  const css = `
+/* ═══ ENHANCEMENT LAYER — ConvertPDF.Live v2.0 ═══ */
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--acc); }
+
+/* ══ STEP FLOW INDICATOR ══ */
+.cpdf-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+  padding: 14px 20px;
+  background: var(--surf2);
+  border: 1px solid var(--bdr);
+  border-radius: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.cpdf-steps::-webkit-scrollbar { display: none; }
+.cpdf-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  opacity: .4;
+  transition: opacity .3s, transform .2s;
+}
+.cpdf-step.active { opacity: 1; }
+.cpdf-step.done { opacity: .7; }
+.cpdf-step-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--surf);
+  border: 2px solid var(--bdr);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fm); font-size: .62rem; font-weight: 700;
+  color: var(--mut);
+  transition: all .3s;
+  flex-shrink: 0;
+}
+.cpdf-step.active .cpdf-step-num {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #0a0a14;
+  box-shadow: 0 0 0 4px rgba(176,120,0,.18);
+}
+.cpdf-step.done .cpdf-step-num {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #fff;
+}
+.cpdf-step-lbl {
+  font-family: var(--fd);
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--txt);
+  white-space: nowrap;
+}
+.cpdf-step-arr {
+  width: 28px; height: 1px;
+  background: var(--bdr);
+  margin: 0 8px;
+  flex-shrink: 0;
+  position: relative;
+}
+.cpdf-step-arr::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: -3px;
+  border: 3px solid transparent;
+  border-left-color: var(--bdr);
+}
+@media (max-width: 480px) {
+  .cpdf-steps { padding: 10px 14px; gap: 0; }
+  .cpdf-step-lbl { font-size: .65rem; }
+  .cpdf-step-arr { width: 16px; margin: 0 4px; }
+}
+
+/* ══ UPLOAD ZONE — ENHANCED ══ */
+.dz {
+  transition: all .3s cubic-bezier(.34,1.1,.64,1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.dz::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 120%, rgba(176,120,0,.06), transparent 70%);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.dz:hover::before, .dz.drag-over::before { opacity: 1; }
+.dz.drag-over {
+  border-color: var(--acc) !important;
+  background: rgba(176,120,0,.06) !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 0 0 4px rgba(176,120,0,.12), 0 8px 32px rgba(176,120,0,.15) !important;
+}
+.dz.dz-success {
+  border-color: var(--ok) !important;
+  border-style: solid !important;
+  background: rgba(16,112,64,.04) !important;
+  animation: dzSuccessPulse .5s ease;
+}
+@keyframes dzSuccessPulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.025); }
+  100% { transform: scale(1); }
+}
+.dz-icon { transition: transform .3s cubic-bezier(.34,1.56,.64,1) !important; }
+.dz:hover .dz-icon { transform: scale(1.15) translateY(-2px) !important; }
+
+/* Upload hint pulse animation */
+@keyframes hintPulse {
+  0%,100% { opacity: .7; }
+  50% { opacity: 1; }
+}
+.dz-hint { animation: hintPulse 2.5s ease infinite; }
+
+/* ══ FILE CHIP (shown after upload, inside DZ) ══ */
+.cpdf-file-chip {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: var(--surf);
+  border: 1.5px solid rgba(16,112,64,.3);
+  border-radius: 10px;
+  margin-bottom: 14px;
+  animation: chipIn .3s cubic-bezier(.34,1.3,.64,1);
+}
+.cpdf-file-chip.show { display: flex; }
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(-6px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+.cpdf-chip-icon { font-size: 1.5rem; flex-shrink: 0; }
+.cpdf-chip-info { flex: 1; min-width: 0; }
+.cpdf-chip-name {
+  font-family: var(--fd); font-weight: 700; font-size: .84rem;
+  color: var(--txt); white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cpdf-chip-meta {
+  font-family: var(--fm); font-size: .62rem; color: var(--ok);
+  display: flex; gap: 10px; margin-top: 2px;
+}
+.cpdf-chip-clear {
+  background: transparent;
+  border: 1px solid var(--bdr);
+  border-radius: 6px;
+  padding: 4px 9px;
+  cursor: pointer;
+  font-size: .7rem;
+  color: var(--mut);
+  font-family: var(--fm);
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.cpdf-chip-clear:hover { border-color: var(--acc3); color: var(--acc3); }
+
+/* Mini page count badge on chip */
+.cpdf-chip-pages {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(176,120,0,.12);
+  color: var(--acc);
+  border: 1px solid rgba(176,120,0,.25);
+  border-radius: 20px;
+  font-family: var(--fm);
+  font-size: .58rem;
+  padding: 1px 7px;
+}
+
+/* ══ OPTIONS PANEL — slides in after upload ══ */
+.cpdf-options-panel {
+  display: none;
+  border: 1.5px solid var(--bdr);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  animation: optsPanelIn .35s cubic-bezier(.22,.68,0,1.15);
+}
+.cpdf-options-panel.show { display: block; }
+@keyframes optsPanelIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.cpdf-opts-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--surf2);
+  border-bottom: 1px solid var(--bdr);
+  cursor: pointer;
+  user-select: none;
+}
+.cpdf-opts-hdr-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--fd);
+  font-weight: 700;
+  font-size: .82rem;
+  color: var(--txt);
+}
+.cpdf-opts-hdr-icon { font-size: 1rem; }
+.cpdf-opts-toggle {
+  font-size: .7rem;
+  color: var(--mut);
+  transition: transform .25s;
+}
+.cpdf-opts-hdr.collapsed .cpdf-opts-toggle { transform: rotate(-90deg); }
+.cpdf-opts-body {
+  padding: 16px;
+  background: var(--surf);
+}
+.cpdf-opts-body.hidden { display: none; }
+
+/* Option group label */
+.cpdf-opt-group-lbl {
+  font-family: var(--fm);
+  font-size: .6rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 8px;
+  margin-top: 14px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--bdr);
+}
+.cpdf-opt-group-lbl:first-child { margin-top: 0; }
+
+/* Tooltip system */
+[data-tooltip] { position: relative; cursor: help; }
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--txt);
+  color: var(--surf);
+  font-family: var(--fm);
+  font-size: .65rem;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .18s, transform .18s;
+  transform: translateX(-50%) translateY(4px);
+  z-index: 9000;
+  max-width: 220px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ══ LOADING MODAL ══ */
+.cpdf-loading-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,20,.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+}
+.cpdf-loading-modal.show {
+  opacity: 1;
+  pointer-events: all;
+}
+.cpdf-loading-card {
+  background: var(--surf);
+  border: 2px solid var(--bdr);
+  border-radius: 20px;
+  padding: 36px 40px;
+  text-align: center;
+  width: min(380px, 90vw);
+  box-shadow: 0 24px 80px rgba(0,0,0,.45);
+  animation: loadCardIn .3s cubic-bezier(.22,.68,0,1.15);
+}
+@keyframes loadCardIn {
+  from { opacity: 0; transform: scale(.92) translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+/* SVG progress ring */
+.cpdf-ring-wrap {
+  position: relative;
+  width: 88px; height: 88px;
+  margin: 0 auto 20px;
+}
+.cpdf-ring-svg {
+  width: 88px; height: 88px;
+  transform: rotate(-90deg);
+}
+.cpdf-ring-track {
+  fill: none;
+  stroke: var(--surf2);
+  stroke-width: 6;
+}
+.cpdf-ring-fill {
+  fill: none;
+  stroke: url(#cpdfRingGrad);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 226;
+  stroke-dashoffset: 226;
+  transition: stroke-dashoffset .4s cubic-bezier(.4,0,.2,1);
+}
+.cpdf-ring-pct {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fd);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--txt);
+}
+.cpdf-loading-title {
+  font-family: var(--fd);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--txt);
+  margin-bottom: 6px;
+}
+.cpdf-loading-msg {
+  font-family: var(--fm);
+  font-size: .7rem;
+  color: var(--mut);
+  min-height: 18px;
+  transition: opacity .2s;
+  line-height: 1.5;
+}
+/* thin animated bar below card */
+.cpdf-loading-bar {
+  height: 3px;
+  background: var(--surf2);
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+  margin: 20px -40px -36px;
+}
+.cpdf-loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--acc), var(--acc2), var(--acc3));
+  background-size: 200% 100%;
+  border-radius: 3px;
+  transition: width .35s;
+  animation: barShimmer 1.5s linear infinite;
+}
+@keyframes barShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ══ RESULT SECTION — enhanced ══ */
+.result-box, .split-result, [id^="out-"] {
+  animation: resultIn .4s cubic-bezier(.22,.68,0,1.15);
+}
+@keyframes resultIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Enhanced download button pulse */
+.btn-primary.dl-pulse {
+  animation: dlPulse 1.8s ease infinite;
+}
+@keyframes dlPulse {
+  0%,100% { box-shadow: 0 3px 16px rgba(176,120,0,.3); }
+  50%      { box-shadow: 0 6px 28px rgba(176,120,0,.6), 0 0 0 6px rgba(176,120,0,.1); }
+}
+
+/* ══ TOAST NOTIFICATIONS ══ */
+.cpdf-toast-stack {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9900;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  pointer-events: none;
+}
+.cpdf-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--txt);
+  color: var(--surf);
+  font-family: var(--fm);
+  font-size: .72rem;
+  padding: 10px 18px;
+  border-radius: 30px;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  pointer-events: none;
+  animation: toastIn .3s cubic-bezier(.34,1.3,.64,1);
+  border-left: 3px solid var(--acc);
+}
+.cpdf-toast.ok   { border-left-color: var(--ok); }
+.cpdf-toast.err  { border-left-color: var(--acc3); }
+.cpdf-toast.info { border-left-color: var(--acc2); }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px) scale(.93); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes toastOut {
+  to { opacity: 0; transform: translateY(8px) scale(.95); }
+}
+
+/* ══ PROGRESS BAR — enhanced everywhere ══ */
+.progress-bar-bg, .u-prog-track, .prog-bar, .split-prog-track {
+  position: relative;
+  overflow: hidden;
+}
+.progress-bar-fill, .u-prog-fill, .prog-fill, .split-prog-fill {
+  background: linear-gradient(90deg, var(--acc), var(--acc2)) !important;
+  background-size: 200% 100% !important;
+  animation: progShimmer 1.8s linear infinite;
+  position: relative;
+}
+@keyframes progShimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ══ FORM FIELD ENHANCEMENTS ══ */
+input[type=text]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(176,120,0,.15) !important;
+  border-color: var(--acc) !important;
+}
+label.lbl, .cpdf-opt-group-lbl {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+label.lbl .tip-icon {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--surf2);
+  border: 1px solid var(--bdr);
+  font-size: .55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mut);
+  cursor: help;
+  flex-shrink: 0;
+}
+
+/* ══ BUTTON ENHANCEMENTS ══ */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.15), transparent 60%);
+  opacity: 0;
+  transition: opacity .2s;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.btn:hover::after { opacity: 1; }
+.btn-primary:active { transform: scale(.97) !important; }
+
+/* Quick action button row */
+.cpdf-quick-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.cpdf-qa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1.5px solid var(--bdr);
+  background: var(--surf);
+  font-family: var(--fm);
+  font-size: .65rem;
+  color: var(--mut);
+  cursor: pointer;
+  transition: all .18s;
+  white-space: nowrap;
+}
+.cpdf-qa-btn:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+  background: rgba(176,120,0,.06);
+  transform: translateY(-1px);
+}
+.cpdf-qa-btn .qa-icon { font-size: .8rem; }
+
+/* ══ TRUST BAR — enhanced ══ */
+.trust-bar, .tool-trust-bar {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  padding: 14px 28px;
+  border-top: 1px solid var(--bdr);
+  background: var(--surf2);
+  align-items: center;
+}
+.trust-bar .ttb-item, .tool-trust-bar .ttb-item {
+  transition: color .18s;
+}
+.trust-bar .ttb-item:hover, .tool-trust-bar .ttb-item:hover {
+  color: var(--acc);
+}
+
+/* ══ FAQ SECTION ══ */
+.faq-item {
+  transition: border-color .2s, box-shadow .2s;
+}
+.faq-item.open {
+  box-shadow: 0 2px 12px rgba(176,120,0,.1);
+}
+.faq-q { transition: color .18s; }
+.faq-a {
+  animation: faqExpand .2s ease;
+}
+@keyframes faqExpand {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ══ RESPONSIVE PATCHES ══ */
+@media (max-width: 640px) {
+  main, .tool-standalone {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+  .tool-hdr, .tool-body, .tool-page-body {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .btn-row { flex-direction: column; }
+  .btn-row .btn { width: 100%; justify-content: center; }
+  .form-row { grid-template-columns: 1fr !important; }
+  .trust-bar, .tool-trust-bar { padding: 12px 16px; }
+  .ttb-sep { display: none; }
+  .ttb-item { padding: 2px 0 2px 0; width: 50%; }
+}
+@media (max-width: 400px) {
+  .tool-title, .tool-page-title { font-size: 1.3rem !important; }
+  .dz { padding: 24px 14px !important; }
+}
+
+/* ══ DARK MODE REFINEMENTS ══ */
+body.dark .cpdf-loading-card {
+  background: var(--surf);
+  border-color: var(--bdr);
+  box-shadow: 0 24px 80px rgba(0,0,0,.7);
+}
+body.dark .cpdf-toast { background: var(--surf2); }
+
+/* ══ SCROLL TO RESULT HIGHLIGHT ══ */
+.cpdf-result-highlight {
+  outline: 2px solid var(--acc);
+  outline-offset: 4px;
+  border-radius: 12px;
+  animation: highlightFade 2s ease forwards;
+}
+@keyframes highlightFade {
+  0% { outline-color: var(--acc); }
+  100% { outline-color: transparent; }
+}
+
+/* ══ DRAG LIST ENHANCEMENTS ══ */
+.drag-item {
+  transition: all .18s, transform .15s !important;
+}
+.drag-item:hover { border-color: var(--acc) !important; }
+.drag-item.dragging {
+  background: rgba(176,120,0,.06) !important;
+  border-color: var(--acc) !important;
+  box-shadow: 0 8px 24px rgba(176,120,0,.2) !important;
+}
+
+/* ══ PAGE THUMB ENHANCEMENTS ══ */
+.page-thumb, .thumb-card {
+  transition: all .2s cubic-bezier(.22,.68,0,1.15) !important;
+}
+.page-thumb:hover, .thumb-card:hover {
+  border-color: var(--acc) !important;
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 6px 20px rgba(176,120,0,.2) !important;
+}
+
+/* ══ BACK LINK — consistent across pages ══ */
+.back-link, .tool-back-link, .tool-page-back {
+  transition: all .22s cubic-bezier(.34,1.3,.64,1) !important;
+}
+
+/* ══ PRESET CARD ENHANCEMENTS (compress) ══ */
+.preset-card {
+  transition: all .2s cubic-bezier(.22,.68,0,1.15) !important;
+}
+.preset-card:hover { transform: translateY(-2px) !important; }
+
+/* ══ MODE TABS ══ */
+.mode-tab, .mtype-tab {
+  transition: all .2s !important;
+}
+
+/* ══ SIZE COMPARISON ══ */
+.size-cmp-item {
+  transition: transform .2s, box-shadow .2s !important;
+}
+.size-cmp-item:hover { transform: translateY(-2px) !important; box-shadow: 0 4px 14px var(--shadow) !important; }
+
+/* ══ SLIDE-IN CONTENT AFTER FILE LOAD ══ */
+.cpdf-post-upload {
+  animation: postUploadIn .35s cubic-bezier(.22,.68,0,1.15);
+}
+@keyframes postUploadIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ══ INLINE HINT CALLOUTS ══ */
+.cpdf-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 9px 14px;
+  background: rgba(0,96,160,.07);
+  border: 1px solid rgba(0,96,160,.2);
+  border-radius: 9px;
+  font-size: .78rem;
+  color: var(--acc2);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.cpdf-hint-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ══ COPY TEXT BUTTON ══ */
+.cpdf-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1.5px solid var(--bdr);
+  background: var(--surf2);
+  font-family: var(--fm);
+  font-size: .65rem;
+  color: var(--mut);
+  cursor: pointer;
+  transition: all .15s;
+}
+.cpdf-copy-btn:hover { border-color: var(--acc); color: var(--acc); }
+.cpdf-copy-btn.copied { border-color: var(--ok); color: var(--ok); }
+`;
+
+  const styleEl = document.createElement('style');
+  styleEl.textContent = css;
+  document.head.appendChild(styleEl);
+
+  /* ── SVG Gradient Defs for Ring ── */
+  const svgDefs = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svgDefs.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden';
+  svgDefs.innerHTML = `<defs>
+    <linearGradient id="cpdfRingGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="var(--acc)"/>
+      <stop offset="50%" stop-color="var(--acc2)"/>
+      <stop offset="100%" stop-color="var(--acc3)"/>
+    </linearGradient>
+  </defs>`;
+  document.body.appendChild(svgDefs);
+
+  /* ── 2. LOADING MODAL ── */
+  const modal = document.createElement('div');
+  modal.id = 'cpdf-loading-modal';
+  modal.className = 'cpdf-loading-modal';
+  modal.innerHTML = `
+    <div class="cpdf-loading-card">
+      <div class="cpdf-ring-wrap">
+        <svg class="cpdf-ring-svg" viewBox="0 0 88 88">
+          <circle class="cpdf-ring-track" cx="44" cy="44" r="36"/>
+          <circle class="cpdf-ring-fill" id="cpdf-ring-fill" cx="44" cy="44" r="36"/>
+        </svg>
+        <div class="cpdf-ring-pct" id="cpdf-ring-pct">0%</div>
+      </div>
+      <div class="cpdf-loading-title" id="cpdf-loading-title">Processing…</div>
+      <div class="cpdf-loading-msg" id="cpdf-loading-msg">Please wait</div>
+      <div class="cpdf-loading-bar">
+        <div class="cpdf-loading-bar-fill" id="cpdf-loading-bar-fill" style="width:0%"></div>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  /* ── 3. TOAST STACK ── */
+  const toastStack = document.createElement('div');
+  toastStack.className = 'cpdf-toast-stack';
+  toastStack.id = 'cpdf-toast-stack';
+  document.body.appendChild(toastStack);
+
+  /* ── 4. PUBLIC API ── */
+  const CIRC = 2 * Math.PI * 36; // 226.19...
+
+  window.CpdfUI = {
+    /* Loading modal */
+    showLoading(title = 'Processing…', msg = 'Please wait') {
+      document.getElementById('cpdf-loading-title').textContent = title;
+      document.getElementById('cpdf-loading-msg').textContent = msg;
+      this.setProgress(0, msg);
+      modal.classList.add('show');
+    },
+    hideLoading() {
+      this.setProgress(100);
+      setTimeout(() => modal.classList.remove('show'), 400);
+    },
+    setProgress(pct, msg) {
+      pct = Math.max(0, Math.min(100, pct));
+      const fill = document.getElementById('cpdf-ring-fill');
+      const pctEl = document.getElementById('cpdf-ring-pct');
+      const barFill = document.getElementById('cpdf-loading-bar-fill');
+      const msgEl = document.getElementById('cpdf-loading-msg');
+      if (fill) fill.style.strokeDashoffset = CIRC - (pct / 100) * CIRC;
+      if (pctEl) pctEl.textContent = Math.round(pct) + '%';
+      if (barFill) barFill.style.width = pct + '%';
+      if (msg !== undefined && msgEl) msgEl.textContent = msg;
+    },
+    updateMsg(msg) {
+      const el = document.getElementById('cpdf-loading-msg');
+      if (el) el.textContent = msg;
+    },
+
+    /* Toast */
+    toast(msg, type = 'ok', duration = 2800) {
+      const el = document.createElement('div');
+      el.className = 'cpdf-toast ' + type;
+      const icons = { ok: '✓', err: '✕', info: 'ℹ' };
+      el.innerHTML = `<span>${icons[type] || '✓'}</span><span>${msg}</span>`;
+      toastStack.appendChild(el);
+      setTimeout(() => {
+        el.style.animation = 'toastOut .3s ease forwards';
+        setTimeout(() => el.remove(), 300);
+      }, duration);
+    },
+
+    /* Step flow */
+    createSteps(containerId, steps, activeIndex = 0) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const html = steps.map((s, i) => {
+        const cls = i < activeIndex ? 'done' : i === activeIndex ? 'active' : '';
+        const num = i < activeIndex ? '✓' : (i + 1);
+        return `
+          <div class="cpdf-step ${cls}" id="cpdf-step-${containerId}-${i}">
+            <div class="cpdf-step-num">${num}</div>
+            <div class="cpdf-step-lbl">${s}</div>
+          </div>
+          ${i < steps.length - 1 ? '<div class="cpdf-step-arr"></div>' : ''}
+        `;
+      }).join('');
+      container.innerHTML = html;
+    },
+    setStep(containerId, activeIndex) {
+      const steps = document.querySelectorAll(`[id^="cpdf-step-${containerId}-"]`);
+      steps.forEach((el, i) => {
+        el.className = 'cpdf-step' + (i < activeIndex ? ' done' : i === activeIndex ? ' active' : '');
+        const num = el.querySelector('.cpdf-step-num');
+        if (num) num.textContent = i < activeIndex ? '✓' : (i + 1);
+      });
+    },
+
+    /* File chip */
+    showFileChip(chipId, name, size, pages) {
+      const chip = document.getElementById(chipId);
+      if (!chip) return;
+      const nameEl = chip.querySelector('.cpdf-chip-name');
+      const metaEl = chip.querySelector('.cpdf-chip-meta');
+      if (nameEl) nameEl.textContent = name;
+      if (metaEl) {
+        metaEl.innerHTML = `<span>${size}</span>` +
+          (pages ? `<span class="cpdf-chip-pages">📄 ${pages} pages</span>` : '');
+      }
+      chip.classList.add('show');
+    },
+    hideFileChip(chipId) {
+      const chip = document.getElementById(chipId);
+      if (chip) chip.classList.remove('show');
+    },
+
+    /* Scroll to result */
+    scrollToResult(el, offset = 80) {
+      if (!el) return;
+      el.classList.add('cpdf-result-highlight');
+      setTimeout(() => el.classList.remove('cpdf-result-highlight'), 2200);
+      const y = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    },
+
+    /* Copy text utility */
+    copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text)
+          .then(() => this.toast('Copied to clipboard', 'ok'))
+          .catch(() => this.toast('Copy failed', 'err'));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;left:-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        this.toast('Copied to clipboard', 'ok');
+      }
+    },
+
+    /* Upload zone success flash */
+    flashDZ(dzEl) {
+      if (!dzEl) return;
+      dzEl.classList.add('dz-success');
+      setTimeout(() => dzEl.classList.remove('dz-success'), 800);
+    },
+
+    /* Format bytes */
+    fmtSize(b) {
+      if (b >= 1073741824) return (b / 1073741824).toFixed(2) + ' GB';
+      if (b >= 1048576) return (b / 1048576).toFixed(2) + ' MB';
+      return (b / 1024).toFixed(1) + ' KB';
+    }
+  };
+
+  /* ── 5. INTERCEPT existing setProgress / hideProgress / toast calls ── */
+  // Wrap the page's existing setProgress to also update our modal
+  const _origSetProgress = window.setProgress;
+  window.setProgress = function(pct, lbl) {
+    if (_origSetProgress) _origSetProgress(pct, lbl);
+    if (modal.classList.contains('show')) {
+      window.CpdfUI.setProgress(pct, lbl);
+    }
+  };
+
+  /* ── 6. INTERCEPT existing toast() if not already defined ── */
+  if (!window.toast) {
+    window.toast = function(msg, ok = true) {
+      window.CpdfUI.toast(msg, ok === false || ok === 'error' ? 'err' : 'ok');
+    };
+  }
+
+  /* ── 7. DRAG-OVER class consistency patch ── */
+  document.addEventListener('dragover', function(e) {
+    const dz = e.target.closest('.dz');
+    if (dz) {
+      e.preventDefault();
+      dz.classList.add('drag-over');
+    }
+  });
+  document.addEventListener('dragleave', function(e) {
+    const dz = e.target.closest('.dz');
+    if (dz && !dz.contains(e.relatedTarget)) {
+      dz.classList.remove('drag-over');
+    }
+  });
+  document.addEventListener('drop', function(e) {
+    document.querySelectorAll('.dz.drag-over').forEach(dz => dz.classList.remove('drag-over'));
+  });
+
+  /* ── 8. COPY BUTTON auto-bind for text previews ── */
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.cpdf-copy-btn');
+    if (!btn) return;
+    const target = btn.dataset.target;
+    const el = target ? document.getElementById(target) : null;
+    const text = el ? (el.value || el.textContent) : btn.dataset.text || '';
+    if (text) {
+      window.CpdfUI.copyText(text);
+      btn.classList.add('copied');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✓ Copied';
+      setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+    }
+  });
+
+  /* ── 9. AUTO-ENHANCE download buttons in result boxes ── */
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType !== 1) return;
+        // Pulse download buttons
+        const dlBtns = node.querySelectorAll ? node.querySelectorAll('.btn-primary') : [];
+        dlBtns.forEach(btn => {
+          if (/download|save/i.test(btn.textContent)) {
+            btn.classList.add('dl-pulse');
+          }
+        });
+        // Scroll to result
+        if (node.matches && (
+          node.matches('.result-box') ||
+          node.matches('[id^="out-"]') ||
+          node.matches('.split-result')
+        )) {
+          setTimeout(() => window.CpdfUI.scrollToResult(node), 150);
+        }
+      });
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  /* ── 10. RESULT-BOX SHOW observer (existing pages use style display:block) ── */
+  const styleObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      if (m.type === 'attributes' && m.attributeName === 'style') {
+        const el = m.target;
+        const isResult = el.matches && (
+          el.matches('.result-box') ||
+          el.matches('[id^="out-"]') ||
+          el.id === 'resultBox'
+        );
+        if (isResult) {
+          const style = el.getAttribute('style') || '';
+          const cls = el.className || '';
+          if (style.includes('block') || cls.includes('show')) {
+            setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
+            const dlBtns = el.querySelectorAll('.btn-primary');
+            dlBtns.forEach(b => {
+              if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
+            });
+          }
+        }
+      }
+    });
+  });
+
+  // Observe all result boxes present at load and future ones
+  function observeResultBoxes() {
+    document.querySelectorAll('.result-box, [id^="out-"], #resultBox').forEach(el => {
+      styleObserver.observe(el, { attributes: true });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observeResultBoxes);
+  } else {
+    setTimeout(observeResultBoxes, 300);
+  }
+
+  /* ── 11. INJECT STEP FLOWS into each tool page ── */
+  function injectStepFlow() {
+    // Find the tool body
+    const body = document.querySelector('.tool-body, .tool-page-body, #toolBody, .tp');
+    if (!body || body.querySelector('.cpdf-steps')) return;
+
+    const steps = ['Upload', 'Options', 'Process', 'Download'];
+    const stepsWrap = document.createElement('div');
+    stepsWrap.className = 'cpdf-steps';
+    stepsWrap.id = 'cpdf-steps-main';
+    stepsWrap.innerHTML = steps.map((s, i) => `
+      <div class="cpdf-step ${i === 0 ? 'active' : ''}" id="cpdf-step-main-${i}">
+        <div class="cpdf-step-num">${i + 1}</div>
+        <div class="cpdf-step-lbl">${s}</div>
+      </div>
+      ${i < steps.length - 1 ? '<div class="cpdf-step-arr"></div>' : ''}
+    `).join('');
+
+    // Insert before the first child of tool body
+    body.insertBefore(stepsWrap, body.firstChild);
+
+    // Watch for file input changes to advance steps
+    body.addEventListener('change', function(e) {
+      if (e.target.type === 'file' && e.target.files && e.target.files.length) {
+        window.CpdfUI.setStep('main', 1);
+      }
+    }, true);
+  }
+
+  /* ── 12. INJECT COPY BUTTON into text preview areas ── */
+  function injectCopyButtons() {
+    const textPreviews = document.querySelectorAll('pre.text-preview, textarea[readonly]');
+    textPreviews.forEach(el => {
+      if (el.dataset.cpdfCopy) return;
+      el.dataset.cpdfCopy = '1';
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'display:flex;justify-content:flex-end;margin-bottom:4px;';
+      const btn = document.createElement('button');
+      btn.className = 'cpdf-copy-btn';
+      btn.dataset.target = el.id || '';
+      btn.innerHTML = '📋 Copy All';
+      if (!el.id) {
+        btn.addEventListener('click', () => {
+          window.CpdfUI.copyText(el.value || el.textContent);
+          btn.classList.add('copied');
+          btn.innerHTML = '✓ Copied';
+          setTimeout(() => { btn.innerHTML = '📋 Copy All'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+      if (el.parentNode) {
+        el.parentNode.insertBefore(wrap, el);
+        wrap.appendChild(btn);
+      }
+    });
+  }
+
+  /* ── 13. ENHANCE file-info bars ── */
+  function enhanceFileInfo() {
+    document.querySelectorAll('.file-info:not([data-cpdf-enhanced])').forEach(el => {
+      el.dataset.cpdfEnhanced = '1';
+      // Add subtle left border on success
+      el.style.borderLeft = '3px solid var(--ok)';
+    });
+  }
+
+  /* ── 14. DOWNLOAD BUTTON PULSE fix (for show/hide via class) ── */
+  const classObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      if (m.type === 'attributes' && m.attributeName === 'class') {
+        const el = m.target;
+        if (el.classList.contains('show') && (el.classList.contains('result-box') || el.id === 'resultBox')) {
+          setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
+          el.querySelectorAll('.btn-primary').forEach(b => {
+            if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
+          });
+        }
+      }
+    });
+  });
+  document.querySelectorAll('.result-box, #resultBox').forEach(el => {
+    classObserver.observe(el, { attributes: true });
+  });
+
+  /* ── Run on DOM ready ── */
+  function onReady() {
+    injectStepFlow();
+    injectCopyButtons();
+    enhanceFileInfo();
+
+    // Hook existing file input onchange to advance steps and flash DZ
+    document.querySelectorAll('input[type=file]').forEach(inp => {
+      inp.addEventListener('change', function() {
+        if (this.files && this.files.length) {
+          const dz = this.closest('.dz');
+          if (dz) window.CpdfUI.flashDZ(dz);
+          window.CpdfUI.setStep('main', 1);
+          window.CpdfUI.toast('File loaded — configure options below', 'ok');
+        }
+      });
+    });
+
+    // Hook process buttons to show loading modal
+    document.querySelectorAll('.btn-primary:not([data-cpdf-hooked])').forEach(btn => {
+      if (/convert|compress|merge|split|rotate|process|generate|apply|extract|protect|unlock|sign|watermark|rearrange|delete|crop|resize|add|save/i.test(btn.textContent)) {
+        btn.dataset.cpdfHooked = '1';
+        const origClick = btn.onclick;
+        btn.addEventListener('click', function() {
+          // Only show modal if there's a file
+          const hasFile = document.querySelector('input[type=file]') &&
+            Array.from(document.querySelectorAll('input[type=file]')).some(i => i.files && i.files.length);
+          if (hasFile && !btn.disabled) {
+            window.CpdfUI.showLoading('Processing PDF…', 'Starting up…');
+            window.CpdfUI.setStep('main', 2);
+          }
+        }, true); // capture = true so it fires before existing handlers
+      }
+    });
+  }
+
+  // Intercept hideProgress to hide modal
+  const _origHideProgress = window.hideProgress;
+  window.hideProgress = function() {
+    if (_origHideProgress) _origHideProgress();
+    window.CpdfUI.hideLoading();
+    window.CpdfUI.setStep('main', 3);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onReady);
+  } else {
+    setTimeout(onReady, 50);
+  }
+
+})();
+
+</script>
 <script src="./header.js"></script>
 
 <script id="scroll-result-patch">
@@ -833,6 +1932,32 @@ setupDragDrop('dropZonePptx', function(files) { if (files.length) handlePptxFile
   },true);
 })();
 </script>
+
+
+<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
+Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24. 
+This free PDF editor lets you edit PDF, convert PDF, merge PDF, split PDF, compress PDF, rotate PDF, sign PDF, watermark PDF, protect PDF, unlock PDF, crop PDF, add page numbers to PDF, add header footer to PDF, rearrange PDF pages, delete PDF pages — all free with no upload required.
+Best free ilovepdf alternative. Best free smallpdf alternative. Best free sejda alternative. 
+PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free. 
+No sign up required. No file upload. 100% browser based. Private and secure.
+</div>
+
+<div class="feedback-banner">
+  <div style="max-width:700px;margin:0 auto">
+    <p class="fb-title">Want a new feature or have a suggestion?</p>
+    <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="site-footer-links">
+    <a href="./index.html">Home</a><span class="site-footer-sep">·</span>
+    <a href="./privacy-policy.html">Privacy</a><span class="site-footer-sep">·</span>
+    <a href="./terms.html">Terms</a><span class="site-footer-sep">·</span>
+    <a href="./feedback.html">Contact</a><span class="site-footer-sep">·</span>
+    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
+  </div>
+</footer>
 
 </body>
 </html>

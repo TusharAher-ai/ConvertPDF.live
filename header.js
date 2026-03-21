@@ -9,6 +9,11 @@
 
   /* ── 1. INJECT HEADER CSS ── */
   var css = `
+/* Dark mode on html element */
+html.dark { background: #0f0f1a !important; color-scheme: dark; }
+html.light { background: #f0f2f5 !important; color-scheme: light; }
+html.dark body { --bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa; }
+
 /* ═══ UNIFIED HEADER STYLES ═══ */
 .u-hdr {
   background: var(--surf);
@@ -128,8 +133,15 @@ body.light .u-nav-link.u-active {
 }
 .u-dd-right > .u-nav-dd { left: auto; right: 0; }
 .u-nav-dd.open { display: block; }
-/* dark mode removed */
-.u-nav-dd { background: #fff; border-color: #c4c6d8; }
+body.dark .u-nav-dd {
+  background: #16162a;
+  border-color: #2e2e4e;
+  box-shadow: 0 16px 50px rgba(0,0,0,.55);
+}
+body.light .u-nav-dd {
+  background: #fff;
+  border-color: #c4c6d8;
+}
 
 .u-ndd-title {
   font-family: var(--fm, 'Space Mono', monospace);
@@ -200,7 +212,57 @@ body.light .u-ndd-item.u-active { background: rgba(200,136,10,.12); color: #c888
   gap: 10px;
   flex-shrink: 0;
 }
-
+.u-theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1.5px solid var(--bdr, #c4c6d8);
+  background: transparent;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.u-theme-toggle:hover {
+  background: var(--surf2, #e8eaf0);
+  border-color: var(--acc, #b07800);
+}
+.u-toggle-track {
+  width: 42px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--surf2, #e8eaf0);
+  border: 2px solid var(--bdr, #c4c6d8);
+  position: relative;
+  transition: background .3s, border-color .3s;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+body.light .u-toggle-track {
+  background: var(--acc, #b07800);
+  border-color: var(--acc, #b07800);
+}
+.u-toggle-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform .3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  pointer-events: none;
+}
+body.light .u-toggle-thumb { transform: translateX(18px); }
+.u-toggle-lbl {
+  font-family: var(--fm, 'Space Mono', monospace);
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--txt, #1a1a2e);
+  white-space: nowrap;
+  pointer-events: none;
+}
 
 /* Mobile hamburger */
 .u-hamburger {
@@ -443,7 +505,10 @@ body.light .u-ndd-item.u-active { background: rgba(200,136,10,.12); color: #c888
 
     <!-- RIGHT CONTROLS -->
     <div class="u-hdr-controls">
-
+      <button class="u-theme-toggle" id="u-theme-btn" aria-label="Toggle dark/light theme" title="Toggle theme">
+        <span class="u-toggle-track"><span class="u-toggle-thumb"></span></span>
+        <span class="u-toggle-lbl" id="u-theme-lbl">☀️ Light</span>
+      </button>
       <button class="u-hamburger" id="u-hamburger" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -498,21 +563,78 @@ body.light .u-ndd-item.u-active { background: rgba(200,136,10,.12); color: #c888
 
   /* ── 4. INJECT HEADER INTO DOM ── */
   // Insert before the first child of body (or as first element)
-  // Replace the static placeholder header (prevents layout shift/flicker)
-  var existing = document.getElementById('unified-header');
-  if (existing) {
-    // Replace placeholder with full header - no layout shift
-    var tmp = document.createElement('div');
-    tmp.innerHTML = html.trim();
-    var newHeader = tmp.querySelector('#unified-header') || tmp.firstElementChild;
-    if (newHeader) existing.parentNode.replaceChild(newHeader, existing);
-  } else {
-    document.body.insertAdjacentHTML('afterbegin', html);
+  document.body.insertAdjacentHTML('afterbegin', html);
+
+  /* ── 5. THEME SYSTEM ── */
+  // Read saved theme or default to light
+  var savedTheme = (function() {
+    try { 
+      return localStorage.getItem('cpdf-theme') || 
+             sessionStorage.getItem('cpdf-theme') || 
+             window._cpdfTheme ||
+             document.documentElement.getAttribute('data-theme') ||
+             'light'; 
+    } catch(e) { 
+      return window._cpdfTheme || 
+             document.documentElement.getAttribute('data-theme') || 
+             'light'; 
+    }
+  })();
+
+  function applyTheme(theme) {
+    // Apply to body
+    document.body.classList.remove('light', 'dark');
+    document.body.classList.add(theme);
+    // Apply to html element too (fixes hardcoded background issue)
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(theme);
+    document.documentElement.removeAttribute('style');
+    // Update CSS variables on html element for full coverage
+    if (theme === 'dark') {
+      document.documentElement.style.background = '#0f0f1a';
+      document.documentElement.style.colorScheme = 'dark';
+    } else {
+      document.documentElement.style.background = '#f0f2f5';
+      document.documentElement.style.colorScheme = 'light';
+    }
+    // Update toggle label
+    var lbl = document.getElementById('u-theme-lbl');
+    if (lbl) lbl.textContent = theme === 'dark' ? '🌙 Dark' : '☀️ Light';
+    // Update toggle track visual
+    var track = document.querySelector('.u-toggle-track');
+    if (track) {
+      track.style.background = theme === 'dark' ? 'var(--acc)' : '';
+    }
+    var thumb = document.querySelector('.u-toggle-thumb');
+    if (thumb) {
+      thumb.style.transform = theme === 'dark' ? 'translateX(18px)' : 'translateX(0)';
+    }
+    // Save preference - works on both http:// and file://
+    try { localStorage.setItem('cpdf-theme', theme); } catch(e) {
+      // Fallback: use sessionStorage if localStorage blocked
+      try { sessionStorage.setItem('cpdf-theme', theme); } catch(e2) {}
+    }
+    // Store on window for same-session persistence on file://
+    window._cpdfTheme = theme;
   }
 
-  /* ── 5. THEME SYSTEM — always light, zero DOM changes ── */
-  function applyTheme() {}
-  window.toggleTheme = function() {};
+  // Apply on load
+  applyTheme(savedTheme);
+
+  // Toggle on click — only attach once
+  var themeBtn = document.getElementById('u-theme-btn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function() {
+      var isDark = document.body.classList.contains('dark');
+      applyTheme(isDark ? 'light' : 'dark');
+    });
+  }
+
+  // Override any existing page-level toggleTheme so it syncs with ours
+  window.toggleTheme = function() {
+    var isDark = document.body.classList.contains('dark');
+    applyTheme(isDark ? 'light' : 'dark');
+  };
 
   /* ── 6. DESKTOP DROPDOWN NAV ── */
   var timers = {};

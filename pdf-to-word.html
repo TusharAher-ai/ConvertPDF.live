@@ -1,33 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" style="background:#f0f2f5">
 <head>
-<style id="cpdf-master">
-/* ── FLICKER PREVENTION — must be first ── */
-html{background:#f0f2f5;color-scheme:light}
-body{background:#f0f2f5;color:#1a1a2e}
-/* Disable all auto animations until user interacts — prevents tab-switch replay */
-html:not(.cpdf-ready) *{animation-play-state:paused!important}
-html:not(.cpdf-ready) .tool-page-overlay{display:none!important}
-/* Prevent compositor repaint on background */
-body{will-change:auto;contain:style layout}
-</style>
-<script id="cpdf-init">
+<script>
 (function(){
-  var d=document.documentElement;
-  d.style.background='#f0f2f5';
-  d.className='light';
-  // Re-enable animations on first real user interaction
-  function enableAnim(){
-    d.classList.add('cpdf-ready');
-    document.removeEventListener('mousemove',enableAnim,{passive:true});
-    document.removeEventListener('touchstart',enableAnim,{passive:true});
-    document.removeEventListener('keydown',enableAnim,{passive:true});
-  }
-  document.addEventListener('mousemove',enableAnim,{passive:true});
-  document.addEventListener('touchstart',enableAnim,{passive:true});
-  document.addEventListener('keydown',enableAnim,{passive:true});
-  // Also enable after 1.5s regardless (fallback for non-interactive pages)
-  setTimeout(function(){enableAnim();},1500);
+  try {
+    var t = localStorage.getItem('cpdf-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', t);
+    document.addEventListener('DOMContentLoaded', function(){
+      document.body.classList.remove('light','dark');
+      document.body.classList.add(t);
+    });
+  } catch(e) {}
 })();
 </script>
 <!-- Google tag (gtag.js) -->
@@ -38,347 +21,1118 @@ body{will-change:auto;contain:style layout}
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
-<style>html,body{background:#f0f2f5}
-/* ── FREE/OCR BADGE ── */
-.free-now-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  font-family:var(--fm,'Space Mono',monospace);font-size:.58rem;font-weight:700;letter-spacing:.04em;
-  background:linear-gradient(90deg,rgba(16,112,64,.18),rgba(16,180,80,.10));
-  color:#107040;border:1.5px solid rgba(16,112,64,.35);
-  border-radius:20px;padding:3px 10px;margin-left:6px;vertical-align:middle;
-  animation:freeBadgePop .4s cubic-bezier(.34,1.56,.64,1);
-  white-space:nowrap;
-}
-@keyframes freeBadgePop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
-.ocr-free-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  font-family:var(--fm,'Space Mono',monospace);font-size:.56rem;font-weight:700;letter-spacing:.04em;
-  background:rgba(16,112,64,.14);color:#107040;border:1px solid rgba(16,112,64,.3);
-  border-radius:10px;padding:2px 8px;margin-left:4px;white-space:nowrap;
-}
-</style>
-<meta name="theme-color" content="#f0f2f5"/>
-<meta name="color-scheme" content="light"/>
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net"/>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>PDF to Word Converter Free Online — Convert PDF to DOCX | ConvertPDF.Live</title>
-<meta name="description" content="Convert PDF to Word (.docx) free online — browser-based, no upload. Accurate PDF to Word conversion preserving formatting. No sign-up, no watermark."/>
+<title>PDF to Word Converter Free Online | ConvertPDF.Live</title>
+<meta name="description" content="Convert PDF to Word (.docx) free online. Browser-based, no upload, OCR support for scanned PDFs. Preserves paragraphs and structure. Download instantly."/>
+<meta name="keywords" content="pdf to word, convert pdf to word free, pdf to docx, pdf word converter online, pdf to word no upload, ocr pdf to word, browser pdf word converter, convertpdf, pdf to word ilovepdf, pdf to word smallpdf, pdf to word sejda, pdf word converter alternative, ilovepdf, ilovepdf alternative, ilovepdf free, i love pdf, ilove pdf, smallpdf, smallpdf alternative, smallpdf free, small pdf, sejda, sejda alternative, sejda pdf, adobe acrobat alternative, adobe acrobat free alternative, pdf24 alternative, pdf24, pdfcandy, pdf candy alternative, foxit pdf alternative, nitro pdf alternative, online2pdf alternative, pdf editor, edit pdf, pdf converter"/>
 <meta name="author" content="ConvertPDF.Live"/>
-<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>
-<meta name="robots" content="index,follow"/>
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
 <link rel="canonical" href="https://convertpdf.live/pdf-to-word.html"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://convertpdf.live/pdf-to-word.html"/>
-<meta property="og:title" content="PDF to Word Converter Free Online — Convert PDF to DOCX | ConvertPDF.Live"/>
-<meta property="og:description" content="Convert PDF to Word (.docx) free online — browser-based, no upload. Accurate PDF to Word conversion preserving formatting. No sign-up, no watermark."/>
+<meta property="og:title" content="PDF to Word Converter Free Online | ConvertPDF.Live"/>
+<meta property="og:description" content="Convert PDF to Word (.docx) free online. Browser-based, no upload, OCR support for scanned PDFs."/>
 <meta property="og:site_name" content="ConvertPDF.Live"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap&font-display=swap&font-display=swap" rel="stylesheet"/>
+<meta property="og:image" content="https://convertpdf.live/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@ConvertPDFLive"/>
+<meta name="twitter:title" content="PDF to Word Converter Free Online | ConvertPDF.Live"/>
+<meta name="twitter:description" content="Convert PDF to Word (.docx) free online. Browser-based, no upload, OCR support."/>
+<meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Word Converter","url":"https://convertpdf.live/pdf-to-word.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Convert PDF to Word document free online, browser-based, no upload."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://convertpdf.live/"},{"@type":"ListItem","position":2,"name":"PDF to Word","item":"https://convertpdf.live/pdf-to-word.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does the Word output preserve formatting?","acceptedAnswer":{"@type":"Answer","text":"Paragraphs, headings, line spacing and basic structure are preserved. Complex multi-column layouts may simplify."}},{"@type":"Question","name":"What is OCR Mode for?","acceptedAnswer":{"@type":"Answer","text":"OCR is for scanned PDFs where pages are images. Tesseract.js recognises the text."}},{"@type":"Question","name":"Are files uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"Never. All processing happens 100% in your browser."}}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;--shadow:rgba(0,0,0,.10);--r:8px;--hdr-h:58px;--fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif}
+/* ═══════════════════════════
+   TOKENS — matches site system
+═══════════════════════════ */
+:root{
+  --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
+  --acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;
+  --txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;
+  --shadow:rgba(0,0,0,.10);--r:8px;--hdr-h:58px;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#f0f2f5;color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh}
-/* dark removed */
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}.logo span{color:var(--txt)}.theme-btn:hover{border-color:var(--acc)}.nav-link:hover{color:var(--acc);background:rgba(176,120,0,.08)}.dd-right .nav-dd{left:auto;right:0}.ndd-title:first-child{margin-top:0}.ndd-item:hover{background:var(--surf2);color:var(--acc)}
-@media(max-width:700px){.site-nav{display:none}}
-main{max-width:820px;margin:0 auto;padding:28px 18px 80px}
-.back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#ffffff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;margin-bottom:22px;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3)}.back-link:hover{transform:translateX(-3px) scale(1.03)}
-.tool-card{background:var(--surf);border:2px solid var(--bdr);border-radius:18px;overflow:hidden;box-shadow:0 4px 24px var(--shadow)}
-.tool-card-accent{height:3px;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--acc3));opacity:.6}
-.tool-hdr{padding:28px 32px 22px;background:linear-gradient(145deg,var(--surf) 0%,var(--surf2) 100%);position:relative;overflow:hidden;border-bottom:1px solid var(--bdr)}
-.tool-hdr::after{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(176,120,0,.12),transparent 65%);pointer-events:none}
-.tool-icon{font-size:2rem;margin-bottom:12px;display:block}.tool-title{font-family:var(--fd);font-weight:800;font-size:clamp(1.3rem,3vw,1.85rem);letter-spacing:-.03em;color:var(--txt);margin-bottom:8px}
-.tool-desc{color:var(--mut);font-size:.88rem;line-height:1.65;max-width:500px}
-.tool-badges{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
-.badge{font-family:var(--fm);font-size:.55rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
+::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--acc)}
+
+/* layout */
+main{max-width:860px;margin:0 auto;padding:32px 18px 100px}
+
+/* top nav */
+.top-nav-row{display:flex;align-items:center;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+.back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap}
+.back-link:hover{transform:translateX(-3px) scale(1.03)}
+.blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;white-space:nowrap;margin-left:auto}
+.blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+
+/* hero */
+.page-hero{text-align:center;padding:0 0 28px}
+.hero-icon{font-size:2.8rem;display:block;margin-bottom:10px;filter:drop-shadow(0 4px 12px rgba(176,120,0,.22))}
+.page-hero h1{font-family:var(--fd);font-weight:800;font-size:clamp(1.55rem,4vw,2.3rem);letter-spacing:-.04em;color:var(--txt);margin-bottom:10px;line-height:1.1}
+.page-hero h1 em{font-style:normal;color:var(--acc)}
+.page-hero p{color:var(--mut);font-size:.92rem;max-width:530px;margin:0 auto 16px;line-height:1.7}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px}
 .badge-g{background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)}
 .badge-y{background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)}
 .badge-b{background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)}
+
+/* step tracker */
+.steps-track{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:24px;padding:13px 18px;background:var(--surf);border:1px solid var(--bdr);border-radius:14px;overflow-x:auto;scrollbar-width:none}
+.steps-track::-webkit-scrollbar{display:none}
+.step-item{display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32;transition:opacity .3s}
+.step-item.active{opacity:1}
+.step-item.done{opacity:.62}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.6rem;font-weight:700;color:var(--mut);transition:all .3s;flex-shrink:0}
+.step-item.active .step-num{background:var(--acc);border-color:var(--acc);color:#0a0a14;box-shadow:0 0 0 4px rgba(176,120,0,.18)}
+.step-item.done .step-num{background:var(--ok);border-color:var(--ok);color:#fff}
+.step-lbl{font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap}
+.step-arr{width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0;position:relative}
+.step-arr::after{content:'';position:absolute;right:-1px;top:-3px;border:3px solid transparent;border-left-color:var(--bdr)}
+@media(max-width:440px){.step-lbl{font-size:.6rem}.step-arr{width:14px;margin:0 3px}}
+
+/* main card */
+.tool-card{background:var(--surf);border:2px solid var(--bdr);border-radius:20px;overflow:hidden;box-shadow:0 4px 28px var(--shadow)}
+.card-accent{height:4px;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--acc3))}
 .tool-body{padding:28px 32px}
-@media(max-width:600px){.tool-hdr,.tool-body{padding:20px 18px}}
-.dz{border:2.5px dashed var(--bdr);border-radius:14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surf2);text-align:center;padding:36px 20px;position:relative;margin-bottom:16px;transition:all .25s}
-.dz:hover,.dz.drag-over{border-color:var(--acc);background:rgba(176,120,0,.04);transform:scale(1.01)}
+@media(max-width:600px){.tool-body{padding:20px 16px}}
+
+/* drop zone */
+.dz{border:2.5px dashed var(--bdr);border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--surf2);text-align:center;padding:52px 20px;position:relative;transition:all .28s cubic-bezier(.34,1.1,.64,1);margin-bottom:0}
+.dz:hover,.dz.drag-over{border-color:var(--acc);background:rgba(176,120,0,.05);transform:scale(1.01);box-shadow:0 0 0 4px rgba(176,120,0,.10)}
 .dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.dz-icon{font-size:2.2rem}.dz-title{font-family:var(--fd);font-weight:700;font-size:.95rem;color:var(--txt)}.dz-sub{font-size:.78rem;color:var(--mut)}
-.dz-hint{font-family:var(--fm);font-size:.62rem;color:var(--mut);background:var(--surf);padding:3px 10px;border-radius:20px;border:1px solid var(--bdr)}
-.file-info{display:none;align-items:center;gap:10px;padding:10px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:10px;margin-bottom:16px}
-.fi-icon{font-size:1.4rem}.fi-name{font-family:var(--fd);font-weight:700;font-size:.84rem;color:var(--txt);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fi-size{font-family:var(--fm);font-size:.68rem;color:var(--mut);flex-shrink:0}
-.fi-clear{background:transparent;border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;cursor:pointer;font-size:.7rem;color:var(--mut)}.fi-clear:hover{border-color:var(--acc3);color:var(--acc3)}
-label.lbl{font-family:var(--fm);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:6px}
-input[type=text],input[type=number],input[type=password],select,textarea{width:100%;padding:9px 12px;border:1.5px solid var(--bdr);border-radius:var(--r);font-size:.85rem;background:var(--surf);color:var(--txt);outline:none;transition:border-color .2s;font-family:var(--fb)}
-input:focus,select:focus,textarea:focus{border-color:var(--acc)}
-input[type=range]{width:100%;accent-color:var(--acc)}input[type=checkbox]{accent-color:var(--acc)}
-.fg{margin-bottom:14px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:540px){.form-row{grid-template-columns:1fr}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 24px;border-radius:50px;font-family:var(--fd);font-weight:800;font-size:.84rem;cursor:pointer;transition:all .22s;border:none;text-decoration:none}
-.btn-primary{background:var(--acc);color:#1a1a2e;box-shadow:0 3px 16px rgba(176,120,0,.3)}.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 22px rgba(176,120,0,.45)}.btn-primary:disabled{opacity:.5;cursor:not-allowed}
-.btn-secondary{background:var(--surf2);color:var(--txt);border:1.5px solid var(--bdr)}.btn-secondary:hover{border-color:var(--acc);color:var(--acc);background:var(--surf)}
-.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.progress-wrap{margin:14px 0;display:none}.progress-wrap.show{display:block}
-.progress-bar-bg{height:8px;background:var(--surf2);border-radius:6px;overflow:hidden;border:1px solid var(--bdr)}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:6px;transition:width .3s;width:0}
-.progress-label{font-family:var(--fm);font-size:.65rem;color:var(--mut);margin-top:5px}
-.result-box{margin-top:16px;padding:16px 18px;background:rgba(16,112,64,.08);border:1.5px solid rgba(16,112,64,.25);border-radius:12px;display:none}
-.result-box.show,.result-box[style*="block"]{display:block}
-.result-title{font-family:var(--fd);font-weight:700;font-size:.9rem;color:var(--ok);margin-bottom:4px}
-.result-sub{font-family:var(--fm);font-size:.67rem;color:var(--mut);margin-bottom:10px}
-.info-box{padding:10px 14px;border-radius:9px;font-size:.78rem;margin-bottom:14px;display:none;gap:8px;align-items:flex-start;line-height:1.5}
+.dz-icon{font-size:2.8rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.dz:hover .dz-icon{transform:scale(1.14) translateY(-3px)}
+.dz-title{font-family:var(--fd);font-weight:800;font-size:1rem;color:var(--txt)}
+.dz-sub{font-size:.8rem;color:var(--mut)}
+.dz-hint{font-family:var(--fm);font-size:.6rem;color:var(--mut);background:var(--surf);padding:3px 11px;border-radius:20px;border:1px solid var(--bdr);animation:hintPulse 2.5s ease infinite}
+@keyframes hintPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* file chip */
+.file-chip{display:none;align-items:center;gap:12px;padding:12px 16px;background:var(--surf2);border:1.5px solid rgba(16,112,64,.28);border-left:3px solid var(--ok);border-radius:12px;margin-bottom:0;animation:chipIn .3s cubic-bezier(.34,1.3,.64,1)}
+.file-chip.show{display:flex}
+@keyframes chipIn{from{opacity:0;transform:translateY(-5px) scale(.97)}to{opacity:1;transform:none}}
+.chip-icon{font-size:1.7rem;flex-shrink:0}
+.chip-info{flex:1;min-width:0}
+.chip-name{font-family:var(--fd);font-weight:700;font-size:.86rem;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip-meta{font-family:var(--fm);font-size:.63rem;color:var(--ok);display:flex;gap:10px;margin-top:2px;flex-wrap:wrap;align-items:center}
+.chip-pages{display:inline-flex;align-items:center;gap:3px;background:rgba(176,120,0,.1);color:var(--acc);border:1px solid rgba(176,120,0,.22);border-radius:20px;font-family:var(--fm);font-size:.56rem;padding:1px 8px}
+.chip-clear{background:transparent;border:1px solid var(--bdr);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:.68rem;color:var(--mut);font-family:var(--fm);transition:all .15s;flex-shrink:0;white-space:nowrap}
+.chip-clear:hover{border-color:var(--acc3);color:var(--acc3)}
+
+/* divider */
+.sect-div{height:1px;background:var(--bdr);margin:22px 0;opacity:.5}
+
+/* section label */
+.sect-lbl{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin-bottom:10px;display:block;padding-bottom:5px;border-bottom:1px solid var(--bdr)}
+
+/* opts panel */
+.opts-panel{border:1.5px solid var(--bdr);border-radius:14px;overflow:hidden;margin-bottom:20px}
+.opts-hdr{display:flex;align-items:center;gap:10px;padding:11px 16px;background:var(--surf2);border-bottom:1px solid var(--bdr);cursor:pointer;user-select:none;transition:background .18s}
+.opts-hdr:hover{background:rgba(176,120,0,.06)}
+.opts-icon{font-size:1rem}
+.opts-hdr-title{font-family:var(--fd);font-weight:700;font-size:.84rem;color:var(--txt);flex:1}
+.opts-chevron{font-size:.68rem;color:var(--mut);transition:transform .25s}
+.opts-hdr.collapsed .opts-chevron{transform:rotate(-90deg)}
+.opts-body{padding:18px 20px}
+
+/* mode cards */
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.mode-grid{grid-template-columns:1fr}}
+.mode-card{border:2px solid var(--bdr);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .2s;background:var(--surf);position:relative;user-select:none}
+.mode-card:hover{border-color:var(--acc);background:rgba(176,120,0,.03)}
+.mode-card.selected{border-color:var(--acc);background:rgba(176,120,0,.07);box-shadow:0 0 0 3px rgba(176,120,0,.12)}
+.mode-card input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.mode-card-icon{font-size:1.4rem;margin-bottom:5px;display:block}
+.mode-card-title{font-family:var(--fd);font-weight:700;font-size:.82rem;color:var(--txt);margin-bottom:3px}
+.mode-card-desc{font-size:.71rem;color:var(--mut);line-height:1.5}
+.mode-card-tag{display:inline-block;margin-top:7px;font-family:var(--fm);font-size:.53rem;padding:2px 8px;border-radius:10px}
+.tag-blue{background:rgba(0,96,160,.09);color:var(--acc2);border:1px solid rgba(0,96,160,.2)}
+.tag-red{background:rgba(176,0,74,.08);color:var(--acc3);border:1px solid rgba(176,0,74,.2)}
+
+/* range selector */
+.range-row{display:flex;gap:8px;flex-wrap:wrap}
+.range-opt{display:flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;border:1.5px solid var(--bdr);cursor:pointer;font-family:var(--fd);font-weight:700;font-size:.75rem;color:var(--mut);transition:all .2s;user-select:none}
+.range-opt:hover{border-color:var(--acc);color:var(--acc)}
+.range-opt.selected{border-color:var(--acc);color:var(--acc);background:rgba(176,120,0,.08)}
+.range-opt input{position:absolute;opacity:0;pointer-events:none}
+.range-custom-row{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.range-custom-row input[type=text]{padding:8px 12px;border:1.5px solid var(--bdr);border-radius:var(--r);font-size:.8rem;background:var(--surf);color:var(--txt);outline:none;font-family:var(--fm);transition:border-color .2s;width:200px}
+.range-custom-row input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(176,120,0,.12)}
+.range-hint{font-size:.7rem;color:var(--mut)}
+
+/* format opts */
+.format-row{display:flex;gap:8px;flex-wrap:wrap}
+.format-opt{border:2px solid var(--bdr);border-radius:10px;padding:9px 16px;cursor:pointer;transition:all .2s;background:var(--surf);position:relative;min-width:80px;text-align:center;user-select:none}
+.format-opt:hover{border-color:var(--acc)}
+.format-opt.selected{border-color:var(--acc);background:rgba(176,120,0,.07)}
+.format-opt input{position:absolute;opacity:0;pointer-events:none}
+.fmt-ext{font-family:var(--fm);font-weight:700;font-size:.8rem;color:var(--txt);display:block}
+.fmt-desc{font-size:.65rem;color:var(--mut);margin-top:2px}
+
+/* info boxes */
+.info-box{padding:10px 14px;border-radius:9px;font-size:.78rem;margin-bottom:14px;display:none;gap:8px;align-items:flex-start;line-height:1.55}
 .info-box.show{display:flex}
-.info-warn{background:rgba(176,120,0,.1);border:1px solid rgba(176,120,0,.25);color:var(--acc)}
-.info-note{background:rgba(0,96,160,.1);border:1px solid rgba(0,96,160,.25);color:var(--acc2)}
-.info-ok{background:rgba(16,112,64,.1);border:1px solid rgba(16,112,64,.25);color:var(--ok)}
-.info-err{background:rgba(176,0,74,.1);border:1px solid rgba(176,0,74,.25);color:var(--acc3)}
-.ocr-row{display:none;align-items:center;gap:10px;padding:10px 14px;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:10px;margin-bottom:14px;cursor:pointer}.ocr-row.show{display:flex}.ocr-row:hover{border-color:var(--acc)}
-.toggle-sw{width:36px;height:20px;border-radius:10px;background:var(--bdr);position:relative;transition:background .25s;flex-shrink:0}.toggle-sw.on{background:var(--acc)}
-.toggle-sw::after{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:#fff;top:3px;left:3px;transition:transform .25s}.toggle-sw.on::after{transform:translateX(16px)}
-.ocr-label{font-family:var(--fd);font-weight:700;font-size:.8rem;color:var(--txt)}.ocr-sub{font-size:.7rem;color:var(--mut)}
-pre.text-preview{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;padding:16px;font-family:var(--fm);font-size:.76rem;color:var(--txt);line-height:1.8;max-height:360px;overflow-y:auto;margin-top:14px;white-space:pre-wrap;word-break:break-word;display:none}
-.thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:14px}
-.thumb-card{background:var(--surf2);border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;transition:all .2s}.thumb-card:hover{border-color:var(--acc);transform:translateY(-2px)}
-.thumb-card img{width:100%;display:block;aspect-ratio:.707;object-fit:contain;background:#fff}
-.thumb-label{font-family:var(--fm);font-size:.58rem;color:var(--mut);text-align:center;padding:5px 4px}
-.dl-btn-sm{display:block;width:100%;padding:5px 0;background:var(--acc);color:#1a1a2e;font-family:var(--fd);font-weight:700;font-size:.65rem;text-align:center;border:none;cursor:pointer}
-.drag-list{display:flex;flex-direction:column;gap:6px;margin-top:12px}
-.drag-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surf2);border:1.5px solid var(--bdr);border-radius:10px;cursor:grab;user-select:none;transition:all .15s}
-.drag-item:active{cursor:grabbing}.drag-item.dragging{opacity:.4;border-style:dashed}
-.drag-item.drop-above{border-top:3px solid var(--acc)}.drag-item.drop-below{border-bottom:3px solid var(--acc)}
-.drag-handle{color:var(--mut);font-size:1.1rem;flex-shrink:0}
-.drag-thumb{width:40px;height:56px;object-fit:contain;border-radius:4px;background:#fff;border:1px solid var(--bdr);flex-shrink:0}
-.drag-info{flex:1;min-width:0}
-.drag-label{font-family:var(--fd);font-weight:700;font-size:.82rem;color:var(--txt)}
-.drag-num{font-family:var(--fm);font-size:.65rem;color:var(--mut)}
-.size-cmp{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0}
-.size-cmp-item{background:var(--surf2);border:1px solid var(--bdr);border-radius:10px;padding:12px 8px;text-align:center}
-.size-cmp-val{font-family:var(--fd);font-weight:800;font-size:1.05rem;color:var(--txt)}
-.size-cmp-lbl{font-family:var(--fm);font-size:.58rem;color:var(--mut);margin-top:3px}
-.size-cmp-item.ok .size-cmp-val{color:var(--ok)}
-.trust-bar{display:flex;gap:0;flex-wrap:wrap;padding:14px 32px;border-top:1px solid var(--bdr);background:var(--surf2)}
-.ttb-item{display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:.6rem;color:var(--mut);padding:3px 14px 3px 0}
-.faq-section{margin-top:32px;border-top:2px solid var(--acc);padding-top:20px}
-.faq-title{font-family:var(--fd);font-weight:800;font-size:1rem;color:var(--txt);margin-bottom:14px}
-.faq-item{border:1px solid var(--bdr);border-radius:10px;margin-bottom:8px;overflow:hidden}.faq-item.open{border-color:var(--acc)}
-.faq-q{padding:13px 16px;cursor:pointer;font-family:var(--fd);font-weight:700;font-size:.84rem;color:var(--txt);display:flex;justify-content:space-between;align-items:center;user-select:none}.faq-q:hover{color:var(--acc)}
-.faq-a{display:none;padding:0 16px 14px;font-size:.82rem;color:var(--mut);line-height:1.65}.faq-item.open .faq-a{display:block}
-.toolbar{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:10px;margin-bottom:10px;align-items:center}
-.tool-btn{padding:6px 12px;border-radius:7px;border:1.5px solid var(--bdr);background:var(--surf);color:var(--txt);font-size:.74rem;font-family:var(--fd);font-weight:700;cursor:pointer;transition:all .2s}
-.tool-btn:hover,.tool-btn.act{border-color:var(--acc);color:var(--acc);background:rgba(176,120,0,.07)}
-.canvas-scroll{overflow:auto;border:1.5px solid var(--bdr);border-radius:10px;background:#f5f5f5;position:relative}
-.range-row{display:flex;align-items:center;gap:10px;margin-bottom:14px}.range-row input[type=range]{flex:1}.range-val{font-family:var(--fm);font-size:.72rem;color:var(--acc);min-width:34px;text-align:right}
+.info-warn{background:rgba(176,120,0,.09);border:1px solid rgba(176,120,0,.25);color:var(--acc)}
+.info-note{background:rgba(0,96,160,.09);border:1px solid rgba(0,96,160,.25);color:var(--acc2)}
+.info-err{background:rgba(176,0,74,.09);border:1px solid rgba(176,0,74,.25);color:var(--acc3)}
 
-/* shared-patch-css */
-.u-prog{margin:12px 0;display:none}.u-prog.show{display:block}
-.u-prog-track{height:8px;background:var(--surf2);border-radius:6px;overflow:hidden;border:1px solid var(--bdr)}
-.u-prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:6px;transition:width .25s;width:0}
-.u-prog-lbl{font-family:var(--fm);font-size:.63rem;color:var(--mut);margin-top:4px;display:flex;align-items:center;gap:6px}
-.u-prog-spinner{width:10px;height:10px;border:1.5px solid var(--bdr);border-top-color:var(--acc);border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0}
+/* progress */
+.prog-wrap{margin:16px 0;display:none}
+.prog-wrap.show{display:block}
+.prog-track{height:9px;background:var(--surf2);border-radius:6px;overflow:hidden;border:1px solid var(--bdr)}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:6px;transition:width .35s;width:0;background-size:200%;animation:shimmer 1.6s linear infinite}
+@keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+.prog-lbl{font-family:var(--fm);font-size:.64rem;color:var(--mut);margin-top:5px;display:flex;align-items:center;gap:6px}
+.prog-spin{width:10px;height:10px;border:1.5px solid var(--bdr);border-top-color:var(--acc);border-radius:50%;animation:spin .65s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
-.read-blog-wrap{text-align:center;padding:18px 18px 8px;background:var(--surf);border-top:1px solid var(--bdr)}
-.read-blog-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:9px 22px;border-radius:50px;text-decoration:none;transition:all .2s}
-.ttb-sep{color:var(--bdr);margin:0 4px}
 
-/* ── TOP NAV ROW (back + blog btn) ── */
-.top-nav-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
-.top-nav-row .back-link{margin-bottom:0}
-.blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
-.blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 26px;border-radius:50px;font-family:var(--fd);font-weight:800;font-size:.86rem;cursor:pointer;transition:all .22s;border:none;text-decoration:none;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.14),transparent 60%);opacity:0;transition:opacity .2s;pointer-events:none;border-radius:inherit}
+.btn:hover::after{opacity:1}
+.btn-primary{background:var(--acc);color:#1a1a2e;box-shadow:0 3px 16px rgba(176,120,0,.3)}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 7px 24px rgba(176,120,0,.45)}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none !important;box-shadow:none}
+.btn-primary:active:not(:disabled){transform:scale(.97) !important}
+.btn-secondary{background:var(--surf2);color:var(--txt);border:1.5px solid var(--bdr)}
+.btn-secondary:hover{border-color:var(--acc);color:var(--acc);background:var(--surf)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:460px){.btn-row{flex-direction:column}.btn-row .btn{width:100%;justify-content:center}}
+.convert-wrap{margin-top:6px}
+
+/* result */
+.result-box{margin-top:16px;padding:20px 22px;background:rgba(16,112,64,.07);border:1.5px solid rgba(16,112,64,.27);border-radius:14px;display:none;animation:resultIn .4s cubic-bezier(.22,.68,0,1.15)}
+@keyframes resultIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.result-title{font-family:var(--fd);font-weight:800;font-size:.94rem;color:var(--ok);margin-bottom:4px}
+.result-sub{font-family:var(--fm);font-size:.67rem;color:var(--mut);margin-bottom:14px;line-height:1.6}
+.dl-pulse{animation:dlPulse 1.8s ease infinite}
+@keyframes dlPulse{0%,100%{box-shadow:0 3px 16px rgba(176,120,0,.3)}50%{box-shadow:0 6px 28px rgba(176,120,0,.6),0 0 0 5px rgba(176,120,0,.1)}}
+
+/* preview */
+.preview-wrap{margin-top:14px}
+.preview-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.preview-lbl{font-family:var(--fm);font-size:.6rem;color:var(--acc);text-transform:uppercase;letter-spacing:.08em}
+.copy-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;border:1.5px solid var(--bdr);background:var(--surf2);font-family:var(--fm);font-size:.6rem;color:var(--mut);cursor:pointer;transition:all .15s}
+.copy-btn:hover{border-color:var(--acc);color:var(--acc)}
+.copy-btn.copied{border-color:var(--ok);color:var(--ok)}
+.preview-pane{background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;padding:14px 16px;max-height:260px;overflow-y:auto;font-size:.8rem;line-height:1.75;color:var(--txt);white-space:pre-wrap;word-break:break-word;font-family:var(--fb);display:none}
+
+/* trust bar */
+.trust-bar{display:flex;gap:0;flex-wrap:wrap;padding:13px 28px;border-top:1px solid var(--bdr);background:var(--surf2);justify-content:center;align-items:center}
+.ttb-item{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:.59rem;color:var(--mut);padding:3px 12px 3px 0;white-space:nowrap;transition:color .18s}
+.ttb-item:hover{color:var(--acc)}
+.ttb-sep{color:var(--bdr);margin:0 4px}
+@media(max-width:580px){.ttb-sep{display:none}.ttb-item{width:50%;padding:3px 0}}
+
+/* FAQ */
+.faq-section{margin-top:36px}
+.faq-title{font-family:var(--fd);font-weight:800;font-size:1rem;color:var(--txt);margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--acc)}
+.faq-item{border:1px solid var(--bdr);border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.faq-item.open{border-color:var(--acc);box-shadow:0 2px 10px rgba(176,120,0,.1)}
+.faq-q{padding:13px 16px;cursor:pointer;font-family:var(--fd);font-weight:700;font-size:.83rem;color:var(--txt);display:flex;justify-content:space-between;align-items:center;user-select:none;transition:color .18s}
+.faq-q:hover{color:var(--acc)}
+.faq-a{display:none;padding:0 16px 13px;font-size:.8rem;color:var(--mut);line-height:1.65}
+.faq-item.open .faq-a{display:block}
+
+/* footer blocks */
+.feedback-block{background:var(--surf);border-top:2px solid var(--acc);padding:20px 24px;text-align:center;margin-top:36px}
+.feedback-block p{font-family:var(--fd);font-weight:800;font-size:.93rem;color:var(--txt);margin-bottom:10px}
+.mini-footer{background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center}
+.mini-footer-links{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.mini-footer-links a{font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s}
+.mini-footer-links a:hover{color:var(--acc)}
+.mini-footer-sep{color:var(--bdr);font-size:.7rem}
+
+/* loading overlay */
+.loading-overlay{position:fixed;inset:0;background:rgba(10,10,20,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:9800;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.loading-overlay.show{opacity:1;pointer-events:all}
+.loading-card{background:var(--surf);border:2px solid var(--bdr);border-radius:22px;padding:36px 42px;text-align:center;width:min(370px,90vw);box-shadow:0 24px 80px rgba(0,0,0,.45);animation:lcIn .3s cubic-bezier(.22,.68,0,1.15)}
+@keyframes lcIn{from{opacity:0;transform:scale(.9) translateY(14px)}to{opacity:1;transform:none}}
+.ring-wrap{position:relative;width:88px;height:88px;margin:0 auto 20px}
+.ring-svg{width:88px;height:88px;transform:rotate(-90deg)}
+.ring-track{fill:none;stroke:var(--surf2);stroke-width:7}
+.ring-fill{fill:none;stroke:url(#rGrad);stroke-width:7;stroke-linecap:round;stroke-dasharray:239;stroke-dashoffset:239;transition:stroke-dashoffset .4s cubic-bezier(.4,0,.2,1)}
+.ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:800;font-size:1.1rem;color:var(--txt)}
+.loading-title{font-family:var(--fd);font-weight:800;font-size:1rem;color:var(--txt);margin-bottom:5px}
+.loading-msg{font-family:var(--fm);font-size:.68rem;color:var(--mut);min-height:18px;line-height:1.5}
+.loading-bar{height:3px;background:var(--surf2);border-radius:0 0 20px 20px;overflow:hidden;margin:18px -42px -36px}
+.loading-bar-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2),var(--acc3));background-size:200%;transition:width .35s;animation:barShimmer 1.4s linear infinite}
+@keyframes barShimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+
+/* toast */
+.toast-stack{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9900;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{display:inline-flex;align-items:center;gap:8px;background:var(--txt);color:var(--surf);font-family:var(--fm);font-size:.7rem;padding:9px 17px;border-radius:28px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.35);pointer-events:none;animation:toastIn .3s cubic-bezier(.34,1.3,.64,1);border-left:3px solid var(--acc)}
+.toast.ok{border-left-color:var(--ok)}
+.toast.err{border-left-color:var(--acc3)}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(8px) scale(.95)}}
+
+@media(max-width:640px){main{padding-left:12px;padding-right:12px}.tool-body{padding-left:14px;padding-right:14px}}
+@media(max-width:380px){.dz{padding:36px 12px}}
 </style>
 </head>
 <body class="light">
-<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
-  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
-</header>
+
+<!-- SVG gradient -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+  <defs>
+    <linearGradient id="rGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b07800"/>
+      <stop offset="50%" stop-color="#0060a0"/>
+      <stop offset="100%" stop-color="#b0004a"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadOverlay" role="status" aria-live="polite">
+  <div class="loading-card">
+    <div class="ring-wrap">
+      <svg class="ring-svg" viewBox="0 0 88 88">
+        <circle class="ring-track" cx="44" cy="44" r="38"/>
+        <circle class="ring-fill" id="ringFill" cx="44" cy="44" r="38"/>
+      </svg>
+      <div class="ring-pct" id="ringPct">0%</div>
+    </div>
+    <div class="loading-title" id="loadTitle">Processing…</div>
+    <div class="loading-msg" id="loadMsg">Please wait</div>
+    <div class="loading-bar"><div class="loading-bar-fill" id="loadBar" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="toast-stack" id="toastStack"></div>
 
 <main>
+
+  <!-- nav row -->
   <div class="top-nav-row">
-  <a href="./index.html" class="back-link">&#8592; Back to Dashboard</a>
-  <a href="./blog/pdf-to-word.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
-</div>
-  <div class="tool-card">
-  <div class="tool-card-accent"></div>
-  <div class="tool-hdr">
-    <span class="tool-icon">&#128221;</span>
-    <h1 class="tool-title">PDF to Word</h1>
-    <p class="tool-desc">Extract text from PDF and download as a Word-compatible document (.doc). OCR support for scanned PDFs. 100% browser-based.</p>
-    <div class="tool-badges"><span class="badge badge-g">Free Forever</span><span class="badge badge-y">No Upload</span><span class="badge badge-b">OCR Support</span></div>
+    <a href="./index.html" class="back-link">&#8592; All Tools</a>
+    <a href="./blog/pdf-to-word.html" class="blog-guide-btn" rel="noopener">&#128214; Full Guide</a>
   </div>
-  <div class="tool-body">
-<div class="u-prog" id="u-prog-main"><div class="u-prog-track"><div class="u-prog-fill"></div></div><div class="u-prog-lbl"><div class="u-prog-spinner"></div><span class="u-prog-lbl-text">Processing</span></div></div>
-    <div class="info-box info-warn show" style="display:flex;margin-bottom:16px">
-      <span>&#9888;</span>
-      <span><strong>Formatting note:</strong> This tool extracts text content. Complex layouts, tables, images, and exact formatting may not be perfectly preserved &mdash; this is a browser limitation.</span>
+
+  <!-- hero -->
+  <div class="page-hero">
+    <span class="hero-icon">📝</span>
+    <h1>PDF to <em>Word</em></h1>
+    <p>Convert PDF to editable Word document with high accuracy. Preserves paragraphs, headings and structure. OCR for scanned PDFs.</p>
+    <div class="hero-badges">
+      <span class="badge badge-g">Free Forever</span>
+      <span class="badge badge-y">No Upload</span>
+      <span class="badge badge-b">OCR Support</span>
+      <span class="badge badge-g">Exports .docx</span>
     </div>
-    <div class="dz" id="dz" ondragover="dzDrag(event,true)" ondragleave="dzDrag(event,false)" ondrop="dzDrop(event)">
-      <input type="file" id="fileInput" accept="application/pdf" onchange="handleFile(this.files[0])"/>
-      <div class="dz-icon">&#128221;</div>
-      <div class="dz-title">Drop your PDF here</div>
-      <div class="dz-sub">or click to browse</div>
-      <div class="dz-hint">PDF files only &middot; browser-based &middot; private</div>
-    </div>
-    <div class="file-info" id="fileInfo">
-      <span class="fi-icon">&#128196;</span><span class="fi-name" id="fiName"></span>
-      <span class="fi-size" id="fiSize"></span>
-      <button class="fi-clear" onclick="clearAll()">&#x2715;</button>
-    </div>
-    <div class="ocr-row" id="ocrRow" onclick="toggleOcr()">
-      <div class="toggle-sw" id="ocrSw"></div>
-      <div><div class="ocr-label">Enable OCR (for scanned PDFs)</div><div class="ocr-sub">Uses Tesseract.js. Accuracy depends on scan quality.</div></div>
-    </div>
-    <div class="info-box info-warn" id="ocrWarn"><span>&#9888;</span><span>OCR active &mdash; may be slow for large scanned documents.</span></div>
-    <div class="info-box info-note" id="noTextNote"><span>&#8505;</span><span>No text found. Enable OCR above and try again.</span></div>
-    <button class="btn btn-primary" id="convertBtn" onclick="doConvert()" style="display:none;width:100%">Convert to Word</button>
-    <div class="progress-wrap" id="progressWrap">
-      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
-      <div class="progress-label" id="progressLabel">Loading...</div>
-    </div>
-    <pre class="text-preview" id="textPreview"></pre>
-    <div class="result-box" id="resultBox">
-      <div class="result-title">Ready to download</div>
-      <div class="result-sub" id="resultSub"></div>
-      <div class="btn-row">
-        <button class="btn btn-primary" onclick="dlDoc()">Download .doc</button>
-        <button class="btn btn-secondary" onclick="clearAll()">Start Over</button>
+  </div>
+
+  <!-- steps -->
+  <div class="steps-track">
+    <div class="step-item active" id="step0"><div class="step-num" id="sn0">1</div><div class="step-lbl">Upload</div></div>
+    <div class="step-arr"></div>
+    <div class="step-item" id="step1"><div class="step-num" id="sn1">2</div><div class="step-lbl">Options</div></div>
+    <div class="step-arr"></div>
+    <div class="step-item" id="step2"><div class="step-num" id="sn2">3</div><div class="step-lbl">Convert</div></div>
+    <div class="step-arr"></div>
+    <div class="step-item" id="step3"><div class="step-num" id="sn3">4</div><div class="step-lbl">Download</div></div>
+  </div>
+
+  <!-- main card -->
+  <div class="tool-card">
+    <div class="card-accent"></div>
+    <div class="tool-body">
+
+      <!-- DROP ZONE -->
+      <div id="dzWrap">
+        <div class="dz" id="dz"
+             ondragover="onDragOver(event)"
+             ondragleave="onDragLeave(event)"
+             ondrop="onDrop(event)">
+          <input type="file" id="fileInput" accept="application/pdf" onchange="handleFile(this.files[0])"/>
+          <div class="dz-icon">📄</div>
+          <div class="dz-title">Drop your PDF here</div>
+          <div class="dz-sub">or click to browse &nbsp;·&nbsp; private &amp; secure</div>
+          <div class="dz-hint">PDF only &nbsp;·&nbsp; browser-based &nbsp;·&nbsp; no upload</div>
+        </div>
       </div>
+
+      <!-- file chip -->
+      <div class="file-chip" id="fileChip">
+        <div class="chip-icon">📑</div>
+        <div class="chip-info">
+          <div class="chip-name" id="chipName"></div>
+          <div class="chip-meta">
+            <span id="chipSize"></span>
+            <span class="chip-pages" id="chipPages" style="display:none"></span>
+          </div>
+        </div>
+        <button class="chip-clear" onclick="resetAll()">✕ Remove</button>
+      </div>
+
+      <!-- OPTIONS PANEL -->
+      <div class="opts-panel" id="optsPanel" style="display:none">
+        <div class="opts-hdr" id="optsHdr" onclick="toggleOpts()">
+          <span class="opts-icon">⚙️</span>
+          <span class="opts-hdr-title">Conversion Options</span>
+          <span class="opts-chevron">▾</span>
+        </div>
+        <div class="opts-body" id="optsBody">
+
+          <!-- mode -->
+          <div style="margin-bottom:18px">
+            <span class="sect-lbl">Conversion Mode</span>
+            <div class="mode-grid">
+              <label class="mode-card selected" id="modeStandard" onclick="selectMode('standard')">
+                <input type="radio" name="mode" value="standard" checked/>
+                <span class="mode-card-icon">📄</span>
+                <div class="mode-card-title">Standard</div>
+                <div class="mode-card-desc">Extract text &amp; structure from text-based PDFs. Fast and accurate.</div>
+                <span class="mode-card-tag tag-blue">Recommended</span>
+              </label>
+              <label class="mode-card" id="modeOcr" onclick="selectMode('ocr')">
+                <input type="radio" name="mode" value="ocr"/>
+                <span class="mode-card-icon">🔍</span>
+                <div class="mode-card-title">OCR Mode</div>
+                <div class="mode-card-desc">Recognise text from scanned or image-based PDFs using Tesseract.js.</div>
+                <span class="mode-card-tag tag-red">For Scanned PDFs</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- page range -->
+          <div style="margin-bottom:18px">
+            <span class="sect-lbl">Page Selection</span>
+            <div class="range-row">
+              <label class="range-opt selected" id="rangeAll" onclick="selectRange('all')">
+                <input type="radio" name="prange" value="all" checked/>All Pages
+              </label>
+              <label class="range-opt" id="rangeCustom" onclick="selectRange('custom')">
+                <input type="radio" name="prange" value="custom"/>Custom Range
+              </label>
+            </div>
+            <div class="range-custom-row" id="rangeCustomRow" style="display:none">
+              <input type="text" id="rangeInput" placeholder="e.g. 1-3, 5, 7-9"/>
+              <span class="range-hint">Separate with commas</span>
+            </div>
+          </div>
+
+          <!-- format -->
+          <div>
+            <span class="sect-lbl">Output Format</span>
+            <div class="format-row">
+              <label class="format-opt selected" id="fmtDocx" onclick="selectFormat('docx')">
+                <input type="radio" name="fmt" value="docx" checked/>
+                <span class="fmt-ext">.docx</span>
+                <div class="fmt-desc">Word 2007+</div>
+              </label>
+              <label class="format-opt" id="fmtDoc" onclick="selectFormat('doc')">
+                <input type="radio" name="fmt" value="doc"/>
+                <span class="fmt-ext">.doc</span>
+                <div class="fmt-desc">Legacy Word</div>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- info boxes -->
+      <div class="info-box info-warn" id="ocrWarn">
+        <span>⚠️</span>
+        <span><strong>OCR selected</strong> — processing takes longer for large documents. Accuracy depends on scan quality.</span>
+      </div>
+      <div class="info-box info-note" id="noTextNote">
+        <span style="flex-shrink:0">ℹ️</span>
+        <span>No readable text found. Switch to <strong>OCR Mode</strong> and try again — your PDF may be scanned.</span>
+      </div>
+      <div class="info-box info-err" id="errBox">
+        <span style="flex-shrink:0">❌</span>
+        <span id="errMsg">An error occurred.</span>
+      </div>
+
+      <!-- progress bar -->
+      <div class="prog-wrap" id="progWrap">
+        <div class="prog-track" id="progTrack" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="prog-fill" id="progFill" style="width:0%"></div>
+        </div>
+        <div class="prog-lbl"><div class="prog-spin"></div><span id="progLbl">Processing…</span></div>
+      </div>
+
+      <!-- convert button -->
+      <div class="convert-wrap" id="convertWrap" style="display:none">
+        <button class="btn btn-primary" id="convertBtn" onclick="startConvert()" style="width:100%;font-size:.9rem;padding:14px 28px">
+          ⚡ Convert to Word
+        </button>
+      </div>
+
+      <!-- result -->
+      <div class="result-box" id="resultBox">
+        <div class="result-title">✅ Conversion complete!</div>
+        <div class="result-sub" id="resultSub"></div>
+        <div class="preview-wrap">
+          <div class="preview-toolbar">
+            <span class="preview-lbl">Text Preview</span>
+            <button class="copy-btn" id="copyBtn" onclick="copyPreview()">📋 Copy All</button>
+          </div>
+          <div class="preview-pane" id="previewPane"></div>
+        </div>
+        <div class="btn-row" style="margin-top:16px">
+          <button class="btn btn-primary dl-pulse" id="dlBtn" onclick="downloadFile()">⬇ Download</button>
+          <button class="btn btn-secondary" onclick="resetAll()">↺ Start Over</button>
+        </div>
+      </div>
+
     </div>
-  </div><div class="trust-bar"><div class="ttb-item">&#x1F512; Files never leave your device</div><span class="ttb-sep">&#183;</span><div class="ttb-item">&#9889; No sign-up required</div><span class="ttb-sep">&#183;</span><div class="ttb-item">&#127760; Works in any modern browser</div><span class="ttb-sep">&#183;</span><div class="ttb-item">&#x1F4AF; 100% free</div></div></div>
-  <div class="faq-section"><h2 class="faq-title">Frequently Asked Questions</h2><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Why might formatting differ from the original? <span>&#9660;</span></div><div class="faq-a">Browser-based extraction reads text streams, not layout. For exact replication of complex layouts, a desktop tool with server processing is needed.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if my PDF is scanned? <span>&#9660;</span></div><div class="faq-a">Enable OCR above. Tesseract.js will render each page and recognise the text.</div></div><div class="faq-item"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are files uploaded? <span>&#9660;</span></div><div class="faq-a">Never. 100% processed in your browser.</div></div></div>
+
+    <!-- trust bar -->
+    <div class="trust-bar">
+      <div class="ttb-item">🔒 Files never leave your device</div>
+      <span class="ttb-sep">·</span>
+      <div class="ttb-item">⚡ No sign-up required</div>
+      <span class="ttb-sep">·</span>
+      <div class="ttb-item">🌐 Works in any modern browser</div>
+      <span class="ttb-sep">·</span>
+      <div class="ttb-item">💯 100% free</div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Does the Word output preserve formatting? <span>▾</span></div>
+      <div class="faq-a">Yes — paragraphs, headings, line spacing and basic structure are preserved in the .docx output. Complex multi-column or heavily formatted layouts may simplify due to browser PDF extraction limits, but all text content will be intact and fully editable.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What is OCR Mode for? <span>▾</span></div>
+      <div class="faq-a">OCR (Optical Character Recognition) is for scanned PDFs — documents where pages are images rather than digital text. Tesseract.js renders each page and recognises the characters. It is slower than Standard mode but works on documents that cannot be read otherwise.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Are my files sent to a server? <span>▾</span></div>
+      <div class="faq-a">Never. All processing — PDF parsing, OCR, and .docx generation — happens 100% inside your browser using PDF.js and Tesseract.js. Your files are never uploaded anywhere.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the difference between .docx and .doc? <span>▾</span></div>
+      <div class="faq-a">.docx (Word 2007+) is the modern open XML format compatible with Microsoft Word, Google Docs, LibreOffice and all modern editors. .doc is the legacy binary format for older versions of Word. We recommend .docx for all modern use.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I convert specific pages only? <span>▾</span></div>
+      <div class="faq-a">Yes. Select "Custom Range" in the options and enter your pages separated by commas — for example <code>1-3, 5, 7-9</code>. This is useful for large PDFs where you only need certain sections.</div>
+    </div>
+  </div>
 
 </main>
-<div style="background:var(--surf);border-top:2px solid var(--acc);padding:18px 24px;text-align:center;margin-top:36px">
-  <div style="max-width:700px;margin:0 auto">
-    <div style="font-family:var(--fd);font-weight:800;font-size:.95rem;color:var(--txt);margin-bottom:6px">Want a new feature or have a suggestion?</div>
-    <a href="./feedback.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#1a1a2e;font-family:var(--fd);font-weight:800;font-size:.84rem;padding:11px 24px;border-radius:50px;text-decoration:none">Suggest Feature</a>
-  </div>
+
+<!-- feedback -->
+<div class="feedback-block">
+  <p>Want a new feature or have a suggestion?</p>
+  <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">Suggest Feature</a>
 </div>
-<div style="background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center">
-  <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
-    <a href="./terms.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none">Terms</a>
-    <span style="color:var(--bdr)">|</span>
-    <a href="./privacy-policy.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none">Privacy</a>
-    <span style="color:var(--bdr)">|</span>
-    <a href="./feedback.html#contact" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none">Contact</a>
-    <span style="color:var(--bdr)">|</span>
-    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">2025 ConvertPDF.Live</span>
+
+<!-- footer -->
+<footer class="mini-footer">
+  <div class="mini-footer-links">
+    <a href="./index.html">Home</a><span class="mini-footer-sep">·</span>
+    <a href="./privacy-policy.html">Privacy</a><span class="mini-footer-sep">·</span>
+    <a href="./terms.html">Terms</a><span class="mini-footer-sep">·</span>
+    <a href="./feedback.html">Contact</a><span class="mini-footer-sep">·</span>
+    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
   </div>
-</div>
+</footer>
+
+<!-- PDF.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- docx.js for proper .docx generation -->
+<script src="https://unpkg.com/docx@8.5.0/build/index.js"></script>
+
 <script>
-function fmtSize(b){if(b>=1073741824)return(b/1073741824).toFixed(2)+' GB';if(b>=1048576)return(b/1048576).toFixed(2)+' MB';return(b/1024).toFixed(1)+' KB';}
-function setProgress(pct,lbl){const pw=document.getElementById('progressWrap');if(!pw)return;pw.classList.add('show');document.getElementById('progressBar').style.width=pct+'%';if(lbl!==undefined)document.getElementById('progressLabel').textContent=lbl;}
-function hideProgress(){setTimeout(()=>{const pw=document.getElementById('progressWrap');if(pw)pw.classList.remove('show');},800);}
-function dzDrag(e,over){e.preventDefault();const dz=document.getElementById('dz');if(dz)dz.classList.toggle('drag-over',over);}
-function loadScript(src){return new Promise((res,rej)=>{if(document.querySelector('script[src="'+src+'"]')){res();return;}const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+'use strict';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+/* ══════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════ */
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-async function runOCR(pdf, n) {
-  await loadScript('https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js');
-  let all = '';
-  for(let i=1; i<=n; i++) {
-    setProgress(70+Math.round((i/n)*26), 'OCR page '+i+' of '+n+'...');
-    const pg = await pdf.getPage(i);
-    const vp = pg.getViewport({scale:2.0});
-    const cv = document.createElement('canvas');
-    cv.width = vp.width; cv.height = vp.height;
-    await pg.render({canvasContext:cv.getContext('2d'), viewport:vp}).promise;
-    try{
-      const result = await Tesseract.recognize(cv, 'eng', {
-        logger: m => { if(m.status==='recognizing text') setProgress(70+Math.round(m.progress*26), 'OCR '+Math.round(m.progress*100)+'%...'); }
-      });
-      all += (result.data ? result.data.text : result.text || '') + '\n\n';
-    }catch(err){ all += '\n\n'; }
-    cv.remove();
+const CIRCUMFERENCE = 2 * Math.PI * 38; // 238.76
+
+let S = {
+  file: null,
+  pdfDoc: null,
+  numPages: 0,
+  mode: 'standard',
+  range: 'all',
+  format: 'docx',
+  pages: [],      // [{pageNum, blocks:[{text,isHeading}]}]
+  blob: null,
+  fileName: ''
+};
+
+/* ══════════════════════════════════════════════
+   UTILITIES
+══════════════════════════════════════════════ */
+function fmtSize(b) {
+  return b >= 1048576 ? (b/1048576).toFixed(1)+' MB' : Math.round(b/1024)+' KB';
+}
+
+function setStep(n) {
+  for (let i = 0; i <= 3; i++) {
+    const el = document.getElementById('step'+i);
+    const nm = document.getElementById('sn'+i);
+    el.classList.remove('active','done');
+    if (i < n) { el.classList.add('done'); nm.textContent = '✓'; }
+    else if (i === n) { el.classList.add('active'); nm.textContent = i+1; }
+    else nm.textContent = i+1;
   }
-  return all;
 }
 
-let curFile=null, ocrOn=false, docHtml='';
-function dzDrop(e){e.preventDefault();dzDrag(e,false);const f=e.dataTransfer.files[0];if(f&&(f.type==='application/pdf'||f.name.toLowerCase().endsWith('.pdf')))handleFile(f);}
-function handleFile(f){
-  if(!f)return;
-  if(f.type&&f.type!==''&&f.type!=='application/pdf'&&!f.name.toLowerCase().endsWith('.pdf'))return;
-  curFile=f;
-  document.getElementById('dz').style.display='none';
-  document.getElementById('fileInfo').style.display='flex';
-  document.getElementById('fiName').textContent=f.name;
-  document.getElementById('fiSize').textContent=fmtSize(f.size);
-  document.getElementById('ocrRow').classList.add('show');
-  document.getElementById('convertBtn').style.display='flex';
-  ['resultBox','textPreview'].forEach(id=>document.getElementById(id).style.display='none');
-  document.getElementById('noTextNote').classList.remove('show');
+function setProg(pct, lbl) {
+  pct = Math.min(100, Math.max(0, pct));
+  // inline bar
+  const fill = document.getElementById('progFill');
+  if (fill) fill.style.width = pct + '%';
+  const track = document.getElementById('progTrack');
+  if (track) track.setAttribute('aria-valuenow', Math.round(pct));
+  if (lbl !== undefined) {
+    const lblEl = document.getElementById('progLbl');
+    if (lblEl) lblEl.textContent = lbl;
+  }
+  document.getElementById('progWrap').classList.add('show');
+  // ring
+  const ringFill = document.getElementById('ringFill');
+  if (ringFill) ringFill.style.strokeDashoffset = CIRCUMFERENCE - (pct/100)*CIRCUMFERENCE;
+  const pctEl = document.getElementById('ringPct');
+  if (pctEl) pctEl.textContent = Math.round(pct)+'%';
+  const barFill = document.getElementById('loadBar');
+  if (barFill) barFill.style.width = pct+'%';
+  const msgEl = document.getElementById('loadMsg');
+  if (msgEl && lbl !== undefined) msgEl.textContent = lbl;
 }
-function clearAll(){
-  curFile=null;ocrOn=false;docHtml='';
-  ['dz'].forEach(id=>document.getElementById(id).style.display='flex');
-  ['fileInfo','resultBox','convertBtn'].forEach(id=>document.getElementById(id).style.display='none');
-  document.getElementById('textPreview').style.display='none';
-  ['ocrRow','ocrWarn','noTextNote'].forEach(id=>document.getElementById(id).classList.remove('show'));
-  document.getElementById('progressWrap').classList.remove('show');
-  document.getElementById('fileInput').value='';
-  document.getElementById('ocrSw').classList.remove('on');
+
+function hideProg() {
+  setTimeout(() => {
+    document.getElementById('progWrap').classList.remove('show');
+    document.getElementById('loadOverlay').classList.remove('show');
+  }, 600);
 }
-function toggleOcr(){ocrOn=!ocrOn;document.getElementById('ocrSw').classList.toggle('on',ocrOn);document.getElementById('ocrWarn').classList.toggle('show',ocrOn);}
-async function doConvert(){
-  if(!curFile)return;
-  const btn=document.getElementById('convertBtn'); btn.disabled=true; btn.textContent='Processing...';
-  document.getElementById('resultBox').style.display='none';
-  document.getElementById('textPreview').style.display='none';
-  document.getElementById('noTextNote').classList.remove('show');
-  setProgress(5,'Loading PDF...');
-  try{
-    const ab=await curFile.arrayBuffer();
-    const pdf=await pdfjsLib.getDocument({data:ab}).promise;
-    const n=pdf.numPages; let allText='';
-    for(let i=1;i<=n;i++){
-      setProgress(5+Math.round((i/n)*60),'Reading page '+i+' of '+n+'...');
-      const pg=await pdf.getPage(i);
-      const c=await pg.getTextContent();
-      let prevY=null, line='';
-      c.items.forEach(item=>{
-        const y=item.transform[5];
-        if(prevY===null||Math.abs(y-prevY)<3){line+=item.str;}
-        else{if(line.trim())allText+=line.trim()+'\n'; line=item.str;}
-        prevY=y;
-      });
-      if(line.trim())allText+=line.trim()+'\n';
-      allText+='\n';
+
+function showOverlay(title, msg) {
+  document.getElementById('loadTitle').textContent = title || 'Processing…';
+  document.getElementById('loadMsg').textContent = msg || 'Please wait';
+  setProg(0, msg);
+  document.getElementById('loadOverlay').classList.add('show');
+}
+
+function toast(msg, type='ok') {
+  const stack = document.getElementById('toastStack');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.textContent = (type==='ok'?'✓ ':type==='err'?'✕ ':'ℹ ') + msg;
+  stack.appendChild(el);
+  setTimeout(() => {
+    el.style.animation = 'toastOut .3s ease forwards';
+    setTimeout(() => el.remove(), 300);
+  }, 2800);
+}
+
+function showErr(msg) {
+  document.getElementById('errMsg').textContent = msg;
+  document.getElementById('errBox').classList.add('show');
+  document.getElementById('loadOverlay').classList.remove('show');
+  document.getElementById('progWrap').classList.remove('show');
+  document.getElementById('convertBtn').disabled = false;
+}
+
+function hideInfo() {
+  ['ocrWarn','noTextNote','errBox'].forEach(id =>
+    document.getElementById(id).classList.remove('show'));
+}
+
+function loadScript(src) {
+  return new Promise((res, rej) => {
+    if (document.querySelector(`script[src="${src}"]`)) { res(); return; }
+    const s = document.createElement('script');
+    s.src = src; s.onload = res; s.onerror = () => rej(new Error('Failed to load: '+src));
+    document.head.appendChild(s);
+  });
+}
+
+function scrollTo(el, offset=90) {
+  if (!el) return;
+  const y = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+}
+
+/* ══════════════════════════════════════════════
+   DRAG & DROP
+══════════════════════════════════════════════ */
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('dz').classList.add('drag-over');
+}
+function onDragLeave(e) {
+  if (!document.getElementById('dz').contains(e.relatedTarget))
+    document.getElementById('dz').classList.remove('drag-over');
+}
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('dz').classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f && (f.type==='application/pdf' || f.name.toLowerCase().endsWith('.pdf')))
+    handleFile(f);
+  else toast('Please drop a PDF file', 'err');
+}
+
+/* ══════════════════════════════════════════════
+   FILE LOAD
+══════════════════════════════════════════════ */
+async function handleFile(f) {
+  if (!f) return;
+  const isPdf = f.type==='application/pdf' || f.name.toLowerCase().endsWith('.pdf');
+  if (!isPdf) { toast('Please select a PDF file', 'err'); return; }
+  if (f.size > 250*1024*1024) { showErr('File too large (max 250 MB)'); return; }
+
+  S.file = f;
+  hideInfo();
+
+  // update UI
+  document.getElementById('dzWrap').style.display = 'none';
+  document.getElementById('chipName').textContent = f.name;
+  document.getElementById('chipSize').textContent = fmtSize(f.size);
+  document.getElementById('fileChip').classList.add('show');
+
+  try {
+    const ab = await f.arrayBuffer();
+    S.pdfDoc = await pdfjsLib.getDocument({ data: ab }).promise;
+    S.numPages = S.pdfDoc.numPages;
+    const pg = document.getElementById('chipPages');
+    pg.textContent = `📄 ${S.numPages} page${S.numPages>1?'s':''}`;
+    pg.style.display = 'inline-flex';
+  } catch(err) {
+    showErr('Could not open PDF: ' + err.message);
+    return;
+  }
+
+  document.getElementById('optsPanel').style.display = 'block';
+  document.getElementById('convertWrap').style.display = 'block';
+  setStep(1);
+  toast('PDF loaded — set options below', 'ok');
+  setTimeout(() => scrollTo(document.getElementById('optsPanel'), 120), 150);
+}
+
+/* ══════════════════════════════════════════════
+   OPTIONS
+══════════════════════════════════════════════ */
+function selectMode(m) {
+  S.mode = m;
+  document.getElementById('modeStandard').classList.toggle('selected', m==='standard');
+  document.getElementById('modeOcr').classList.toggle('selected', m==='ocr');
+  document.getElementById('ocrWarn').classList.toggle('show', m==='ocr');
+}
+
+function selectRange(r) {
+  S.range = r;
+  document.getElementById('rangeAll').classList.toggle('selected', r==='all');
+  document.getElementById('rangeCustom').classList.toggle('selected', r==='custom');
+  document.getElementById('rangeCustomRow').style.display = r==='custom'?'flex':'none';
+}
+
+function selectFormat(f) {
+  S.format = f;
+  document.querySelectorAll('.format-opt').forEach(el =>
+    el.classList.toggle('selected', el.querySelector('input').value===f));
+}
+
+function toggleOpts() {
+  const hdr = document.getElementById('optsHdr');
+  const body = document.getElementById('optsBody');
+  hdr.classList.toggle('collapsed');
+  body.style.display = hdr.classList.contains('collapsed') ? 'none' : 'block';
+}
+
+/* ══════════════════════════════════════════════
+   PAGE RANGE PARSER
+══════════════════════════════════════════════ */
+function parseRange(str, max) {
+  const pages = new Set();
+  for (const part of str.split(',')) {
+    const p = part.trim();
+    if (!p) continue;
+    if (p.includes('-')) {
+      const [a, b] = p.split('-').map(x => parseInt(x, 10));
+      if (!isNaN(a) && !isNaN(b))
+        for (let i=Math.max(1,a); i<=Math.min(max,b); i++) pages.add(i);
+    } else {
+      const n = parseInt(p, 10);
+      if (!isNaN(n) && n>=1 && n<=max) pages.add(n);
     }
-    const hasText=allText.trim().length>15;
-    if(!hasText&&!ocrOn){document.getElementById('noTextNote').classList.add('show');hideProgress();btn.disabled=false;btn.textContent='Convert to Word';return;}
-    if(!hasText||ocrOn){setProgress(68,'Starting OCR...'); allText=await runOCR(pdf,n);}
-    const trimmed=allText.trim();
-    docHtml=buildWordHtml(trimmed, curFile.name);
-    const prev=document.getElementById('textPreview');
-    prev.textContent=trimmed.length>3000?trimmed.slice(0,3000)+'\n\n[preview truncated]':trimmed;
-    prev.style.display='block';
-    const wc=trimmed.split(/\s+/).filter(Boolean).length;
-    document.getElementById('resultSub').textContent=n+' page'+(n>1?'s':'')+' - approx. '+wc.toLocaleString()+' words';
-    document.getElementById('resultBox').style.display='block';
-    setProgress(100,'Done!'); hideProgress();
-  }catch(e){alert('Error: '+e.message);}
-  btn.disabled=false; btn.textContent='Convert to Word';
-}
-function buildWordHtml(text, fname){
-  const paras=text.split(/\n{2,}/).map(p=>p.trim()).filter(Boolean);
-  const body=paras.map(p=>'<p>'+p.replace(/\n/g,'<br/>')+'</p>').join('\n');
-  return '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"/><title>'+fname+'</title><style>body{font-family:Calibri,sans-serif;font-size:11pt;line-height:1.6;margin:2cm}p{margin-bottom:8pt}</style></head><body class="light">
-<header id="unified-header" style="background:#fff;border-bottom:2px solid #b07800;height:58px;display:flex;align-items:center;padding:0 18px;position:sticky;top:0;z-index:600;box-shadow:0 2px 14px rgba(0,0,0,.10);">
-  <a href="./index.html" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:#b07800;text-decoration:none;letter-spacing:-.02em;">Convert<span style="color:#1a1a2e;">PDF</span>.Live</a>
-</header>'+body+'</body></html>';
-}
-function dlDoc(){
-  if(!docHtml)return;
-  const blob=new Blob([docHtml],{type:'application/msword'});
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download=(curFile?curFile.name.replace(/\.pdf$/i,''):'document')+'.doc';
-  a.click(); URL.revokeObjectURL(a.href);
+  }
+  return [...pages].sort((a,b)=>a-b);
 }
 
-</script><script id="scroll-result-patch">
+/* ══════════════════════════════════════════════
+   TEXT EXTRACTION — Standard Mode
+   Groups items by Y-line, detects paragraph breaks,
+   identifies headings by font size relative to median.
+══════════════════════════════════════════════ */
+async function extractStandard(page) {
+  const content = await page.getTextContent({ normalizeWhitespace: true });
+  const items = content.items.filter(i => i.str && i.str.trim());
+  if (!items.length) return [];
+
+  // Median font size = body size
+  const sizes = items.map(i => Math.round(Math.abs(i.transform[3]))).filter(Boolean).sort((a,b)=>a-b);
+  const median = sizes[Math.floor(sizes.length/2)] || 11;
+
+  // Group into lines by Y (PDF Y grows upward, so we sort descending = top first)
+  const lineMap = new Map();
+  for (const item of items) {
+    const y = Math.round(item.transform[5]);
+    if (!lineMap.has(y)) lineMap.set(y, []);
+    lineMap.get(y).push(item);
+  }
+
+  // Sort lines top to bottom (descending Y in PDF space)
+  const sortedYs = [...lineMap.keys()].sort((a,b) => b-a);
+  const lines = sortedYs.map(y => {
+    const its = lineMap.get(y).sort((a,b)=>a.transform[4]-b.transform[4]);
+    const text = its.map(i=>i.str).join('').trim();
+    const maxSz = Math.max(...its.map(i=>Math.round(Math.abs(i.transform[3]))));
+    return { y, text, maxSz };
+  }).filter(l => l.text);
+
+  if (!lines.length) return [];
+
+  // Estimate average line height
+  const heights = [];
+  for (let i=1; i<lines.length; i++) heights.push(Math.abs(lines[i-1].y - lines[i].y));
+  const avgH = heights.length ? heights.reduce((s,h)=>s+h,0)/heights.length : 14;
+
+  // Group lines into paragraphs
+  const blocks = [];
+  let group = [];
+  for (let i=0; i<lines.length; i++) {
+    if (i>0) {
+      const gap = Math.abs(lines[i-1].y - lines[i].y);
+      if (gap > avgH * 1.85) {
+        if (group.length) { blocks.push(group); group=[]; }
+      }
+    }
+    group.push(lines[i]);
+  }
+  if (group.length) blocks.push(group);
+
+  return blocks.map(grp => {
+    const text = grp.map(l=>l.text).join('\n');
+    const maxSz = Math.max(...grp.map(l=>l.maxSz));
+    const isHeading = maxSz > median * 1.22 && text.length < 200 && grp.length <= 3;
+    return { text, isHeading };
+  });
+}
+
+/* ══════════════════════════════════════════════
+   OCR EXTRACTION
+══════════════════════════════════════════════ */
+async function extractOCR(page, idx, total) {
+  const vp = page.getViewport({ scale: 2.4 });
+  const cv = document.createElement('canvas');
+  cv.width = vp.width; cv.height = vp.height;
+  await page.render({ canvasContext: cv.getContext('2d'), viewport: vp }).promise;
+
+  const result = await Tesseract.recognize(cv, 'eng', {
+    logger: m => {
+      if (m.status==='recognizing text') {
+        const base = 15 + (idx/total)*75;
+        setProg(base + m.progress*(75/total),
+          `OCR page ${idx+1}/${total} — ${Math.round(m.progress*100)}%`);
+      }
+    }
+  });
+
+  cv.remove();
+  const raw = (result.data ? result.data.text : result.text) || '';
+  return raw.split(/\n{2,}/).map(t=>t.trim()).filter(Boolean)
+            .map(text => ({ text, isHeading: false }));
+}
+
+/* ══════════════════════════════════════════════
+   DOCX BUILDER — proper XML .docx via docx.js
+══════════════════════════════════════════════ */
+async function buildDocx(pages) {
+  const { Document, Packer, Paragraph, TextRun, HeadingLevel } = docx;
+
+  const children = [];
+  const pageCount = pages.length;
+
+  for (let pi=0; pi<pageCount; pi++) {
+    const p = pages[pi];
+    for (const block of p.blocks) {
+      const lines = block.text.split('\n');
+
+      if (block.isHeading) {
+        children.push(new Paragraph({
+          heading: HeadingLevel.HEADING_2,
+          spacing: { before: 200, after: 100 },
+          children: lines.map((ln, i) =>
+            new TextRun({ text: ln, break: i>0 ? 1 : 0, bold: true })
+          )
+        }));
+      } else {
+        // Detect list-like lines
+        const isListItem = /^[\-\•\*\→\►▪▸◦]/.test(block.text.trim()) ||
+                           /^\d+[\.\)]\s/.test(block.text.trim());
+        children.push(new Paragraph({
+          indent: isListItem ? { left: 360 } : undefined,
+          spacing: { after: 140 },
+          children: lines.map((ln, i) =>
+            new TextRun({ text: ln, break: i>0 ? 1 : 0, size: 22 })
+          )
+        }));
+      }
+    }
+
+    // Page break between pages (except last)
+    if (pi < pageCount-1 && p.blocks.length > 0) {
+      children.push(new Paragraph({ pageBreakBefore: true, children: [new TextRun('')] }));
+    }
+  }
+
+  if (!children.length) {
+    children.push(new Paragraph({ children: [new TextRun('No text content found.')] }));
+  }
+
+  const doc = new Document({
+    creator: 'ConvertPDF.Live',
+    description: 'PDF converted to Word by ConvertPDF.Live',
+    styles: {
+      default: {
+        document: { run: { font: 'Calibri', size: 22 } }
+      }
+    },
+    sections: [{ properties: {}, children }]
+  });
+
+  return Packer.toBlob(doc);
+}
+
+/* Legacy .doc fallback */
+function buildLegacyDoc(pages) {
+  function esc(t) {
+    return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  const paras = [];
+  for (const p of pages) {
+    for (const block of p.blocks) {
+      const lns = block.text.split('\n').map(esc).join('<br/>');
+      if (block.isHeading) {
+        paras.push(`<h2 style="font-family:Calibri,sans-serif;font-size:14pt;font-weight:700;margin:12pt 0 4pt">${lns}</h2>`);
+      } else {
+        paras.push(`<p style="font-family:Calibri,sans-serif;font-size:11pt;line-height:1.65;margin-bottom:8pt">${lns}</p>`);
+      }
+    }
+  }
+  const html = [
+    '<html xmlns:o="urn:schemas-microsoft-com:office:office"',
+    ' xmlns:w="urn:schemas-microsoft-com:office:word"',
+    ' xmlns="http://www.w3.org/TR/REC-html40">',
+    '<head><meta charset="utf-8"/>',
+    '<style>body{font-family:Calibri,sans-serif;font-size:11pt;margin:2cm;line-height:1.65}</style>',
+    '</head><body>', paras.join('\n'), '</body></html>'
+  ].join('');
+  return new Blob([html], { type: 'application/msword' });
+}
+
+/* ══════════════════════════════════════════════
+   MAIN CONVERT
+══════════════════════════════════════════════ */
+async function startConvert() {
+  if (!S.file || !S.pdfDoc) return;
+  hideInfo();
+  document.getElementById('resultBox').style.display = 'none';
+  document.getElementById('previewPane').style.display = 'none';
+
+  const btn = document.getElementById('convertBtn');
+  btn.disabled = true;
+  setStep(2);
+
+  // Determine pages list
+  let pageNums;
+  if (S.range === 'custom') {
+    const raw = document.getElementById('rangeInput').value.trim();
+    if (!raw) { showErr('Please enter a page range.'); return; }
+    pageNums = parseRange(raw, S.numPages);
+    if (!pageNums.length) { showErr('No valid pages found in range.'); return; }
+  } else {
+    pageNums = Array.from({ length: S.numPages }, (_, i) => i+1);
+  }
+
+  showOverlay('Converting PDF…', 'Starting…');
+  setProg(2, 'Preparing…');
+
+  try {
+    // Load OCR engine first if needed
+    if (S.mode === 'ocr') {
+      setProg(4, 'Loading OCR engine…');
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js');
+      setProg(12, 'OCR engine ready');
+    }
+
+    S.pages = [];
+    let allText = '';
+
+    for (let idx=0; idx<pageNums.length; idx++) {
+      const pageNum = pageNums[idx];
+      const progress = S.mode==='ocr'
+        ? 12 + (idx/pageNums.length)*5
+        : 8 + Math.round((idx/pageNums.length)*80);
+
+      setProg(progress, `Processing page ${pageNum}/${S.numPages}…`);
+
+      const page = await S.pdfDoc.getPage(pageNum);
+      let blocks;
+
+      if (S.mode === 'ocr') {
+        blocks = await extractOCR(page, idx, pageNums.length);
+      } else {
+        blocks = await extractStandard(page);
+      }
+
+      S.pages.push({ pageNum, blocks });
+      allText += blocks.map(b=>b.text).join('\n\n') + '\n\n';
+    }
+
+    // Check for empty result
+    if (!allText.trim() || allText.trim().length < 5) {
+      if (S.mode === 'standard') {
+        document.getElementById('noTextNote').classList.add('show');
+        hideProg();
+        btn.disabled = false;
+        return;
+      }
+    }
+
+    // Build Word file
+    setProg(90, 'Building Word document…');
+
+    let blob;
+    const baseName = S.file.name.replace(/\.pdf$/i, '');
+
+    if (S.format === 'docx') {
+      blob = await buildDocx(S.pages);
+      S.fileName = baseName + '.docx';
+    } else {
+      blob = buildLegacyDoc(S.pages);
+      S.fileName = baseName + '.doc';
+    }
+    S.blob = blob;
+
+    setProg(100, 'Done!');
+    hideProg();
+
+    // Stats
+    const wc = allText.trim().split(/\s+/).filter(Boolean).length;
+    const sizeKB = Math.round(blob.size/1024);
+    document.getElementById('resultSub').textContent =
+      `${pageNums.length} page${pageNums.length>1?'s':''} converted · ~${wc.toLocaleString()} words · ${sizeKB} KB`;
+
+    // Preview
+    const previewText = allText.trim();
+    const pane = document.getElementById('previewPane');
+    pane.textContent = previewText.length > 4500
+      ? previewText.slice(0, 4500) + '\n\n… [preview truncated — full content in download]'
+      : previewText;
+    pane.style.display = 'block';
+
+    document.getElementById('resultBox').style.display = 'block';
+    setStep(3);
+    toast('Conversion complete!', 'ok');
+    setTimeout(() => scrollTo(document.getElementById('resultBox'), 100), 220);
+
+  } catch(err) {
+    console.error('Conversion error:', err);
+    showErr('Conversion failed: ' + (err.message || 'unknown error'));
+  }
+
+  btn.disabled = false;
+}
+
+/* ══════════════════════════════════════════════
+   DOWNLOAD
+══════════════════════════════════════════════ */
+function downloadFile() {
+  if (!S.blob) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(S.blob);
+  a.download = S.fileName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  toast('Download started', 'ok');
+}
+
+/* ══════════════════════════════════════════════
+   COPY PREVIEW
+══════════════════════════════════════════════ */
+function copyPreview() {
+  const text = document.getElementById('previewPane').textContent;
+  const btn = document.getElementById('copyBtn');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      toast('Copied to clipboard', 'ok');
+      setTimeout(() => { btn.textContent = '📋 Copy All'; btn.classList.remove('copied'); }, 2000);
+    }).catch(() => toast('Copy failed', 'err'));
+  }
+}
+
+/* ══════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════ */
+function resetAll() {
+  S = { file:null, pdfDoc:null, numPages:0, mode:'standard', range:'all',
+        format:'docx', pages:[], blob:null, fileName:'' };
+
+  document.getElementById('dzWrap').style.display = 'block';
+  document.getElementById('fileChip').classList.remove('show');
+  document.getElementById('optsPanel').style.display = 'none';
+  document.getElementById('convertWrap').style.display = 'none';
+  document.getElementById('resultBox').style.display = 'none';
+  document.getElementById('previewPane').style.display = 'none';
+  document.getElementById('progWrap').classList.remove('show');
+  document.getElementById('convertBtn').disabled = false;
+  document.getElementById('fileInput').value = '';
+  document.getElementById('rangeCustomRow').style.display = 'none';
+  document.getElementById('rangeInput').value = '';
+  hideInfo();
+  selectMode('standard');
+  selectRange('all');
+  selectFormat('docx');
+  setStep(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+<script id="scroll-result-patch">
 (function(){var _w=null;function watch(){clearInterval(_w);_w=setInterval(function(){var r=document.querySelector('.result-box[style*="block"]');if(r&&r.textContent.trim()){clearInterval(_w);if(typeof window.scrollTo_==="function")window.scrollTo_(r,80);}},350);setTimeout(function(){clearInterval(_w);},15000);}document.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;if(/convert|download|process/i.test(b.textContent||""))watch();},true);})();
 </script>
+
+<div aria-hidden="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;font-size:0;line-height:0;color:transparent;pointer-events:none;" class="seo-context">
+Free alternative to ilovepdf, iLovePDF, smallpdf, SmallPDF, sejda, Sejda, adobe acrobat, pdf24.
+This free PDF editor lets you edit PDF, convert PDF, merge PDF, split PDF, compress PDF, rotate PDF, sign PDF, watermark PDF, protect PDF, unlock PDF, crop PDF, add page numbers to PDF, add header footer to PDF, rearrange PDF pages, delete PDF pages — all free with no upload required.
+Best free ilovepdf alternative. Best free smallpdf alternative. Best free sejda alternative.
+PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free.
+No sign up required. No file upload. 100% browser based. Private and secure.
+</div>
+
 <script src="./header.js"></script>
 </body>
 </html>
