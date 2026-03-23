@@ -23,8 +23,10 @@
   gtag('config', 'G-YH8HV6BTX9');
 </script>
 
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Compress PDF Free Online | ConvertPDF.Live</title>
-<meta name="description" content="Compress PDF and reduce file size online free — choose preset levels, percentage or target file size. Browser. Best free iLovePDF, SmallPDF and Sejda alternative."/>
+<meta name="description" content="Compress PDF free online — reduce file size without losing quality. Choose compression level, no upload, no watermark, no sign-up. Free at ConvertPDF.Live."/>
 <meta name="keywords" content="compress pdf, reduce pdf file size, pdf compressor free, compress pdf online, shrink pdf, pdf size reducer, optimize pdf file size, smallpdf alternative, convertpdf, compress pdf ilovepdf, compress pdf smallpdf, reduce pdf size sejda, shrink pdf ilovepdf alternative, ilovepdf, ilovepdf alternative, ilovepdf free, i love pdf, ilove pdf, smallpdf, smallpdf alternative, smallpdf free, small pdf, sejda, sejda alternative, sejda pdf, adobe acrobat alternative, adobe acrobat free alternative, pdf24 alternative, pdf24, pdfcandy, pdf candy alternative, foxit pdf alternative, nitro pdf alternative, online2pdf alternative, pdf editor, edit pdf"/>
 <meta name="author" content="ConvertPDF.Live"/>
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
@@ -42,10 +44,35 @@
 <meta name="twitter:title" content="Compress PDF Free Online | ConvertPDF.Live"/>
 <meta name="twitter:description" content="Compress PDF and reduce file size online free — choose preset levels, percentage or target file size. Browser-based, no upload to server, instant download."/>
 <meta name="twitter:image" content="https://convertpdf.live/og-image.png"/>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PDF Compressor", "url": "https://convertpdf.live/pdf-compress.html", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Compress PDF files to reduce size free online, browser-based, no upload.. Free alternative to iLovePDF, SmallPDF and Sejda."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Compressor","url":"https://convertpdf.live/pdf-compress.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Compress PDF free online. Reduce file size without losing quality. Choose compression level. No upload, no watermark."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://convertpdf.live/"}, {"@type": "ListItem", "position": 2, "name": "PDF Compressor", "item": "https://convertpdf.live/pdf-compress.html"}]}</script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YH8HV6BTX9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YH8HV6BTX9');
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- pdf.js + pdf-lib -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
 <style>
 /* ══════════════════════════════ TOKENS (match index.html) ══ */
 :root{
@@ -353,27 +380,116 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 
 /* ══ LIGHT MODE (default since body.light) ══ */
 body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#eaecf2;--bdr:#d0d2e0;--txt:#1a1a2e;--mut:#4a4a6a;--acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;--ok:#107040;--shadow:rgba(0,0,0,.09)}
-
+</style>
+<style>.hdr{display:none!important}</style>
+<style>
 .top-nav-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
-.back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap}
+.back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff!important;font-family:var(--fd,'Syne',sans-serif);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap}
 .back-link:hover{transform:translateX(-3px) scale(1.03)}
-.blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2,#0060a0);color:var(--acc2,#0060a0);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;white-space:nowrap;margin-left:auto}
-.blog-guide-btn:hover{background:var(--acc2,#0060a0);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+.blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid #0060a0;color:#0060a0;font-family:var(--fd,'Syne',sans-serif);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;white-space:nowrap;margin-left:auto}
+.blog-guide-btn:hover{background:#0060a0;color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 </style>
 </head>
 <body class="light">
 
 <!-- ══ HEADER ══ -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="./index.html" class="logo">Convert<span>PDF</span>.Live</a>
+
+    <nav class="site-nav">
+      <div class="nav-item">
+        <button class="nav-link">🗂️ All Tools <span class="nav-arr">▾</span></button>
+        <div class="nav-dd" style="min-width:600px">
+          <div class="ndd-title">⭐ Convert From PDF</div>
+          <div class="ndd-grid">
+            <a href="./pdf-to-word.html" class="ndd-item">📝 PDF → Word</a>
+            <a href="./pdf-to-excel.html" class="ndd-item">📊 PDF → Excel</a>
+            <a href="./pdf-to-powerpoint.html" class="ndd-item">📑 PDF → PowerPoint</a>
+            <a href="./pdf-to-text.html" class="ndd-item">📄 PDF → Text</a>
+            <a href="./pdf-to-images.html" class="ndd-item">🎨 PDF → Images</a>
+          </div>
+          <div class="ndd-title">▼ Convert To PDF</div>
+          <div class="ndd-grid">
+            <a href="./word-to-pdf.html" class="ndd-item">📝 Word → PDF</a>
+            <a href="./excel-to-pdf.html" class="ndd-item">📊 Excel → PDF</a>
+            <a href="./image-to-pdf.html" class="ndd-item">🖼️ Image → PDF</a>
+            <a href="./powerpoint-to-pdf.html" class="ndd-item">📑 PowerPoint → PDF</a>
+            <a href="./text-to-pdf.html" class="ndd-item">📄 Text → PDF</a>
+          </div>
+          <div class="ndd-title">📂 Organise &amp; Edit</div>
+          <div class="ndd-grid">
+            <a href="./pdf-merge.html" class="ndd-item">📂 Merge PDF</a>
+            <a href="./pdf-split.html" class="ndd-item">✂️ Split PDF</a>
+            <a href="./pdf-compress.html" class="ndd-item">🗜️ Compress PDF</a>
+            <a href="./pdf-rotate.html" class="ndd-item">🔄 Rotate PDF</a>
+            <a href="./pdf-delete-pages.html" class="ndd-item">🗑️ Delete Pages</a>
+            <a href="./pdf-edit.html" class="ndd-item">✏️ Edit PDF</a>
+            <a href="./pdf-watermark.html" class="ndd-item">💧 Watermark</a>
+            <a href="./pdf-unlock.html" class="ndd-item">🔓 Unlock</a>
+            <a href="./pdf-sign.html" class="ndd-item">📸 Sign / Stamp</a>
+            <a href="./pdf-page-numbers.html" class="ndd-item">🔢 Page Numbers</a>
+            <a href="./pdf-header-footer.html" class="ndd-item">📋 Header &amp; Footer</a>
+            <a href="./pdf-crop-resize.html" class="ndd-item">✂️ Crop / Resize</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <button class="nav-link">🔄 Convert PDF <span class="nav-arr">▾</span></button>
+        <div class="nav-dd" style="min-width:480px">
+          <div class="ndd-title">⭐ Convert From PDF</div>
+          <div class="ndd-grid">
+            <a href="./pdf-to-word.html" class="ndd-item">📝 PDF → Word (.docx)</a>
+            <a href="./pdf-to-excel.html" class="ndd-item">📊 PDF → Excel (.xlsx)</a>
+            <a href="./pdf-to-powerpoint.html" class="ndd-item">📑 PDF → PowerPoint</a>
+            <a href="./pdf-to-text.html" class="ndd-item">📄 PDF → Text (.txt)</a>
+            <a href="./pdf-to-images.html" class="ndd-item">🎨 PDF → Images (.jpg)</a>
+          </div>
+          <div class="ndd-title">▼ Convert To PDF</div>
+          <div class="ndd-grid">
+            <a href="./word-to-pdf.html" class="ndd-item">📝 Word → PDF</a>
+            <a href="./excel-to-pdf.html" class="ndd-item">📊 Excel → PDF</a>
+            <a href="./image-to-pdf.html" class="ndd-item">🖼️ Image → PDF</a>
+            <a href="./powerpoint-to-pdf.html" class="ndd-item">📑 PowerPoint → PDF</a>
+            <a href="./text-to-pdf.html" class="ndd-item">📄 Text → PDF</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="./pdf-merge.html" class="nav-link">📂 Merge PDF</a>
+      <a href="./pdf-split.html" class="nav-link">✂️ Split PDF</a>
+      <a href="./pdf-compress.html" class="nav-link active-link">🗜️ Compress PDF</a>
+
+      <div class="nav-item dd-right">
+        <button class="nav-link">⋯ More <span class="nav-arr">▾</span></button>
+        <div class="nav-dd">
+          <div class="ndd-title">✏️ Edit &amp; Enhance</div>
+          <div class="ndd-grid" style="grid-template-columns:1fr 1fr">
+            <a href="./pdf-edit.html" class="ndd-item">✏️ Edit PDF</a>
+            <a href="./pdf-watermark.html" class="ndd-item">💧 Watermark PDF</a>
+            <a href="./pdf-rotate.html" class="ndd-item">🔄 Rotate PDF</a>
+            <a href="./pdf-delete-pages.html" class="ndd-item">🗑️ Delete Pages</a>
+            <a href="./pdf-unlock.html" class="ndd-item">🔓 Unlock PDF</a>
+            <a href="./pdf-sign.html" class="ndd-item">📸 Sign / Stamp</a>
+            <a href="./pdf-page-numbers.html" class="ndd-item">🔢 Page Numbers</a>
+            <a href="./pdf-header-footer.html" class="ndd-item">📋 Header &amp; Footer</a>
+            <a href="./pdf-crop-resize.html" class="ndd-item">✂️ Crop / Resize</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div style="flex-shrink:0"></div>
+  </div>
+</header>
 
 <!-- ══ MAIN ══ -->
 <main>
 <div class="tool-standalone">
 
-    <!-- Nav row: back + guide -->
-  <div class="top-nav-row">
-    <a href="./index.html" class="back-link">&#8592; All Tools</a>
-    <a href="./blog/pdf-compress.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
-  </div>
+  <!-- Back button -->
+  <div class="top-nav-row"><a href="./index.html" class="back-link">&#8592; All Tools</a><a href="./blog/pdf-compress.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a></div>
 
   <!-- ══ HERO HEADER ══ -->
   <div class="tool-page-hdr">
@@ -518,6 +634,51 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#eaecf2;--bdr:#d0d2e0;--txt:#1a1a2e;
   </div>
 
 </div><!-- /tool-standalone -->
+
+<!-- SEO Content Block — ConvertPDF.Live -->
+<div style="max-width:860px;margin:40px auto 0;padding:0 18px 40px">
+
+  <section style="background:var(--surf);border:1.5px solid var(--bdr);border-radius:14px;padding:28px 30px;margin-bottom:24px">
+    <h2 style="font-family:var(--fd);font-weight:800;font-size:1.05rem;color:var(--txt);margin-bottom:14px;letter-spacing:-.02em">Reduce PDF File Size Free Online — No Upload at ConvertPDF.Live</h2>
+    <p style="font-size:.88rem;color:var(--mut);line-height:1.75;margin-bottom:20px">Large PDF files slow down emails, fail upload limits, and waste storage. <strong>ConvertPDF.Live</strong>'s free <strong>compress PDF tool</strong> reduces your PDF file size without losing quality — choose from preset compression levels or set a specific target size. Everything runs locally in your browser, so your document is never uploaded to any server and stays completely private. No watermark, no account, no cost. Perfect for sharing compressed PDFs via email, uploading to portals with size limits, or saving storage space. Used by students, CA professionals, and business teams free at <strong>convertpdf.live</strong>.</p>
+    <ul style="list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 16px;padding:0">
+      <li>✓ Compress PDF file size free online</li><li>✓ Choose preset levels or set target file size</li><li>✓ No quality watermark on compressed PDF</li><li>✓ Browser-based — file never uploaded to server</li><li>✓ No sign-up or installation required</li><li>✓ Works on Windows, Mac, iPhone & Android</li>
+    </ul>
+  </section>
+
+  <div class="faq-section" style="margin:0 0 24px">
+    <div class="faq-title">Frequently Asked Questions</div>
+    
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Can I compress a PDF without losing quality? <span class="faq-q-arr">▼</span></div>
+    <div class="faq-a">Yes — choose the "light" compression preset to reduce file size with minimal quality impact. Aggressive presets provide higher reduction at the cost of some image sharpness.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Is the PDF compressor completely free? <span class="faq-q-arr">▼</span></div>
+    <div class="faq-a">Yes — completely free with no watermark, no sign-up, and no size tricks at ConvertPDF.Live.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Can I set a target file size for compression? <span class="faq-q-arr">▼</span></div>
+    <div class="faq-a">Yes — enter a specific target file size in MB and ConvertPDF.Live will optimize compression settings to hit that target as closely as possible.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Are my files safe during compression? <span class="faq-q-arr">▼</span></div>
+    <div class="faq-a">Yes — compression happens locally in your browser. Your PDF is never sent to any server, keeping your data 100% private.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How much can I reduce a PDF file size? <span class="faq-q-arr">▼</span></div>
+    <div class="faq-a">Depending on content, image-heavy PDFs can be reduced by 50–80%. Text-only PDFs have less room to compress but still benefit from optimization.</div>
+  </div>
+  </div>
+
+  <section style="background:var(--surf2);border:1.5px solid var(--bdr);border-radius:14px;padding:22px 26px">
+    <div style="font-family:var(--fd);font-weight:800;font-size:.9rem;color:var(--txt);margin-bottom:14px">🔗 Related Free PDF Tools</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px"><a href="./pdf-merge.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:8px;font-family:var(--fm);font-size:.7rem;color:var(--txt);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--acc)';this.style.color='var(--acc)'" onmouseout="this.style.borderColor='var(--bdr)';this.style.color='var(--txt)'">🔗 Merge PDF</a><a href="./pdf-to-word.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:8px;font-family:var(--fm);font-size:.7rem;color:var(--txt);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--acc)';this.style.color='var(--acc)'" onmouseout="this.style.borderColor='var(--bdr)';this.style.color='var(--txt)'">📝 PDF to Word</a><a href="./pdf-split.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:8px;font-family:var(--fm);font-size:.7rem;color:var(--txt);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--acc)';this.style.color='var(--acc)'" onmouseout="this.style.borderColor='var(--bdr)';this.style.color='var(--txt)'">✂️ Split PDF</a><a href="./blog/pdf-compress.html" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:var(--surf2);border:1px solid var(--bdr);border-radius:8px;font-family:var(--fm);font-size:.7rem;color:var(--txt);text-decoration:none;transition:all .2s;" onmouseover="this.style.borderColor='var(--acc)';this.style.color='var(--acc)'" onmouseout="this.style.borderColor='var(--bdr)';this.style.color='var(--txt)'">📖 Blog: How to Compress PDF Free</a></div>
+  </section>
+
+</div>
+<!-- /SEO Content Block -->
+
 </main>
 
 <footer class="site-footer">
@@ -533,7 +694,7 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#eaecf2;--bdr:#d0d2e0;--txt:#1a1a2e;
     <a href="./pdf-edit.html">Edit PDF</a>
     <a href="./pdf-sign.html">Sign PDF</a>
   </div>
-  <div class="footer-copy">© 2025 ConvertPDF.Live — Free PDF Tools · All processing done in your browser · No upload · Privacy first</div>
+  <div class="footer-copy">© 2025 ConvertPDF.Live — Free PDF Tools Online · Convert, Merge, Split & Edit PDF Free · No Upload · Privacy First · <a href="https://convertpdf.live" style="color:var(--acc);text-decoration:none">convertpdf.live</a></div>
 </footer>
 
 <!-- ══ NAV HOVER ══ -->
