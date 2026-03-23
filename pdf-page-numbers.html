@@ -60,6 +60,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
+  --acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;
+  --txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;
+  --shadow:rgba(0,0,0,.10);--r:8px;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
 body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;--mut:#4a4a6a}
 
@@ -86,7 +94,10 @@ main{max-width:900px;margin:0 auto;padding:28px 18px 80px}
 .dz{border:2.5px dashed var(--bdr);border-radius:14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surf2);text-align:center;padding:44px 20px;position:relative;transition:all .25s}
 .dz:hover,.dz.drag-over{border-color:var(--acc);background:rgba(176,120,0,.04);transform:scale(1.01)}
 .dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.dz-icon{font-size:2.4rem}
+.dz-icon-hidden{font-size:2.4rem}
+
+.dz-plus{width:64px;height:64px;border-radius:50%;background:var(--surf);border:2.5px dashed var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--mut);transition:all .3s cubic-bezier(.34,1.56,.64,1);line-height:1;font-family:var(--fd)}
+.dz:hover .dz-plus,.dz.drag-over .dz-plus{border-color:var(--acc);color:var(--acc);transform:scale(1.12) rotate(90deg);background:rgba(176,120,0,.06)}
 .dz-title{font-family:var(--fd);font-weight:700;font-size:.95rem;color:var(--txt)}
 .dz-sub{font-size:.78rem;color:var(--mut)}
 .dz-hint{font-family:var(--fm);font-size:.62rem;color:var(--mut);background:var(--surf);padding:3px 10px;border-radius:20px;border:1px solid var(--bdr)}
@@ -212,6 +223,9 @@ input:focus,select:focus{border-color:var(--acc)}
 .top-nav-row .back-link{margin-bottom:0}
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+
+/* Remove gap from hidden progress bar */
+.u-prog:not(.show){display:none!important;margin:0!important}
 </style>
 <link rel="stylesheet" href="./shared.css"/>
 <link rel="stylesheet" href="./design-system.css" data-ds="1"/>
@@ -220,31 +234,44 @@ input:focus,select:focus{border-color:var(--acc)}
 
 <main>
   <div class="top-nav-row">
-  <a href="./index.html" class="back-link">&#8592; Back to Tools</a>
+  <a href="./index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap" onmouseover="this.style.transform='translateX(-3px) scale(1.03)';this.style.boxShadow='0 5px 20px rgba(176,120,0,.45)'" onmouseout="this.style.transform='';this.style.boxShadow='0 3px 14px rgba(176,120,0,.3)'">&#8592; All Tools</a>
   <a href="./blog/pdf-page-numbers.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
 </div>
 
   <div class="tool-card">
     <div class="tool-card-accent"></div>
     <div class="tool-hdr">
-      <span class="tool-icon">&#128290;</span>
-      <h1 class="tool-title">Add Page Numbers to PDF</h1>
-      <p class="tool-desc">Choose position, format, font size and page range &#8212; see a live preview before applying to the whole document. 100% browser-based, no upload.</p>
-      <div class="tool-badges">
-        <span class="badge badge-g">&#10003; Free Forever</span>
-        <span class="badge badge-y">&#10003; No Upload</span>
-        <span class="badge badge-b">&#10003; Live Preview</span>
-        <span class="badge badge-g">&#10003; 6 Formats</span>
+      <div style="margin-bottom:22px;padding-bottom:18px;border-bottom:1.5px solid var(--bdr);text-align:center">
+        <div style="font-family:var(--fd);font-weight:800;font-size:1.45rem;color:var(--txt);letter-spacing:-.03em;margin-bottom:14px">
+          Add Page Numbers to PDF <span style="color:var(--ok);font-size:.75em">(Free)</span>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Free Forever</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)">No Upload</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)">Browser-Based</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Custom Style</span>
+        </div>
+        <div class="cpdf-steps" style="display:flex;align-items:center;justify-content:center;gap:0;padding:13px 18px;background:var(--surf2);border:1px solid var(--bdr);border-radius:14px;overflow-x:auto;scrollbar-width:none">
+          <div id="step0" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:1"><div id="sn0" style="width:26px;height:26px;border-radius:50%;background:var(--acc);border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:#0a0a14;box-shadow:0 0 0 4px rgba(176,120,0,.18)">1</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Upload</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step1" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn1" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">2</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Options</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step2" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn2" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">3</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Convert</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step3" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn3" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">4</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Download</div></div>
+        </div>
       </div>
     </div>
 
     <div class="tool-body">
+<div class="cpdf-steps" id="cpdf-steps-sentinel" style="display:none" aria-hidden="true"></div>
+
       <div class="u-prog" id="u-prog-main"><div class="u-prog-track"><div class="u-prog-fill"></div></div><div class="u-prog-lbl"><div class="u-prog-spinner"></div><span class="u-prog-lbl-text">Loading&#8230;</span></div></div>
 
       <div id="dropSection">
         <div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Choose position, font size, and starting number for page numbering.</span></div><div class="dz" id="dz">
           <input type="file" accept=".pdf" id="fileInput" aria-label="Upload file">
-          <span class="dz-icon">&#128290;</span>
+          <div class="dz-plus" style="width:64px;height:64px;border-radius:50%;background:var(--surf);border:2.5px dashed var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--mut);transition:all .3s cubic-bezier(.34,1.56,.64,1);line-height:1;font-family:var(--fd)">+</div>
           <div class="dz-title">Drop your PDF here</div>
           <div class="dz-sub">or click to browse · private &amp; secure</div>
           <span class="dz-hint">PDF only &#183; browser-based &#183; private</span>
@@ -435,9 +462,7 @@ input:focus,select:focus{border-color:var(--acc)}
 
 </main>
 
-<div class="contact-banner">
-  <div class="contact-banner-title">Questions or Feedback?</div>
-  <div class="contact-banner-sub">We're constantly improving our tools. Let us know if something isn't working.</div>
+<div class="contact-banner-sub">We're constantly improving our tools. Let us know if something isn't working.</div>
   <a href="./feedback.html" class="btn btn-secondary" style="font-size:.78rem;padding:8px 20px">Send Feedback</a>
 </div>
 <script>
@@ -515,7 +540,7 @@ async function loadFile(f){
     buildThumbDots();
     await renderPreviewPage(1);
     hideUProg();
-    setTimeout(()=>document.getElementById('editorArea').scrollIntoView({behavior:'smooth',block:'start'}),150);
+    
   }catch(e){alert('Error loading PDF: '+e.message);resetTool();}
 }
 
@@ -594,7 +619,7 @@ async function applyPageNumbers(){
     document.getElementById('resultStats').innerHTML=numbered+' page'+(numbered!==1?'s':'')+' numbered &middot; '+fmtSize(pdfFile.size)+' &rarr; '+fmtSize(bytes.length);
     document.getElementById('resultBox').classList.add('show');
     setProgress(100,'Done!');
-    setTimeout(()=>{hideProgress();document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});},700);
+    setTimeout(()=>{hideProgress();},700);
   }catch(e){alert('Error: '+e.message);console.error(e);}
   btn.disabled=false;
 }
@@ -714,13 +739,7 @@ function updatePreviewBadge(){
 
 </script>
 
-<script id="scroll-result-patch">
-(function(){
-  var _w=null;
-  function watch(){clearInterval(_w);_w=setInterval(function(){var r=document.querySelector('.result-box.show');if(r&&r.textContent.trim()){clearInterval(_w);r.scrollIntoView({behavior:'smooth',block:'nearest'});}},350);setTimeout(function(){clearInterval(_w);},15000);}
-  document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(/apply|download|number/i.test(b.textContent||''))watch();},true);
-})();
-</script>
+
 
 <script>
 /* ═══════════════════════════════════════════════════════════════
@@ -1011,110 +1030,6 @@ function updatePreviewBadge(){
 [data-tooltip]:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
-}
-
-/* ══ LOADING MODAL ══ */
-.cpdf-loading-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(10,10,20,.75);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 9800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s;
-}
-.cpdf-loading-modal.show {
-  opacity: 1;
-  pointer-events: all;
-}
-.cpdf-loading-card {
-  background: var(--surf);
-  border: 2px solid var(--bdr);
-  border-radius: 20px;
-  padding: 36px 40px;
-  text-align: center;
-  width: min(380px, 90vw);
-  box-shadow: 0 24px 80px rgba(0,0,0,.45);
-  animation: loadCardIn .3s cubic-bezier(.22,.68,0,1.15);
-}
-@keyframes loadCardIn {
-  from { opacity: 0; transform: scale(.92) translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-/* SVG progress ring */
-.cpdf-ring-wrap {
-  position: relative;
-  width: 88px; height: 88px;
-  margin: 0 auto 20px;
-}
-.cpdf-ring-svg {
-  width: 88px; height: 88px;
-  transform: rotate(-90deg);
-}
-.cpdf-ring-track {
-  fill: none;
-  stroke: var(--surf2);
-  stroke-width: 6;
-}
-.cpdf-ring-fill {
-  fill: none;
-  stroke: url(#cpdfRingGrad);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-dasharray: 226;
-  stroke-dashoffset: 226;
-  transition: stroke-dashoffset .4s cubic-bezier(.4,0,.2,1);
-}
-.cpdf-ring-pct {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--fd);
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--txt);
-}
-.cpdf-loading-title {
-  font-family: var(--fd);
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: var(--txt);
-  margin-bottom: 6px;
-}
-.cpdf-loading-msg {
-  font-family: var(--fm);
-  font-size: .7rem;
-  color: var(--mut);
-  min-height: 18px;
-  transition: opacity .2s;
-  line-height: 1.5;
-}
-/* thin animated bar below card */
-.cpdf-loading-bar {
-  height: 3px;
-  background: var(--surf2);
-  border-radius: 0 0 18px 18px;
-  overflow: hidden;
-  margin: 20px -40px -36px;
-}
-.cpdf-loading-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--acc), var(--acc2), var(--acc3));
-  background-size: 200% 100%;
-  border-radius: 3px;
-  transition: width .35s;
-  animation: barShimmer 1.5s linear infinite;
-}
-@keyframes barShimmer {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
 }
 
 /* ══ RESULT SECTION — enhanced ══ */
@@ -1445,26 +1360,7 @@ body.dark .cpdf-toast { background: var(--surf2); }
   </defs>`;
   document.body.appendChild(svgDefs);
 
-  /* ── 2. LOADING MODAL ── */
-  const modal = document.createElement('div');
-  modal.id = 'cpdf-loading-modal';
-  modal.className = 'cpdf-loading-modal';
-  modal.innerHTML = `
-    <div class="cpdf-loading-card">
-      <div class="cpdf-ring-wrap">
-        <svg class="cpdf-ring-svg" viewBox="0 0 88 88">
-          <circle class="cpdf-ring-track" cx="44" cy="44" r="36"/>
-          <circle class="cpdf-ring-fill" id="cpdf-ring-fill" cx="44" cy="44" r="36"/>
-        </svg>
-        <div class="cpdf-ring-pct" id="cpdf-ring-pct">0%</div>
-      </div>
-      <div class="cpdf-loading-title" id="cpdf-loading-title">Processing…</div>
-      <div class="cpdf-loading-msg" id="cpdf-loading-msg">Please wait</div>
-      <div class="cpdf-loading-bar">
-        <div class="cpdf-loading-bar-fill" id="cpdf-loading-bar-fill" style="width:0%"></div>
-      </div>
-    </div>`;
-  document.body.appendChild(modal);
+  /* loading modal removed */
 
   /* ── 3. TOAST STACK ── */
   const toastStack = document.createElement('div');
@@ -1477,16 +1373,8 @@ body.dark .cpdf-toast { background: var(--surf2); }
 
   window.CpdfUI = {
     /* Loading modal */
-    showLoading(title = 'Processing…', msg = 'Please wait') {
-      document.getElementById('cpdf-loading-title').textContent = title;
-      document.getElementById('cpdf-loading-msg').textContent = msg;
-      this.setProgress(0, msg);
-      modal.classList.add('show');
-    },
-    hideLoading() {
-      this.setProgress(100);
-      setTimeout(() => modal.classList.remove('show'), 400);
-    },
+    showLoading() {},
+    hideLoading() {},
     setProgress(pct, msg) {
       pct = Math.max(0, Math.min(100, pct));
       const fill = document.getElementById('cpdf-ring-fill');
@@ -1607,9 +1495,6 @@ body.dark .cpdf-toast { background: var(--surf2); }
   const _origSetProgress = window.setProgress;
   window.setProgress = function(pct, lbl) {
     if (_origSetProgress) _origSetProgress(pct, lbl);
-    if (modal.classList.contains('show')) {
-      window.CpdfUI.setProgress(pct, lbl);
-    }
   };
 
   /* ── 6. INTERCEPT existing toast() if not already defined ── */
@@ -1826,7 +1711,6 @@ body.dark .cpdf-toast { background: var(--surf2); }
           const hasFile = document.querySelector('input[type=file]') &&
             Array.from(document.querySelectorAll('input[type=file]')).some(i => i.files && i.files.length);
           if (hasFile && !btn.disabled) {
-            window.CpdfUI.showLoading('Processing PDF…', 'Starting up…');
             window.CpdfUI.setStep('main', 2);
           }
         }, true); // capture = true so it fires before existing handlers
@@ -1834,11 +1718,10 @@ body.dark .cpdf-toast { background: var(--surf2); }
     });
   }
 
-  // Intercept hideProgress to hide modal
+  // Intercept hideProgress
   const _origHideProgress = window.hideProgress;
   window.hideProgress = function() {
     if (_origHideProgress) _origHideProgress();
-    window.CpdfUI.hideLoading();
     window.CpdfUI.setStep('main', 3);
   };
 
@@ -1861,20 +1744,22 @@ PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free.
 No sign up required. No file upload. 100% browser based. Private and secure.
 </div>
 
-<div class="feedback-banner">
-  <div style="max-width:700px;margin:0 auto">
-    <p class="fb-title">Want a new feature or have a suggestion?</p>
-    <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
-  </div>
+<div style="background:var(--surf);border-top:2px solid var(--acc);padding:20px 24px;text-align:center;margin-top:0">
+  <p style="font-family:var(--fd);font-weight:800;font-size:.93rem;color:var(--txt);margin-bottom:10px">Want a new feature or have a suggestion?</p>
+  <a href="./feedback.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#1a1a2e;font-family:var(--fd);font-weight:800;font-size:.84rem;padding:11px 26px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 16px rgba(176,120,0,.3)">💡 Suggest Feature</a>
 </div>
 
-<footer class="site-footer">
-  <div class="site-footer-links">
-    <a href="./index.html">Home</a><span class="site-footer-sep">·</span>
-    <a href="./privacy-policy.html">Privacy</a><span class="site-footer-sep">·</span>
-    <a href="./terms.html">Terms</a><span class="site-footer-sep">·</span>
-    <a href="./feedback.html">Contact</a><span class="site-footer-sep">·</span>
-    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
+<footer style="background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+    <a href="./index.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Home</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./privacy-policy.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Privacy</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./terms.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Terms</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./feedback.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Contact</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <span style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
   </div>
 </footer>
 

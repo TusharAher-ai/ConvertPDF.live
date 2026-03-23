@@ -74,6 +74,18 @@
 
 <style>
 /* ═══════════════════════════════ TOKENS ═══════════════════════ */ body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+/* ═══ TOKENS — matches site system ═══ */
+:root{
+  --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
+  --acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;
+  --txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;
+  --shadow:rgba(0,0,0,.10);--r:8px;--hdr-h:58px;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
+
 body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;--mut:#4a4a6a}
 
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
@@ -100,10 +112,11 @@ main{max-width:860px;margin:0 auto;padding:28px 18px 80px}
 .badge-b{background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)}
 .tool-body{padding:22px 32px}
 
-/* ═══ BACK LINK ═══ */
-.back-link{display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#ffffff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;margin-bottom:22px;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3)}
-.back-link:hover{transform:translateX(-3px) scale(1.03);box-shadow:0 5px 20px rgba(176,120,0,.45)}
-body.dark .back-link{color:#ffffff}
+/* ══ TOP NAV — matches pdf-to-word ══ */
+.top-nav-row{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.back-link{display:inline-flex!important;align-items:center;gap:8px;background:var(--acc)!important;color:#fff!important;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px!important;border-radius:50px!important;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3)!important;border:none!important;margin-bottom:0!important;white-space:nowrap}
+.back-link:hover{transform:translateX(-3px) scale(1.03)!important;box-shadow:0 5px 20px rgba(176,120,0,.45)!important}
+.top-nav-row .back-link{margin-bottom:0}
 
 /* ═══ DROP ZONE ═══ */
 .dz{border:2.5px dashed var(--bdr);border-radius:14px;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surf2);text-align:center;padding:36px 20px;position:relative}
@@ -274,6 +287,68 @@ body.dark .btn-primary{color:#0a0a14}
 .top-nav-row .back-link{margin-bottom:0}
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+
+/* ══ UNIVERSAL DESIGN SYSTEM ══ */
+
+/* Card accent + body */
+.tool-card-accent{height:4px}
+.tool-body{padding:28px 32px}
+@media(max-width:600px){.tool-body{padding:20px 16px}}
+
+/* Card header */
+.tool-card-header{margin-bottom:22px;padding-bottom:18px;border-bottom:1.5px solid var(--bdr);text-align:center}
+.tool-card-title{font-family:var(--fd);font-weight:800;font-size:1.45rem;color:var(--txt);letter-spacing:-.03em;margin-bottom:5px}
+
+/* Badges */
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px}
+.badge-g{background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)}
+.badge-y{background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)}
+.badge-b{background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)}
+
+/* Steps tracker */
+.steps-track{display:flex;align-items:center;justify-content:center;gap:0;padding:13px 18px;background:var(--surf2);border:1px solid var(--bdr);border-radius:14px;overflow-x:auto;scrollbar-width:none}
+.steps-track::-webkit-scrollbar{display:none}
+.step-item{display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32;transition:opacity .3s}
+.step-item.active{opacity:1}
+.step-item.done{opacity:.62}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--surf);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.6rem;font-weight:700;color:var(--mut);transition:all .3s;flex-shrink:0}
+.step-item.active .step-num{background:var(--acc);border-color:var(--acc);color:#0a0a14;box-shadow:0 0 0 4px rgba(176,120,0,.18)}
+.step-item.done .step-num{background:var(--ok);border-color:var(--ok);color:#fff}
+.step-lbl{font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap}
+.step-arr{width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0;position:relative}
+.step-arr::after{content:'';position:absolute;right:-1px;top:-3px;border:3px solid transparent;border-left-color:var(--bdr)}
+@media(max-width:440px){.step-lbl{font-size:.6rem}.step-arr{width:14px;margin:0 3px}}
+
+/* Drop zone — universal + sign style */
+.dz{border:2.5px dashed var(--bdr);border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--surf2);text-align:center;padding:52px 20px;position:relative;transition:all .28s cubic-bezier(.34,1.1,.64,1);min-height:200px}
+.dz:hover,.dz.drag-over{border-color:var(--acc);background:rgba(176,120,0,.05);transform:scale(1.01);box-shadow:0 0 0 4px rgba(176,120,0,.10)}
+.dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.dz-plus{width:64px;height:64px;border-radius:50%;background:var(--surf);border:2.5px dashed var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--mut);transition:all .3s cubic-bezier(.34,1.56,.64,1);line-height:1;font-family:var(--fd);font-weight:400}
+.dz:hover .dz-plus,.dz.drag-over .dz-plus{border-color:var(--acc);color:var(--acc);transform:scale(1.12) rotate(90deg);background:rgba(176,120,0,.06)}
+.dz-title{font-family:var(--fd);font-weight:800;font-size:1rem;color:var(--txt)}
+.dz-sub{font-size:.8rem;color:var(--mut)}
+.dz-hint{font-family:var(--fm);font-size:.6rem;color:var(--mut);background:var(--surf);padding:3px 11px;border-radius:20px;border:1px solid var(--bdr);animation:hintPulse 2.5s ease infinite}
+@keyframes hintPulse{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* File preview card (replaces drop zone after upload) */
+.file-preview-card{display:none;flex-direction:column;align-items:center;gap:14px;padding:24px 20px;background:var(--surf2);border:2px solid rgba(16,112,64,.3);border-radius:16px;margin-bottom:0;animation:cardIn .35s cubic-bezier(.34,1.3,.64,1);position:relative}
+.file-preview-card.show{display:flex}
+@keyframes cardIn{from{opacity:0;transform:scale(.94) translateY(-8px)}to{opacity:1;transform:none}}
+.file-preview-thumb{width:80px;height:96px;background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 4px 18px rgba(0,0,0,.08);position:relative;overflow:hidden;flex-shrink:0}
+.file-preview-thumb::before{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 18px 18px 0;border-color:transparent var(--bdr) transparent transparent}
+.file-preview-thumb::after{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 16px 16px 0;border-color:transparent var(--surf2) transparent transparent}
+.file-thumb-icon{font-size:1.8rem;line-height:1}
+.file-thumb-ext{font-family:var(--fm);font-size:.5rem;font-weight:700;color:var(--acc3);text-transform:uppercase;letter-spacing:.06em;background:rgba(176,0,74,.08);padding:2px 6px;border-radius:4px}
+.file-preview-info{text-align:center}
+.file-preview-name{font-family:var(--fd);font-weight:700;font-size:.92rem;color:var(--txt);word-break:break-all;margin-bottom:6px;max-width:320px}
+.file-preview-meta{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap}
+.meta-pill{display:inline-flex;align-items:center;gap:4px;font-family:var(--fm);font-size:.6rem;padding:3px 10px;border-radius:20px}
+.meta-pill-size{background:rgba(0,96,160,.08);color:var(--acc2);border:1px solid rgba(0,96,160,.2)}
+.meta-pill-pages{background:rgba(176,120,0,.08);color:var(--acc);border:1px solid rgba(176,120,0,.2)}
+.meta-pill-ok{background:rgba(16,112,64,.08);color:var(--ok);border:1px solid rgba(16,112,64,.2)}
+.file-preview-remove{position:absolute;top:10px;right:12px;background:transparent;border:1px solid var(--bdr);border-radius:8px;padding:4px 9px;cursor:pointer;font-size:.68rem;color:var(--mut);font-family:var(--fm);transition:all .15s}
+.file-preview-remove:hover{border-color:var(--acc3);color:var(--acc3)}
 </style>
 
 <link rel="stylesheet" href="./shared.css"/>
@@ -282,105 +357,461 @@ body.dark .btn-primary{color:#0a0a14}
 <body class="light">
 
 
+
+
 <main>
   <div class="top-nav-row">
-  <a href="./index.html" class="back-link">&#8592; Back to Tools</a>
-  <a href="./blog/pdf-to-excel.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
-</div>
+    <a href="./index.html" class="back-link">&#8592; All Tools</a>
+    <a href="./blog/pdf-to-excel.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
+  </div>
   <div class="tool-card">
     <div class="tool-card-accent" style="background:linear-gradient(90deg,var(--ok),var(--acc2))"></div>
-    <div class="tool-hdr">
-      <span class="tool-icon">📊</span>
-      <h1 class="tool-title">PDF to Excel</h1>
-      <p class="tool-desc">Extract data from PDFs and export to Excel spreadsheets. Supports OCR for scanned documents.</p>
-      <div class="tool-badges"><span class="badge badge-g">Free</span><span class="badge badge-b">Client-side</span><span class="badge badge-y">OCR Support</span></div>
-    </div>
     <div class="tool-body">
-<div class="u-prog" id="u-prog-main"><div class="u-prog-track"><div class="u-prog-fill"></div></div><div class="u-prog-lbl"><div class="u-prog-spinner"></div><span class="u-prog-lbl-text">Processing…</span></div></div>
 
+      <!-- ── CARD HEADER (tool name + desc + badges + steps) ── -->
+      <div class="tool-card-header">
+        <div class="tool-card-title">Convert PDF to Excel <span style="color:var(--ok);font-size:.75em">(Free)</span></div>
 
-      <!-- Drop Zone -->
-      <div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Best for PDFs with tables or structured data. Each page becomes a sheet.</span></div><div class="dz" id="dz" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="_dzDrop(event)">
-        <input type="file" accept=".pdf" id="fileInput" onchange="if(this.files[0])loadFile(this.files[0])" aria-label="Upload file">
-        <span class="dz-icon">📊</span>
-        <div class="dz-title">Drop your PDF here</div>
-        <div class="dz-sub">or click to browse · private &amp; secure</div>
-        <span class="dz-hint">PDF files up to 50MB</span>
+        <div class="hero-badges" style="margin-bottom:18px">
+          <span class="badge badge-g">Free Forever</span>
+          <span class="badge badge-b">No Upload</span>
+          <span class="badge badge-y">OCR Support</span>
+          <span class="badge badge-g">Exports .xlsx</span>
+        </div>
+        <div class="steps-track cpdf-steps" style="margin-bottom:0">
+          <div class="step-item active" id="step0"><div class="step-num" id="sn0">1</div><div class="step-lbl">Upload</div></div>
+          <div class="step-arr"></div>
+          <div class="step-item" id="step1"><div class="step-num" id="sn1">2</div><div class="step-lbl">Options</div></div>
+          <div class="step-arr"></div>
+          <div class="step-item" id="step2"><div class="step-num" id="sn2">3</div><div class="step-lbl">Convert</div></div>
+          <div class="step-arr"></div>
+          <div class="step-item" id="step3"><div class="step-num" id="sn3">4</div><div class="step-lbl">Download</div></div>
+        </div>
       </div>
 
-      <!-- File Info -->
-      <div class="file-info" id="fileInfo" style="display:none;margin-top:14px">
-        <span class="fi-icon">📄</span>
-        <span class="fi-name" id="fiName"></span>
-        <span class="fi-size" id="fiSize"></span>
-        <button class="fi-clear" onclick="resetTool()">✕ Clear</button>
+      <!-- ── DROP ZONE ── -->
+      <div id="dzWrap">
+        <div class="dz" id="dz"
+             ondragover="onDzDragOver(event)"
+             ondragleave="onDzDragLeave(event)"
+             ondrop="onDzDrop(event)">
+          <input type="file" accept=".pdf" id="fileInput" onchange="if(this.files[0])loadFile(this.files[0])">
+          <div class="dz-plus">+</div>
+          <div class="dz-title">Drop PDF here</div>
+          <div class="dz-sub">or click to browse · private &amp; secure</div>
+          <div class="dz-hint">PDF files · browser-based · no upload</div>
+        </div>
       </div>
 
-      <!-- OCR Toggle -->
+      <!-- ── FILE PREVIEW CARD (shown after upload, replaces drop zone) ── -->
+      <div class="file-preview-card" id="filePreviewCard">
+        <button class="file-preview-remove" onclick="resetTool()">✕ Remove</button>
+        <div class="file-preview-thumb">
+          <div class="file-thumb-icon">📊</div>
+          <div class="file-thumb-ext">PDF</div>
+        </div>
+        <div class="file-preview-info">
+          <div class="file-preview-name" id="previewName">document.pdf</div>
+          <div class="file-preview-meta">
+            <span class="meta-pill meta-pill-size" id="previewSize">— KB</span>
+            <span class="meta-pill meta-pill-pages" id="previewPages" style="display:none">— pages</span>
+            <span class="meta-pill meta-pill-ok">✓ Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── OCR TOGGLE (shown after upload) ── -->
       <div class="ocr-toggle" id="ocrToggle" style="display:none" onclick="toggleOCR()">
         <div class="toggle-sw" id="ocrSw"></div>
         <div>
           <div class="ocr-label">Enable OCR (for scanned PDFs)</div>
-          <div class="ocr-sub">Automatically detect text in image-based PDFs · May take longer</div>
+          <div class="ocr-sub">Detect text in image-based PDFs · Takes longer</div>
         </div>
       </div>
 
-      <!-- Info -->
+      <!-- ── INFO BOX ── -->
       <div class="info-box info-note" style="display:none" id="noteBox">
         <span class="info-box-icon">ℹ️</span>
-        <span>PDF text is extracted and placed into a spreadsheet. Complex table layouts may need manual adjustments. OCR accuracy depends on scan quality.</span>
+        <span>Data under each column header stays aligned to that column. Each PDF page becomes one Excel sheet.</span>
       </div>
 
-      <!-- Progress -->
+      <!-- ── PROGRESS ── -->
       <div class="progress-wrap" id="prog">
-        <div class="progress-bar-bg" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar-fill" id="progFill"></div></div>
+        <div class="progress-bar-bg" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar-fill" id="progFill"></div>
+        </div>
         <div class="progress-label" id="progLabel">Processing…</div>
       </div>
 
-      <!-- Action -->
-      <button class="btn btn-primary" id="convertBtn" style="display:none;margin-top:8px" onclick="convert()">📊 Convert to Excel</button>
+      <!-- ── CONVERT BUTTON ── -->
+      <button class="btn btn-primary" id="convertBtn" style="display:none;margin-top:8px;width:100%;font-size:.9rem;padding:14px 28px" onclick="convert()">📊 Convert to Excel</button>
 
-      <!-- Preview Table -->
-      <div class="result-box" role="alert" aria-live="polite" id="resultBox">
-        <div class="result-title">✅ Preview (first 50 rows)</div>
-        <div class="result-stats" id="resultStats"></div>
-        <div id="tableWrap" style="overflow-x:auto;max-height:340px;overflow-y:auto;border:1px solid var(--bdr);border-radius:8px"></div>
-        <div class="result-actions" style="margin-top:14px">
-          <button class="btn btn-primary" onclick="downloadXLSX()">⬇️ Download .xlsx</button>
-          <button class="btn btn-secondary" onclick="resetTool()">Convert Another</button>
-        </div>
+      <!-- result trigger -->
+      <div id="resultBox" style="display:none"></div>
+
+    </div>
+  </div><!-- close tool-card -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     EXCEL VIEWER OVERLAY
+     Full-screen overlay with spreadsheet-style preview
+     Left: sheet viewer  |  Right: control panel
+═══════════════════════════════════════════════════════════ -->
+<style>
+/* Excel Overlay — Light mode matching real Excel */
+.xl-overlay{position:fixed;inset:0;z-index:9900;display:none;flex-direction:row}
+.xl-overlay.open{display:flex}
+
+/* Left: sheet viewer */
+.xl-viewer{
+  flex:1;min-width:0;overflow:auto;
+  background:#f5f5f5;
+  display:flex;flex-direction:column;
+}
+.xl-viewer-topbar{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 16px;
+  background:#217346;border-bottom:2px solid #185c37;
+  flex-shrink:0;
+}
+.xl-file-icon{font-size:1.4rem}
+.xl-file-name{font-family:var(--fd);font-weight:800;font-size:.9rem;color:#fff;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xl-file-meta{font-family:var(--fm);font-size:.6rem;color:rgba(255,255,255,.7);white-space:nowrap}
+
+/* Sheet tabs bar */
+.xl-tabs{
+  display:flex;align-items:flex-end;gap:2px;
+  padding:6px 16px 0;background:#e8e8e8;
+  border-bottom:2px solid #217346;flex-shrink:0;
+  overflow-x:auto;scrollbar-width:none;
+}
+.xl-tabs::-webkit-scrollbar{display:none}
+.xl-tab{
+  padding:6px 18px 5px;font-family:var(--fm);font-size:.68rem;
+  background:#d0d0d0;color:#555;border-radius:4px 4px 0 0;
+  cursor:pointer;border:1px solid #bbb;border-bottom:none;
+  white-space:nowrap;transition:all .15s;
+}
+.xl-tab.active{background:#fff;color:#217346;border-color:#bbb;font-weight:700;border-bottom:2px solid #fff;margin-bottom:-2px}
+.xl-tab:hover:not(.active){background:#e0e0e0;color:#333}
+
+/* Grid wrapper */
+.xl-grid-wrap{flex:1;overflow:auto;padding:0}
+.xl-grid-wrap::-webkit-scrollbar{width:10px;height:10px}
+.xl-grid-wrap::-webkit-scrollbar-track{background:#f0f0f0}
+.xl-grid-wrap::-webkit-scrollbar-thumb{background:#bbb;border-radius:4px}
+.xl-grid-wrap::-webkit-scrollbar-thumb:hover{background:#999}
+
+table.xl-sheet{
+  border-collapse:collapse;
+  font-family:'Segoe UI',Calibri,Arial,sans-serif;
+  font-size:12px;color:#1a1a1a;
+  background:#fff;
+}
+.xl-row-num{
+  position:sticky;left:0;z-index:2;
+  background:#f2f2f2;color:#666;
+  border:1px solid #d0d0d0;border-right:2px solid #bbb;
+  padding:2px 8px;font-size:11px;
+  text-align:right;min-width:40px;
+  user-select:none;
+}
+.xl-col-hdr{
+  position:sticky;top:0;z-index:3;
+  background:#f2f2f2;color:#444;
+  border:1px solid #d0d0d0;border-bottom:2px solid #bbb;
+  padding:3px 8px;font-size:11px;text-align:center;
+  min-width:100px;font-weight:600;
+  user-select:none;
+}
+.xl-col-hdr.corner{left:0;z-index:4;background:#e8e8e8;min-width:40px}
+.xl-cell{
+  border:1px solid #d0d0d0;
+  padding:2px 6px;
+  white-space:nowrap;
+  max-width:280px;
+  overflow:hidden;text-overflow:ellipsis;
+  cursor:cell;
+  min-width:100px;
+  background:#fff;
+}
+.xl-cell:hover{background:#e8f4ee;outline:1px solid #217346}
+.xl-cell.header-cell{
+  background:#e2efda;color:#1a1a1a;
+  font-weight:700;font-size:12px;
+  border-color:#c6e0b4;
+}
+.xl-cell.odd-row{background:#fff}
+.xl-cell.even-row{background:#f9f9f9}
+.xl-cell.selected{background:#c6efce;outline:2px solid #217346;outline-offset:-1px}
+
+/* Formula bar */
+.xl-formula-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:4px 12px;background:#fff;
+  border-bottom:1px solid #d0d0d0;flex-shrink:0;
+}
+.xl-cell-ref{
+  font-family:var(--fm);font-size:.7rem;color:#333;
+  background:#f2f2f2;border:1px solid #d0d0d0;border-radius:3px;
+  padding:3px 8px;min-width:55px;text-align:center;font-weight:600;
+}
+.xl-formula-input{
+  flex:1;font-family:'Segoe UI',Calibri,sans-serif;font-size:.8rem;color:#1a1a1a;
+  background:#fff;border:1px solid #d0d0d0;border-radius:3px;
+  padding:3px 8px;
+}
+
+/* Search bar */
+.xl-search-wrap{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 12px;background:#f5f5f5;border-bottom:1px solid #d0d0d0;
+  flex-shrink:0;
+}
+.xl-search-input{
+  flex:1;background:#fff;border:1px solid #bbb;border-radius:4px;
+  color:#1a1a1a;font-family:var(--fm);font-size:.72rem;padding:4px 10px;
+  outline:none;
+}
+.xl-search-input:focus{border-color:#217346;box-shadow:0 0 0 2px rgba(33,115,70,.15)}
+.xl-search-count{font-family:var(--fm);font-size:.62rem;color:#666;white-space:nowrap}
+
+/* Right: control panel */
+.xl-panel{
+  width:260px;flex-shrink:0;
+  background:var(--surf);border-left:2px solid var(--bdr);
+  display:flex;flex-direction:column;
+}
+.xl-panel-head{padding:18px 18px 14px;border-bottom:1px solid var(--bdr);background:var(--surf2)}
+.xl-panel-title{font-family:var(--fd);font-weight:800;font-size:.9rem;color:var(--txt);margin-bottom:4px}
+.xl-panel-sub{font-family:var(--fm);font-size:.6rem;color:var(--mut);line-height:1.6}
+.xl-panel-body{flex:1;padding:16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto}
+.xl-stat{background:var(--surf2);border:1px solid var(--bdr);border-radius:10px;padding:10px 14px}
+.xl-stat-lbl{font-family:var(--fm);font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-bottom:2px}
+.xl-stat-val{font-family:var(--fd);font-weight:700;font-size:.86rem;color:var(--txt)}
+.xl-panel-note{
+  font-family:var(--fm);font-size:.6rem;color:var(--mut);line-height:1.6;
+  padding:10px 12px;background:rgba(33,115,70,.08);
+  border:1px solid rgba(33,115,70,.2);border-radius:9px;
+}
+.xl-panel-foot{padding:14px;border-top:1px solid var(--bdr);display:flex;flex-direction:column;gap:8px}
+.xl-close-btn{
+  background:transparent;border:1.5px solid var(--bdr);border-radius:50px;
+  padding:9px 0;width:100%;font-family:var(--fd);font-weight:700;font-size:.78rem;
+  color:var(--mut);cursor:pointer;transition:all .18s;text-align:center;
+}
+.xl-close-btn:hover{border-color:var(--acc3);color:var(--acc3)}
+
+@media(max-width:700px){
+  .xl-overlay{flex-direction:column}
+  .xl-panel{width:100%;border-left:none;border-top:2px solid var(--bdr);max-height:200px}
+  .xl-panel-body{display:none}
+}
+</style>
+
+<div class="xl-overlay" id="xlOverlay">
+  <!-- LEFT: Excel-style sheet viewer -->
+  <div class="xl-viewer">
+    <!-- Top bar -->
+    <div class="xl-viewer-topbar">
+      <span class="xl-file-icon">📊</span>
+      <span class="xl-file-name" id="xlFileName">document.xlsx</span>
+      <span class="xl-file-meta" id="xlFileMeta"></span>
+    </div>
+    <!-- Formula bar -->
+    <div class="xl-formula-bar">
+      <span class="xl-cell-ref" id="xlCellRef">A1</span>
+      <span style="font-family:var(--fm);font-size:.7rem;color:#217346;font-weight:700">fx</span>
+      <div class="xl-formula-input" id="xlFormulaBar"></div>
+    </div>
+    <!-- Search -->
+    <div class="xl-search-wrap">
+      <span style="font-size:.8rem">🔍</span>
+      <input class="xl-search-input" id="xlSearch" placeholder="Search in spreadsheet…" oninput="xlSearch(this.value)">
+      <span class="xl-search-count" id="xlSearchCount"></span>
+    </div>
+    <!-- Sheet tabs -->
+    <div class="xl-tabs" id="xlTabs"></div>
+    <!-- Grid -->
+    <div class="xl-grid-wrap" id="xlGridWrap">
+      <table class="xl-sheet" id="xlSheet"></table>
+    </div>
+  </div>
+
+  <!-- RIGHT: Control panel -->
+  <div class="xl-panel">
+    <div class="xl-panel-head">
+      <div class="xl-panel-title" id="xlPanelTitle">Converted to Excel</div>
+      <div class="xl-panel-sub" id="xlPanelSub">Extraction complete</div>
+    </div>
+    <div class="xl-panel-body">
+      <div class="xl-stat"><div class="xl-stat-lbl">Pages</div><div class="xl-stat-val" id="xlStatPages">—</div></div>
+      <div class="xl-stat"><div class="xl-stat-lbl">Rows extracted</div><div class="xl-stat-val" id="xlStatRows">—</div></div>
+      <div class="xl-stat"><div class="xl-stat-lbl">Columns</div><div class="xl-stat-val" id="xlStatCols">—</div></div>
+      <div class="xl-stat"><div class="xl-stat-lbl">Mode</div><div class="xl-stat-val" id="xlStatMode">Text</div></div>
+      <div class="xl-panel-note">
+        📋 Scroll to see all data. Click any cell to see its full content in the formula bar.
       </div>
+    </div>
+    <div class="xl-panel-foot">
+      <button class="btn btn-primary dl-pulse" onclick="downloadXLSX()" style="width:100%;padding:12px;font-size:.86rem">⬇ Download .xlsx</button>
+      <button class="btn btn-secondary" onclick="closeXlOverlay();resetTool();" style="width:100%;padding:11px;font-size:.82rem">↺ Convert Another</button>
+      <button class="xl-close-btn" onclick="closeXlOverlay()">✕ Close Preview</button>
+    </div>
+  </div>
+</div>
 
-  <script>
+<script>
   const PDFJS_CDN='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
   const PDFJS_WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
   const TESSERACT_CDN='https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.1.1/tesseract.min.js';
   const SHEETJS_CDN='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
 
   let pdfFile=null, useOCR=false, extractedRows=[], headerRowIndex=-1;
+  let xlSheets=[]; // {name, rows, headerIdx}
+  let xlCurrentSheet=0;
 
-  // ── File input wiring ──
-  document.addEventListener('DOMContentLoaded',function(){
-    const dz=document.getElementById('dz');
-    const fi=document.getElementById('fileInput');
-    if(dz){
-      dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('drag-over');});
-      dz.addEventListener('dragleave',function(){dz.classList.remove('drag-over');});
-      dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)loadFile(f);});
+  /* ── Excel Overlay Controls ── */
+  function openXlOverlay(){
+    document.getElementById('xlOverlay').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeXlOverlay(){
+    document.getElementById('xlOverlay').classList.remove('open');
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeXlOverlay();});
+
+  function xlRenderSheet(idx){
+    xlCurrentSheet=idx;
+    const sheet=xlSheets[idx];
+    if(!sheet)return;
+
+    // Update tabs
+    document.querySelectorAll('.xl-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+
+    // Build grid
+    const rows=sheet.rows;
+    const maxCols=rows.reduce((m,r)=>Math.max(m,r.cells.length),0);
+    const colLetters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    function colLetter(c){
+      if(c<26)return colLetters[c];
+      return colLetters[Math.floor(c/26)-1]+colLetters[c%26];
     }
+
+    let html=`<thead><tr><th class="xl-col-hdr corner"></th>`;
+    for(let c=0;c<maxCols;c++) html+=`<th class="xl-col-hdr">${colLetter(c)}</th>`;
+    html+=`</tr></thead><tbody>`;
+
+    rows.forEach((obj,ri)=>{
+      const isHdr=ri===sheet.headerIdx;
+      html+=`<tr>`;
+      html+=`<td class="xl-row-num">${ri+1}</td>`;
+      for(let c=0;c<maxCols;c++){
+        const val=(obj.cells[c]||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        let cls='xl-cell';
+        if(isHdr) cls+=' header-cell';
+        else cls+=(ri%2===0?' even-row':' odd-row');
+        html+=`<td class="${cls}" onclick="xlSelectCell(this,'${colLetter(c)}',${ri+1},'${val.replace(/'/g,"\\'")}')"><span title="${val}">${val}</span></td>`;
+      }
+      html+=`</tr>`;
+    });
+    html+=`</tbody>`;
+    document.getElementById('xlSheet').innerHTML=html;
+    document.getElementById('xlCellRef').textContent='A1';
+    document.getElementById('xlFormulaBar').textContent='';
+    document.getElementById('xlSearch').value='';
+    document.getElementById('xlSearchCount').textContent='';
+  }
+
+  function xlSelectCell(el, col, row, val){
+    document.querySelectorAll('.xl-cell.selected').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('xlCellRef').textContent=col+row;
+    document.getElementById('xlFormulaBar').textContent=val;
+  }
+
+  function xlSearch(q){
+    const cells=document.querySelectorAll('.xl-cell');
+    cells.forEach(c=>c.classList.remove('selected'));
+    if(!q.trim()){document.getElementById('xlSearchCount').textContent='';return;}
+    const matches=[];
+    cells.forEach(c=>{
+      if(c.textContent.toLowerCase().includes(q.toLowerCase())){
+        c.classList.add('selected');
+        matches.push(c);
+      }
+    });
+    document.getElementById('xlSearchCount').textContent=matches.length?`${matches.length} found`:'No results';
+    if(matches.length) matches[0].scrollIntoView({block:'nearest'});
+  }
+
+  function buildXlOverlay(n){
+    n=n||1;
+    // Build sheet tabs
+    const tabsEl=document.getElementById('xlTabs');
+    tabsEl.innerHTML=`<div class="xl-tab active">📊 All Data</div>`;
+
+    // Populate stats — single sheet, all pages merged
+    const totalRows=xlSheets[0]?xlSheets[0].rows.length:0;
+    const maxCols=xlSheets[0]?xlSheets[0].rows.reduce((m,r)=>Math.max(m,r.cells.length),0):0;
+    document.getElementById('xlStatPages').textContent=n+' pages merged';
+    document.getElementById('xlStatRows').textContent=totalRows.toLocaleString();
+    document.getElementById('xlStatCols').textContent=maxCols;
+    document.getElementById('xlStatMode').textContent=useOCR?'OCR':'Text';
+    document.getElementById('xlFileName').textContent=(pdfFile?.name||'document').replace(/\.pdf$/i,'')+'.xlsx';
+    document.getElementById('xlFileMeta').textContent=`1 sheet · ${totalRows} rows`;
+    document.getElementById('xlPanelTitle').textContent='📊 Converted to Excel';
+    document.getElementById('xlPanelSub').textContent=`All ${n} pages → 1 sheet, ${totalRows} rows, ${maxCols} columns`;
+
+    xlRenderSheet(0);
+    openXlOverlay();
+  }
+
+  /* ─── Drag & drop for universal dz ─── */
+  function onDzDragOver(e){e.preventDefault();document.getElementById('dz').classList.add('drag-over');}
+  function onDzDragLeave(e){if(!document.getElementById('dz').contains(e.relatedTarget))document.getElementById('dz').classList.remove('drag-over');}
+  function onDzDrop(e){e.preventDefault();document.getElementById('dz').classList.remove('drag-over');const f=e.dataTransfer.files[0];if(f)loadFile(f);}
+
+  /* ─── Steps tracker ─── */
+  function setStep(n){
+    for(let i=0;i<=3;i++){
+      const el=document.getElementById('step'+i),nm=document.getElementById('sn'+i);
+      if(!el||!nm)continue;
+      el.classList.remove('active','done');
+      if(i<n){el.classList.add('done');nm.textContent='✓';}
+      else if(i===n){el.classList.add('active');nm.textContent=i+1;}
+      else nm.textContent=i+1;
+    }
+  }
+
+  /* ─── Wire file input on load ─── */
+  document.addEventListener('DOMContentLoaded',function(){
+    const fi=document.getElementById('fileInput');
     if(fi) fi.addEventListener('change',function(e){if(e.target.files[0])loadFile(e.target.files[0]);});
   });
 
   function loadFile(f){
-    if(!f.name.toLowerCase().endsWith('.pdf')){alert('Please select a PDF file.');return}
+    if(!f.name.toLowerCase().endsWith('.pdf')){alert('Please select a PDF file.');return;}
     pdfFile=f;
-    document.getElementById('fiName').textContent=f.name;
-    document.getElementById('fiSize').textContent=fmtSize(f.size);
-    document.getElementById('fileInfo').style.display='flex';
+    // Hide drop zone, show file preview card
+    document.getElementById('dzWrap').style.display='none';
+    document.getElementById('previewName').textContent=f.name;
+    document.getElementById('previewSize').textContent=fmtSize(f.size);
+    document.getElementById('filePreviewCard').classList.add('show');
     document.getElementById('ocrToggle').style.display='flex';
     document.getElementById('noteBox').style.display='flex';
     document.getElementById('convertBtn').style.display='inline-flex';
-    document.getElementById('dz').style.display='none';
+    setStep(1);
+    // Count pages async
+    loadScript(PDFJS_CDN).then(()=>{
+      pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS_WORKER;
+      return f.arrayBuffer();
+    }).then(ab=>pdfjsLib.getDocument({data:ab}).promise).then(doc=>{
+      const pg=document.getElementById('previewPages');
+      pg.textContent=`📄 ${doc.numPages} page${doc.numPages>1?'s':''}`;
+      pg.style.display='inline-flex';
+    }).catch(()=>{});
   }
 
   function toggleOCR(){
@@ -389,25 +820,34 @@ body.dark .btn-primary{color:#0a0a14}
   }
 
   function resetTool(){
-    pdfFile=null;useOCR=false;extractedRows=[];headerRowIndex=-1;
-    document.getElementById('dz').style.display='flex';
-    document.getElementById('fileInfo').style.display='none';
+    pdfFile=null;useOCR=false;extractedRows=[];headerRowIndex=-1;xlSheets=[];
+    document.getElementById('dzWrap').style.display='block';
+    document.getElementById('filePreviewCard').classList.remove('show');
     document.getElementById('ocrToggle').style.display='none';
     document.getElementById('noteBox').style.display='none';
     document.getElementById('convertBtn').style.display='none';
     document.getElementById('ocrSw').classList.remove('on');
-    document.getElementById('resultBox').classList.remove('show');
+    document.getElementById('previewPages').style.display='none';
     hideProgress();
     document.getElementById('fileInput').value='';
+    setStep(0);
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // MAIN CONVERSION ENTRY POINT
-  // ══════════════════════════════════════════════════════════════
+  /* ══════════════════════════════════════════════════════════════
+     MAIN CONVERSION
+     Strategy:
+     1. Extract text items with exact X,Y coordinates per page
+     2. Per-page: cluster X positions → column boundaries
+     3. Group rows by Y proximity → assign to nearest column
+     4. Data under each column stays under that column's header
+     5. Each PDF page → one Excel sheet
+     6. Open Excel viewer overlay on completion
+  ══════════════════════════════════════════════════════════════ */
   async function convert(){
     if(!pdfFile)return;
     document.getElementById('convertBtn').disabled=true;
-    extractedRows=[];headerRowIndex=-1;
+    extractedRows=[];headerRowIndex=-1;xlSheets=[];
+    setStep(2);
     try{
       await loadScript(PDFJS_CDN);
       pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS_WORKER;
@@ -416,69 +856,179 @@ body.dark .btn-primary{color:#0a0a14}
       const pdf=await pdfjsLib.getDocument({data:ab}).promise;
       const n=pdf.numPages;
 
-      // Collect raw items page-by-page
-      let allPageItems=[];
-      let hasSelectableText=false;
-
+      // Check for selectable text
+      let hasText=false;
       if(!useOCR){
-        for(let i=1;i<=n;i++){
-      await (window.yieldUI?window.yieldUI():new Promise(r=>setTimeout(r,0)));
-          setProgress(Math.round(8+55*(i/n)),`Reading page ${i} of ${n}…`);
-          await yieldToUI();
-          const page=await pdf.getPage(i);
-          const items=await extractPageItems(page,i);
-          if(items.length>0) hasSelectableText=true;
-          allPageItems.push({pageNum:i,items});
-        }
+        const p1=await pdf.getPage(1);
+        const tc=await p1.getTextContent();
+        hasText=tc.items.some(i=>i.str&&i.str.trim());
       }
-
-      // Auto-fallback to OCR if no text found
-      if(useOCR||!hasSelectableText){
-        if(!hasSelectableText&&!useOCR){
+      if(useOCR||!hasText){
+        if(!hasText&&!useOCR){
           useOCR=true;
           document.getElementById('ocrSw').classList.add('on');
-          setProgress(30,'No selectable text — switching to OCR…');
-        }
-        allPageItems=[];
-        for(let i=1;i<=n;i++){
-      await (window.yieldUI?window.yieldUI():new Promise(r=>setTimeout(r,0)));
-          setProgress(Math.round(20+65*((i-1)/n)),`OCR: page ${i} of ${n}…`);
-          await yieldToUI();
-          const page=await pdf.getPage(i);
-          const items=await ocrPageToItems(page,i);
-          allPageItems.push({pageNum:i,items});
+          setProgress(10,'No selectable text — switching to OCR…');
         }
       }
 
-      setProgress(82,'Reconstructing table structure…');
+      // ── PER-PAGE EXTRACTION — gap-based column detection ──────────
+      // Each page independently detects columns from actual gaps between items.
+      // All pages padded to global max column count before merging.
+
+      const ROW_SNAP  = 4;   // pt: Y proximity = same row
+      const FRAG_GAP  = 1;   // pt: gap <= this = character fragment, merge
+
+      setProgress(12,'Reading pages…');
+      const pageResults = [];
+
+      for(let i=1;i<=n;i++){
+        setProgress(Math.round(12+72*(i/n)),`Processing page ${i} of ${n}…`);
+        await yieldToUI();
+        const page = await pdf.getPage(i);
+        let items;
+        if(useOCR){ items = await ocrPageToItems(page,i); }
+        else       { items = await extractPageItems(page,i); }
+        if(!items.length) continue;
+
+        const vp = page.getViewport({scale:1});
+        const pageW = vp.width;
+
+        // ── Group into visual rows by Y ──
+        items.sort((a,b)=>a.y!==b.y?a.y-b.y:a.x-b.x);
+        const yGroups=[];
+        let cur=null;
+        for(const it of items){
+          if(!cur||it.y-cur.y>ROW_SNAP){cur={y:it.y,items:[],isBold:false};yGroups.push(cur);}
+          cur.items.push(it);
+          if(it.isBold)cur.isBold=true;
+        }
+
+        // ── Detect columns from inter-item gaps ──
+        // A real column gap = gap between adjacent items >= 3% of page width
+        const MIN_COL_GAP = pageW * 0.03;
+        const gapXs = [];
+        for(const grp of yGroups){
+          const its = grp.items;
+          for(let k=1;k<its.length;k++){
+            const gap = its[k].x - (its[k-1].x + (its[k-1].w||0));
+            if(gap >= MIN_COL_GAP) gapXs.push(its[k].x);
+          }
+        }
+
+        // Cluster gap positions to find stable column start X values
+        let colStarts = [Math.min(...items.map(it=>it.x))]; // always include leftmost
+        if(gapXs.length){
+          const sorted = [...gapXs].sort((a,b)=>a-b);
+          const tol = pageW * 0.04;
+          const clusters = [[sorted[0]]];
+          for(let k=1;k<sorted.length;k++){
+            const last=clusters[clusters.length-1];
+            if(sorted[k]-last[last.length-1]<=tol) last.push(sorted[k]);
+            else clusters.push([sorted[k]]);
+          }
+          // Keep clusters that appear in >=10% of rows
+          const minCount = Math.max(2, yGroups.length*0.10);
+          for(const cl of clusters){
+            if(cl.length >= minCount){
+              const avg = Math.round(cl.reduce((s,v)=>s+v,0)/cl.length);
+              // Only add if not too close to existing colStart
+              if(!colStarts.some(x=>Math.abs(x-avg)<tol)) colStarts.push(avg);
+            }
+          }
+        }
+        colStarts.sort((a,b)=>a-b);
+        const nc = colStarts.length;
+
+        // ── Assign items to columns ──
+        const pageRows=[];
+        let pageHdrIdx=-1;
+
+        // Detect header: first row that is bold or all-label
+        for(let gi=0;gi<Math.min(yGroups.length,5);gi++){
+          const grp=yGroups[gi];
+          if(grp.items.length<2) continue;
+          const texts=grp.items.map(it=>it.text);
+          const allLabel=texts.every(t=>t.length<100&&!/^[\d,.$%+\-()]+$/.test(t));
+          const spread=grp.items[grp.items.length-1].x-grp.items[0].x;
+          if(grp.isBold||(allLabel&&spread>pageW*0.1)){pageHdrIdx=gi;break;}
+        }
+
+        for(const grp of yGroups){
+          const cells=new Array(nc).fill('');
+          for(const it of grp.items){
+            // Find nearest column start
+            let best=0,bestD=Infinity;
+            for(let k=0;k<nc;k++){
+              const d=Math.abs(it.x-colStarts[k]);
+              if(d<bestD){bestD=d;best=k;}
+            }
+            cells[best]=cells[best]?cells[best]+' '+it.text:it.text;
+          }
+          const cleaned=cells.map(c=>c.trim().replace(/\s+/g,' '));
+          if(cleaned.some(c=>c)) pageRows.push({cells:cleaned,isBold:grp.isBold});
+        }
+
+        if(pageRows.length) pageResults.push({rows:pageRows,headerIdx:pageHdrIdx,numCols:nc});
+      }
+
+      if(!pageResults.length){
+        alert('No data could be extracted from this PDF.');
+        document.getElementById('convertBtn').disabled=false;
+        hideProgress();return;
+      }
+
+      // ── Pad all pages to global max columns and merge ──
+      setProgress(88,'Building sheet…');
       await yieldToUI();
 
-      // Build unified column grid across ALL pages
-      const globalCols=buildGlobalColumns(allPageItems);
-
-      setProgress(88,'Aligning rows…');
-      await yieldToUI();
-
-      // Convert each page's items into aligned rows
+      const globalMaxCols=pageResults.reduce((m,p)=>Math.max(m,p.numCols),0);
       const allRows=[];
-      for(const {pageNum,items} of allPageItems){
-        const rows=itemsToRows(items,globalCols,pageNum,n);
-        for(const r of rows) allRows.push(r);
+      let globalHeaderIdx=-1;
+      let firstPage=true;
+
+      for(const {rows,headerIdx} of pageResults){
+        const padded=rows.map(r=>{
+          const cells=[...r.cells];
+          while(cells.length<globalMaxCols) cells.push('');
+          return{cells,isBold:r.isBold};
+        });
+        if(firstPage){
+          globalHeaderIdx=headerIdx;
+          for(const r of padded) allRows.push(r);
+          firstPage=false;
+        } else {
+          // Skip duplicate header
+          let start=0;
+          if(headerIdx>=0&&globalHeaderIdx>=0&&allRows[globalHeaderIdx]){
+            const gh=allRows[globalHeaderIdx].cells.slice(0,3).join('|');
+            const ph=padded[headerIdx]?.cells.slice(0,3).join('|');
+            if(ph&&ph===gh) start=headerIdx+1;
+          }
+          allRows.push({cells:new Array(globalMaxCols).fill(''),isBold:false});
+          for(let r=start;r<padded.length;r++) allRows.push(padded[r]);
+        }
+        for(const r of rows) extractedRows.push(r);
       }
 
-      setProgress(93,'Cleaning and finalising…');
+      if(allRows.length){
+        xlSheets=[{name:'Data',rows:allRows,headerIdx:globalHeaderIdx}];
+        headerRowIndex=globalHeaderIdx;
+      }
+
+      setProgress(95,'Building preview…');
       await yieldToUI();
 
-      // Clean, deduplicate, detect header
-      extractedRows=finaliseRows(allRows,globalCols.length);
-      headerRowIndex=detectHeaderRow(extractedRows);
+      if(!xlSheets.length){
+        alert('No data could be extracted from this PDF.');
+        document.getElementById('convertBtn').disabled=false;
+        hideProgress();return;
+      }
 
-      renderTable(extractedRows,headerRowIndex);
-      document.getElementById('resultStats').textContent=
-        `${n} page${n>1?'s':''} · ${extractedRows.length} rows · ${globalCols.length} columns · ${useOCR?'OCR':'Text'} mode`;
-      document.getElementById('resultBox').classList.add('show');
       setProgress(100,'Done!');
-      setTimeout(hideProgress,1000);
+      setTimeout(hideProgress,800);
+      setStep(3);
+      buildXlOverlay(n);
+
     }catch(e){
       console.error(e);
       alert('Error: '+e.message);
@@ -486,31 +1036,55 @@ body.dark .btn-primary{color:#0a0a14}
     document.getElementById('convertBtn').disabled=false;
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // STEP 1: Extract positioned text items from a PDF page
-  // Returns [{x, y, w, text, fontSize, fontWeight}]
-  // ══════════════════════════════════════════════════════════════
+  /* ══════════════════════════════════════════════════════════════
+     TEXT EXTRACTION from PDF.js
+  ══════════════════════════════════════════════════════════════ */
   async function extractPageItems(page,pageNum){
     const vp=page.getViewport({scale:1.0});
-    const tc=await page.getTextContent({normalizeWhitespace:true,disableCombineTextItems:false});
-    const items=[];
+    const tc=await page.getTextContent({normalizeWhitespace:false,disableCombineTextItems:true});
+    const raw=[];
     for(const item of tc.items){
       if(!item.str||!item.str.trim()) continue;
       const tx=item.transform;
-      const x=Math.round(tx[4]);
-      const y=Math.round(vp.height-tx[5]); // flip Y so top=0
-      const fontSize=Math.abs(Math.round(tx[0]||item.height||10));
+      const x=tx[4];
+      const y=Math.round(vp.height - tx[5]);
+      const fontSize=Math.abs(tx[3]||tx[0]||item.height||10);
       const fontName=(item.fontName||'').toLowerCase();
       const isBold=fontName.includes('bold')||fontName.includes('heavy')||fontName.includes('black');
-      items.push({x,y,w:Math.round(item.width||0),text:item.str.trim(),fontSize,isBold});
+      const w=Math.abs(item.width||0);
+      raw.push({x, y, x2:x+w, w, text:item.str.trim(), fontSize, isBold});
     }
-    return items;
+    if(!raw.length) return [];
+
+    raw.sort((a,b)=>a.y!==b.y?a.y-b.y:a.x-b.x);
+
+    // ONLY merge genuine character fragments — ligatures, accents, split glyphs.
+    // These have ZERO or negative gap (they touch or overlap).
+    // Items with a real gap between them are in different columns — do NOT merge.
+    const FRAG_MERGE_GAP = 2; // pt — only merge if gap is this small or negative
+    const merged=[];
+    for(const it of raw){
+      const last=merged[merged.length-1];
+      const sameRow = last && Math.abs(it.y - last.y) <= 2;
+      const gap = last ? it.x - last.x2 : Infinity;
+      if(sameRow && gap <= FRAG_MERGE_GAP){
+        // True character fragment — merge with no space
+        last.text += it.text;
+        last.x2 = Math.max(last.x2, it.x2);
+        last.w  = last.x2 - last.x;
+        if(it.isBold) last.isBold=true;
+      } else {
+        merged.push({...it, x:Math.round(it.x)});
+      }
+    }
+
+    for(const it of merged) it.text=it.text.replace(/\s+/g,' ').trim();
+    return merged.filter(it=>it.text);
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // STEP 2: OCR a page and produce positioned items
-  // Uses word-level bounding boxes from Tesseract
-  // ══════════════════════════════════════════════════════════════
+  /* ══════════════════════════════════════════════════════════════
+     OCR EXTRACTION via Tesseract
+  ══════════════════════════════════════════════════════════════ */
   async function ocrPageToItems(page,pageNum){
     await loadScript(TESSERACT_CDN);
     const SCALE=2.0;
@@ -525,234 +1099,59 @@ body.dark .btn-primary{color:#0a0a14}
           setProgress(20+Math.round(m.progress*65),`OCR page ${pageNum}…`);}
       });
       const data=result.data||result;
-      const words=data.words||[];
-      for(const w of words){
+      for(const w of (data.words||[])){
         if(!w.text||!w.text.trim()) continue;
         const bb=w.bbox;
-        const x=Math.round(bb.x0/SCALE);
-        const y=Math.round(bb.y0/SCALE);
-        const wd=Math.round((bb.x1-bb.x0)/SCALE);
-        items.push({x,y,w:wd,text:w.text.trim(),fontSize:12,isBold:false});
+        items.push({
+          x:Math.round(bb.x0/SCALE),
+          y:Math.round(bb.y0/SCALE),
+          w:Math.round((bb.x1-bb.x0)/SCALE),
+          text:w.text.trim(),fontSize:12,isBold:false
+        });
       }
-    }catch(err){/* skip page on OCR error */}
+    }catch(err){}
     canvas.remove();
     return items;
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // STEP 3: Build a global column grid from all page items
-  // Clusters X positions across all pages into column anchors
-  // ══════════════════════════════════════════════════════════════
-  function buildGlobalColumns(allPageItems){
-    // Collect all X positions
-    const xPositions=[];
-    for(const {items} of allPageItems){
-      for(const item of items){
-        xPositions.push(item.x);
-      }
-    }
-    if(!xPositions.length) return [0];
-
-    xPositions.sort((a,b)=>a-b);
-
-    // Cluster nearby X positions (within COL_SNAP pts = same column)
-    const COL_SNAP=18; // points tolerance for column snapping
-    const clusters=[];
-    let cur=[xPositions[0]];
-    for(let i=1;i<xPositions.length;i++){
-      if(xPositions[i]-cur[cur.length-1]<=COL_SNAP){
-        cur.push(xPositions[i]);
-      } else {
-        clusters.push(cur);
-        cur=[xPositions[i]];
-      }
-    }
-    clusters.push(cur);
-
-    // Column anchor = median of each cluster
-    const anchors=clusters.map(cl=>{
-      cl.sort((a,b)=>a-b);
-      return cl[Math.floor(cl.length/2)];
-    });
-
-    // Filter out columns that have very few items (noise) - keep if ≥1% of total items
-    const minItems=Math.max(1,Math.floor(xPositions.length*0.01));
-    const clusterCounts=clusters.map(cl=>cl.length);
-    const filtered=anchors.filter((_,i)=>clusterCounts[i]>=minItems);
-
-    return filtered.length ? filtered : anchors;
-  }
-
-  // ══════════════════════════════════════════════════════════════
-  // STEP 4: Convert page items to grid rows using global columns
-  // Groups items into rows by Y proximity, then snaps to columns
-  // ══════════════════════════════════════════════════════════════
-  function itemsToRows(items,cols,pageNum,totalPages){
-    if(!items.length) return [];
-
-    const ROW_SNAP=6; // Y tolerance in points for same row
-
-    // Group items by Y position
-    const yGroups=[];
-    const sortedByY=[...items].sort((a,b)=>a.y-b.y);
-
-    let curGroup=null;
-    for(const item of sortedByY){
-      if(!curGroup||item.y-curGroup.y>ROW_SNAP){
-        curGroup={y:item.y,items:[]};
-        yGroups.push(curGroup);
-      }
-      curGroup.items.push(item);
-    }
-
-    // Convert each Y group to a row array aligned to global columns
-    const rows=[];
-    for(const group of yGroups){
-      const row=new Array(cols.length).fill('');
-      for(const item of group.items){
-        // Snap item X to nearest column
-        let bestCol=0,bestDist=Infinity;
-        for(let ci=0;ci<cols.length;ci++){
-          const dist=Math.abs(item.x-cols[ci]);
-          if(dist<bestDist){bestDist=dist;bestCol=ci;}
-        }
-        // Append to cell if already has content (items in same cell)
-        if(row[bestCol]){
-          row[bestCol]+=' '+item.text;
-        } else {
-          row[bestCol]=item.text;
-        }
-      }
-      rows.push({row,y:group.y,isBold:group.items.some(it=>it.isBold),pageNum});
-    }
-    return rows;
-  }
-
-  // ══════════════════════════════════════════════════════════════
-  // STEP 5: Finalise rows - clean, normalise, remove empty rows
-  // ══════════════════════════════════════════════════════════════
-  function finaliseRows(rowObjs,numCols){
-    const result=[];
-    const seen=new Set();
-
-    for(const obj of rowObjs){
-      // Ensure consistent column count
-      while(obj.row.length<numCols) obj.row.push('');
-
-      // Clean each cell: trim, collapse internal spaces
-      const cleaned=obj.row.map(cell=>{
-        if(!cell) return '';
-        return cell.trim().replace(/\s{2,}/g,' ');
-      });
-
-      // Skip fully empty rows
-      if(cleaned.every(c=>!c)) continue;
-
-      // Deduplicate exact-match rows (repeated headers etc)
-      const key=cleaned.join('|');
-      if(seen.has(key)) continue;
-      seen.add(key);
-
-      result.push({cells:cleaned,isBold:obj.isBold,pageNum:obj.pageNum});
-    }
-    return result;
-  }
-
-  // ══════════════════════════════════════════════════════════════
-  // STEP 6: Detect header row (first row with bold or top position)
-  // ══════════════════════════════════════════════════════════════
-  function detectHeaderRow(rows){
-    if(!rows.length) return -1;
-    // Check if first row has bold items
-    if(rows[0].isBold) return 0;
-    // Check if first row cells look like headers (short, no numbers)
-    const first=rows[0].cells;
-    const looksLikeHeader=first.filter(c=>c).every(c=>{
-      return c.length<50 && !/^\d+(\.\d+)?$/.test(c.trim());
-    });
-    if(looksLikeHeader) return 0;
-    return -1;
-  }
-
-  // ══════════════════════════════════════════════════════════════
-  // STEP 7: Render preview table
-  // ══════════════════════════════════════════════════════════════
-  function renderTable(rows,hdrIdx){
-    const maxCols=rows.reduce((m,r)=>Math.max(m,r.cells.length),0);
-    const preview=rows.slice(0,60);
-    let html='<table style="border-collapse:collapse;width:100%;font-size:.74rem;font-family:var(--fm);min-width:400px">';
-    preview.forEach((obj,ri)=>{
-      const isHdr=ri===hdrIdx;
-      const bg=isHdr?'rgba(176,120,0,.12)':(ri%2===0?'var(--surf)':'var(--surf2)');
-      const fw=isHdr?'700':'400';
-      html+=`<tr style="background:${bg}">`;
-      for(let c=0;c<maxCols;c++){
-        const td=(obj.cells[c]||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        const tag=isHdr?'th':'td';
-        html+=`<${tag} style="padding:5px 8px;border:1px solid var(--bdr);white-space:nowrap;max-width:200px;overflow:hidden;text-overflow:ellipsis;font-weight:${fw};text-align:left" title="${td}">${td}</${tag}>`;
-      }
-      html+='</tr>';
-    });
-    if(rows.length>60){
-      html+=`<tr><td colspan="${maxCols}" style="padding:8px;text-align:center;font-family:var(--fm);font-size:.68rem;color:var(--mut);border:1px solid var(--bdr)">… ${rows.length-60} more rows (download to see all)</td></tr>`;
-    }
-    html+='</table>';
-    document.getElementById('tableWrap').innerHTML=html;
-  }
-
-  // ══════════════════════════════════════════════════════════════
-  // STEP 8: Export to XLSX with formatting
-  // ══════════════════════════════════════════════════════════════
+  /* ══════════════════════════════════════════════════════════════
+     DOWNLOAD XLSX — single sheet with all pages merged
+  ══════════════════════════════════════════════════════════════ */
   async function downloadXLSX(){
-    if(!extractedRows.length){alert('Nothing to download.');return;}
+    if(!xlSheets.length){alert('Nothing to download.');return;}
     await loadScript(SHEETJS_CDN);
 
-    const aoa=extractedRows.map(obj=>obj.cells);
-    const ws=XLSX.utils.aoa_to_sheet(aoa);
-
-    // Auto-size columns: measure max char length per column
-    const numCols=aoa.reduce((m,r)=>Math.max(m,r.length),0);
-    const colWidths=new Array(numCols).fill(0);
-    for(const row of aoa){
-      for(let c=0;c<row.length;c++){
-        const len=(row[c]||'').toString().length;
-        if(len>colWidths[c]) colWidths[c]=len;
-      }
-    }
-    ws['!cols']=colWidths.map(w=>({wch:Math.min(Math.max(w+2,8),60)}));
-
-    // Bold the header row if detected
-    if(headerRowIndex>=0 && headerRowIndex<aoa.length){
-      const hRow=aoa[headerRowIndex];
-      for(let c=0;c<hRow.length;c++){
-        const cellRef=XLSX.utils.encode_cell({r:headerRowIndex,c});
-        if(!ws[cellRef]) continue;
-        if(!ws[cellRef].s) ws[cellRef].s={};
-        ws[cellRef].s.font={bold:true};
-      }
-    }
-
-    // Freeze the header row
-    if(headerRowIndex===0){
-      ws['!freeze']={xSplit:0,ySplit:1,topLeftCell:'A2',activePane:'bottomLeft',state:'frozen'};
-    }
-
     const wb=XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb,ws,'Data');
 
-    // Write with cell styles enabled
-    const fname=(pdfFile.name.replace(/\.pdf$/i,'')||'converted')+'.xlsx';
-    try{
-      XLSX.writeFile(wb,fname,{cellStyles:true});
-    }catch(e){
-      // Fallback without styles if cellStyles fails
-      XLSX.writeFile(wb,fname);
+    for(const sheet of xlSheets){
+      const aoa=sheet.rows.map(r=>r.cells);
+      const ws=XLSX.utils.aoa_to_sheet(aoa);
+
+      // Auto-size columns
+      const numCols=aoa.reduce((m,r)=>Math.max(m,r.length),0);
+      const colWidths=new Array(numCols).fill(0);
+      for(const row of aoa){
+        for(let c=0;c<row.length;c++){
+          const len=(row[c]||'').toString().length;
+          if(len>colWidths[c]) colWidths[c]=len;
+        }
+      }
+      ws['!cols']=colWidths.map(w=>({wch:Math.min(Math.max(w+2,8),60)}));
+
+      // Freeze header row
+      if(sheet.headerIdx===0){
+        ws['!freeze']={xSplit:0,ySplit:1,topLeftCell:'A2',activePane:'bottomLeft',state:'frozen'};
+      }
+
+      XLSX.utils.book_append_sheet(wb,ws,sheet.name);
     }
+
+    const fname=(pdfFile.name.replace(/\.pdf$/i,'')||'converted')+'.xlsx';
+    try{ XLSX.writeFile(wb,fname,{cellStyles:true}); }
+    catch(e){ XLSX.writeFile(wb,fname); }
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // UTILITIES
-  // ══════════════════════════════════════════════════════════════
+  /* ── Utilities ── */
   function yieldToUI(){return new Promise(r=>setTimeout(r,0));}
   </script>
 
@@ -1961,19 +2360,21 @@ PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free.
 No sign up required. No file upload. 100% browser based. Private and secure.
 </div>
 
-<div class="feedback-banner">
-  <div style="max-width:700px;margin:0 auto">
-    <p class="fb-title">Want a new feature or have a suggestion?</p>
-    <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
-  </div>
+<div style="background:var(--surf);border-top:2px solid var(--acc);padding:20px 24px;text-align:center;margin-top:0">
+  <p style="font-family:var(--fd);font-weight:800;font-size:.93rem;color:var(--txt);margin-bottom:10px">Want a new feature or have a suggestion?</p>
+  <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
 </div>
 
-<footer class="site-footer">
-  <div class="site-footer-links">
-    <a href="./index.html">Home</a><span class="site-footer-sep">·</span>
-    <a href="./privacy-policy.html">Privacy</a><span class="site-footer-sep">·</span>
-    <a href="./terms.html">Terms</a><span class="site-footer-sep">·</span>
-    <a href="./feedback.html">Contact</a><span class="site-footer-sep">·</span>
+<footer style="background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+    <a href="./index.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Home</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./privacy-policy.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Privacy</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./terms.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Terms</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./feedback.html" style="font-family:var(--fm);font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Contact</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
     <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
   </div>
 </footer>

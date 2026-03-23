@@ -22,10 +22,34 @@
   gtag('js', new Date());
   gtag('config', 'G-YH8HV6BTX9');
 </script>
+<script>
+/* ─── SAFE getElementById: returns no-op object if element not found ─── */
+(function(){
+  var _get = document.getElementById.bind(document);
+  var _noop = function(){};
+  var _safeClassList = {add:_noop,remove:_noop,toggle:function(){return false;},contains:function(){return false;},replace:_noop};
+  var _safeStyle = new Proxy({},{get:function(t,k){return _noop;},set:function(){return true;}});
+  var _safe = {style:_safeStyle,classList:_safeClassList,textContent:'',innerHTML:'',value:'',checked:false,disabled:false,offsetWidth:0,offsetHeight:0,appendChild:_noop,removeChild:_noop,insertBefore:_noop,setAttribute:_noop,getAttribute:function(){return null;},contains:function(){return false;},querySelectorAll:function(){return[];},querySelector:function(){return null;},addEventListener:_noop,removeEventListener:_noop,focus:_noop,blur:_noop,click:_noop,scrollIntoView:_noop,remove:_noop,closest:function(){return null;}};
+  document.getElementById = function(id){return _get(id) || _safe;};
+  /* ─── SAFE MutationObserver.observe: skip if target is not a real Node ─── */
+  var _origObserve = MutationObserver.prototype.observe;
+  MutationObserver.prototype.observe = function(target, options){
+    if(target && target.nodeType) _origObserve.call(this, target, options);
+  };
+})();
+</script>
 
 
 <style>
-html,body{background:#f0f2f5}/* shared-patch-css */
+html,:root{
+  --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
+  --acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;
+  --txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;
+  --shadow:rgba(0,0,0,.10);--r:8px;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0f2f5}/* shared-patch-css */
 
 /* ══ SQUARE DZ STATE ══ */
 .dz{transition:all .3s cubic-bezier(.34,1.1,.64,1)}
@@ -60,6 +84,9 @@ html,body{background:#f0f2f5}/* shared-patch-css */
 .read-blog-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:9px 22px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em}
 .read-blog-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
 .read-blog-btn .rbtn-icon{font-size:.9rem}
+
+/* Remove gap from hidden progress bar */
+.u-prog:not(.show){display:none!important;margin:0!important}
 </style>
 
 <meta charset="UTF-8"/>
@@ -834,11 +861,13 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;
 <body class="light">
 
 
+
+
 <main>
 
 <div class="tool-standalone">
   <div class="top-nav-row">
-  <a href="./index.html" class="back-link">← All Tools</a>
+  <a href="./index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap" onmouseover="this.style.transform='translateX(-3px) scale(1.03)';this.style.boxShadow='0 5px 20px rgba(176,120,0,.45)'" onmouseout="this.style.transform='';this.style.boxShadow='0 3px 14px rgba(176,120,0,.3)'">&#8592; All Tools</a>
   <a href="./blog/pdf-rotate.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
 </div>
   
@@ -846,11 +875,35 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;
     
 <div class="tool-page-body" id="toolBody">
 <div class="tp">
-    <h2>🔄 Rotate Pages</h2>
-    <p class="desc">Upload a PDF to open the full-page rotate editor. See all pages, choose angle, and download.</p>
+      <div style="margin-bottom:22px;padding-bottom:18px;border-bottom:1.5px solid var(--bdr);text-align:center">
+        <div style="font-family:var(--fd);font-weight:800;font-size:1.45rem;color:var(--txt);letter-spacing:-.03em;margin-bottom:14px">
+          Rotate PDF Pages <span style="color:var(--ok);font-size:.75em">(Free)</span>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Free Forever</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)">No Upload</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)">Browser-Based</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Any Angle</span>
+        </div>
+        <div class="cpdf-steps" style="display:flex;align-items:center;justify-content:center;gap:0;padding:13px 18px;background:var(--surf2);border:1px solid var(--bdr);border-radius:14px;overflow-x:auto;scrollbar-width:none">
+          <div id="step0" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:1"><div id="sn0" style="width:26px;height:26px;border-radius:50%;background:var(--acc);border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:#0a0a14;box-shadow:0 0 0 4px rgba(176,120,0,.18)">1</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Upload</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step1" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn1" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">2</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Options</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step2" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn2" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">3</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Convert</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step3" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn3" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">4</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Download</div></div>
+        </div>
+      </div>
     <div class="dz-wrap"><div class="u-prog" id="u-prog-main"><div class="u-prog-track"><div class="u-prog-fill"></div></div><div class="u-prog-lbl"><div class="u-prog-spinner"></div><span class="u-prog-lbl-text">Processing…</span></div></div>
-<div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Click pages in the preview to select which ones to rotate.</span></div><div class="dz"><input type="file" id="f-rot" accept="application/pdf" onchange="openRotateOverlay(this)"/ aria-label="Upload file">
-      <div class="dz-icon">🔄</div><div class="dz-title">Drop PDF here</div><div class="dz-sub">or click to browse — opens editor</div>
+<div class="dz rot-main-dz" style="width:100%;height:200px;border:2.5px dashed var(--bdr);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--surf2);cursor:pointer;position:relative;transition:border-color .25s,background .25s">
+    <input type="file" id="f-rot" accept="application/pdf" onchange="openRotateOverlay(this)" aria-label="Upload file" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%"/>
+    <div style="width:52px;height:52px;border-radius:50%;border:2px dashed var(--bdr);background:var(--surf);display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:var(--mut);transition:border-color .25s,color .25s">+</div>
+    <div style="font-family:var(--fd);font-weight:800;font-size:1.05rem;color:var(--txt)">Drop your PDF here</div>
+    <div style="font-size:.8rem;color:var(--mut)">or click to browse · opens rotation editor</div>
+    <div style="font-family:var(--fm);font-size:.62rem;color:var(--mut);border:1.5px solid var(--bdr);border-radius:20px;padding:3px 14px;background:var(--surf)">PDF files up to 500MB</div>
+  </div>
+  <style>.rot-main-dz:hover{border-color:var(--acc)!important;background:rgba(176,120,0,.04)!important}.rot-main-dz:hover>div:first-of-type{border-color:var(--acc)!important;color:var(--acc)!important}</style>
     </div></div>
   </div>
 </div>
@@ -858,7 +911,7 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;
 <!-- ═══ ROTATE FULL-PAGE OVERLAY ═══ -->
 <div class="hf-fullpage-overlay" id="rotateOverlay" style="flex-direction:column">
   <div class="hf-fp-topbar">
-    <button class="hf-fp-back" onclick="closeRotateOverlay()">&#8592; All Tools</button>
+    <button class="hf-fp-back" onclick="closeRotateOverlay()">&#8592; Back</button>
     <div class="hf-fp-title">🔄 Rotate PDF Pages</div>
     <div style="font-family:var(--fm);font-size:.72rem;color:var(--mut)" id="rot-overlay-file"></div>
     <button class="btn btn-p" style="padding:8px 18px;font-size:.78rem;margin-left:auto" onclick="downloadRotated()">⬇ Download PDF</button>
@@ -875,11 +928,11 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;
       <div>
         <label class="lbl" style="margin-bottom:8px">Scope</label>
         <div class="radio-group" id="rot-scope-radio" style="gap:8px;margin:0">
-          <div class="radio-opt selected" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'all');document.getElementById('rot-page-hint').style.display='none'">
+          <div class="radio-opt selected" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'all');document.getElementById('rot-page-hint').style.display='none';setRotPageSelectMode(false)">
             <div class="radio-circle"><div class="radio-dot"></div></div>
             <div><div class="radio-label" style="font-size:.8rem">All pages</div></div>
           </div>
-          <div class="radio-opt" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'selected');document.getElementById('rot-page-hint').style.display='block'">
+          <div class="radio-opt" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'selected');document.getElementById('rot-page-hint').style.display='block';setRotPageSelectMode(true)">
             <div class="radio-circle"><div class="radio-dot"></div></div>
             <div>
               <div style="display:flex;align-items:center;gap:6px">
@@ -983,11 +1036,11 @@ body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;
       <div>
         <label class="lbl" style="margin-bottom:8px">Scope</label>
         <div class="radio-group" id="rot-scope-radio" style="gap:8px;margin:0">
-          <div class="radio-opt selected" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'all');document.getElementById('rot-page-hint').style.display='none'">
+          <div class="radio-opt selected" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'all');document.getElementById('rot-page-hint').style.display='none';setRotPageSelectMode(false)">
             <div class="radio-circle"><div class="radio-dot"></div></div>
             <div><div class="radio-label" style="font-size:.8rem">All pages</div></div>
           </div>
-          <div class="radio-opt" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'selected');document.getElementById('rot-page-hint').style.display='block'">
+          <div class="radio-opt" style="padding:8px 12px" onclick="selectRadio('rot-scope-radio',this,'selected');document.getElementById('rot-page-hint').style.display='block';setRotPageSelectMode(true)">
             <div class="radio-circle"><div class="radio-dot"></div></div>
             <div>
               <div style="display:flex;align-items:center;gap:6px">
@@ -1084,7 +1137,7 @@ document.querySelectorAll('.tb[data-tab]').forEach(btn=>{
     document.querySelectorAll('.tb[data-tab]').forEach(b=>b.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(newTab)?.classList.add('active');
+    document.getElementById(newTab).classList.add('active');
     closePanel();
   });
 });
@@ -1420,10 +1473,10 @@ function setMergeType(n) {
 
 // ════ TYPE 1 — Standard sequential merge ═════════════════════
 let mergeFiles=[];
-function initMerge(input){mergeFiles=[...input.files];document.getElementById('dz-merge-wrap').style.display='none';renderMergeList();document.getElementById('merge-add-btn').classList.remove('hidden');showScrollHint();}
+function initMerge(input){mergeFiles=[...input.files];const dw=document.getElementById('dz-merge-wrap');if(dw)dw.style.display='none';renderMergeList();const ab=document.getElementById('merge-add-btn');if(ab)ab.classList.remove('hidden');showScrollHint();}
 function addMoreMerge(input){mergeFiles=[...mergeFiles,...input.files];renderMergeList();}
 function renderMergeList(){
-  const list=document.getElementById('merge-files-list');list.style.display='flex';list.innerHTML='';
+  const list=document.getElementById('merge-files-list');if(!list)return;list.style.display='flex';list.innerHTML='';
   mergeFiles.forEach((f,i)=>{
     const item=document.createElement('div');item.className='merge-file-item';
     item.innerHTML=`<span class="mfi-icon">📄</span><span class="mfi-name">${f.name}</span><span class="mfi-sz">${fmtSz(f.size)}</span><button class="mfi-del" onclick="removeMergeFile(${i})">✕</button>`;
@@ -1432,8 +1485,11 @@ function renderMergeList(){
 }
 function removeMergeFile(i){
   mergeFiles.splice(i,1);
-  if(mergeFiles.length===0){document.getElementById('dz-merge-wrap').style.display='flex';document.getElementById('merge-files-list').style.display='none';document.getElementById('merge-add-btn').classList.add('hidden');}
-  else renderMergeList();
+  if(mergeFiles.length===0){
+    const dw=document.getElementById('dz-merge-wrap');if(dw)dw.style.display='flex';
+    const fl=document.getElementById('merge-files-list');if(fl)fl.style.display='none';
+    const ab=document.getElementById('merge-add-btn');if(ab)ab.classList.add('hidden');
+  } else renderMergeList();
 }
 async function mergePDFs(){
   if(mergeFiles.length<2){toast('Add at least 2 PDFs','error');return;}
@@ -1554,18 +1610,16 @@ function removeFromSequence(idx) {
 
 function seqDragOver(e) {
   e.preventDefault(); e.dataTransfer.dropEffect = seqDragData?.source==='chip' ? 'copy' : 'move';
-  document.getElementById('seq-drop-zone').classList.add('drag-over');
+  const z=document.getElementById('seq-drop-zone');if(z)z.classList.add('drag-over');
 }
 function seqDragLeave(e) {
-  if(!document.getElementById('seq-drop-zone').contains(e.relatedTarget))
-    document.getElementById('seq-drop-zone').classList.remove('drag-over');
+  const z=document.getElementById('seq-drop-zone');if(z&&!z.contains(e.relatedTarget))z.classList.remove('drag-over');
 }
 function seqDrop(e) {
   e.preventDefault();
-  document.getElementById('seq-drop-zone').classList.remove('drag-over');
+  const z=document.getElementById('seq-drop-zone');if(z)z.classList.remove('drag-over');
   if(!seqDragData || seqDragData.source!=='chip') return;
-  // Only append to end if dropped on the zone background (not a chip)
-  if(e.target === document.getElementById('seq-drop-zone') || e.target.classList.contains('seq-drop-hint')) {
+  if(e.target === z || e.target.classList.contains('seq-drop-hint')) {
     seqPages.push({pdfNum:seqDragData.pdfNum, pageIdx:seqDragData.pageIdx});
     seqDragData = null;
     renderSeqDropZone();
@@ -1827,9 +1881,32 @@ let rotTotal=0,selPages=new Set(),rotationMap={};
 async function buildPills(file){await ensurePDFJS();const buf=await file.arrayBuffer();let pdf;try{pdf=await pdfjsLib.getDocument({data:buf}).promise;}catch{return;}rotTotal=pdf.numPages;selPages=new Set();rotationMap={};const strip=document.getElementById('rot-pills');if(!strip)return;strip.innerHTML='';const all=document.createElement('span');all.className='pill all';all.textContent='ALL';all.onclick=()=>{for(let i=1;i<=rotTotal;i++)selPages.add(i);document.querySelectorAll('#rot-pills .pill:not(.all)').forEach(p=>p.classList.add('sel'));syncThumbSel();};strip.appendChild(all);for(let i=1;i<=rotTotal;i++){const p=document.createElement('span');p.className='pill';p.textContent='P'+i;p.dataset.p=i;p.onclick=()=>{const pg=parseInt(p.dataset.p);if(selPages.has(pg)){selPages.delete(pg);p.classList.remove('sel');}else{selPages.add(pg);p.classList.add('sel');}syncThumbSel();};strip.appendChild(p);}}
 function syncPillSel(){document.querySelectorAll('#rot-pills .pill:not(.all)').forEach(p=>{p.classList.toggle('sel',selPages.has(parseInt(p.dataset.p)));});}
 function syncThumbSel(){document.querySelectorAll('.page-thumb').forEach(t=>{t.classList.toggle('sel',selPages.has(parseInt(t.dataset.page)));});}
+function setRotPageSelectMode(enabled){
+  // Toggle pointer-events on all rot-thumb cards
+  document.querySelectorAll('[id^="rot-thumb-"]').forEach(function(card){
+    card.style.cursor = enabled ? 'pointer' : 'default';
+    card.style.pointerEvents = enabled ? '' : 'none';
+    card.style.opacity = enabled ? '' : '0.75';
+  });
+  // If switching to "all", clear selection
+  if(!enabled){
+    selPages.clear();
+    document.querySelectorAll('[id^="rot-thumb-"]').forEach(function(card){
+      card.classList.remove('sel');
+    });
+    syncPillSel();
+  }
+}
 function applyRotation(deg){
   const scope=document.querySelector('#rot-scope-radio .radio-opt.selected')?.dataset.val;
-  const pages=scope==='selected'&&selPages.size>0?[...selPages]:[...Array(rotTotalPages||rotTotal)].map((_,i)=>i+1);
+  if(scope==='selected' && selPages.size===0){
+    toast('Please select at least one page first','error');
+    // Flash the page grid to hint user
+    const grid=document.getElementById('rot-overlay-pages');
+    if(grid){grid.style.outline='2px solid var(--acc3)';grid.style.borderRadius='8px';setTimeout(()=>{grid.style.outline='';},1200);}
+    return;
+  }
+  const pages=scope==='selected'?[...selPages]:[...Array(rotTotalPages||rotTotal)].map((_,i)=>i+1);
   pages.forEach(pg=>{rotationMap[pg]=((rotationMap[pg]||0)+deg+360)%360;});
   // Update page cards in rotate overlay main grid
   pages.forEach(pg=>{
@@ -1865,7 +1942,17 @@ function resetRotation(){
   document.querySelectorAll('.page-thumb canvas').forEach(cv=>{cv.style.transform='';cv.style.maxWidth='100%';});
   const info=document.getElementById('rot-live-info');if(info)info.textContent='↩ Reset';
 }
-async function downloadRotated(){const fs=FS['rot'];if(!fs){toast('Upload a PDF','error');return;}await ensurePDFLib();const{PDFDocument,degrees}=PDFLib;try{const b=await readAB(fs.file);const d=await PDFDocument.load(b);const total=d.getPageCount();Object.entries(rotationMap).forEach(([pg,deg])=>{const i=parseInt(pg)-1;if(i>=0&&i<total)d.getPage(i).setRotation(degrees(deg));});downloadBlob(new Blob([await d.save()],{type:'application/pdf'}),baseName(fs.file)+'_rotated.pdf','rot');setOut('out-rot','✓ Rotated PDF downloaded.');}catch(e){setOut('out-rot','Error: '+e.message,false);}}
+async function downloadRotated(){
+  const fs=FS['rot'];if(!fs){toast('Upload a PDF','error');return;}
+  const scope=document.querySelector('#rot-scope-radio .radio-opt.selected')?.dataset.val;
+  if(scope==='selected' && selPages.size===0){
+    toast('Please select at least one page before downloading','error');
+    return;
+  }
+  await ensurePDFLib();const{PDFDocument,degrees}=PDFLib;
+  try{const b=await readAB(fs.file);const d=await PDFDocument.load(b);const total=d.getPageCount();Object.entries(rotationMap).forEach(([pg,deg])=>{const i=parseInt(pg)-1;if(i>=0&&i<total)d.getPage(i).setRotation(degrees(deg));});downloadBlob(new Blob([await d.save()],{type:'application/pdf'}),baseName(fs.file)+'_rotated.pdf','rot');setOut('out-rot','✓ Rotated PDF downloaded.');}
+  catch(e){setOut('out-rot','Error: '+e.message,false);}
+}
 
 // ════ WATERMARK ═══════════════════════════════════════════════
 async function addWatermark(){const fs=FS['wm'];if(!fs){toast('Upload a PDF','error');return;}await ensurePDFLib();const{PDFDocument,degrees,rgb,StandardFonts}=PDFLib;try{const b=await readAB(fs.file);const d=await PDFDocument.load(b);const font=await d.embedFont(StandardFonts.HelveticaBold);const text=document.getElementById('wm-text').value||'WATERMARK';const size=parseInt(document.getElementById('wm-size').value)||48;const op=parseFloat(document.getElementById('wm-op').value)||0.3;const c=hex2rgb(document.getElementById('wm-color').value);d.getPages().forEach(pg=>{const{width,height}=pg.getSize();pg.drawText(text,{x:(width-font.widthOfTextAtSize(text,size))/2,y:(height-size)/2,size,font,color:rgb(c.r,c.g,c.b),opacity:op,rotate:degrees(45)});});downloadBlob(new Blob([await d.save()],{type:'application/pdf'}),baseName(fs.file)+'_watermarked.pdf','wm');setOut('out-wm','✓ Watermark added → .pdf downloaded.');}catch(e){setOut('out-wm','Error: '+e.message,false);}}
@@ -2603,7 +2690,7 @@ function openToolPage(toolId){
     document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     const targetTab=document.querySelector(`.tb[data-tab="${def.redirect}"]`);
     if(targetTab)targetTab.classList.add('active');
-    document.getElementById(def.redirect)?.classList.add('active');
+    document.getElementById(def.redirect).classList.add('active');
     window.scrollTo({top:0,behavior:'smooth'});
     document.getElementById('allToolsDropdown').classList.remove('open');
     return;
@@ -4388,6 +4475,9 @@ async function openRotateOverlay(input){
     card.appendChild(badge);
 
     card.onclick=()=>{
+      // Only allow selection in "selected pages" mode
+      const scope=document.querySelector('#rot-scope-radio .radio-opt.selected')?.dataset.val;
+      if(scope!=='selected') return;
       const pg=parseInt(card.dataset.page);
       if(card.classList.contains('sel')){
         card.classList.remove('sel');
@@ -4406,6 +4496,8 @@ async function openRotateOverlay(input){
   }
   grid.innerHTML='';
   cards.forEach(c=>grid.appendChild(c));
+  // Apply "all pages" mode styling after cards are in DOM
+  setRotPageSelectMode(false);
 }
 
 function closeRotateOverlay(){
@@ -4786,8 +4878,8 @@ function clearSigSec(){
 function setSigSecTab(tab){
   sigSecMode=tab;
   ['draw','upload-sig','upload-stamp'].forEach(t=>{
-    document.getElementById('sst-'+t)?.classList.toggle('active',t===tab);
-    document.getElementById('sstab-'+t)?.classList.toggle('active',t===tab);
+    document.getElementById('sst-'+t).classList.toggle('active',t===tab);
+    document.getElementById('sstab-'+t).classList.toggle('active',t===tab);
   });
 }
 // Sig draw canvas logic
@@ -5141,9 +5233,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
-<script>
-/* ─── SMOOTH PAGE TRANSITION ─── */
-(function
+</script>
 <!-- ─── SUGGEST FEATURE MODAL ─── -->
 <div id="suggest-modal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:16px">
   <div style="background:var(--surf);border-radius:14px;padding:28px 28px 22px;max-width:480px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.4);border:1.5px solid var(--bdr);position:relative;max-height:90vh;overflow-y:auto">
@@ -5185,15 +5275,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <script>
 function openSuggestModal(){var m=document.getElementById('suggest-modal');if(m)m.style.display='flex';}
 function closeSuggestModal(){var m=document.getElementById('suggest-modal');if(m)m.style.display='none';['sg-name','sg-email','sg-desc'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});var s=document.getElementById('sg-type');if(s)s.value='';var e=document.getElementById('sg-error');if(e)e.style.display='none';var sent=document.getElementById('sg-sent');if(sent)sent.style.display='none';}
-function sendSuggestion(){var name=(document.getElementById('sg-name').value||'').trim();var email=(document.getElementById('sg-email').value||'').trim();var type=document.getElementById('sg-type').value||'General';var desc=(document.getElementById('sg-desc').value||'').trim();var err=document.getElementById('sg-error');if(!name){err.textContent='Please enter your name.';err.style.display='block';return;}if(!email||!email.includes('@')){err.textContent='Please enter a valid email.';err.style.display='block';return;}if(!desc){err.textContent='Please describe your suggestion.';err.style.display='block';return;}err.style.display='none';var to='convertpdf.live'+'@'+'gmail.com';var subj=encodeURIComponent('[ConvertPDF] '+type+' from '+name);var body=encodeURIComponent('Name: '+name+'
-Email: '+email+'
-Type: '+type+'
-
-Suggestion:
-'+desc+'
-
----
-Sent from ConvertPDF.Live');window.location.href='mai'+'lto:'+to+'?subject='+subj+'&body='+body;document.getElementById('sg-sent').style.display='block';setTimeout(closeSuggestModal,3000);}
+function sendSuggestion(){var name=(document.getElementById('sg-name').value||'').trim();var email=(document.getElementById('sg-email').value||'').trim();var type=document.getElementById('sg-type').value||'General';var desc=(document.getElementById('sg-desc').value||'').trim();var err=document.getElementById('sg-error');if(!name){err.textContent='Please enter your name.';err.style.display='block';return;}if(!email||!email.includes('@')){err.textContent='Please enter a valid email.';err.style.display='block';return;}if(!desc){err.textContent='Please describe your suggestion.';err.style.display='block';return;}err.style.display='none';var to='convertpdf.live'+'@'+'gmail.com';var subj=encodeURIComponent('[ConvertPDF] '+type+' from '+name);var body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nType: '+type+'\n\nSuggestion:\n'+desc+'\n\n---\nSent from ConvertPDF.Live');window.location.href='mai'+'lto:'+to+'?subject='+subj+'&body='+body;document.getElementById('sg-sent').style.display='block';setTimeout(closeSuggestModal,3000);}
 function openContactMail(){window.location.href='mai'+'lto:'+'convertpdf.live'+'@'+'gmail.com'+'?subject='+encodeURIComponent('Hello from ConvertPDF.Live');}
 document.addEventListener('click',function(e){var m=document.getElementById('suggest-modal');if(m&&e.target===m)closeSuggestModal();});
 </script>
@@ -6350,20 +6432,22 @@ body.dark .cpdf-toast { background: var(--surf2); }
 
 </script>
 
-<div class="feedback-banner">
-  <div style="max-width:700px;margin:0 auto">
-    <p class="fb-title">Want a new feature or have a suggestion?</p>
-    <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">&#128161; Suggest Feature</a>
-  </div>
+<div style="background:var(--surf);border-top:2px solid var(--acc);padding:20px 24px;text-align:center;margin-top:0">
+  <p style="font-family:var(--fd);font-weight:800;font-size:.93rem;color:var(--txt);margin-bottom:10px">Want a new feature or have a suggestion?</p>
+  <a href="./feedback.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#1a1a2e;font-family:var(--fd);font-weight:800;font-size:.84rem;padding:11px 26px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 16px rgba(176,120,0,.3)">💡 Suggest Feature</a>
 </div>
 
-<footer class="site-footer">
-  <div class="site-footer-links">
-    <a href="./index.html">Home</a><span class="site-footer-sep">&middot;</span>
-    <a href="./privacy-policy.html">Privacy</a><span class="site-footer-sep">&middot;</span>
-    <a href="./terms.html">Terms</a><span class="site-footer-sep">&middot;</span>
-    <a href="./feedback.html">Contact</a><span class="site-footer-sep">&middot;</span>
-    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">&copy; 2025 ConvertPDF.Live</span>
+<footer style="background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+    <a href="./index.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Home</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./privacy-policy.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Privacy</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./terms.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Terms</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./feedback.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Contact</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <span style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
   </div>
 </footer>
 

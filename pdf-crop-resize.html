@@ -60,6 +60,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
+  --acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;
+  --txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;
+  --shadow:rgba(0,0,0,.10);--r:8px;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
 body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;--mut:#4a4a6a}
 
@@ -94,7 +102,10 @@ main{max-width:900px;margin:0 auto;padding:28px 18px 80px}
 .dz{border:2.5px dashed var(--bdr);border-radius:14px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:var(--surf2);text-align:center;padding:44px 20px;position:relative;transition:all .25s}
 .dz:hover,.dz.drag-over{border-color:var(--acc);background:rgba(176,120,0,.04);transform:scale(1.01)}
 .dz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.dz-icon{font-size:2.4rem}
+.dz-icon-hidden{font-size:2.4rem}
+
+.dz-plus{width:64px;height:64px;border-radius:50%;background:var(--surf);border:2.5px dashed var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--mut);transition:all .3s cubic-bezier(.34,1.56,.64,1);line-height:1;font-family:var(--fd)}
+.dz:hover .dz-plus,.dz.drag-over .dz-plus{border-color:var(--acc);color:var(--acc);transform:scale(1.12) rotate(90deg);background:rgba(176,120,0,.06)}
 .dz-title{font-family:var(--fd);font-weight:700;font-size:.95rem;color:var(--txt)}
 .dz-sub{font-size:.78rem;color:var(--mut)}
 .dz-hint{font-family:var(--fm);font-size:.62rem;color:var(--mut);background:var(--surf);padding:3px 10px;border-radius:20px;border:1px solid var(--bdr)}
@@ -237,40 +248,58 @@ body.dark .preview-wrap{background:repeating-conic-gradient(#2a2a3a 0% 25%,#2222
 .top-nav-row .back-link{margin-bottom:0}
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+
+/* Remove gap from hidden progress bar */
+.u-prog:not(.show){display:none!important;margin:0!important}
 </style>
 <link rel="stylesheet" href="./shared.css"/>
 <link rel="stylesheet" href="./design-system.css" data-ds="1"/>
 </head>
 <body class="light">
 
+
+
 <main>
   <div class="top-nav-row">
-  <a href="./index.html" class="back-link">&#8592; Back to Tools</a>
+  <a href="./index.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#fff;font-family:var(--fd);font-weight:800;font-size:.82rem;padding:9px 20px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 14px rgba(176,120,0,.3);white-space:nowrap" onmouseover="this.style.transform='translateX(-3px) scale(1.03)';this.style.boxShadow='0 5px 20px rgba(176,120,0,.45)'" onmouseout="this.style.transform='';this.style.boxShadow='0 3px 14px rgba(176,120,0,.3)'">&#8592; All Tools</a>
   <a href="./blog/pdf-crop-resize.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
 </div>
 
   <div class="tool-card">
     <div class="tool-card-accent"></div>
     <div class="tool-hdr">
-      <span class="tool-icon">✂️</span>
-      <h1 class="tool-title">Crop &amp; Resize PDF</h1>
-      <p class="tool-desc">Visually drag to crop, trim margins, resize to any dimension, or apply instant presets — all processed locally in your browser.</p>
-      <div class="tool-badges">
-        <span class="badge badge-g">✓ Free Forever</span>
-        <span class="badge badge-y">✓ No Upload</span>
-        <span class="badge badge-b">✓ Visual Crop</span>
-        <span class="badge badge-g">✓ Batch Pages</span>
+      <div style="margin-bottom:22px;padding-bottom:18px;border-bottom:1.5px solid var(--bdr);text-align:center">
+        <div style="font-family:var(--fd);font-weight:800;font-size:1.45rem;color:var(--txt);letter-spacing:-.03em;margin-bottom:14px">
+          Crop & Resize PDF <span style="color:var(--ok);font-size:.75em">(Free)</span>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Free Forever</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)">No Upload</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)">Browser-Based</span>
+          <span style="font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Precise Control</span>
+        </div>
+        <div class="cpdf-steps" style="display:flex;align-items:center;justify-content:center;gap:0;padding:13px 18px;background:var(--surf2);border:1px solid var(--bdr);border-radius:14px;overflow-x:auto;scrollbar-width:none">
+          <div id="step0" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:1"><div id="sn0" style="width:26px;height:26px;border-radius:50%;background:var(--acc);border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:#0a0a14;box-shadow:0 0 0 4px rgba(176,120,0,.18)">1</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Upload</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step1" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn1" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">2</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Options</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step2" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn2" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">3</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Convert</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0"></div>
+          <div id="step3" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn3" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">4</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Download</div></div>
+        </div>
       </div>
     </div>
 
     <div class="tool-body">
+<div class="cpdf-steps" id="cpdf-steps-sentinel" style="display:none" aria-hidden="true"></div>
+
       <div class="u-prog" id="u-prog-main"><div class="u-prog-track"><div class="u-prog-fill"></div></div><div class="u-prog-lbl"><div class="u-prog-spinner"></div><span class="u-prog-lbl-text">Processing…</span></div></div>
 
       <!-- DROP ZONE -->
       <div id="dropSection">
         <div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Enter margin values to crop, or choose a standard page size to resize.</span></div><div class="dz" id="dz">
           <input type="file" accept=".pdf" id="fileInput" aria-label="Upload file">
-          <span class="dz-icon">✂️</span>
+          <div class="dz-plus" style="width:64px;height:64px;border-radius:50%;background:var(--surf);border:2.5px dashed var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--mut);transition:all .3s cubic-bezier(.34,1.56,.64,1);line-height:1;font-family:var(--fd)">+</div>
           <div class="dz-title">Drop your PDF here</div>
           <div class="dz-sub">or click to browse · private &amp; secure</div>
           <span class="dz-hint">PDF only · browser-based · private</span>
@@ -443,9 +472,7 @@ body.dark .preview-wrap{background:repeating-conic-gradient(#2a2a3a 0% 25%,#2222
   </div>
 </main>
 
-<div class="contact-banner">
-  <div class="contact-banner-title">Questions or Feedback?</div>
-  <div class="contact-banner-sub">We're constantly improving our tools. Let us know if something isn't working.</div>
+<div class="contact-banner-sub">We're constantly improving our tools. Let us know if something isn't working.</div>
   <a href="./feedback.html" class="btn btn-secondary" style="font-size:.78rem;padding:8px 20px">Send Feedback</a>
 </div>
 <script>
@@ -737,44 +764,49 @@ async function processPDF(){
       setProgress(Math.round(20+70*(done/Math.max(1,affected.length))),'Page '+(idx+1)+' of '+n+'…');
       await yld();
       const pg=pages[idx];
+
       const mb=pg.getMediaBox();
       const pw=mb.width,ph=mb.height;
 
-      if(cropMode==='visual'){
-        const x=Math.max(0,Math.min(vcX,pw-1));
-        const y=Math.max(0,Math.min(vcY,ph-1));
-        const w=Math.min(vcW,pw-x);
-        const h=Math.min(vcH,ph-y);
-        if(w>5&&h>5){pg.setMediaBox(mb.x+x,mb.y+y,w,h);pg.setCropBox(mb.x+x,mb.y+y,w,h);}
-      } else if(cropMode==='margins'){
-        const mT=parseFloat(document.getElementById('mTop').value)||0;
-        const mB=parseFloat(document.getElementById('mBottom').value)||0;
-        const mL=parseFloat(document.getElementById('mLeft').value)||0;
-        const mR=parseFloat(document.getElementById('mRight').value)||0;
-        const nw=pw-mL-mR,nh=ph-mT-mB;
-        if(nw>5&&nh>5){pg.setMediaBox(mb.x+mL,mb.y+mB,nw,nh);pg.setCropBox(mb.x+mL,mb.y+mB,nw,nh);}
-      } else if(cropMode==='resize'){
-        const uv=document.getElementById('rUnit').value;
-        const mul=uv==='mm'?2.8346:uv==='in'?72:uv==='px'?(72/96):1;
-        const tw=parseFloat(document.getElementById('rw').value)*mul;
-        const th=parseFloat(document.getElementById('rh').value)*mul;
-        const rs=document.getElementById('rScale').value;
-        if(rs==='none'){
-          pg.setMediaBox(mb.x,mb.y,tw,th);
-        } else {
-          let fs;const sx=tw/pw,sy=th/ph;
-          if(rs==='fit')fs=Math.min(sx,sy);
-          else if(rs==='fill')fs=Math.max(sx,sy);
-          else fs=sx; // stretch uses x scale, h will stretch
-          pg.scaleContent(fs,fs);
-          const newMb=pg.getMediaBox();
-          const scaledW=pw*fs,scaledH=ph*fs;
-          const ox=(tw-scaledW)/2/fs,oy=(th-scaledH)/2/fs;
-          pg.setMediaBox(newMb.x-ox,newMb.y-oy,tw/fs,th/fs);
+      try{
+        if(cropMode==='visual'){
+          const x=Math.max(0,Math.min(vcX,pw-1));
+          const y=Math.max(0,Math.min(vcY,ph-1));
+          const w=Math.min(vcW,pw-x);
+          const h=Math.min(vcH,ph-y);
+          if(w>5&&h>5){pg.setMediaBox(mb.x+x,mb.y+y,w,h);pg.setCropBox(mb.x+x,mb.y+y,w,h);}
+        } else if(cropMode==='margins'){
+          const mT=parseFloat(document.getElementById('mTop').value)||0;
+          const mB=parseFloat(document.getElementById('mBottom').value)||0;
+          const mL=parseFloat(document.getElementById('mLeft').value)||0;
+          const mR=parseFloat(document.getElementById('mRight').value)||0;
+          const nw=pw-mL-mR,nh=ph-mT-mB;
+          if(nw>5&&nh>5){pg.setMediaBox(mb.x+mL,mb.y+mB,nw,nh);pg.setCropBox(mb.x+mL,mb.y+mB,nw,nh);}
+        } else if(cropMode==='resize'){
+          const uv=document.getElementById('rUnit').value;
+          const mul=uv==='mm'?2.8346:uv==='in'?72:uv==='px'?(72/96):1;
+          const tw=parseFloat(document.getElementById('rw').value)*mul;
+          const th=parseFloat(document.getElementById('rh').value)*mul;
+          const rs=document.getElementById('rScale').value;
+          if(rs==='none'){
+            pg.setMediaBox(mb.x,mb.y,tw,th);
+          } else {
+            let fs;const sx=tw/pw,sy=th/ph;
+            if(rs==='fit')fs=Math.min(sx,sy);
+            else if(rs==='fill')fs=Math.max(sx,sy);
+            else fs=sx;
+            pg.scaleContent(fs,fs);
+            const newMb=pg.getMediaBox();
+            const scaledW=pw*fs,scaledH=ph*fs;
+            const ox=(tw-scaledW)/2/fs,oy=(th-scaledH)/2/fs;
+            pg.setMediaBox(newMb.x-ox,newMb.y-oy,tw/fs,th/fs);
+          }
+        } else if(cropMode==='presets'){
+          const p=activePreset||'trim10';
+          applyPresetPg(pg,mb,pw,ph,p);
         }
-      } else if(cropMode==='presets'){
-        const p=activePreset||'trim10';
-        applyPresetPg(pg,mb,pw,ph,p);
+      }catch(pgErr){
+        console.warn('Page '+(idx+1)+' processing error (skipping):', pgErr.message);
       }
       done++;
     }
@@ -792,7 +824,7 @@ async function processPDF(){
       'Original: '+fmtSize(pdfFile.size)+' → Output: '+fmtSize(bytes.length);
     document.getElementById('resultBox').classList.add('show');
     setProgress(100,'Done!');
-    setTimeout(()=>{hideProgress();document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});},700);
+    setTimeout(()=>{hideProgress();},700);
   }catch(e){alert('Error: '+e.message);console.error(e);}
   btn.disabled=false;
 }
@@ -827,13 +859,7 @@ function resetTool(){
 }
 </script>
 
-<script id="scroll-result-patch">
-(function(){
-  var _w=null;
-  function watch(){clearInterval(_w);_w=setInterval(function(){var r=document.querySelector('.result-box.show');if(r&&r.textContent.trim()){clearInterval(_w);r.scrollIntoView({behavior:'smooth',block:'nearest'});}},350);setTimeout(function(){clearInterval(_w);},15000);}
-  document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;if(/apply|crop|process|download/i.test(b.textContent||''))watch();},true);
-})();
-</script>
+
 
 <script>
 /* ═══════════════════════════════════════════════════════════════
@@ -1676,8 +1702,6 @@ body.dark .cpdf-toast { background: var(--surf2); }
     /* Scroll to result */
     scrollToResult(el, offset = 80) {
       if (!el) return;
-      el.classList.add('cpdf-result-highlight');
-      setTimeout(() => el.classList.remove('cpdf-result-highlight'), 2200);
       const y = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     },
@@ -1802,9 +1826,12 @@ body.dark .cpdf-toast { background: var(--surf2); }
           el.id === 'resultBox'
         );
         if (isResult) {
-          const style = el.getAttribute('style') || '';
-          const cls = el.className || '';
-          if (style.includes('block') || cls.includes('show')) {
+          const oldStyle = m.oldValue || '';
+          const newStyle = el.getAttribute('style') || '';
+          const wasHidden = !oldStyle.includes('block') || oldStyle.includes('none');
+          const isNowVisible = newStyle.includes('block') && !newStyle.includes('none');
+          // Only scroll when transitioning from hidden to visible
+          if (wasHidden && isNowVisible) {
             setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
             const dlBtns = el.querySelectorAll('.btn-primary');
             dlBtns.forEach(b => {
@@ -1819,7 +1846,7 @@ body.dark .cpdf-toast { background: var(--surf2); }
   // Observe all result boxes present at load and future ones
   function observeResultBoxes() {
     document.querySelectorAll('.result-box, [id^="out-"], #resultBox').forEach(el => {
-      styleObserver.observe(el, { attributes: true });
+      styleObserver.observe(el, { attributes: true, attributeOldValue: true });
     });
   }
   if (document.readyState === 'loading') {
@@ -1898,7 +1925,11 @@ body.dark .cpdf-toast { background: var(--surf2); }
     mutations.forEach(function(m) {
       if (m.type === 'attributes' && m.attributeName === 'class') {
         const el = m.target;
-        if (el.classList.contains('show') && (el.classList.contains('result-box') || el.id === 'resultBox')) {
+        const oldVal = m.oldValue || '';
+        const hadShow = /\bshow\b/.test(oldVal);
+        const hasShow = el.classList.contains('show');
+        // Only act when 'show' is being newly added (not on highlight add/remove)
+        if (!hadShow && hasShow && (el.classList.contains('result-box') || el.id === 'resultBox')) {
           setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
           el.querySelectorAll('.btn-primary').forEach(b => {
             if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
@@ -1908,7 +1939,7 @@ body.dark .cpdf-toast { background: var(--surf2); }
     });
   });
   document.querySelectorAll('.result-box, #resultBox').forEach(el => {
-    classObserver.observe(el, { attributes: true });
+    classObserver.observe(el, { attributes: true, attributeOldValue: true });
   });
 
   /* ── Run on DOM ready ── */
@@ -1974,20 +2005,22 @@ PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free.
 No sign up required. No file upload. 100% browser based. Private and secure.
 </div>
 
-<div class="feedback-banner">
-  <div style="max-width:700px;margin:0 auto">
-    <p class="fb-title">Want a new feature or have a suggestion?</p>
-    <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
-  </div>
+<div style="background:var(--surf);border-top:2px solid var(--acc);padding:20px 24px;text-align:center;margin-top:0">
+  <p style="font-family:var(--fd);font-weight:800;font-size:.93rem;color:var(--txt);margin-bottom:10px">Want a new feature or have a suggestion?</p>
+  <a href="./feedback.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--acc);color:#1a1a2e;font-family:var(--fd);font-weight:800;font-size:.84rem;padding:11px 26px;border-radius:50px;text-decoration:none;transition:all .22s;box-shadow:0 3px 16px rgba(176,120,0,.3)">💡 Suggest Feature</a>
 </div>
 
-<footer class="site-footer">
-  <div class="site-footer-links">
-    <a href="./index.html">Home</a><span class="site-footer-sep">·</span>
-    <a href="./privacy-policy.html">Privacy</a><span class="site-footer-sep">·</span>
-    <a href="./terms.html">Terms</a><span class="site-footer-sep">·</span>
-    <a href="./feedback.html">Contact</a><span class="site-footer-sep">·</span>
-    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
+<footer style="background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+    <a href="./index.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Home</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./privacy-policy.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Privacy</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./terms.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Terms</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./feedback.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Contact</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <span style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
   </div>
 </footer>
 

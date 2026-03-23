@@ -940,7 +940,14 @@ body.dark .cpdf-toast { background: var(--surf2); }
             btn.classList.add('dl-pulse');
           }
         });
-
+        // Scroll to result
+        if (node.matches && (
+          node.matches('.result-box') ||
+          node.matches('[id^="out-"]') ||
+          node.matches('.split-result')
+        )) {
+          setTimeout(() => window.CpdfUI.scrollToResult(node), 150);
+        }
       });
     });
   });
@@ -960,6 +967,7 @@ body.dark .cpdf-toast { background: var(--surf2); }
           const style = el.getAttribute('style') || '';
           const cls = el.className || '';
           if (style.includes('block') || cls.includes('show')) {
+            setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
             const dlBtns = el.querySelectorAll('.btn-primary');
             dlBtns.forEach(b => {
               if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
@@ -1053,6 +1061,7 @@ body.dark .cpdf-toast { background: var(--surf2); }
       if (m.type === 'attributes' && m.attributeName === 'class') {
         const el = m.target;
         if (el.classList.contains('show') && (el.classList.contains('result-box') || el.id === 'resultBox')) {
+          setTimeout(() => window.CpdfUI.scrollToResult(el), 200);
           el.querySelectorAll('.btn-primary').forEach(b => {
             if (/download|save/i.test(b.textContent)) b.classList.add('dl-pulse');
           });

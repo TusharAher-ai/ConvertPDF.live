@@ -73,7 +73,16 @@
 <!-- Google Analytics -->
 
 <style>
-/* ═══════════════════════════════ TOKENS ═══════════════════════ */ body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+:root{
+  --bg:#f0f2f5;--surf:#ffffff;--surf2:#e8eaf0;--bdr:#c4c6d8;
+  --acc:#b07800;--acc2:#0060a0;--acc3:#b0004a;
+  --txt:#1a1a2e;--mut:#4a4a6a;--ok:#107040;
+  --shadow:rgba(0,0,0,.10);--r:8px;
+  --fd:'Syne',sans-serif;--fm:'Space Mono',monospace;--fb:'DM Sans',sans-serif
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--fb);font-size:14px;line-height:1.6;min-height:100vh;transition:background .3s,color .3s}
+body.dark{--bg:#0f0f1a;--surf:#1a1a2e;--surf2:#22223a;--bdr:#3a3a5c;--txt:#e8e8f0;--mut:#8888aa}
 body.light{--bg:#f0f2f5;--surf:#fff;--surf2:#e8eaf0;--bdr:#c4c6d8;--txt:#1a1a2e;--mut:#4a4a6a}
 
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
@@ -265,7 +274,11 @@ body.dark .btn-primary{color:#0a0a14}
 .u-prog-fill{height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2)); border-radius:6px;transition:width .25s;width:0}
 .u-prog-lbl{font-family:var(--fm);font-size:.63rem;color:var(--mut);margin-top:4px; display:flex;align-items:center;gap:6px}
 .u-prog-spinner{width:10px;height:10px;border:1.5px solid var(--bdr); border-top-color:var(--acc);border-radius:50%; animation:spin .65s linear infinite;flex-shrink:0}
-@keyframes spin{to{transform:rotate(360deg)}} /* ── READ BLOG BUTTON ── */
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Drop zone + button hover */
+#dz:hover #dzPlus,#dz.drag-over #dzPlus{border-color:var(--acc)!important;color:var(--acc)!important;transform:scale(1.12) rotate(90deg)!important;background:rgba(176,120,0,.06)!important}
+@keyframes hintPulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes cardIn{from{opacity:0;transform:scale(.94) translateY(-8px)}to{opacity:1;transform:none}} /* ── READ BLOG BUTTON ── */
 .read-blog-wrap{text-align:center;padding:18px 18px 8px;background:var(--surf);border-top:1px solid var(--bdr)}
 .read-blog-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:9px 22px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em}
 .read-blog-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
@@ -274,6 +287,146 @@ body.dark .btn-primary{color:#0a0a14}
 .top-nav-row .back-link{margin-bottom:0}
 .blog-guide-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:2px solid var(--acc2);color:var(--acc2);font-family:var(--fd);font-weight:700;font-size:.78rem;padding:8px 18px;border-radius:50px;text-decoration:none;transition:all .2s;letter-spacing:.01em;white-space:nowrap;margin-left:auto}
 .blog-guide-btn:hover{background:var(--acc2);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,96,160,.3)}
+
+/* ═══ POWERPOINT PREVIEW OVERLAY ═══ */
+.ppt-overlay{
+  position:fixed;inset:0;z-index:9850;display:none;flex-direction:column;
+  background:#2d2d2d;animation:poFadeIn .2s ease;
+}
+.ppt-overlay.open{display:flex}
+@keyframes poFadeIn{from{opacity:0}to{opacity:1}}
+
+/* TOP BAR — mimics PowerPoint ribbon */
+.ppt-topbar{
+  height:44px;flex-shrink:0;
+  background:#b7472a;
+  display:flex;align-items:center;gap:0;
+  box-shadow:0 2px 8px rgba(0,0,0,.4);
+  position:relative;z-index:2;
+}
+.ppt-topbar-logo{
+  display:flex;align-items:center;gap:8px;
+  padding:0 18px;border-right:1px solid rgba(255,255,255,.15);
+  height:100%;
+}
+.ppt-topbar-logo-icon{font-size:1.3rem;line-height:1}
+.ppt-topbar-filename{
+  font-family:var(--fd);font-weight:700;font-size:.82rem;color:#fff;
+  padding:0 18px;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.ppt-topbar-meta{
+  font-family:var(--fm);font-size:.6rem;color:rgba(255,255,255,.7);
+  padding:0 14px;white-space:nowrap;
+}
+.ppt-topbar-actions{
+  display:flex;align-items:center;gap:8px;padding:0 14px;
+  border-left:1px solid rgba(255,255,255,.15);height:100%;
+}
+.ppt-dl-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff;color:#b7472a;
+  font-family:var(--fd);font-weight:800;font-size:.76rem;
+  padding:6px 16px;border-radius:4px;border:none;cursor:pointer;
+  transition:all .15s;white-space:nowrap;
+}
+.ppt-dl-btn:hover{background:#f0f0f0;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.ppt-close-btn{
+  width:32px;height:32px;border-radius:4px;
+  background:rgba(255,255,255,.1);border:none;
+  color:#fff;font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;flex-shrink:0;
+}
+.ppt-close-btn:hover{background:rgba(255,255,255,.25)}
+
+/* BODY: thumbnail strip + main stage */
+.ppt-body{flex:1;min-height:0;display:flex;flex-direction:row;}
+
+/* LEFT — slide thumbnail strip */
+.ppt-strip{
+  width:180px;flex-shrink:0;
+  background:#1e1e1e;
+  border-right:1px solid #3a3a3a;
+  overflow-y:auto;overflow-x:hidden;
+  display:flex;flex-direction:column;gap:0;
+  padding:8px 0;
+}
+.ppt-strip::-webkit-scrollbar{width:6px}
+.ppt-strip::-webkit-scrollbar-track{background:#1e1e1e}
+.ppt-strip::-webkit-scrollbar-thumb{background:#4a4a4a;border-radius:3px}
+.ppt-thumb-wrap{
+  padding:6px 10px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  transition:background .12s;position:relative;
+}
+.ppt-thumb-wrap:hover{background:#2e2e2e}
+.ppt-thumb-wrap.active{background:#3a3a3a;}
+.ppt-thumb-wrap.active::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:#b7472a;border-radius:0 2px 2px 0;
+}
+.ppt-thumb-canvas{
+  width:100%;border-radius:2px;
+  box-shadow:0 2px 8px rgba(0,0,0,.5);
+  display:block;
+}
+.ppt-thumb-num{
+  font-family:var(--fm);font-size:.55rem;color:#888;
+  text-align:center;
+}
+.ppt-thumb-wrap.active .ppt-thumb-num{color:#e88;}
+
+/* RIGHT — main slide stage */
+.ppt-stage{
+  flex:1;min-width:0;
+  background:#3c3c3c;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.ppt-stage-inner{
+  position:relative;
+  box-shadow:0 8px 48px rgba(0,0,0,.7);
+}
+.ppt-stage-canvas{
+  display:block;
+  width:100%;height:auto;
+}
+/* Slide counter badge */
+.ppt-counter{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.6);color:#fff;
+  font-family:var(--fm);font-size:.62rem;
+  padding:4px 14px;border-radius:20px;
+  backdrop-filter:blur(4px);pointer-events:none;
+  white-space:nowrap;
+}
+/* Nav arrows */
+.ppt-nav{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,.45);border:none;color:#fff;
+  font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:background .15s;backdrop-filter:blur(4px);
+}
+.ppt-nav:hover{background:rgba(0,0,0,.7)}
+.ppt-nav-prev{left:14px}
+.ppt-nav-next{right:14px}
+.ppt-nav:disabled{opacity:.2;cursor:default}
+
+/* TOAST */
+.toast-stack{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.toast{display:inline-flex;align-items:center;gap:8px;background:var(--txt);color:var(--surf);font-family:var(--fm);font-size:.7rem;padding:9px 17px;border-radius:28px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.35);pointer-events:none;animation:toastIn .3s cubic-bezier(.34,1.3,.64,1);border-left:3px solid var(--acc)}
+.toast.ok{border-left-color:var(--ok)}.toast.err{border-left-color:var(--acc3)}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px) scale(.93)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(8px) scale(.95)}}
+
+@media(max-width:700px){
+  .ppt-strip{width:100px}
+  .ppt-topbar-meta{display:none}
+  .ppt-nav{width:28px;height:28px;font-size:.9rem}
+  .ppt-nav-prev{left:6px}
+  .ppt-nav-next{right:6px}
+}
 </style>
 
 <link rel="stylesheet" href="./shared.css"/>
@@ -282,41 +435,105 @@ body.dark .btn-primary{color:#0a0a14}
 <body class="light">
 
 
+
+<!-- TOAST STACK -->
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- POWERPOINT PREVIEW OVERLAY -->
+<div class="ppt-overlay" id="previewOverlay">
+
+  <!-- TOP BAR — PowerPoint-style ribbon -->
+  <div class="ppt-topbar">
+    <div class="ppt-topbar-logo">
+      <span class="ppt-topbar-logo-icon">📑</span>
+    </div>
+    <div class="ppt-topbar-filename" id="poTitle">document.pptx — PowerPoint</div>
+    <div class="ppt-topbar-meta" id="poSub">— slides</div>
+    <div class="ppt-topbar-actions">
+      <button class="ppt-dl-btn" id="poDownloadBtn">⬇ Download .pptx</button>
+      <button class="ppt-close-btn" onclick="closePreview()" title="Close (Esc)">✕</button>
+    </div>
+  </div>
+
+  <!-- BODY: strip + stage -->
+  <div class="ppt-body">
+
+    <!-- LEFT: slide thumbnail strip -->
+    <div class="ppt-strip" id="pptStrip"></div>
+
+    <!-- RIGHT: main slide stage -->
+    <div class="ppt-stage" id="pptStage">
+      <div class="ppt-stage-inner" id="pptStageInner">
+        <canvas class="ppt-stage-canvas" id="pptMainCanvas"></canvas>
+      </div>
+      <button class="ppt-nav ppt-nav-prev" id="pptPrev" onclick="pptNav(-1)">&#8249;</button>
+      <button class="ppt-nav ppt-nav-next" id="pptNext" onclick="pptNav(1)">&#8250;</button>
+      <div class="ppt-counter" id="pptCounter">1 / 1</div>
+    </div>
+
+  </div>
+</div>
+
 <main>
   <div class="top-nav-row">
-  <a href="./index.html" class="back-link">&#8592; Back to Tools</a>
-  <a href="./blog/pdf-to-powerpoint.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
-</div>
-  <div class="tool-card">
-    <div class="tool-card-accent" style="background:linear-gradient(90deg,var(--acc2),var(--acc3))"></div>
-    <div class="tool-hdr">
-      <span class="tool-icon">📑</span>
-      <h1 class="tool-title">PDF to PowerPoint</h1>
-      <p class="tool-desc">Convert PDF pages into PowerPoint slides. Each page becomes a slide image.</p>
-      <div class="tool-badges"><span class="badge badge-g">Free</span><span class="badge badge-b">Client-side</span><span class="badge badge-y">No Upload</span></div>
-    </div>
-    <div class="tool-body">
-<div class="u-prog" id="u-prog-main"><div class="u-prog-track"><div class="u-prog-fill"></div></div><div class="u-prog-lbl"><div class="u-prog-spinner"></div><span class="u-prog-lbl-text">Processing…</span></div></div>
+    <a href="./index.html" class="back-link" style="background:var(--acc)!important;color:#fff!important;border:none!important;border-radius:50px!important;padding:9px 20px!important;box-shadow:0 3px 14px rgba(176,120,0,.3)!important;margin-bottom:0!important">&#8592; All Tools</a>
+    <a href="./blog/pdf-to-powerpoint.html" class="blog-guide-btn" rel="noopener">&#128214; Read Full Guide</a>
+  </div>
+  <div class="tool-card" style="background:var(--surf);border:2px solid var(--bdr);border-radius:20px;overflow:hidden;box-shadow:0 4px 28px var(--shadow)">
+    <div style="height:4px;background:linear-gradient(90deg,var(--acc2),var(--acc3))"></div>
+    <div style="padding:28px 32px">
 
-
-      <div class="info-box info-warn">
-        <span class="info-box-icon">⚠️</span>
-        <span>Each PDF page is converted to an image and placed on a slide. Text will not be editable. For best results use high-quality PDFs.</span>
+      <!-- Card Header -->
+      <div style="margin-bottom:22px;padding-bottom:18px;border-bottom:1.5px solid var(--bdr);text-align:center">
+        <div style="font-family:var(--fd);font-weight:800;font-size:1.45rem;color:var(--txt);letter-spacing:-.03em;margin-bottom:14px">
+          Convert PDF to PowerPoint <span style="color:var(--ok);font-size:.75em">(Free)</span>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:18px">
+          <span style="font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Free Forever</span>
+          <span style="font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(176,120,0,.12);color:var(--acc);border:1px solid rgba(176,120,0,.25)">No Upload</span>
+          <span style="font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(0,96,160,.12);color:var(--acc2);border:1px solid rgba(0,96,160,.25)">Browser-Based</span>
+          <span style="font-family:var(--fm);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 11px;border-radius:20px;background:rgba(16,112,64,.12);color:var(--ok);border:1px solid rgba(16,112,64,.25)">Exports .pptx</span>
+        </div>
+        <!-- Steps tracker -->
+        <div class="cpdf-steps" style="display:flex;align-items:center;justify-content:center;gap:0;padding:13px 18px;background:var(--surf2);border:1px solid var(--bdr);border-radius:14px;overflow-x:auto;scrollbar-width:none">
+          <div class="step-item active" id="step0" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:1"><div id="sn0" style="width:26px;height:26px;border-radius:50%;background:var(--acc);border:2px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:#0a0a14;box-shadow:0 0 0 4px rgba(176,120,0,.18)">1</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Upload</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0;position:relative"><span style="position:absolute;right:-1px;top:-3px;border:3px solid transparent;border-left-color:var(--bdr)"></span></div>
+          <div class="step-item" id="step1" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn1" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">2</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Options</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0;position:relative"><span style="position:absolute;right:-1px;top:-3px;border:3px solid transparent;border-left-color:var(--bdr)"></span></div>
+          <div class="step-item" id="step2" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn2" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">3</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Convert</div></div>
+          <div style="width:28px;height:1px;background:var(--bdr);margin:0 6px;flex-shrink:0;position:relative"><span style="position:absolute;right:-1px;top:-3px;border:3px solid transparent;border-left-color:var(--bdr)"></span></div>
+          <div class="step-item" id="step3" style="display:flex;align-items:center;gap:7px;flex-shrink:0;opacity:.32"><div id="sn3" style="width:26px;height:26px;border-radius:50%;background:var(--surf2);border:2px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;font-weight:700;color:var(--mut)">4</div><div style="font-family:var(--fd);font-size:.72rem;font-weight:700;color:var(--txt);white-space:nowrap">Download</div></div>
+        </div>
       </div>
 
-      <div class="cpdf-hint"><span class="cpdf-hint-icon">💡</span><span>Each PDF page is rendered as a PowerPoint slide image.</span></div><div class="dz" id="dz" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="_dzDrop(event)">
-        <input type="file" accept=".pdf" id="fileInput" onchange="if(this.files[0])loadFile(this.files[0])" aria-label="Upload file">
-        <span class="dz-icon">📑</span>
-        <div class="dz-title">Drop your PDF here</div>
-        <div class="dz-sub">or click to browse · private &amp; secure</div>
-        <span class="dz-hint">PDF files up to 50MB</span>
+      <!-- Drop Zone -->
+      <div id="dzWrap">
+        <div class="dz" id="dz"
+             ondragover="onDzDragOver(event)" ondragleave="onDzDragLeave(event)" ondrop="onDzDrop(event)"
+             style="border:2.5px dashed var(--bdr);border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--surf2);text-align:center;padding:52px 20px;position:relative;transition:all .28s cubic-bezier(.34,1.1,.64,1);min-height:200px">
+          <input type="file" accept=".pdf" id="fileInput" onchange="if(this.files[0])loadFile(this.files[0])" style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%">
+          <div id="dzPlus" style="width:64px;height:64px;border-radius:50%;background:var(--surf);border:2.5px dashed var(--bdr);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--mut);transition:all .3s cubic-bezier(.34,1.56,.64,1);line-height:1;font-family:var(--fd)">+</div>
+          <div style="font-family:var(--fd);font-weight:800;font-size:1rem;color:var(--txt)">Drop PDF here</div>
+          <div style="font-size:.8rem;color:var(--mut)">or click to browse · private &amp; secure</div>
+          <div style="font-family:'Space Mono',monospace;font-size:.6rem;color:var(--mut);background:var(--surf);padding:3px 11px;border-radius:20px;border:1px solid var(--bdr);animation:hintPulse 2.5s ease infinite">PDF · browser-based · no upload</div>
+        </div>
       </div>
 
-      <div class="file-info" id="fileInfo" style="display:none;margin-top:14px">
-        <span class="fi-icon">📄</span>
-        <span class="fi-name" id="fiName"></span>
-        <span class="fi-size" id="fiSize"></span>
-        <button class="fi-clear" onclick="resetTool()">✕ Clear</button>
+      <!-- File Preview Card -->
+      <div id="filePreviewCard" style="display:none;flex-direction:column;align-items:center;gap:14px;padding:24px 20px;background:var(--surf2);border:2px solid rgba(16,112,64,.3);border-radius:16px;position:relative;animation:cardIn .35s cubic-bezier(.34,1.3,.64,1)">
+        <button onclick="resetTool()" style="position:absolute;top:10px;right:12px;background:transparent;border:1px solid var(--bdr);border-radius:8px;padding:4px 9px;cursor:pointer;font-size:.68rem;color:var(--mut);font-family:'Space Mono',monospace;transition:all .15s" onmouseover="this.style.borderColor='var(--acc3)';this.style.color='var(--acc3)'" onmouseout="this.style.borderColor='var(--bdr)';this.style.color='var(--mut)'">✕ Remove</button>
+        <div style="width:80px;height:96px;background:var(--surf);border:1.5px solid var(--bdr);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:0 4px 18px rgba(0,0,0,.08);position:relative;overflow:hidden;flex-shrink:0">
+          <div style="font-size:1.8rem;line-height:1">📑</div>
+          <div style="font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;color:var(--acc3);text-transform:uppercase;letter-spacing:.06em;background:rgba(176,0,74,.08);padding:2px 6px;border-radius:4px">PDF</div>
+        </div>
+        <div style="text-align:center">
+          <div id="previewName" style="font-family:var(--fd);font-weight:700;font-size:.92rem;color:var(--txt);word-break:break-all;margin-bottom:6px;max-width:320px">document.pdf</div>
+          <div style="display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap">
+            <span id="previewSize" style="display:inline-flex;align-items:center;gap:4px;font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 10px;border-radius:20px;background:rgba(0,96,160,.08);color:var(--acc2);border:1px solid rgba(0,96,160,.2)">— KB</span>
+            <span id="previewPages" style="display:none;align-items:center;gap:4px;font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 10px;border-radius:20px;background:rgba(176,120,0,.08);color:var(--acc);border:1px solid rgba(176,120,0,.2)">— pages</span>
+            <span style="display:inline-flex;align-items:center;gap:4px;font-family:'Space Mono',monospace;font-size:.6rem;padding:3px 10px;border-radius:20px;background:rgba(16,112,64,.08);color:var(--ok);border:1px solid rgba(16,112,64,.2)">✓ Ready</span>
+          </div>
+        </div>
       </div>
 
       <div class="fg" id="optRow" style="display:none;margin-top:8px">
@@ -349,47 +566,72 @@ body.dark .btn-primary{color:#0a0a14}
   const PDFJS_CDN='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
   const PDFJS_WORKER='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  let pdfFile=null, slideBlobs=[];
+  let pdfFile=null, slideBlobs=[], slideCanvases=[], pptxUrl=null;
 
-  // ── File input wiring (DOMContentLoaded ensures shared utils are ready) ──
-  document.addEventListener('DOMContentLoaded',function(){
-    const dz=document.getElementById('dz');
-    const fi=document.getElementById('fileInput');
-    if(dz){
-      dz.addEventListener('dragover',function(e){e.preventDefault();dz.classList.add('drag-over');});
-      dz.addEventListener('dragleave',function(){dz.classList.remove('drag-over');});
-      dz.addEventListener('drop',function(e){e.preventDefault();dz.classList.remove('drag-over');var f=e.dataTransfer.files[0];if(f)loadFile(f);});
+  function onDzDragOver(e){e.preventDefault();const dz=document.getElementById('dz');dz.style.borderColor='var(--acc)';dz.style.background='rgba(176,120,0,.05)';document.getElementById('dzPlus').style.borderColor='var(--acc)';document.getElementById('dzPlus').style.color='var(--acc)';}
+  function onDzDragLeave(e){const dz=document.getElementById('dz');dz.style.borderColor='';dz.style.background='';document.getElementById('dzPlus').style.borderColor='';document.getElementById('dzPlus').style.color='';}
+  function onDzDrop(e){e.preventDefault();onDzDragLeave(e);const f=e.dataTransfer.files[0];if(f)loadFile(f);}
+
+  function setStep(n){
+    for(let i=0;i<=3;i++){
+      const num=document.getElementById('sn'+i);
+      const item=document.getElementById('step'+i);
+      if(!num||!item) continue;
+      if(i<n){item.style.opacity='.62';num.style.background='var(--ok)';num.style.borderColor='var(--ok)';num.style.color='#fff';num.textContent='✓';}
+      else if(i===n){item.style.opacity='1';num.style.background='var(--acc)';num.style.borderColor='var(--acc)';num.style.color='#0a0a14';num.style.boxShadow='0 0 0 4px rgba(176,120,0,.18)';num.textContent=i+1;}
+      else{item.style.opacity='.32';num.style.background='var(--surf2)';num.style.borderColor='var(--bdr)';num.style.color='var(--mut)';num.style.boxShadow='none';num.textContent=i+1;}
     }
-    if(fi) fi.addEventListener('change',function(e){if(e.target.files[0])loadFile(e.target.files[0]);});
-  });
+  }
 
   function loadFile(f){
     if(!f.name.toLowerCase().endsWith('.pdf')){alert('Please select a PDF file.');return}
     pdfFile=f;
-    document.getElementById('fiName').textContent=f.name;
-    document.getElementById('fiSize').textContent=fmtSize(f.size);
-    document.getElementById('fileInfo').style.display='flex';
+    // Show file preview card, hide drop zone
+    document.getElementById('dzWrap').style.display='none';
+    document.getElementById('previewName').textContent=f.name;
+    document.getElementById('previewSize').textContent=fmtSize(f.size);
+    document.getElementById('previewSize').style.display='inline-flex';
+    document.getElementById('filePreviewCard').style.display='flex';
     document.getElementById('optRow').style.display='block';
     document.getElementById('convertBtn').style.display='inline-flex';
-    document.getElementById('dz').style.display='none';
+    setStep(1);
+    // Count pages async
+    if(typeof pdfjsLib==='undefined'){
+      const s=document.createElement('script');
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+      s.onload=()=>{pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';countPages(f);};
+      document.head.appendChild(s);
+    } else { countPages(f); }
+  }
+
+  function countPages(f){
+    f.arrayBuffer().then(ab=>pdfjsLib.getDocument({data:ab}).promise).then(doc=>{
+      const pg=document.getElementById('previewPages');
+      pg.textContent='📄 '+doc.numPages+' page'+(doc.numPages>1?'s':'');
+      pg.style.display='inline-flex';
+    }).catch(()=>{});
   }
 
   function resetTool(){
-    pdfFile=null;slideBlobs=[];
-    document.getElementById('dz').style.display='flex';
-    document.getElementById('fileInfo').style.display='none';
+    closePreview();
+    pdfFile=null;slideBlobs=[];slideCanvases=[];
+    if(pptxUrl){URL.revokeObjectURL(pptxUrl);pptxUrl=null;}
+    document.getElementById('dzWrap').style.display='block';
+    document.getElementById('filePreviewCard').style.display='none';
+    document.getElementById('previewPages').style.display='none';
     document.getElementById('optRow').style.display='none';
     document.getElementById('convertBtn').style.display='none';
-    document.getElementById('resultBox').classList.remove('show');
-    document.getElementById('prevGrid').innerHTML='';
     hideProgress();document.getElementById('fileInput').value='';
+    setStep(0);
+    window.scrollTo({top:0,behavior:'smooth'});
   }
 
   async function convert(){
     if(!pdfFile)return;
     const btn=document.getElementById('convertBtn');
     btn.disabled=true;
-    slideBlobs=[];
+    slideBlobs=[];slideCanvases=[];
+    setStep(2);
     const scale=parseFloat(document.getElementById('qualSel').value);
     try{
       await loadScript(PDFJS_CDN);
@@ -397,161 +639,372 @@ body.dark .btn-primary{color:#0a0a14}
       const ab=await pdfFile.arrayBuffer();
       const pdf=await pdfjsLib.getDocument({data:ab}).promise;
       const n=pdf.numPages;
-      const grid=document.getElementById('prevGrid');
-      grid.innerHTML='';
 
       for(let i=1;i<=n;i++){
-      await (window.yieldUI?window.yieldUI():new Promise(r=>setTimeout(r,0)));
-        setProgress(Math.round(5+90*(i/n)),`Rendering page ${i}/${n}…`);
+        await (window.yieldUI?window.yieldUI():new Promise(r=>setTimeout(r,0)));
+        setProgress(Math.round(5+88*(i/n)),`Rendering page ${i}/${n}…`);
         const page=await pdf.getPage(i);
         const vp=page.getViewport({scale});
         const canvas=document.createElement('canvas');
         canvas.width=vp.width;canvas.height=vp.height;
-        await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
-        const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',0.88));
+        const ctx=canvas.getContext('2d');
+        ctx.fillStyle='#ffffff';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        await page.render({canvasContext:ctx,viewport:vp}).promise;
+        const blob=await new Promise(r=>canvas.toBlob(r,'image/jpeg',0.92));
         slideBlobs.push({blob,w:vp.width,h:vp.height});
-        // thumb
-        const thumb=document.createElement('div');
-        thumb.className='preview-thumb';
-        thumb.innerHTML=`<img src="${canvas.toDataURL('image/jpeg',0.5)}"><div class="preview-thumb-label">Slide ${i}</div>`;
-        grid.appendChild(thumb);
+        slideCanvases.push(canvas);
       }
 
-      setProgress(96,'Building PPTX…');
+      setProgress(95,'Building PPTX…');
       const pptxBlob=await buildPPTX(slideBlobs);
       setProgress(100,'Done!');
-      const url=URL.createObjectURL(pptxBlob);
-      const dlBtn=document.getElementById('dlBtn');
-      dlBtn.onclick=()=>{const a=document.createElement('a');a.href=url;a.download=(pdfFile.name.replace(/\.pdf$/i,'')||'slides')+'.pptx';a.click()};
-      document.getElementById('resultStats').textContent=`${n} slide${n>1?'s':''} created`;
-      document.getElementById('resultBox').classList.add('show');
-      setTimeout(hideProgress,800);
+      if(pptxUrl) URL.revokeObjectURL(pptxUrl);
+      pptxUrl=URL.createObjectURL(pptxBlob);
+      setStep(3);
+      setTimeout(()=>{
+        hideProgress();
+        openPreview(n, pptxBlob);
+      },600);
     }catch(e){alert('Error: '+e.message);}
     btn.disabled=false;
   }
 
+  let pptCurrentSlide = 0;
+
+  function openPreview(n, pptxBlob){
+    pptCurrentSlide = 0;
+    const fname = (pdfFile ? pdfFile.name.replace(/\.pdf$/i,'') : 'slides') + '.pptx';
+    document.getElementById('poTitle').textContent = fname + ' — PowerPoint';
+    document.getElementById('poSub').textContent = `${n} slide${n>1?'s':''} · .pptx`;
+
+    // Wire download button
+    document.getElementById('poDownloadBtn').onclick = () => {
+      const a = document.createElement('a');
+      a.href = pptxUrl;
+      a.download = fname;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      toast('Download started', 'ok');
+    };
+
+    // Build thumbnail strip
+    const strip = document.getElementById('pptStrip');
+    strip.innerHTML = '';
+    slideCanvases.forEach((src, i) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'ppt-thumb-wrap' + (i===0?' active':'');
+      wrap.onclick = () => pptGoTo(i);
+      wrap.id = 'pptThumb' + i;
+
+      const tc = document.createElement('canvas');
+      tc.className = 'ppt-thumb-canvas';
+      // draw at full res, CSS scales it
+      tc.width = src.width; tc.height = src.height;
+      tc.getContext('2d').drawImage(src, 0, 0);
+      wrap.appendChild(tc);
+
+      const num = document.createElement('div');
+      num.className = 'ppt-thumb-num';
+      num.textContent = i + 1;
+      wrap.appendChild(num);
+      strip.appendChild(wrap);
+    });
+
+    pptGoTo(0);
+    document.getElementById('previewOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    // Size the stage properly
+    setTimeout(pptResizeStage, 50);
+  }
+
+  function pptGoTo(idx){
+    if(!slideCanvases.length) return;
+    idx = Math.max(0, Math.min(slideCanvases.length-1, idx));
+    pptCurrentSlide = idx;
+
+    // Update main canvas
+    const src = slideCanvases[idx];
+    const mc = document.getElementById('pptMainCanvas');
+    mc.width = src.width; mc.height = src.height;
+    mc.getContext('2d').drawImage(src, 0, 0);
+    pptResizeStage();
+
+    // Update thumbnail active state
+    document.querySelectorAll('.ppt-thumb-wrap').forEach((el, i) => {
+      el.classList.toggle('active', i === idx);
+    });
+    // Scroll strip to show active thumb
+    const activeThumb = document.getElementById('pptThumb' + idx);
+    if(activeThumb) activeThumb.scrollIntoView({block:'nearest', behavior:'smooth'});
+
+    // Update counter + nav buttons
+    const n = slideCanvases.length;
+    document.getElementById('pptCounter').textContent = `${idx+1} / ${n}`;
+    document.getElementById('pptPrev').disabled = (idx === 0);
+    document.getElementById('pptNext').disabled = (idx === n-1);
+  }
+
+  function pptNav(dir){
+    pptGoTo(pptCurrentSlide + dir);
+  }
+
+  function pptResizeStage(){
+    const stage = document.getElementById('pptStage');
+    const inner = document.getElementById('pptStageInner');
+    const mc = document.getElementById('pptMainCanvas');
+    if(!mc.width || !mc.height) return;
+
+    const availW = stage.clientWidth - 96;  // leave room for nav arrows
+    const availH = stage.clientHeight - 48;
+    const aspect = mc.width / mc.height;
+    let w = Math.min(availW, availH * aspect);
+    let h = w / aspect;
+    if(h > availH){ h = availH; w = h * aspect; }
+    inner.style.width = Math.round(w) + 'px';
+    inner.style.height = Math.round(h) + 'px';
+    mc.style.width = '100%';
+    mc.style.height = 'auto';
+  }
+
+  function closePreview(){
+    document.getElementById('previewOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  window.addEventListener('resize', () => { if(document.getElementById('previewOverlay').classList.contains('open')) pptResizeStage(); });
+  document.addEventListener('keydown', e => {
+    if(!document.getElementById('previewOverlay').classList.contains('open')) return;
+    if(e.key === 'Escape') closePreview();
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown') pptNav(1);
+    if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   pptNav(-1);
+  });
+
+  function toast(msg,type='ok'){
+    const el=document.createElement('div');
+    el.className='toast '+type;
+    el.textContent=(type==='ok'?'✓ ':type==='err'?'✕ ':'ℹ ')+msg;
+    const stack=document.getElementById('toastStack');
+    if(stack){stack.appendChild(el);}
+    setTimeout(()=>{el.style.animation='toastOut .3s ease forwards';setTimeout(()=>el.remove(),300);},2800);
+  }
+
   // Build minimal PPTX (Open XML zip)
   async function buildPPTX(slides){
-    // PPTX is a ZIP of XML files
-    // We'll build a minimal valid PPTX manually
-    const zip={};
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+    const jzip = new JSZip();
 
-    // Slide dimensions: use first slide aspect ratio (or default 10in x 7.5in)
-    // EMU: 1 inch = 914400 EMU
-    const CX=9144000, CY=6858000; // 10in x 7.5in
+    // EMU: 1 inch = 914400. Use actual slide aspect ratio from first slide.
+    const {w:sw, h:sh} = slides[0];
+    // Scale to widescreen 13.33in x 7.5in (standard pptx widescreen)
+    const CX = 12192000; // 13.33in
+    const CY = 6858000;  // 7.5in
 
-    // Content types
-    const slideTypes=slides.map((_,i)=>`<Override PartName="/ppt/slides/slide${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`).join('');
-    const mediaTypes=slides.map((_,i)=>`<Default Extension="jpeg" ContentType="image/jpeg"/>`).slice(0,1).join('');
-    zip['[Content_Types].xml']=`<?xml version="1.0" encoding="UTF-8"?>
+    // ── [Content_Types].xml ─────────────────────────────────────────────
+    const slideOverrides = slides.map((_,i) =>
+      `<Override PartName="/ppt/slides/slide${i+1}.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"/>`
+    ).join('\n');
+
+    jzip.file('[Content_Types].xml',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
-<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
-<Default Extension="xml" ContentType="application/xml"/>
-<Default Extension="jpeg" ContentType="image/jpeg"/>
-<Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>
-<Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>
-<Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>
-${slideTypes}
-</Types>`;
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Default Extension="jpeg" ContentType="image/jpeg"/>
+  <Default Extension="png" ContentType="image/png"/>
+  <Override PartName="/ppt/presentation.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.presentation.main+xml"/>
+  <Override PartName="/ppt/slideMasters/slideMaster1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideMaster+xml"/>
+  <Override PartName="/ppt/slideLayouts/slideLayout1.xml" ContentType="application/vnd.openxmlformats-officedocument.presentationml.slideLayout+xml"/>
+  <Override PartName="/ppt/theme/theme1.xml" ContentType="application/vnd.openxmlformats-officedocument.theme+xml"/>
+${slideOverrides}
+</Types>`);
 
-    zip['_rels/.rels']=`<?xml version="1.0" encoding="UTF-8"?>
+    // ── _rels/.rels ──────────────────────────────────────────────────────
+    jzip.file('_rels/.rels',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>
-</Relationships>`;
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="ppt/presentation.xml"/>
+</Relationships>`);
 
-    const slideRefs=slides.map((_,i)=>`<p:sldId id="${256+i}" r:id="rId${i+1}"/>`).join('');
-    let presRels=slides.map((_,i)=>`<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide${i+1}.xml"/>`).join('');
-    presRels+='<Relationship Id="rIdM1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="slideMasters/slideMaster1.xml"/>';
+    // ── ppt/presentation.xml ─────────────────────────────────────────────
+    const sldIdLst = slides.map((_,i) =>
+      `<p:sldId id="${256+i}" r:id="rId${i+1}"/>`
+    ).join('');
+    const presSlideRels = slides.map((_,i) =>
+      `<Relationship Id="rId${i+1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slide" Target="slides/slide${i+1}.xml"/>`
+    ).join('\n');
 
-    zip['ppt/presentation.xml']=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    jzip.file('ppt/presentation.xml',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:presentation xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
   xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
   xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<p:sldMasterIdLst><p:sldMasterId id="2147483648" r:id="rIdM1"/></p:sldMasterIdLst>
-<p:sldSz cx="${CX}" cy="${CY}"/>
-<p:notesSz cx="6858000" cy="9144000"/>
-<p:sldIdLst>${slideRefs}</p:sldIdLst>
-</p:presentation>`;
+  <p:sldMasterIdLst>
+    <p:sldMasterId id="2147483648" r:id="rIdM1"/>
+  </p:sldMasterIdLst>
+  <p:sldIdLst>${sldIdLst}</p:sldIdLst>
+  <p:sldSz cx="${CX}" cy="${CY}" type="custom"/>
+  <p:notesSz cx="6858000" cy="9144000"/>
+</p:presentation>`);
 
-    zip['ppt/_rels/presentation.xml.rels']=`<?xml version="1.0" encoding="UTF-8"?>
+    jzip.file('ppt/_rels/presentation.xml.rels',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-${presRels}
-</Relationships>`;
+${presSlideRels}
+  <Relationship Id="rIdM1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="slideMasters/slideMaster1.xml"/>
+</Relationships>`);
 
-    // Minimal slide master + layout needed for valid PPTX
-    zip['ppt/slideMasters/slideMaster1.xml']=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    // ── ppt/theme/theme1.xml ─────────────────────────────────────────────
+    jzip.file('ppt/theme/theme1.xml',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:theme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="Office Theme">
+  <a:themeElements>
+    <a:clrScheme name="Office">
+      <a:dk1><a:sysClr lastClr="000000" val="windowText"/></a:dk1>
+      <a:lt1><a:sysClr lastClr="FFFFFF" val="window"/></a:lt1>
+      <a:dk2><a:srgbClr val="44546A"/></a:dk2>
+      <a:lt2><a:srgbClr val="E7E6E6"/></a:lt2>
+      <a:accent1><a:srgbClr val="4472C4"/></a:accent1>
+      <a:accent2><a:srgbClr val="ED7D31"/></a:accent2>
+      <a:accent3><a:srgbClr val="A9D18E"/></a:accent3>
+      <a:accent4><a:srgbClr val="FFC000"/></a:accent4>
+      <a:accent5><a:srgbClr val="5B9BD5"/></a:accent5>
+      <a:accent6><a:srgbClr val="70AD47"/></a:accent6>
+      <a:hlink><a:srgbClr val="0563C1"/></a:hlink>
+      <a:folHlink><a:srgbClr val="954F72"/></a:folHlink>
+    </a:clrScheme>
+    <a:fontScheme name="Office">
+      <a:majorFont><a:latin typeface="Calibri Light"/><a:ea typeface=""/><a:cs typeface=""/></a:majorFont>
+      <a:minorFont><a:latin typeface="Calibri"/><a:ea typeface=""/><a:cs typeface=""/></a:minorFont>
+    </a:fontScheme>
+    <a:fmtScheme name="Office"><a:fillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:fillStyleLst><a:lnStyleLst><a:ln w="6350"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln><a:ln w="12700"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln><a:ln w="19050"><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:ln></a:lnStyleLst><a:effectStyleLst><a:effectStyle><a:effectLst/></a:effectStyle><a:effectStyle><a:effectLst/></a:effectStyle><a:effectStyle><a:effectLst/></a:effectStyle></a:effectStyleLst><a:bgFillStyleLst><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill><a:solidFill><a:schemeClr val="phClr"/></a:solidFill></a:bgFillStyleLst></a:fmtScheme>
+  </a:themeElements>
+</a:theme>`);
+
+    // ── ppt/slideMasters/slideMaster1.xml ────────────────────────────────
+    jzip.file('ppt/slideMasters/slideMaster1.xml',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sldMaster xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
   xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
   xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<p:cSld><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr/></p:spTree></p:cSld>
-<p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>
-<p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst>
-<p:txStyles><p:titleStyle/><p:bodyStyle/><p:otherStyle/></p:txStyles>
-</p:sldMaster>`;
+  <p:cSld><p:spTree>
+    <p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+    <p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>
+  </p:spTree></p:cSld>
+  <p:clrMap bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>
+  <p:sldLayoutIdLst><p:sldLayoutId id="2147483649" r:id="rId1"/></p:sldLayoutIdLst>
+  <p:txStyles>
+    <p:titleStyle><a:lstStyle/></p:titleStyle>
+    <p:bodyStyle><a:lstStyle/></p:bodyStyle>
+    <p:otherStyle><a:lstStyle/></p:otherStyle>
+  </p:txStyles>
+</p:sldMaster>`);
 
-    zip['ppt/slideMasters/_rels/slideMaster1.xml.rels']=`<?xml version="1.0" encoding="UTF-8"?>
+    jzip.file('ppt/slideMasters/_rels/slideMaster1.xml.rels',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
-</Relationships>`;
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/theme" Target="../theme/theme1.xml"/>
+</Relationships>`);
 
-    zip['ppt/slideLayouts/slideLayout1.xml']=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    // ── ppt/slideLayouts/slideLayout1.xml ────────────────────────────────
+    jzip.file('ppt/slideLayouts/slideLayout1.xml',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sldLayout xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
   xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-  xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" type="blank">
-<p:cSld><p:spTree><p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr><p:grpSpPr/></p:spTree></p:cSld>
-</p:sldLayout>`;
+  xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+  type="blank" preserve="1">
+  <p:cSld name="Blank"><p:spTree>
+    <p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
+    <p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="0" cy="0"/><a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>
+  </p:spTree></p:cSld>
+  <p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr>
+</p:sldLayout>`);
 
-    zip['ppt/slideLayouts/_rels/slideLayout1.xml.rels']=`<?xml version="1.0" encoding="UTF-8"?>
+    jzip.file('ppt/slideLayouts/_rels/slideLayout1.xml.rels',
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="../slideMasters/slideMaster1.xml"/>
-</Relationships>`;
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideMaster" Target="../slideMasters/slideMaster1.xml"/>
+</Relationships>`);
 
-    // Each slide
+    // ── Each slide ───────────────────────────────────────────────────────
     for(let i=0;i<slides.length;i++){
-      const {blob,w,h}=slides[i];
-      const imgKey=`ppt/media/image${i+1}.jpeg`;
-      // Convert blob to arraybuffer stored in zip
-      zip[imgKey]={binary:true,data:await blob.arrayBuffer()};
+      const {blob,w,h} = slides[i];
 
-      zip[`ppt/slides/slide${i+1}.xml`]=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      // Convert blob → Uint8Array (required by JSZip for binary data)
+      const ab = await blob.arrayBuffer();
+      const imgBytes = new Uint8Array(ab);
+      jzip.file(`ppt/media/image${i+1}.jpeg`, imgBytes, {binary:true});
+
+      // Compute EMU dimensions to fill slide while maintaining aspect ratio
+      const imgAspect = w / h;
+      const sldAspect = CX / CY;
+      let imgCX, imgCY, imgX, imgY;
+      if(imgAspect >= sldAspect){
+        imgCX = CX; imgCY = Math.round(CX / imgAspect);
+        imgX = 0;   imgY = Math.round((CY - imgCY) / 2);
+      } else {
+        imgCY = CY; imgCX = Math.round(CY * imgAspect);
+        imgY = 0;   imgX = Math.round((CX - imgCX) / 2);
+      }
+
+      jzip.file(`ppt/slides/slide${i+1}.xml`,
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <p:sld xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
   xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
   xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
-<p:cSld><p:spTree>
-<p:nvGrpSpPr><p:cNvPr id="1" name=""/><p:cNvGrpSpPr/><p:nvPr/></p:nvGrpSpPr>
-<p:grpSpPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${CX}" cy="${CY}"/><a:chOff x="0" y="0"/><a:chExt cx="${CX}" cy="${CY}"/></a:xfrm></p:grpSpPr>
-<p:pic>
-  <p:nvPicPr>
-    <p:cNvPr id="2" name="image${i+1}"/>
-    <p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr>
-    <p:nvPr/>
-  </p:nvPicPr>
-  <p:blipFill>
-    <a:blip r:embed="rId1"/>
-    <a:stretch><a:fillRect/></a:stretch>
-  </p:blipFill>
-  <p:spPr>
-    <a:xfrm><a:off x="0" y="0"/><a:ext cx="${CX}" cy="${CY}"/></a:xfrm>
-    <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
-  </p:spPr>
-</p:pic>
-</p:spTree></p:cSld>
-</p:sld>`;
+  <p:cSld>
+    <p:spTree>
+      <p:nvGrpSpPr>
+        <p:cNvPr id="1" name=""/>
+        <p:cNvGrpSpPr/>
+        <p:nvPr/>
+      </p:nvGrpSpPr>
+      <p:grpSpPr>
+        <a:xfrm>
+          <a:off x="0" y="0"/>
+          <a:ext cx="${CX}" cy="${CY}"/>
+          <a:chOff x="0" y="0"/>
+          <a:chExt cx="${CX}" cy="${CY}"/>
+        </a:xfrm>
+      </p:grpSpPr>
+      <p:pic>
+        <p:nvPicPr>
+          <p:cNvPr id="2" name="Slide${i+1}"/>
+          <p:cNvPicPr><a:picLocks noChangeAspect="1"/></p:cNvPicPr>
+          <p:nvPr/>
+        </p:nvPicPr>
+        <p:blipFill>
+          <a:blip r:embed="rId1"/>
+          <a:stretch><a:fillRect/></a:stretch>
+        </p:blipFill>
+        <p:spPr>
+          <a:xfrm>
+            <a:off x="${imgX}" y="${imgY}"/>
+            <a:ext cx="${imgCX}" cy="${imgCY}"/>
+          </a:xfrm>
+          <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+        </p:spPr>
+      </p:pic>
+    </p:spTree>
+  </p:cSld>
+  <p:clrMapOvr><a:masterClrMapping/></p:clrMapOvr>
+</p:sld>`);
 
-      zip[`ppt/slides/_rels/slide${i+1}.xml.rels`]=`<?xml version="1.0" encoding="UTF-8"?>
+      jzip.file(`ppt/slides/_rels/slide${i+1}.xml.rels`,
+`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image${i+1}.jpeg"/>
-</Relationships>`;
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/image${i+1}.jpeg"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/slideLayout" Target="../slideLayouts/slideLayout1.xml"/>
+</Relationships>`);
     }
 
-    // Build ZIP using JSZip
-    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
-    const jzip=new JSZip();
-    for(const [path,content] of Object.entries(zip)){
-      if(content&&content.binary) jzip.file(path,content.data);
-      else jzip.file(path,content);
-    }
-    return jzip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.presentationml.presentation'});
+    return jzip.generateAsync({
+      type:'blob',
+      mimeType:'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      compression:'DEFLATE',
+      compressionOptions:{level:6}
+    });
   }
   </script>
 
@@ -562,11 +1015,7 @@ ${presRels}
 
 
 </main>
-<div class="contact-banner">
-  <div class="contact-banner-title">Questions or Feedback?</div>
-  <div class="contact-banner-sub">We're constantly improving our tools. Let us know if something isn't working.</div>
-  <a href="./feedback.html" class="btn btn-secondary" style="font-size:.78rem;padding:8px 20px">Send Feedback</a>
-</div>
+
 <script>
   // Theme
   (function(){const s=localStorage.getItem('theme')||'light';document.body.classList.add(s)})();
@@ -1760,20 +2209,22 @@ PDF editor free online. Edit PDF free. PDF tools free. Convert PDF free.
 No sign up required. No file upload. 100% browser based. Private and secure.
 </div>
 
-<div class="feedback-banner">
-  <div style="max-width:700px;margin:0 auto">
-    <p class="fb-title">Want a new feature or have a suggestion?</p>
-    <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
-  </div>
+<div style="background:var(--surf);border-top:2px solid var(--acc);padding:20px 24px;text-align:center;margin-top:0">
+  <p style="font-family:var(--fd);font-weight:800;font-size:.93rem;color:var(--txt);margin-bottom:10px">Want a new feature or have a suggestion?</p>
+  <a href="./feedback.html" class="btn btn-primary" style="font-size:.84rem;padding:11px 26px">💡 Suggest Feature</a>
 </div>
 
-<footer class="site-footer">
-  <div class="site-footer-links">
-    <a href="./index.html">Home</a><span class="site-footer-sep">·</span>
-    <a href="./privacy-policy.html">Privacy</a><span class="site-footer-sep">·</span>
-    <a href="./terms.html">Terms</a><span class="site-footer-sep">·</span>
-    <a href="./feedback.html">Contact</a><span class="site-footer-sep">·</span>
-    <span style="font-family:var(--fm);font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
+<footer style="background:var(--surf);border-top:1px solid var(--bdr);padding:14px 24px;text-align:center">
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
+    <a href="./index.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Home</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./privacy-policy.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Privacy</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./terms.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Terms</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <a href="./feedback.html" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--acc)'" onmouseout="this.style.color='var(--mut)'">Contact</a>
+    <span style="color:var(--bdr);font-size:.7rem">·</span>
+    <span style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--mut)">© 2025 ConvertPDF.Live</span>
   </div>
 </footer>
 
